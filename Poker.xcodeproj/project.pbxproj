@@ -13,6 +13,25 @@
 		891C0F0E1D5443080075A228 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 891C0F0C1D5443080075A228 /* Main.storyboard */; };
 		891C0F101D5443080075A228 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 891C0F0F1D5443080075A228 /* Assets.xcassets */; };
 		891C0F131D5443080075A228 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 891C0F111D5443080075A228 /* LaunchScreen.storyboard */; };
+		891C0F1D1D5478CD0075A228 /* CardHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C0F1C1D5478CD0075A228 /* CardHelper.m */; };
+		891C0F381D5479510075A228 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C0F201D5479510075A228 /* MASCompositeConstraint.m */; };
+		891C0F391D5479510075A228 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C0F231D5479510075A228 /* MASConstraint.m */; };
+		891C0F3A1D5479510075A228 /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C0F251D5479510075A228 /* MASConstraintMaker.m */; };
+		891C0F3B1D5479510075A228 /* MASLayoutConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C0F271D5479510075A228 /* MASLayoutConstraint.m */; };
+		891C0F3C1D5479510075A228 /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C0F2B1D5479510075A228 /* MASViewAttribute.m */; };
+		891C0F3D1D5479510075A228 /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C0F2D1D5479510075A228 /* MASViewConstraint.m */; };
+		891C0F3E1D5479510075A228 /* NSArray+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C0F2F1D5479510075A228 /* NSArray+MASAdditions.m */; };
+		891C0F3F1D5479510075A228 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C0F321D5479510075A228 /* NSLayoutConstraint+MASDebugAdditions.m */; };
+		891C0F401D5479510075A228 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C0F341D5479510075A228 /* View+MASAdditions.m */; };
+		891C0F411D5479510075A228 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C0F371D5479510075A228 /* ViewController+MASAdditions.m */; };
+		89EB0BBB1D5819420064CF3D /* PokerEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EB0BBA1D5819420064CF3D /* PokerEntity.m */; };
+		89EB0BBE1D58378F0064CF3D /* SeatEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EB0BBD1D58378F0064CF3D /* SeatEntity.m */; };
+		89EB0BC11D5837A30064CF3D /* PlayerEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EB0BC01D5837A30064CF3D /* PlayerEntity.m */; };
+		89EB0BC41D58588E0064CF3D /* PokerHandsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EB0BC31D58588E0064CF3D /* PokerHandsEntity.m */; };
+		89EB0BC71D585EAF0064CF3D /* PokerTableEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EB0BC61D585EAF0064CF3D /* PokerTableEntity.m */; };
+		89EB0BCA1D585FFD0064CF3D /* SidePotEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EB0BC91D585FFD0064CF3D /* SidePotEntity.m */; };
+		89EB0BCD1D5860280064CF3D /* MainPotEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EB0BCC1D5860280064CF3D /* MainPotEntity.m */; };
+		89EB0BD01D58789C0064CF3D /* UISeat.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EB0BCF1D58789C0064CF3D /* UISeat.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +45,49 @@
 		891C0F0F1D5443080075A228 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		891C0F121D5443080075A228 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		891C0F141D5443080075A228 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		891C0F1B1D5478CD0075A228 /* CardHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardHelper.h; sourceTree = "<group>"; };
+		891C0F1C1D5478CD0075A228 /* CardHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardHelper.m; sourceTree = "<group>"; };
+		891C0F1F1D5479510075A228 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
+		891C0F201D5479510075A228 /* MASCompositeConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASCompositeConstraint.m; sourceTree = "<group>"; };
+		891C0F211D5479510075A228 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
+		891C0F221D5479510075A228 /* MASConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASConstraint.h; sourceTree = "<group>"; };
+		891C0F231D5479510075A228 /* MASConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASConstraint.m; sourceTree = "<group>"; };
+		891C0F241D5479510075A228 /* MASConstraintMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASConstraintMaker.h; sourceTree = "<group>"; };
+		891C0F251D5479510075A228 /* MASConstraintMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASConstraintMaker.m; sourceTree = "<group>"; };
+		891C0F261D5479510075A228 /* MASLayoutConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASLayoutConstraint.h; sourceTree = "<group>"; };
+		891C0F271D5479510075A228 /* MASLayoutConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASLayoutConstraint.m; sourceTree = "<group>"; };
+		891C0F281D5479510075A228 /* Masonry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Masonry.h; sourceTree = "<group>"; };
+		891C0F291D5479510075A228 /* MASUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASUtilities.h; sourceTree = "<group>"; };
+		891C0F2A1D5479510075A228 /* MASViewAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASViewAttribute.h; sourceTree = "<group>"; };
+		891C0F2B1D5479510075A228 /* MASViewAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewAttribute.m; sourceTree = "<group>"; };
+		891C0F2C1D5479510075A228 /* MASViewConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASViewConstraint.h; sourceTree = "<group>"; };
+		891C0F2D1D5479510075A228 /* MASViewConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewConstraint.m; sourceTree = "<group>"; };
+		891C0F2E1D5479510075A228 /* NSArray+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+MASAdditions.h"; sourceTree = "<group>"; };
+		891C0F2F1D5479510075A228 /* NSArray+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+MASAdditions.m"; sourceTree = "<group>"; };
+		891C0F301D5479510075A228 /* NSArray+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+MASShorthandAdditions.h"; sourceTree = "<group>"; };
+		891C0F311D5479510075A228 /* NSLayoutConstraint+MASDebugAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+MASDebugAdditions.h"; sourceTree = "<group>"; };
+		891C0F321D5479510075A228 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
+		891C0F331D5479510075A228 /* View+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASAdditions.h"; sourceTree = "<group>"; };
+		891C0F341D5479510075A228 /* View+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "View+MASAdditions.m"; sourceTree = "<group>"; };
+		891C0F351D5479510075A228 /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
+		891C0F361D5479510075A228 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
+		891C0F371D5479510075A228 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
+		89EB0BB91D5819420064CF3D /* PokerEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokerEntity.h; sourceTree = "<group>"; };
+		89EB0BBA1D5819420064CF3D /* PokerEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PokerEntity.m; sourceTree = "<group>"; };
+		89EB0BBC1D58378F0064CF3D /* SeatEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeatEntity.h; sourceTree = "<group>"; };
+		89EB0BBD1D58378F0064CF3D /* SeatEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeatEntity.m; sourceTree = "<group>"; };
+		89EB0BBF1D5837A30064CF3D /* PlayerEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerEntity.h; sourceTree = "<group>"; };
+		89EB0BC01D5837A30064CF3D /* PlayerEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerEntity.m; sourceTree = "<group>"; };
+		89EB0BC21D58588E0064CF3D /* PokerHandsEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokerHandsEntity.h; sourceTree = "<group>"; };
+		89EB0BC31D58588E0064CF3D /* PokerHandsEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PokerHandsEntity.m; sourceTree = "<group>"; };
+		89EB0BC51D585EAF0064CF3D /* PokerTableEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokerTableEntity.h; sourceTree = "<group>"; };
+		89EB0BC61D585EAF0064CF3D /* PokerTableEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PokerTableEntity.m; sourceTree = "<group>"; };
+		89EB0BC81D585FFD0064CF3D /* SidePotEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidePotEntity.h; sourceTree = "<group>"; };
+		89EB0BC91D585FFD0064CF3D /* SidePotEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidePotEntity.m; sourceTree = "<group>"; };
+		89EB0BCB1D5860280064CF3D /* MainPotEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPotEntity.h; sourceTree = "<group>"; };
+		89EB0BCC1D5860280064CF3D /* MainPotEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPotEntity.m; sourceTree = "<group>"; };
+		89EB0BCE1D58789B0064CF3D /* UISeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISeat.h; sourceTree = "<group>"; };
+		89EB0BCF1D58789C0064CF3D /* UISeat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISeat.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +120,8 @@
 		891C0F021D5443080075A228 /* Poker */ = {
 			isa = PBXGroup;
 			children = (
+				891C0F1E1D5479510075A228 /* Masonry */,
+				891C0F1A1D5478AE0075A228 /* CardHelper */,
 				891C0F061D5443080075A228 /* AppDelegate.h */,
 				891C0F071D5443080075A228 /* AppDelegate.m */,
 				891C0F091D5443080075A228 /* ViewController.h */,
@@ -77,6 +141,63 @@
 				891C0F041D5443080075A228 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		891C0F1A1D5478AE0075A228 /* CardHelper */ = {
+			isa = PBXGroup;
+			children = (
+				891C0F1B1D5478CD0075A228 /* CardHelper.h */,
+				891C0F1C1D5478CD0075A228 /* CardHelper.m */,
+				89EB0BB91D5819420064CF3D /* PokerEntity.h */,
+				89EB0BBA1D5819420064CF3D /* PokerEntity.m */,
+				89EB0BBC1D58378F0064CF3D /* SeatEntity.h */,
+				89EB0BBD1D58378F0064CF3D /* SeatEntity.m */,
+				89EB0BC21D58588E0064CF3D /* PokerHandsEntity.h */,
+				89EB0BC31D58588E0064CF3D /* PokerHandsEntity.m */,
+				89EB0BBF1D5837A30064CF3D /* PlayerEntity.h */,
+				89EB0BC01D5837A30064CF3D /* PlayerEntity.m */,
+				89EB0BCB1D5860280064CF3D /* MainPotEntity.h */,
+				89EB0BCC1D5860280064CF3D /* MainPotEntity.m */,
+				89EB0BC81D585FFD0064CF3D /* SidePotEntity.h */,
+				89EB0BC91D585FFD0064CF3D /* SidePotEntity.m */,
+				89EB0BC51D585EAF0064CF3D /* PokerTableEntity.h */,
+				89EB0BC61D585EAF0064CF3D /* PokerTableEntity.m */,
+				89EB0BCE1D58789B0064CF3D /* UISeat.h */,
+				89EB0BCF1D58789C0064CF3D /* UISeat.m */,
+			);
+			name = CardHelper;
+			sourceTree = "<group>";
+		};
+		891C0F1E1D5479510075A228 /* Masonry */ = {
+			isa = PBXGroup;
+			children = (
+				891C0F1F1D5479510075A228 /* MASCompositeConstraint.h */,
+				891C0F201D5479510075A228 /* MASCompositeConstraint.m */,
+				891C0F211D5479510075A228 /* MASConstraint+Private.h */,
+				891C0F221D5479510075A228 /* MASConstraint.h */,
+				891C0F231D5479510075A228 /* MASConstraint.m */,
+				891C0F241D5479510075A228 /* MASConstraintMaker.h */,
+				891C0F251D5479510075A228 /* MASConstraintMaker.m */,
+				891C0F261D5479510075A228 /* MASLayoutConstraint.h */,
+				891C0F271D5479510075A228 /* MASLayoutConstraint.m */,
+				891C0F281D5479510075A228 /* Masonry.h */,
+				891C0F291D5479510075A228 /* MASUtilities.h */,
+				891C0F2A1D5479510075A228 /* MASViewAttribute.h */,
+				891C0F2B1D5479510075A228 /* MASViewAttribute.m */,
+				891C0F2C1D5479510075A228 /* MASViewConstraint.h */,
+				891C0F2D1D5479510075A228 /* MASViewConstraint.m */,
+				891C0F2E1D5479510075A228 /* NSArray+MASAdditions.h */,
+				891C0F2F1D5479510075A228 /* NSArray+MASAdditions.m */,
+				891C0F301D5479510075A228 /* NSArray+MASShorthandAdditions.h */,
+				891C0F311D5479510075A228 /* NSLayoutConstraint+MASDebugAdditions.h */,
+				891C0F321D5479510075A228 /* NSLayoutConstraint+MASDebugAdditions.m */,
+				891C0F331D5479510075A228 /* View+MASAdditions.h */,
+				891C0F341D5479510075A228 /* View+MASAdditions.m */,
+				891C0F351D5479510075A228 /* View+MASShorthandAdditions.h */,
+				891C0F361D5479510075A228 /* ViewController+MASAdditions.h */,
+				891C0F371D5479510075A228 /* ViewController+MASAdditions.m */,
+			);
+			path = Masonry;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,9 +270,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89EB0BD01D58789C0064CF3D /* UISeat.m in Sources */,
+				891C0F3A1D5479510075A228 /* MASConstraintMaker.m in Sources */,
+				89EB0BBE1D58378F0064CF3D /* SeatEntity.m in Sources */,
 				891C0F0B1D5443080075A228 /* ViewController.m in Sources */,
+				891C0F1D1D5478CD0075A228 /* CardHelper.m in Sources */,
+				891C0F391D5479510075A228 /* MASConstraint.m in Sources */,
+				891C0F411D5479510075A228 /* ViewController+MASAdditions.m in Sources */,
+				89EB0BCA1D585FFD0064CF3D /* SidePotEntity.m in Sources */,
+				89EB0BBB1D5819420064CF3D /* PokerEntity.m in Sources */,
+				89EB0BC41D58588E0064CF3D /* PokerHandsEntity.m in Sources */,
+				891C0F3B1D5479510075A228 /* MASLayoutConstraint.m in Sources */,
+				891C0F3E1D5479510075A228 /* NSArray+MASAdditions.m in Sources */,
+				891C0F3D1D5479510075A228 /* MASViewConstraint.m in Sources */,
+				89EB0BC11D5837A30064CF3D /* PlayerEntity.m in Sources */,
+				891C0F3C1D5479510075A228 /* MASViewAttribute.m in Sources */,
+				891C0F401D5479510075A228 /* View+MASAdditions.m in Sources */,
+				89EB0BC71D585EAF0064CF3D /* PokerTableEntity.m in Sources */,
 				891C0F081D5443080075A228 /* AppDelegate.m in Sources */,
+				89EB0BCD1D5860280064CF3D /* MainPotEntity.m in Sources */,
 				891C0F051D5443080075A228 /* main.m in Sources */,
+				891C0F381D5479510075A228 /* MASCompositeConstraint.m in Sources */,
+				891C0F3F1D5479510075A228 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +438,7 @@
 				891C0F191D5443080075A228 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
