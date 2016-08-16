@@ -24,6 +24,22 @@
 		891C0F3F1D5479510075A228 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C0F321D5479510075A228 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		891C0F401D5479510075A228 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C0F341D5479510075A228 /* View+MASAdditions.m */; };
 		891C0F411D5479510075A228 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C0F371D5479510075A228 /* ViewController+MASAdditions.m */; };
+		89CB2E311D62FEE500FB37A5 /* Pomelo.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CB2E1A1D62FEE500FB37A5 /* Pomelo.m */; };
+		89CB2E321D62FEE500FB37A5 /* PomeloProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CB2E1C1D62FEE500FB37A5 /* PomeloProtocol.m */; };
+		89CB2E331D62FEE500FB37A5 /* SocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CB2E1F1D62FEE500FB37A5 /* SocketIO.m */; };
+		89CB2E341D62FEE500FB37A5 /* SocketIOJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CB2E211D62FEE500FB37A5 /* SocketIOJSONSerialization.m */; };
+		89CB2E351D62FEE500FB37A5 /* SocketIOPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CB2E231D62FEE500FB37A5 /* SocketIOPacket.m */; };
+		89CB2E361D62FEE500FB37A5 /* SocketIOTransportWebsocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CB2E261D62FEE500FB37A5 /* SocketIOTransportWebsocket.m */; };
+		89CB2E371D62FEE500FB37A5 /* SocketIOTransportXHR.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CB2E281D62FEE500FB37A5 /* SocketIOTransportXHR.m */; };
+		89CB2E381D62FEE500FB37A5 /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = 89CB2E2A1D62FEE500FB37A5 /* base64.c */; };
+		89CB2E391D62FEE500FB37A5 /* NSData+SRB64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CB2E2D1D62FEE500FB37A5 /* NSData+SRB64Additions.m */; };
+		89CB2E3A1D62FEE500FB37A5 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CB2E301D62FEE500FB37A5 /* SRWebSocket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		89CB2E3C1D6302B400FB37A5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89CB2E3B1D6302B400FB37A5 /* CFNetwork.framework */; };
+		89CB2E3E1D6302DA00FB37A5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89CB2E3D1D6302DA00FB37A5 /* Security.framework */; };
+		89CB2E401D63035900FB37A5 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 89CB2E3F1D63035900FB37A5 /* libicucore.tbd */; };
+		89CB2E421D63036200FB37A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89CB2E411D63036200FB37A5 /* UIKit.framework */; };
+		89CB2E441D63036B00FB37A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89CB2E431D63036B00FB37A5 /* Foundation.framework */; };
+		89CB2E461D63037500FB37A5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89CB2E451D63037500FB37A5 /* CoreGraphics.framework */; };
 		89EB0BBB1D5819420064CF3D /* PokerEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EB0BBA1D5819420064CF3D /* PokerEntity.m */; };
 		89EB0BBE1D58378F0064CF3D /* SeatEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EB0BBD1D58378F0064CF3D /* SeatEntity.m */; };
 		89EB0BC11D5837A30064CF3D /* PlayerEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EB0BC01D5837A30064CF3D /* PlayerEntity.m */; };
@@ -72,6 +88,34 @@
 		891C0F351D5479510075A228 /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
 		891C0F361D5479510075A228 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		891C0F371D5479510075A228 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
+		89CB2E191D62FEE500FB37A5 /* Pomelo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pomelo.h; sourceTree = "<group>"; };
+		89CB2E1A1D62FEE500FB37A5 /* Pomelo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pomelo.m; sourceTree = "<group>"; };
+		89CB2E1B1D62FEE500FB37A5 /* PomeloProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomeloProtocol.h; sourceTree = "<group>"; };
+		89CB2E1C1D62FEE500FB37A5 /* PomeloProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PomeloProtocol.m; sourceTree = "<group>"; };
+		89CB2E1E1D62FEE500FB37A5 /* SocketIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIO.h; sourceTree = "<group>"; };
+		89CB2E1F1D62FEE500FB37A5 /* SocketIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIO.m; sourceTree = "<group>"; };
+		89CB2E201D62FEE500FB37A5 /* SocketIOJSONSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOJSONSerialization.h; sourceTree = "<group>"; };
+		89CB2E211D62FEE500FB37A5 /* SocketIOJSONSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOJSONSerialization.m; sourceTree = "<group>"; };
+		89CB2E221D62FEE500FB37A5 /* SocketIOPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOPacket.h; sourceTree = "<group>"; };
+		89CB2E231D62FEE500FB37A5 /* SocketIOPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOPacket.m; sourceTree = "<group>"; };
+		89CB2E241D62FEE500FB37A5 /* SocketIOTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransport.h; sourceTree = "<group>"; };
+		89CB2E251D62FEE500FB37A5 /* SocketIOTransportWebsocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransportWebsocket.h; sourceTree = "<group>"; };
+		89CB2E261D62FEE500FB37A5 /* SocketIOTransportWebsocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOTransportWebsocket.m; sourceTree = "<group>"; };
+		89CB2E271D62FEE500FB37A5 /* SocketIOTransportXHR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIOTransportXHR.h; sourceTree = "<group>"; };
+		89CB2E281D62FEE500FB37A5 /* SocketIOTransportXHR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIOTransportXHR.m; sourceTree = "<group>"; };
+		89CB2E2A1D62FEE500FB37A5 /* base64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = base64.c; sourceTree = "<group>"; };
+		89CB2E2B1D62FEE500FB37A5 /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
+		89CB2E2C1D62FEE500FB37A5 /* NSData+SRB64Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SRB64Additions.h"; sourceTree = "<group>"; };
+		89CB2E2D1D62FEE500FB37A5 /* NSData+SRB64Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SRB64Additions.m"; sourceTree = "<group>"; };
+		89CB2E2E1D62FEE500FB37A5 /* SocketRocket-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SocketRocket-Prefix.pch"; sourceTree = "<group>"; };
+		89CB2E2F1D62FEE500FB37A5 /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
+		89CB2E301D62FEE500FB37A5 /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
+		89CB2E3B1D6302B400FB37A5 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		89CB2E3D1D6302DA00FB37A5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		89CB2E3F1D63035900FB37A5 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		89CB2E411D63036200FB37A5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		89CB2E431D63036B00FB37A5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		89CB2E451D63037500FB37A5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		89EB0BB91D5819420064CF3D /* PokerEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokerEntity.h; sourceTree = "<group>"; };
 		89EB0BBA1D5819420064CF3D /* PokerEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PokerEntity.m; sourceTree = "<group>"; };
 		89EB0BBC1D58378F0064CF3D /* SeatEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeatEntity.h; sourceTree = "<group>"; };
@@ -95,6 +139,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89CB2E461D63037500FB37A5 /* CoreGraphics.framework in Frameworks */,
+				89CB2E441D63036B00FB37A5 /* Foundation.framework in Frameworks */,
+				89CB2E421D63036200FB37A5 /* UIKit.framework in Frameworks */,
+				89CB2E401D63035900FB37A5 /* libicucore.tbd in Frameworks */,
+				89CB2E3E1D6302DA00FB37A5 /* Security.framework in Frameworks */,
+				89CB2E3C1D6302B400FB37A5 /* CFNetwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +154,12 @@
 		891C0EF71D5443080075A228 = {
 			isa = PBXGroup;
 			children = (
+				89CB2E451D63037500FB37A5 /* CoreGraphics.framework */,
+				89CB2E431D63036B00FB37A5 /* Foundation.framework */,
+				89CB2E411D63036200FB37A5 /* UIKit.framework */,
+				89CB2E3F1D63035900FB37A5 /* libicucore.tbd */,
+				89CB2E3D1D6302DA00FB37A5 /* Security.framework */,
+				89CB2E3B1D6302B400FB37A5 /* CFNetwork.framework */,
 				891C0F021D5443080075A228 /* Poker */,
 				891C0F011D5443080075A228 /* Products */,
 			);
@@ -120,6 +176,9 @@
 		891C0F021D5443080075A228 /* Poker */ = {
 			isa = PBXGroup;
 			children = (
+				89CB2E181D62FEE500FB37A5 /* Pomelo */,
+				89CB2E1D1D62FEE500FB37A5 /* SocketIO */,
+				89CB2E291D62FEE500FB37A5 /* SocketRocket */,
 				891C0F1E1D5479510075A228 /* Masonry */,
 				891C0F1A1D5478AE0075A228 /* CardHelper */,
 				891C0F061D5443080075A228 /* AppDelegate.h */,
@@ -200,6 +259,49 @@
 			path = Masonry;
 			sourceTree = "<group>";
 		};
+		89CB2E181D62FEE500FB37A5 /* Pomelo */ = {
+			isa = PBXGroup;
+			children = (
+				89CB2E191D62FEE500FB37A5 /* Pomelo.h */,
+				89CB2E1A1D62FEE500FB37A5 /* Pomelo.m */,
+				89CB2E1B1D62FEE500FB37A5 /* PomeloProtocol.h */,
+				89CB2E1C1D62FEE500FB37A5 /* PomeloProtocol.m */,
+			);
+			path = Pomelo;
+			sourceTree = "<group>";
+		};
+		89CB2E1D1D62FEE500FB37A5 /* SocketIO */ = {
+			isa = PBXGroup;
+			children = (
+				89CB2E1E1D62FEE500FB37A5 /* SocketIO.h */,
+				89CB2E1F1D62FEE500FB37A5 /* SocketIO.m */,
+				89CB2E201D62FEE500FB37A5 /* SocketIOJSONSerialization.h */,
+				89CB2E211D62FEE500FB37A5 /* SocketIOJSONSerialization.m */,
+				89CB2E221D62FEE500FB37A5 /* SocketIOPacket.h */,
+				89CB2E231D62FEE500FB37A5 /* SocketIOPacket.m */,
+				89CB2E241D62FEE500FB37A5 /* SocketIOTransport.h */,
+				89CB2E251D62FEE500FB37A5 /* SocketIOTransportWebsocket.h */,
+				89CB2E261D62FEE500FB37A5 /* SocketIOTransportWebsocket.m */,
+				89CB2E271D62FEE500FB37A5 /* SocketIOTransportXHR.h */,
+				89CB2E281D62FEE500FB37A5 /* SocketIOTransportXHR.m */,
+			);
+			path = SocketIO;
+			sourceTree = "<group>";
+		};
+		89CB2E291D62FEE500FB37A5 /* SocketRocket */ = {
+			isa = PBXGroup;
+			children = (
+				89CB2E2A1D62FEE500FB37A5 /* base64.c */,
+				89CB2E2B1D62FEE500FB37A5 /* base64.h */,
+				89CB2E2C1D62FEE500FB37A5 /* NSData+SRB64Additions.h */,
+				89CB2E2D1D62FEE500FB37A5 /* NSData+SRB64Additions.m */,
+				89CB2E2E1D62FEE500FB37A5 /* SocketRocket-Prefix.pch */,
+				89CB2E2F1D62FEE500FB37A5 /* SRWebSocket.h */,
+				89CB2E301D62FEE500FB37A5 /* SRWebSocket.m */,
+			);
+			path = SocketRocket;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -272,21 +374,31 @@
 			files = (
 				89EB0BD01D58789C0064CF3D /* UISeat.m in Sources */,
 				891C0F3A1D5479510075A228 /* MASConstraintMaker.m in Sources */,
+				89CB2E311D62FEE500FB37A5 /* Pomelo.m in Sources */,
 				89EB0BBE1D58378F0064CF3D /* SeatEntity.m in Sources */,
 				891C0F0B1D5443080075A228 /* ViewController.m in Sources */,
 				891C0F1D1D5478CD0075A228 /* CardHelper.m in Sources */,
 				891C0F391D5479510075A228 /* MASConstraint.m in Sources */,
 				891C0F411D5479510075A228 /* ViewController+MASAdditions.m in Sources */,
+				89CB2E361D62FEE500FB37A5 /* SocketIOTransportWebsocket.m in Sources */,
 				89EB0BCA1D585FFD0064CF3D /* SidePotEntity.m in Sources */,
+				89CB2E381D62FEE500FB37A5 /* base64.c in Sources */,
 				89EB0BBB1D5819420064CF3D /* PokerEntity.m in Sources */,
 				89EB0BC41D58588E0064CF3D /* PokerHandsEntity.m in Sources */,
+				89CB2E391D62FEE500FB37A5 /* NSData+SRB64Additions.m in Sources */,
 				891C0F3B1D5479510075A228 /* MASLayoutConstraint.m in Sources */,
 				891C0F3E1D5479510075A228 /* NSArray+MASAdditions.m in Sources */,
 				891C0F3D1D5479510075A228 /* MASViewConstraint.m in Sources */,
 				89EB0BC11D5837A30064CF3D /* PlayerEntity.m in Sources */,
 				891C0F3C1D5479510075A228 /* MASViewAttribute.m in Sources */,
 				891C0F401D5479510075A228 /* View+MASAdditions.m in Sources */,
+				89CB2E3A1D62FEE500FB37A5 /* SRWebSocket.m in Sources */,
+				89CB2E371D62FEE500FB37A5 /* SocketIOTransportXHR.m in Sources */,
+				89CB2E351D62FEE500FB37A5 /* SocketIOPacket.m in Sources */,
+				89CB2E321D62FEE500FB37A5 /* PomeloProtocol.m in Sources */,
 				89EB0BC71D585EAF0064CF3D /* PokerTableEntity.m in Sources */,
+				89CB2E341D62FEE500FB37A5 /* SocketIOJSONSerialization.m in Sources */,
+				89CB2E331D62FEE500FB37A5 /* SocketIO.m in Sources */,
 				891C0F081D5443080075A228 /* AppDelegate.m in Sources */,
 				89EB0BCD1D5860280064CF3D /* MainPotEntity.m in Sources */,
 				891C0F051D5443080075A228 /* main.m in Sources */,
@@ -402,6 +514,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Poker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Hointe.Poker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -413,6 +526,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Poker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Hointe.Poker;
 				PRODUCT_NAME = "$(TARGET_NAME)";

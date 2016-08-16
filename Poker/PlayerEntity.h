@@ -34,8 +34,6 @@ typedef NS_ENUM(NSUInteger, PokerActionStatusEnum)
 @property (nonatomic, assign) BOOL isButton;
 @property (nonatomic, assign) BOOL isSmallBlind;
 @property (nonatomic, assign) BOOL isBigBlind;
-@property (nonatomic, assign) BOOL isWaitingNextLoop;
-@property (nonatomic, assign) BOOL isWaitingBet;
 @property (nonatomic, assign) BOOL isWiner;
 @property (nonatomic, copy) NSString *imageHead;
 @property (nonatomic, strong) PokerHandsEntity *hands;

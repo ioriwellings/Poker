@@ -10,4 +10,14 @@
 
 @implementation MainPotEntity
 
+-(instancetype)init
+{
+    self = [super init];
+    if(self)
+    {
+        _mainPot = [NSDecimalNumber decimalNumberWithString:@"0"];
+    }
+    return self;
+}
+
 @end

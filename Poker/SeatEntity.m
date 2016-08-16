@@ -14,7 +14,14 @@
 {
     self.seatView.labName.text = self.player.name;
     self.seatView.labBringIn.text = [[NSNumber numberWithInteger:self.player.bringInMoney] stringValue];
-    self.seatView.labBet.text = [[NSNumber numberWithInteger:self.player.bet] stringValue];
+    if(self.player.bet != 0)
+    {
+        self.seatView.labBet.text = [[NSNumber numberWithInteger:self.player.bet] stringValue];
+    }
+    else
+    {
+        self.seatView.labBet.text = @"";
+    }
     if(self.player.actionStatus == PokerActionStatusEnumCheck)
     {
         self.seatView.labStatus.text = @"看牌";
@@ -38,10 +45,12 @@
     }
     else if (self.player.actionStatus == PokerActionStatusEnumSB)
     {
+        self.seatView.labStatus.text = @"小盲";
         self.seatView.labBet.text = [[NSNumber numberWithInteger:self.player.bet] stringValue];
     }
     else if (self.player.actionStatus == PokerActionStatusEnumBB)
     {
+        self.seatView.labStatus.text = @"大盲";
         self.seatView.labBet.text = [[NSNumber numberWithInteger:self.player.bet] stringValue];
     }
     else if (self.player.actionStatus == PokerActionStatusEnumNone)
@@ -50,17 +59,16 @@
         if(self.player.isBigBlind)
         {
             self.seatView.labStatus.text = @"大盲注";
-            self.seatView.labBet.text = [[NSNumber numberWithInteger:self.player.bet] stringValue];
+            if(self.player.bet >0 )
+                self.seatView.labBet.text = [[NSNumber numberWithInteger:self.player.bet] stringValue];
         }
         if(self.player.isSmallBlind)
         {
             self.seatView.labStatus.text = @"小盲注";
-            self.seatView.labBet.text = [[NSNumber numberWithInteger:self.player.bet] stringValue];
+            if(self.player.bet > 0)
+                self.seatView.labBet.text = [[NSNumber numberWithInteger:self.player.bet] stringValue];
         }
-        if(self.player.isWaitingBet)
-        {
-            self.seatView.labStatus.text = @"等待下注";
-        }
+
         if(self.player.isWiner)
         {
             NSString *strResult;

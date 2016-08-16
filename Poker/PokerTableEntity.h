@@ -11,10 +11,19 @@
 #import "MainPotEntity.h"
 #import "SeatEntity.h"
 
+typedef NS_ENUM(NSUInteger, PokerTableStatusEnum) {
+    PokerTableStatusEnumNone,
+    PokerTableStatusEnumBet,
+    PokerTableStatusEnumFlop,
+    PokerTableStatusEnumTurn,
+    PokerTableStatusEnumRiver
+};
+
 @interface PokerTableEntity : NSObject
 
 @property (nonatomic, strong, readonly) NSMutableArray<SeatEntity*> *seats;
 @property (nonatomic, strong) MainPotEntity *mainPots;
+@property (nonatomic, assign) PokerTableStatusEnum tableStatus;
 @property (nonatomic, strong) NSMutableArray<SidePotEntity*> *sidePots;
 @property (nonatomic, strong) NSMutableArray<PokerEntity*> *communityCards;
 @property (nonatomic, strong) NSArray<NSArray<PlayerEntity*>*> *winers;
@@ -28,5 +37,6 @@
 @property (nonatomic, assign) NSInteger cap;
 @property (nonatomic, assign) NSInteger limit;
 
++(instancetype)sharedInstance;
 -(void)updateUI;
 @end

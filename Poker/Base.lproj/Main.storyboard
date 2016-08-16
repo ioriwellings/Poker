@@ -22,7 +22,7 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WE0-m4-Ffg" userLabel="card1">
                                         <rect key="frame" x="2" y="0.0" width="40" height="60"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="LRe-FU-2cO"/>
                                             <constraint firstAttribute="width" constant="40" id="ZfN-Ux-BUU"/>
@@ -34,7 +34,7 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uyz-mJ-vV8" userLabel="card2">
                                         <rect key="frame" x="54" y="0.0" width="40" height="60"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x9s-lw-3mU" userLabel="box2">
                                         <rect key="frame" x="94" y="0.0" width="11" height="60"/>
@@ -42,7 +42,7 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mRd-Ms-bFn" userLabel="card3">
                                         <rect key="frame" x="105" y="0.0" width="40" height="60"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vnw-P8-RHC" userLabel="box3">
                                         <rect key="frame" x="145" y="0.0" width="12" height="60"/>
@@ -50,7 +50,7 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1By-lM-o3Q" userLabel="card4">
                                         <rect key="frame" x="157" y="0.0" width="40" height="60"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4av-wn-J10" userLabel="box4">
                                         <rect key="frame" x="197" y="0.0" width="11" height="60"/>
@@ -58,7 +58,7 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nG4-vt-Ahc" userLabel="card5">
                                         <rect key="frame" x="208" y="0.0" width="40" height="60"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -100,7 +100,7 @@
                                     <constraint firstItem="Vnw-P8-RHC" firstAttribute="height" secondItem="x9s-lw-3mU" secondAttribute="height" id="q4S-DJ-9C6"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Wc-0w-vgQ" userLabel="player01">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Wc-0w-vgQ" userLabel="player01" customClass="UISeat">
                                 <rect key="frame" x="131" y="492" width="58" height="58"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rDR-Rn-aqS">
@@ -127,7 +127,7 @@
                                     <constraint firstItem="z3B-iU-nps" firstAttribute="centerX" secondItem="0Wc-0w-vgQ" secondAttribute="centerX" id="iY5-4i-pgd"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nBB-ek-UbS" userLabel="player02">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nBB-ek-UbS" userLabel="player02" customClass="UISeat">
                                 <rect key="frame" x="131" y="28" width="58" height="58"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="－" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qTV-FG-LQL">
@@ -186,11 +186,11 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a35-CO-s7E" userLabel="card1">
                                         <rect key="frame" x="1" y="1" width="40" height="60"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q7m-1y-UTM" userLabel="card2">
                                         <rect key="frame" x="45" y="1" width="40" height="60"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.23529411759999999" green="0.54901960780000003" blue="0.039215686270000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -415,6 +415,8 @@
                         <outlet property="labStatusPlayer02" destination="6cd-Ta-oBM" id="i4J-mp-Vbk"/>
                         <outlet property="labStatusPlayer03" destination="191-A4-DOn" id="mJX-bv-YBs"/>
                         <outlet property="labStatusPlayer04" destination="6Dw-fF-OHn" id="VnK-rI-pcC"/>
+                        <outlet property="seat01" destination="0Wc-0w-vgQ" id="DQ8-Dt-geL"/>
+                        <outlet property="seat02" destination="nBB-ek-UbS" id="4qU-pb-fEv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

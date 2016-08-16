@@ -10,12 +10,22 @@
 
 @implementation PokerTableEntity
 
+static PokerTableEntity *_instance;
+
++(instancetype)sharedInstance
+{
+    if(_instance == nil)
+        _instance = [PokerTableEntity new];
+    return _instance;
+}
+
 -(instancetype)init
 {
     self = [super init];
     if(self)
     {
         _seats = [NSMutableArray arrayWithCapacity:10];
+        _mainPots = [MainPotEntity new];
     }
     return self;
 }
