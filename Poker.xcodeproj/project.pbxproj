@@ -33,7 +33,7 @@
 		89CB2E371D62FEE500FB37A5 /* SocketIOTransportXHR.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CB2E281D62FEE500FB37A5 /* SocketIOTransportXHR.m */; };
 		89CB2E381D62FEE500FB37A5 /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = 89CB2E2A1D62FEE500FB37A5 /* base64.c */; };
 		89CB2E391D62FEE500FB37A5 /* NSData+SRB64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CB2E2D1D62FEE500FB37A5 /* NSData+SRB64Additions.m */; };
-		89CB2E3A1D62FEE500FB37A5 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CB2E301D62FEE500FB37A5 /* SRWebSocket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		89CB2E3A1D62FEE500FB37A5 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CB2E301D62FEE500FB37A5 /* SRWebSocket.m */; };
 		89CB2E3C1D6302B400FB37A5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89CB2E3B1D6302B400FB37A5 /* CFNetwork.framework */; };
 		89CB2E3E1D6302DA00FB37A5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89CB2E3D1D6302DA00FB37A5 /* Security.framework */; };
 		89CB2E401D63035900FB37A5 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 89CB2E3F1D63035900FB37A5 /* libicucore.tbd */; };

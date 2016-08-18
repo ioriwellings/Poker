@@ -87,7 +87,10 @@ static NSString* kSecureSocketPortURL = @"wss://%@:%d/socket.io/1/websocket/%@";
     [_webSocket send:request];
 }
 
-
+-(void)dealloc
+{
+    NSLog(@"%s, %@", __func__, self);
+}
 
 # pragma mark -
 # pragma mark WebSocket Delegate Methods

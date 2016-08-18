@@ -17,6 +17,8 @@
 {
     Pomelo *pomelo;
     SeatEntity *lastActionSeat;
+    NSString *strServerIP;
+    NSInteger iServerPort;
 }
 
 @property (strong, nonatomic) IBOutlet UIView *card01;
@@ -77,6 +79,7 @@
 - (IBAction)btnFold_click:(UIButton *)sender;
 
 - (IBAction)btnPlayer02_click:(UIButton *)sender;
+- (IBAction)btnStart_click:(UIButton *)sender;
 
 @end
 
@@ -89,11 +92,10 @@ typedef NS_ENUM(NSUInteger, PokerActionEnum) {
     PokerActionEnumStandUp
 };
 
-
+//--------------------------------
 @interface PokerAction : NSObject
 {
 }
-
 @property (nonatomic, assign) PokerActionEnum actionType;
 @property (nonatomic, strong) PlayerEntity *player;
 @end

@@ -48,18 +48,76 @@
 @implementation ViewController
 
 #pragma mark -pomelo-
+-(void)reconnectToHost
+{
+    pomelo = [[Pomelo alloc] initWithDelegate:self];
+    [pomelo connectToHost:@"192.168.0.105" onPort:3014 withCallback:^(Pomelo *p)
+     {
+         NSDictionary *params = [NSDictionary dictionaryWithObject:@"iori" forKey:@"uid"];
+         [pomelo requestWithRoute:@"gate.gateHandler.queryEntry" andParams:params andCallback:^(NSDictionary *result)
+          {
+              [pomelo disconnectWithCallback:^(Pomelo *p)
+               {
+                   [self entryWithData:result];
+               }];
+              
+          }];
+     }];
+}
+
 - (void)PomeloDidConnect:(Pomelo *)pomelo
 {
     NSLog(@"-%s", __func__);
 }
-- (void)PomeloDidDisconnect:(Pomelo *)pomelo withError:(NSError *)error;
+- (void)PomeloDidDisconnect:(Pomelo *)_pomelo withError:(NSError *)error;
 {
-    NSLog(@"-%s", __func__);
+    //NSLog(@"-%s, error:%@", __func__, error);
 }
 - (void)Pomelo:(Pomelo *)pomelo didReceiveMessage:(NSArray *)message
 {
-    NSLog(@"-%s", __func__);
+    NSLog(@"-%s, message:%@", __func__, message);
+    NSDictionary *dict = (NSDictionary*)message;
+    if([[dict objectForKey:@"code"] integerValue] == 500)
+    {
+        [self reconnectToHost];
+    }
 }
+- (void)entryWithData:(NSDictionary *)data
+{
+    NSString *host = strServerIP = [data objectForKey:@"host"];
+    NSInteger port = iServerPort = [[data objectForKey:@"port"] intValue];
+    NSString *name = @"iori";
+    NSString *channel = @"";
+    [pomelo connectToHost:host
+                   onPort:port
+             withCallback:^(Pomelo *p)
+    {
+        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                                name, @"username",
+                                channel, @"rid",
+                                nil];
+        [p requestWithRoute:@"connector.entryHandler.enter"
+                  andParams:params
+                andCallback:^(NSDictionary *result)
+        {
+            NSArray *userList = [[result objectForKey:@"dataInfo"] objectForKey:@"observerPlayerList"];
+            //
+            [p onRoute:@"onNewPlayerEnter" withCallback:^(NSDictionary *data){
+                NSLog(@"onRoute:onNewPlayerEnter------");
+            }];
+            [p onRoute:@"onHandCard" withCallback:^(id callback) {
+                ;
+            }];
+            [p onRoute:@"onSitDown" withCallback:^(id callback) {
+                ;
+            }];
+            [p onRoute:@"onEnterRomm" withCallback:^(id callback) {
+                ;
+            }];
+        }];
+    }];
+}
+
 
 -(void)commandReceiveCenter:(PokerAction *)action  //receiveAction and response from server.
 {
@@ -78,7 +136,7 @@
         action.player.bet = action.player.bet;
     }
     
-//response server;
+    //response server;
     
     [self player2Seat];
     if(round == 0)
@@ -158,32 +216,8 @@
         [self riverCard];
         //river
     }
-
+    
     [self updateTableInfoUI];
-}
-
-- (void)entryWithData:(NSDictionary *)data
-{
-    NSString *host = [data objectForKey:@"host"];
-    NSInteger port = [[data objectForKey:@"port"] intValue];
-    NSString *name = @"iori";
-    NSString *channel = @"";
-    [pomelo connectToHost:host
-                   onPort:port
-             withCallback:^(Pomelo *p)
-    {
-        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                                name, @"username",
-                                channel, @"rid",
-                                nil];
-        [p requestWithRoute:@"connector.entryHandler.enter"
-                  andParams:params
-                andCallback:^(NSDictionary *result)
-        {
-            NSArray *userList = [result objectForKey:@"users"];
-            //
-        }];
-    }];
 }
 
 #pragma mark - viewcontroller life-
@@ -201,19 +235,7 @@
     
     [self performSelector:@selector(getTableInfoFromService) withObject:nil afterDelay:5];
     
-    pomelo = [[Pomelo alloc] initWithDelegate:self];
-    [pomelo connectToHost:@"192.168.0.105" onPort:3014 withCallback:^(Pomelo *p){
-        NSDictionary *params = [NSDictionary dictionaryWithObject:@"iori" forKey:@"uid"];
-        [pomelo requestWithRoute:@"gate.gateHandler.queryEntry" andParams:params andCallback:^(NSDictionary *result){
-            [pomelo disconnectWithCallback:^(Pomelo *p){
-                [self entryWithData:result];
-            }];
-        }];
-    }];
-    
-    [pomelo onRoute:@"onNewPlayerEnter" withCallback:^(NSDictionary *data){
-        NSLog(@"onNewPlayerEnter------");
-    }];
+    [self reconnectToHost];
 }
 
 -(void)initTableLayout//初始化座位
@@ -300,6 +322,13 @@
     action.actionType = PokerActionEnumCall;
     round++;
     [self commandReceiveCenter:action];
+}
+
+- (IBAction)btnStart_click:(UIButton *)sender
+{
+    [pomelo requestWithRoute:@"game.gameHandler.gameStart" andParams:@{} andCallback:^(id callback) {
+        
+    }];
 }
 
 -(void)player2Seat
@@ -392,6 +421,9 @@
     action.actionType = PokerActionEnumSitDown;
     round++;
     [self commandReceiveCenter:action];
+    [pomelo requestWithRoute:@"game.gameHandler.SitDown" andParams:@{@"index":@(1)} andCallback:^(id callback) {
+        ;
+    }];
 }
 
 - (IBAction)btnStandUp_click:(UIButton *)sender

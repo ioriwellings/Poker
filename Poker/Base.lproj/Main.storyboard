@@ -339,6 +339,13 @@
                                     <action selector="btnPlayer02_click:" destination="BYZ-38-t0r" eventType="touchUpInside" id="a9i-Fc-ocY"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zJE-Ny-lQA">
+                                <rect key="frame" x="241" y="373" width="72" height="30"/>
+                                <state key="normal" title="开始发牌"/>
+                                <connections>
+                                    <action selector="btnStart_click:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2cY-Ah-Dq1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
