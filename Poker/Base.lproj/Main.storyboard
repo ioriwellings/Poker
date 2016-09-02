@@ -462,7 +462,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="xWj-st-cox">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="xWj-st-cox">
                                 <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="btn_menu" translatesAutoresizingMaskIntoConstraints="NO" id="82K-fx-JDa">
@@ -539,9 +539,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="icon_delear" translatesAutoresizingMaskIntoConstraints="NO" id="6wC-GQ-Pb2">
-                                <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
-                            </imageView>
                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bw3-pc-ydF" userLabel="handCardContainer">
                                 <rect key="frame" x="315" y="225" width="53" height="40"/>
                                 <subviews>
@@ -568,7 +565,7 @@
                                     <constraint firstItem="PWw-bZ-Sj0" firstAttribute="leading" secondItem="i5x-rn-YBm" secondAttribute="leading" constant="-22" id="p9o-Su-zAG"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GjO-lk-GxJ">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GjO-lk-GxJ" userLabel="betView">
                                 <rect key="frame" x="257" y="175" width="56" height="23"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1300" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHa-Ln-II7">
@@ -593,6 +590,9 @@
                                     <constraint firstItem="52o-mj-6hB" firstAttribute="top" secondItem="GjO-lk-GxJ" secondAttribute="top" id="yQh-Xy-RtQ"/>
                                 </constraints>
                             </view>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="icon_delear" translatesAutoresizingMaskIntoConstraints="NO" id="6wC-GQ-Pb2">
+                                <rect key="frame" x="247" y="204" width="15" height="15"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -625,8 +625,10 @@
                             <constraint firstItem="PIk-ab-hCP" firstAttribute="top" secondItem="ieI-kC-AoY" secondAttribute="bottom" constant="10" id="f1i-JN-kCZ"/>
                             <constraint firstItem="VK4-it-7UO" firstAttribute="bottom" secondItem="CBQ-4s-gBm" secondAttribute="bottom" constant="2" id="h3d-4Y-r4q"/>
                             <constraint firstItem="VK4-it-7UO" firstAttribute="leading" secondItem="CBQ-4s-gBm" secondAttribute="leading" id="h4i-oq-wEa"/>
+                            <constraint firstItem="6wC-GQ-Pb2" firstAttribute="trailing" secondItem="cRY-dS-OWv" secondAttribute="leading" constant="-4" id="hST-XN-rA2"/>
                             <constraint firstItem="VK4-it-7UO" firstAttribute="trailing" secondItem="CBQ-4s-gBm" secondAttribute="trailing" id="htL-pe-Jp2"/>
                             <constraint firstItem="HrP-Tg-X0M" firstAttribute="leading" secondItem="Sux-Lc-KJq" secondAttribute="trailing" constant="10" id="j4Y-3y-4EL"/>
+                            <constraint firstItem="6wC-GQ-Pb2" firstAttribute="top" secondItem="cRY-dS-OWv" secondAttribute="top" constant="-4" id="jfl-FH-8x8"/>
                             <constraint firstItem="bw3-pc-ydF" firstAttribute="leading" secondItem="CBQ-4s-gBm" secondAttribute="trailing" id="ls3-na-uI7"/>
                             <constraint firstAttribute="trailing" secondItem="xWj-st-cox" secondAttribute="trailing" id="md0-jj-BED"/>
                             <constraint firstItem="zWe-gv-CAE" firstAttribute="top" secondItem="cRY-dS-OWv" secondAttribute="top" constant="18" id="q6O-Ra-YBl"/>
