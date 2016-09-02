@@ -488,10 +488,10 @@
                                 <state key="normal" backgroundImage="btn_a_1"/>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7sy-oD-3IM" userLabel="seatView">
-                                <rect key="frame" x="201" y="114" width="167" height="92"/>
+                                <rect key="frame" x="247" y="176" width="121" height="92"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GjO-lk-GxJ" userLabel="betView">
-                                        <rect key="frame" x="56" y="0.0" width="56" height="23"/>
+                                        <rect key="frame" x="10" y="0.0" width="56" height="23"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1300" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHa-Ln-II7">
                                                 <rect key="frame" x="23" y="0.0" width="33" height="23"/>
@@ -515,20 +515,20 @@
                                             <constraint firstItem="52o-mj-6hB" firstAttribute="top" secondItem="GjO-lk-GxJ" secondAttribute="top" id="yQh-Xy-RtQ"/>
                                         </constraints>
                                     </view>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" horizontalHuggingPriority="750" misplaced="YES" image="icon_delear" translatesAutoresizingMaskIntoConstraints="NO" id="6wC-GQ-Pb2">
-                                        <rect key="frame" x="0.0" y="29" width="61" height="15"/>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" horizontalHuggingPriority="750" image="icon_delear" translatesAutoresizingMaskIntoConstraints="NO" id="6wC-GQ-Pb2">
+                                        <rect key="frame" x="0.0" y="29" width="15" height="15"/>
                                     </imageView>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" image="bg_user" translatesAutoresizingMaskIntoConstraints="NO" id="cRY-dS-OWv">
-                                        <rect key="frame" x="65" y="33" width="37" height="37"/>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" image="bg_user" translatesAutoresizingMaskIntoConstraints="NO" id="cRY-dS-OWv">
+                                        <rect key="frame" x="19" y="33" width="37" height="37"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRL-Qc-bsh">
-                                        <rect key="frame" x="65" y="33" width="37" height="37"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRL-Qc-bsh">
+                                        <rect key="frame" x="19" y="33" width="37" height="37"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zWe-gv-CAE" userLabel="hiddenCardView">
-                                        <rect key="frame" x="108" y="50" width="34" height="42"/>
+                                        <rect key="frame" x="62" y="50" width="34" height="42"/>
                                         <subviews>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0" translatesAutoresizingMaskIntoConstraints="NO" id="xon-y3-xE3">
                                                 <rect key="frame" x="5" y="0.0" width="29" height="37"/>
@@ -556,22 +556,22 @@
                                         </constraints>
                                     </view>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="bg_name" translatesAutoresizingMaskIntoConstraints="NO" id="CBQ-4s-gBm">
-                                        <rect key="frame" x="54" y="67" width="60" height="25"/>
+                                        <rect key="frame" x="8" y="67" width="60" height="25"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guest" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDv-1x-jf8">
-                                        <rect key="frame" x="63" y="63" width="41" height="18"/>
+                                        <rect key="frame" x="17" y="63" width="41" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1300" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VK4-it-7UO">
-                                        <rect key="frame" x="69" y="79" width="29" height="15"/>
+                                        <rect key="frame" x="23" y="79" width="29" height="15"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bw3-pc-ydF" userLabel="handCardContainer">
-                                        <rect key="frame" x="114" y="52" width="53" height="40"/>
+                                        <rect key="frame" x="68" y="52" width="53" height="40"/>
                                         <subviews>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1" translatesAutoresizingMaskIntoConstraints="NO" id="PWw-bZ-Sj0">
                                                 <rect key="frame" x="0.0" y="0.0" width="31" height="40"/>
@@ -608,7 +608,6 @@
                                     <constraint firstItem="sRL-Qc-bsh" firstAttribute="centerX" secondItem="cRY-dS-OWv" secondAttribute="centerX" id="HPm-zm-5iP"/>
                                     <constraint firstItem="DDv-1x-jf8" firstAttribute="centerX" secondItem="CBQ-4s-gBm" secondAttribute="centerX" id="JWF-KN-Q07"/>
                                     <constraint firstAttribute="trailing" secondItem="bw3-pc-ydF" secondAttribute="trailing" id="L6J-a1-bik"/>
-                                    <constraint firstItem="cRY-dS-OWv" firstAttribute="centerX" secondItem="7sy-oD-3IM" secondAttribute="centerX" id="MGJ-01-zcX"/>
                                     <constraint firstItem="VK4-it-7UO" firstAttribute="centerX" secondItem="CBQ-4s-gBm" secondAttribute="centerX" id="OXR-Ja-07r"/>
                                     <constraint firstItem="GjO-lk-GxJ" firstAttribute="top" secondItem="7sy-oD-3IM" secondAttribute="top" id="Ru2-Vx-IbQ"/>
                                     <constraint firstItem="CBQ-4s-gBm" firstAttribute="top" secondItem="cRY-dS-OWv" secondAttribute="bottom" constant="-3" id="UtV-ab-a4s"/>
@@ -638,7 +637,7 @@
                             <constraint firstAttribute="trailing" secondItem="ieI-kC-AoY" secondAttribute="trailing" constant="10" id="Vp6-4J-OYz"/>
                             <constraint firstItem="Sux-Lc-KJq" firstAttribute="leading" secondItem="SMf-ZV-PrA" secondAttribute="trailing" constant="10" id="YB0-zt-bGA"/>
                             <constraint firstItem="xWj-st-cox" firstAttribute="top" secondItem="YM9-cb-bzu" secondAttribute="top" id="YOD-Sq-dXY"/>
-                            <constraint firstItem="PIk-ab-hCP" firstAttribute="top" secondItem="cRY-dS-OWv" secondAttribute="bottom" constant="136" id="dBp-iV-ndi"/>
+                            <constraint firstItem="PIk-ab-hCP" firstAttribute="top" secondItem="cRY-dS-OWv" secondAttribute="bottom" constant="74" id="dBp-iV-ndi"/>
                             <constraint firstItem="PIk-ab-hCP" firstAttribute="top" secondItem="ieI-kC-AoY" secondAttribute="bottom" constant="10" id="f1i-JN-kCZ"/>
                             <constraint firstItem="HrP-Tg-X0M" firstAttribute="leading" secondItem="Sux-Lc-KJq" secondAttribute="trailing" constant="10" id="j4Y-3y-4EL"/>
                             <constraint firstAttribute="trailing" secondItem="xWj-st-cox" secondAttribute="trailing" id="md0-jj-BED"/>
