@@ -10,24 +10,24 @@
 
 typedef NS_ENUM(NSUInteger, PokerSuitEnum)
 {
-    PokerSuitEnumSpades,
-    PokerSuitEnumHearts,
     PokerSuitEnumDiamonds,
-    PokerSuitEnumClubs
+    PokerSuitEnumClubs,
+    PokerSuitEnumHearts,
+    PokerSuitEnumSpades
 };
 
 typedef NS_ENUM(NSUInteger, PokerPatternEnum)
 {
-    PokerPatternEnumRoyalFlush,
-    PokerPatternEnumStraightFlush,
-    PokerPatternEnumFourKind,
-    PokerPatternEnumFullHouse,//葫芦
-    PokerPatternEnumFlush,//同花
-    PokerPatternEnumStraight,//顺子
-    PokerPatternEnumThreeKind,
-    PokerPatternEnumTwoPair,
+    PokerPatternEnumHighCard,
     PokerPatternEnumOnePair,
-    PokerPatternEnumHighCard
+    PokerPatternEnumTwoPair,
+    PokerPatternEnumThreeKind,
+    PokerPatternEnumStraight,//顺子
+    PokerPatternEnumFlush,//同花
+    PokerPatternEnumFullHouse,//葫芦
+    PokerPatternEnumFourKind,
+    PokerPatternEnumStraightFlush,
+    PokerPatternEnumRoyalFlush,
 };
 
 @interface PokerEntity : NSObject

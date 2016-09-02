@@ -10,11 +10,14 @@
 #import "PlayerEntity.h"
 #import "UISeat.h"
 
+@class PokerTableEntity;
+
 @interface SeatEntity : NSObject
 
 @property (nonatomic, assign) NSInteger iIndex;
 @property (nonatomic, strong) PlayerEntity *player;
 @property (nonatomic, strong) UISeat *seatView;
+@property (nonatomic, weak) PokerTableEntity *pokerTable;
 
 -(void)updateSeatUI;
 

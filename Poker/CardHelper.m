@@ -34,7 +34,7 @@ static CardHelper* __helper = nil; //仅模块内使用
 -(NSMutableArray *)getShuffle
 {
     NSMutableArray *arrayResult = [NSMutableArray arrayWithCapacity:52];
-    for (int i = 1; i<14; i++)
+    for (int i = 1; i<14; i++)//A->K
     {
         for (int j=0; j<4; j++)
         {

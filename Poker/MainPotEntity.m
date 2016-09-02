@@ -15,7 +15,8 @@
     self = [super init];
     if(self)
     {
-        _mainPot = [NSDecimalNumber decimalNumberWithString:@"0"];
+        _mainPot = 0;
+        _players = [NSMutableArray arrayWithCapacity:10];
     }
     return self;
 }

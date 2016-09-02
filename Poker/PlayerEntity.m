@@ -10,4 +10,14 @@
 
 @implementation PlayerEntity
 
+-(instancetype)init
+{
+    self = [super init];
+    if(self)
+    {
+        _handCard = [PokerHandsEntity new];
+    }
+    return self;
+}
+
 @end

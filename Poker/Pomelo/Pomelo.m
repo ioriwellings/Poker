@@ -54,7 +54,6 @@ static NSString const *_disconnectCallback = @"__disconnectCallback__";
 {
     [socketIO disconnect];
 }
-
 - (void)disconnectWithCallback:(PomeloCallback)callback
 {
     if (callback) {
@@ -84,23 +83,37 @@ static NSString const *_disconnectCallback = @"__disconnectCallback__";
         callback(self);
         [_callbacks removeObjectForKey:_disconnectCallback];
     }
-    if ([_delegate respondsToSelector:@selector(PomeloDidDisconnect:withError:)]) {
-        [_delegate PomeloDidDisconnect:self withError:error];
+    if ([_delegate respondsToSelector:@selector(PomeloDidDisconnect:withError:)])
+    {
+        NSError *err = [NSError errorWithDomain:error.domain
+                                           code:error.code
+                                       userInfo:@{@"isDisconnectByUser":@(self.isDisconnectByUser)}];
+        [_delegate PomeloDidDisconnect:self withError:err];
     }
 }
 
 - (void)socketIO:(SocketIO *)socket didReceiveMessage:(SocketIOPacket *)packet
 {
     id data = [packet dataAsJSON];
-    if ([_delegate respondsToSelector:@selector(Pomelo:didReceiveMessage:)]) {
+    //NSLog(@"%s: %@", __func__, data);
+    if ([_delegate respondsToSelector:@selector(Pomelo:didReceiveMessage:)])
+    {
         [_delegate Pomelo:self didReceiveMessage:data];
     }
     
-    if ([data isKindOfClass:[NSArray class]]) {
+    if ([data isKindOfClass:[NSArray class]])
+    {
         [self processMessageBatch:data];
-    } else if ([data isKindOfClass:[NSDictionary class]]) {
+    }
+    else if ([data isKindOfClass:[NSDictionary class]])
+    {
         [self processMessage:data];
     }
+}
+
+- (void) socketIO:(SocketIO *)socket onError:(NSError *)error
+{
+    NSLog(@"=====by Iori:%s error:%@", __func__, error);
 }
 
 # pragma mark -

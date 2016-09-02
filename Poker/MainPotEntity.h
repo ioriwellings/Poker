@@ -11,8 +11,7 @@
 
 @interface MainPotEntity : NSObject
 
-@property (nonatomic, strong) NSDecimalNumber *mainPot;
-@property (nonatomic, strong) NSMutableArray<PlayerEntity*> *players;
-
+@property (nonatomic, assign) NSInteger mainPot;
+@property (nonatomic, weak, readonly) NSMutableArray<PlayerEntity*> *players;
 
 @end

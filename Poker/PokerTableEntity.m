@@ -8,6 +8,26 @@
 
 #import "PokerTableEntity.h"
 
+@implementation NextAction
+
+
+@end
+
+@implementation NextActionPlayer
+
+-(void)loadNextActionFromDictOfArray:(NSArray<NSDictionary *> *)arrayDict
+{
+    self.nextActions = [NSMutableArray arrayWithCapacity:10];
+    [arrayDict enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NextAction *action = [NextAction new];
+        action.status = [[obj objectForKey:@"type"] integerValue];
+        action.value = [[obj objectForKey:@"value"] integerValue];
+        [self.nextActions addObject:action];
+    }];
+}
+
+@end
+
 @implementation PokerTableEntity
 
 static PokerTableEntity *_instance;
@@ -26,6 +46,8 @@ static PokerTableEntity *_instance;
     {
         _seats = [NSMutableArray arrayWithCapacity:10];
         _mainPots = [MainPotEntity new];
+        _nextActionPlayer = [NextActionPlayer new];
+        _communityCards = [NSMutableArray arrayWithCapacity:10];
     }
     return self;
 }
@@ -35,5 +57,27 @@ static PokerTableEntity *_instance;
     [self.seats enumerateObjectsUsingBlock:^(SeatEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj updateSeatUI];
     }];
+
+    if(self.tableStatus == PokerTableStatusEnumFlop)
+    {
+        if([self.updateUIDelegate respondsToSelector:@selector(flopCard)])
+        {
+            [self.updateUIDelegate flopCard];
+        }
+    }
+    else if (self.tableStatus == PokerTableStatusEnumTurn)
+    {
+        if([self.updateUIDelegate respondsToSelector:@selector(turnCard)])
+        {
+            [self.updateUIDelegate turnCard];
+        }
+    }
+    else if (self.tableStatus == PokerTableStatusEnumRiver)
+    {
+        if([self.updateUIDelegate respondsToSelector:@selector(riverCard)])
+        {
+            [self.updateUIDelegate riverCard];
+        }
+    }
 }
 @end

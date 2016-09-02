@@ -7,11 +7,50 @@
 //
 
 #import "SeatEntity.h"
+#import "PokerTableEntity.h"
+#import "CardHelper.h"
 
 @implementation SeatEntity
 
 -(void)updateSeatUI
 {
+    if(self.player.handCard.arrayPoker.count > 0)//更新手牌显示
+    {
+        CardHelper *helper = [CardHelper sharedInstance];
+        NSArray<PokerEntity*> *array = [helper getShuffle];
+        [array enumerateObjectsUsingBlock:^(PokerEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
+        {
+            NSInteger iFound = 0;
+            if(obj.numberValue == self.player.handCard.arrayPoker[0].numberValue
+               && obj.pokerSuit ==  self.player.handCard.arrayPoker[0].pokerSuit)
+            {
+                [helper makePoker:array[idx] containerView:self.seatView.poker00];
+                iFound ++;
+            }
+            if(obj.numberValue == self.player.handCard.arrayPoker[1].numberValue
+               && obj.pokerSuit ==  self.player.handCard.arrayPoker[1].pokerSuit)
+            {
+                [helper makePoker:array[idx] containerView:self.seatView.poker01];
+                iFound ++;
+            }
+            if(iFound > 1)
+            {
+                *stop = YES;
+            }
+        }];
+    }
+    
+    if(self.pokerTable.nextActionPlayer &&
+       self.pokerTable.nextActionPlayer.nextPlayerIndex == self.player.iSeatIndex)//显示玩家活动状态
+    {
+        [self displayWaittingView];
+        [self displayActionButtons];
+    }
+    else
+    {
+        [self dissWaittingView];
+    }
+    
     self.seatView.labName.text = self.player.name;
     self.seatView.labBringIn.text = [[NSNumber numberWithInteger:self.player.bringInMoney] stringValue];
     if(self.player.bet != 0)
@@ -22,7 +61,12 @@
     {
         self.seatView.labBet.text = @"";
     }
-    if(self.player.actionStatus == PokerActionStatusEnumCheck)
+    //
+    if(self.player.actionStatus == PokerActionStatusEnumFold)
+    {
+        self.seatView.backgroundColor = [UIColor darkGrayColor];
+    }
+    else if(self.player.actionStatus == PokerActionStatusEnumCheck)
     {
         self.seatView.labStatus.text = @"看牌";
     }
@@ -46,12 +90,14 @@
     else if (self.player.actionStatus == PokerActionStatusEnumSB)
     {
         self.seatView.labStatus.text = @"小盲";
-        self.seatView.labBet.text = [[NSNumber numberWithInteger:self.player.bet] stringValue];
+        if(self.player.bet>0)
+            self.seatView.labBet.text = [[NSNumber numberWithInteger:self.player.bet] stringValue];
     }
     else if (self.player.actionStatus == PokerActionStatusEnumBB)
     {
         self.seatView.labStatus.text = @"大盲";
-        self.seatView.labBet.text = [[NSNumber numberWithInteger:self.player.bet] stringValue];
+        if(self.player.bet>0)
+            self.seatView.labBet.text = [[NSNumber numberWithInteger:self.player.bet] stringValue];
     }
     else if (self.player.actionStatus == PokerActionStatusEnumNone)
     {
@@ -72,9 +118,9 @@
         if(self.player.isWiner)
         {
             NSString *strResult;
-            if(self.player.hands.pattern == PokerPatternEnumRoyalFlush)
+            if(self.player.handCard.pattern == PokerPatternEnumRoyalFlush)
             {
-                strResult = @"皇家同花顺";
+                strResult = self.player.handCard.patternStringValue;
             }
             //else if ()
             if(strResult == nil)
@@ -88,6 +134,67 @@
                                                 @" 赢"];
             }
         }
+    }
+}
+
+-(void)displayWaittingView
+{
+    self.seatView.backgroundColor = [UIColor blueColor];
+}
+
+-(void)dissWaittingView
+{
+    self.seatView.backgroundColor = [UIColor redColor];
+}
+
+-(void)displayActionButtons
+{
+    __block BOOL hasCheckActon, hasCallAction, hasRaiseAction, hasAllIn;
+    __block NSInteger callValue, raiseValue, allInValue;
+    [self.pokerTable.nextActionPlayer.nextActions enumerateObjectsUsingBlock:^(NextAction * _Nonnull obj,
+                                                                               NSUInteger idx,
+                                                                               BOOL * _Nonnull stop)
+    {
+        if(obj.status == PokerActionStatusEnumCheck)
+        {
+            hasCheckActon = YES;
+        }
+        else if (obj.status == PokerActionStatusEnumCall)
+        {
+            hasCallAction = YES;
+            callValue = obj.value;
+        }
+        else if (obj.status == PokerActionStatusEnumRaise)
+        {
+            hasRaiseAction = YES;
+            raiseValue = obj.value;
+        }
+        else if (obj.status == PokerActionStatusEnumAllIn)
+        {
+            hasAllIn = YES;
+            allInValue = obj.value;
+        }
+    }];
+    
+    if(hasCheckActon == NO && hasCallAction == YES && hasRaiseAction == NO && hasAllIn == NO)
+    {
+        //only call, fold.
+    }
+    else if(hasCheckActon == YES && hasCallAction == NO && hasRaiseAction == YES)
+    {
+        //check ,raise, (option)allin, fold
+    }
+    else if (hasCheckActon == NO && hasCallAction == YES && hasRaiseAction == YES)
+    {
+        //call, raise, (option)allin, fold
+    }
+    else if(hasCheckActon == NO && hasCallAction == YES && hasRaiseAction == NO && hasAllIn == YES)
+    {
+        //call, allin, fold;
+    }
+    else if (hasCheckActon == NO && hasCallAction == YES && hasRaiseAction == YES)
+    {
+        //call, raise, (option)allin, fold
     }
 }
 

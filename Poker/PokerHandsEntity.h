@@ -11,7 +11,7 @@
 
 @interface PokerHandsEntity : NSObject
 
-@property (nonatomic, strong) NSArray<PokerEntity*> *hands;
+@property (nonatomic, strong, readonly) NSMutableArray<PokerEntity*> *arrayPoker;
 @property (nonatomic, assign) PokerPatternEnum pattern;
-
+@property (nonatomic, readonly) NSString* patternStringValue;
 @end

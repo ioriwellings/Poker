@@ -25,6 +25,7 @@ typedef NS_ENUM(NSUInteger, PokerActionStatusEnum)
 
 @interface PlayerEntity : NSObject
 
+@property (nonatomic, copy) NSString *playerID;
 @property (nonatomic, assign) NSInteger ownMoney;
 @property (nonatomic, assign) NSInteger bringInMoney;
 @property (nonatomic, assign) NSInteger bet;
@@ -36,7 +37,7 @@ typedef NS_ENUM(NSUInteger, PokerActionStatusEnum)
 @property (nonatomic, assign) BOOL isBigBlind;
 @property (nonatomic, assign) BOOL isWiner;
 @property (nonatomic, copy) NSString *imageHead;
-@property (nonatomic, strong) PokerHandsEntity *hands;
+@property (nonatomic, strong, readonly) PokerHandsEntity *handCard;
 @property (nonatomic, assign) PokerActionStatusEnum actionStatus;
 
 @end

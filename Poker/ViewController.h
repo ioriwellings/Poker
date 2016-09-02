@@ -12,8 +12,9 @@
 #import "Pomelo.h"
 
 @class PokerAction;
+@class PokerTableEntity;
 
-@interface ViewController : UIViewController <PomeloDelegate>
+@interface ViewController : UIViewController <PomeloDelegate, PokerTableUpdateUIDelegate>
 {
     Pomelo *pomelo;
     SeatEntity *lastActionSeat;
@@ -71,6 +72,7 @@
 
 - (IBAction)btnSitDown_click:(UIButton *)sender;
 - (IBAction)btnStandUp_click:(UIButton *)sender;
+- (IBAction)btnCheck_click:(UIButton *)sender;
 
 - (IBAction)btnCall_click:(UIButton *)sender;
 - (IBAction)btnRaise_click:(UIButton *)sender;
@@ -80,7 +82,7 @@
 
 - (IBAction)btnPlayer02_click:(UIButton *)sender;
 - (IBAction)btnStart_click:(UIButton *)sender;
-
+- (IBAction)btnCheck2_click:(UIButton *)sender;
 @end
 
 typedef NS_ENUM(NSUInteger, PokerActionEnum) {

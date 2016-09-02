@@ -28,8 +28,8 @@ NSString* const PomeloException = @"PomeloException";
                      route,
                      body];
     
-    //    NSLog(@"send msg,%d, %d, %@",[route length] + [body length],[msg length],msg);
-    
+    NSLog(@"send msg,%lu, %lu, %@, %@",[route length] + [body length],(unsigned long)[msg length],msg, route);
+    NSLog(@"route:%@,body:%@:msg:%s", route, body, [msg UTF8String]);
     return msg;
 }
 @end
