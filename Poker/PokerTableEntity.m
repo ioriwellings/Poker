@@ -15,6 +15,15 @@
 
 @implementation NextActionPlayer
 
+-(instancetype)init
+{
+    if(self = [super init])
+    {
+        _nextPlayerIndex = -1;
+    }
+    return self;
+}
+
 -(void)loadNextActionFromDictOfArray:(NSArray<NSDictionary *> *)arrayDict
 {
     self.nextActions = [NSMutableArray arrayWithCapacity:10];
@@ -52,13 +61,24 @@ static PokerTableEntity *_instance;
     return self;
 }
 
+
+
 -(void)updateUI
 {
-    [self.seats enumerateObjectsUsingBlock:^(SeatEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [obj updateSeatUI];
+    [self.seats enumerateObjectsUsingBlock:^(SeatEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
+    {
+        if(obj.player)
+            [obj updateSeatUI];
     }];
-
-    if(self.tableStatus == PokerTableStatusEnumFlop)
+    
+    if(self.tableStatus == PokerTableStatusEnumNone)
+    {
+        if([self.updateUIDelegate respondsToSelector:@selector(clearCommCard)])
+        {
+            [self.updateUIDelegate clearCommCard];
+        }
+    }
+    else if(self.tableStatus == PokerTableStatusEnumFlop)
     {
         if([self.updateUIDelegate respondsToSelector:@selector(flopCard)])
         {

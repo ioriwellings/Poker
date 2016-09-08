@@ -85,15 +85,6 @@
 - (IBAction)btnCheck2_click:(UIButton *)sender;
 @end
 
-typedef NS_ENUM(NSUInteger, PokerActionEnum) {
-    PokerActionEnumCheck = 1,
-    PokerActionEnumCall,
-    PokerActionEnumFold,
-    PokerActionEnumAllin,
-    PokerActionEnumSitDown,
-    PokerActionEnumStandUp
-};
-
 //--------------------------------
 @interface PokerAction : NSObject
 {

@@ -9,13 +9,22 @@
 #import <Foundation/Foundation.h>
 #import "PokerHandsEntity.h"
 
+typedef NS_ENUM(NSUInteger, PokerActionEnum) {
+    PokerActionEnumCheck = 1,
+    PokerActionEnumCall,
+    PokerActionEnumFold,
+    PokerActionEnumAllin,
+    PokerActionEnumSitDown,
+    PokerActionEnumStandUp
+};
+
 typedef NS_ENUM(NSUInteger, PokerActionStatusEnum)
 {
     PokerActionStatusEnumNone,
     PokerActionStatusEnumCheck,
-    PokerActionStatusEnumCall,
+    PokerActionStatusEnumCall,//2
     PokerActionStatusEnumRaise,
-    PokerActionStatusEnumAllIn,
+    PokerActionStatusEnumAllIn,//4
     PokerActionStatusEnumFold,
     PokerActionStatusEnumWaitingBet,
     PokerActionStatusEnumWaitingNext,

@@ -14,6 +14,7 @@
 
 @protocol PokerTableUpdateUIDelegate <NSObject>
 
+-(void)clearCommCard;
 -(void)flopCard;
 -(void)turnCard;
 -(void)riverCard;

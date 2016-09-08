@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "PlayerEntity.h"
-#import "UISeat.h"
 
+@class UISeat;
 @class PokerTableEntity;
 
 @interface SeatEntity : NSObject

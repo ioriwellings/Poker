@@ -54,6 +54,14 @@ static CardHelper* __helper = nil; //仅模块内使用
 
 -(void)makePokerByNum:(NSInteger)num pokerSuit:(PokerSuitEnum)suit containerView:(UIView *)view
 {
+    if([view isKindOfClass:[UIImageView class]])
+    {
+        ((UIImageView*)view).image = nil;
+    }
+    [view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
+    {
+        [obj removeFromSuperview];
+    }];
     UILabel *labNum = [UILabel new];
     UILabel *labSuit = [UILabel new];
     labSuit.font = [UIFont systemFontOfSize:26];
@@ -100,6 +108,7 @@ static CardHelper* __helper = nil; //仅模块内使用
     [labSuit sizeThatFits:CGSizeMake(40, 40)];
     [view addSubview:labNum];
     [view addSubview:labSuit];
+    view.backgroundColor = [UIColor whiteColor];
     [labNum mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(view.mas_top).offset(2);
         make.left.equalTo(view.mas_left).offset(3);

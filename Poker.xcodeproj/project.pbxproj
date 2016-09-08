@@ -24,6 +24,7 @@
 		891C0F3F1D5479510075A228 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C0F321D5479510075A228 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		891C0F401D5479510075A228 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C0F341D5479510075A228 /* View+MASAdditions.m */; };
 		891C0F411D5479510075A228 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C0F371D5479510075A228 /* ViewController+MASAdditions.m */; };
+		894DE64D1D795E6000F18876 /* PokerTableViewControler.m in Sources */ = {isa = PBXBuildFile; fileRef = 894DE64C1D795E6000F18876 /* PokerTableViewControler.m */; };
 		8983BAB91D6EC97000B38455 /* IoriJsonHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8983BAB41D6EC97000B38455 /* IoriJsonHelper.m */; };
 		8983BABA1D6EC97000B38455 /* MessageBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 8983BAB61D6EC97000B38455 /* MessageBox.m */; };
 		8983BABB1D6EC97000B38455 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8983BAB81D6EC97000B38455 /* UserInfo.m */; };
@@ -126,6 +127,8 @@
 		891C0F351D5479510075A228 /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
 		891C0F361D5479510075A228 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		891C0F371D5479510075A228 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
+		894DE64B1D795E6000F18876 /* PokerTableViewControler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokerTableViewControler.h; sourceTree = "<group>"; };
+		894DE64C1D795E6000F18876 /* PokerTableViewControler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PokerTableViewControler.m; sourceTree = "<group>"; };
 		8983BAB31D6EC97000B38455 /* IoriJsonHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoriJsonHelper.h; sourceTree = "<group>"; };
 		8983BAB41D6EC97000B38455 /* IoriJsonHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoriJsonHelper.m; sourceTree = "<group>"; };
 		8983BAB51D6EC97000B38455 /* MessageBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageBox.h; sourceTree = "<group>"; };
@@ -302,6 +305,8 @@
 				891C0F071D5443080075A228 /* AppDelegate.m */,
 				891C0F091D5443080075A228 /* ViewController.h */,
 				891C0F0A1D5443080075A228 /* ViewController.m */,
+				894DE64B1D795E6000F18876 /* PokerTableViewControler.h */,
+				894DE64C1D795E6000F18876 /* PokerTableViewControler.m */,
 				891C0F0C1D5443080075A228 /* Main.storyboard */,
 				891C0F0F1D5443080075A228 /* Assets.xcassets */,
 				891C0F111D5443080075A228 /* LaunchScreen.storyboard */,
@@ -596,6 +601,7 @@
 				8983BB1C1D6ECA5D00B38455 /* DGActivityIndicatorRotatingSandglassAnimation.m in Sources */,
 				8983BB0A1D6ECA5D00B38455 /* DGActivityIndicatorBallPulseSyncAnimation.m in Sources */,
 				89EB0BBE1D58378F0064CF3D /* SeatEntity.m in Sources */,
+				894DE64D1D795E6000F18876 /* PokerTableViewControler.m in Sources */,
 				8983BB141D6ECA5D00B38455 /* DGActivityIndicatorCookieTerminatorAnimation.m in Sources */,
 				8983BB211D6ECA5D00B38455 /* DGActivityIndicatorTriplePulseAnimation.m in Sources */,
 				891C0F0B1D5443080075A228 /* ViewController.m in Sources */,
