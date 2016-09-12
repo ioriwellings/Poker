@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UserInfo.h"
+#import "SDTransparentPieProgressView.h"
 
 @interface LoginViewController : UIViewController
 
@@ -16,4 +17,5 @@
 
 - (IBAction)btnLogin_click:(UIButton *)sender;
 
+@property (weak, nonatomic) IBOutlet SDTransparentPieProgressView *progressView;
 @end
