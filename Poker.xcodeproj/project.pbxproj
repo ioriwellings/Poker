@@ -32,6 +32,11 @@
 		8939DDAC1D864A3700D67CC1 /* SDPieProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8939DDA11D864A3700D67CC1 /* SDPieProgressView.m */; };
 		8939DDAD1D864A3700D67CC1 /* SDRotationLoopProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8939DDA41D864A3700D67CC1 /* SDRotationLoopProgressView.m */; };
 		8939DDAE1D864A3700D67CC1 /* SDTransparentPieProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8939DDA61D864A3700D67CC1 /* SDTransparentPieProgressView.m */; };
+		8939DDBA1D8658B100D67CC1 /* IoriCircleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8939DDB11D8658B100D67CC1 /* IoriCircleLayer.m */; };
+		8939DDBB1D8658B100D67CC1 /* IoriCircleLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8939DDB31D8658B100D67CC1 /* IoriCircleLayerView.m */; };
+		8939DDBC1D8658B100D67CC1 /* IoriCircleProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 8939DDB51D8658B100D67CC1 /* IoriCircleProgress.m */; };
+		8939DDBD1D8658B100D67CC1 /* IoriCircleProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8939DDB71D8658B100D67CC1 /* IoriCircleProgressLayer.m */; };
+		8939DDBE1D8658B100D67CC1 /* IoriVerticalBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8939DDB91D8658B100D67CC1 /* IoriVerticalBar.m */; };
 		894DE64D1D795E6000F18876 /* PokerTableViewControler.m in Sources */ = {isa = PBXBuildFile; fileRef = 894DE64C1D795E6000F18876 /* PokerTableViewControler.m */; };
 		8983BAB91D6EC97000B38455 /* IoriJsonHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8983BAB41D6EC97000B38455 /* IoriJsonHelper.m */; };
 		8983BABA1D6EC97000B38455 /* MessageBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 8983BAB61D6EC97000B38455 /* MessageBox.m */; };
@@ -206,6 +211,16 @@
 		8939DDA41D864A3700D67CC1 /* SDRotationLoopProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDRotationLoopProgressView.m; sourceTree = "<group>"; };
 		8939DDA51D864A3700D67CC1 /* SDTransparentPieProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTransparentPieProgressView.h; sourceTree = "<group>"; };
 		8939DDA61D864A3700D67CC1 /* SDTransparentPieProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTransparentPieProgressView.m; sourceTree = "<group>"; };
+		8939DDB01D8658B100D67CC1 /* IoriCircleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoriCircleLayer.h; sourceTree = "<group>"; };
+		8939DDB11D8658B100D67CC1 /* IoriCircleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoriCircleLayer.m; sourceTree = "<group>"; };
+		8939DDB21D8658B100D67CC1 /* IoriCircleLayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoriCircleLayerView.h; sourceTree = "<group>"; };
+		8939DDB31D8658B100D67CC1 /* IoriCircleLayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoriCircleLayerView.m; sourceTree = "<group>"; };
+		8939DDB41D8658B100D67CC1 /* IoriCircleProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoriCircleProgress.h; sourceTree = "<group>"; };
+		8939DDB51D8658B100D67CC1 /* IoriCircleProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoriCircleProgress.m; sourceTree = "<group>"; };
+		8939DDB61D8658B100D67CC1 /* IoriCircleProgressLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoriCircleProgressLayer.h; sourceTree = "<group>"; };
+		8939DDB71D8658B100D67CC1 /* IoriCircleProgressLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoriCircleProgressLayer.m; sourceTree = "<group>"; };
+		8939DDB81D8658B100D67CC1 /* IoriVerticalBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoriVerticalBar.h; sourceTree = "<group>"; };
+		8939DDB91D8658B100D67CC1 /* IoriVerticalBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoriVerticalBar.m; sourceTree = "<group>"; };
 		894DE64B1D795E6000F18876 /* PokerTableViewControler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokerTableViewControler.h; sourceTree = "<group>"; };
 		894DE64C1D795E6000F18876 /* PokerTableViewControler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PokerTableViewControler.m; sourceTree = "<group>"; };
 		8983BAB31D6EC97000B38455 /* IoriJsonHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoriJsonHelper.h; sourceTree = "<group>"; };
@@ -428,6 +443,7 @@
 		891C0F021D5443080075A228 /* Poker */ = {
 			isa = PBXGroup;
 			children = (
+				8939DDAF1D8658B100D67CC1 /* IoriProgressView */,
 				8939DD951D864A3700D67CC1 /* SDProgressViewLib */,
 				8983BABC1D6ECA5D00B38455 /* DGActivityIndicatorView */,
 				8983BAB21D6EC97000B38455 /* Iori */,
@@ -543,6 +559,23 @@
 				8939DDA61D864A3700D67CC1 /* SDTransparentPieProgressView.m */,
 			);
 			path = SDProgressViewLib;
+			sourceTree = "<group>";
+		};
+		8939DDAF1D8658B100D67CC1 /* IoriProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				8939DDB01D8658B100D67CC1 /* IoriCircleLayer.h */,
+				8939DDB11D8658B100D67CC1 /* IoriCircleLayer.m */,
+				8939DDB21D8658B100D67CC1 /* IoriCircleLayerView.h */,
+				8939DDB31D8658B100D67CC1 /* IoriCircleLayerView.m */,
+				8939DDB41D8658B100D67CC1 /* IoriCircleProgress.h */,
+				8939DDB51D8658B100D67CC1 /* IoriCircleProgress.m */,
+				8939DDB61D8658B100D67CC1 /* IoriCircleProgressLayer.h */,
+				8939DDB71D8658B100D67CC1 /* IoriCircleProgressLayer.m */,
+				8939DDB81D8658B100D67CC1 /* IoriVerticalBar.h */,
+				8939DDB91D8658B100D67CC1 /* IoriVerticalBar.m */,
+			);
+			path = IoriProgressView;
 			sourceTree = "<group>";
 		};
 		8983BAB21D6EC97000B38455 /* Iori */ = {
@@ -888,12 +921,15 @@
 				894DE64D1D795E6000F18876 /* PokerTableViewControler.m in Sources */,
 				8983BB141D6ECA5D00B38455 /* DGActivityIndicatorCookieTerminatorAnimation.m in Sources */,
 				8983BB211D6ECA5D00B38455 /* DGActivityIndicatorTriplePulseAnimation.m in Sources */,
+				8939DDBE1D8658B100D67CC1 /* IoriVerticalBar.m in Sources */,
 				891C0F0B1D5443080075A228 /* ViewController.m in Sources */,
 				891C0F1D1D5478CD0075A228 /* CardHelper.m in Sources */,
 				891C0F391D5479510075A228 /* MASConstraint.m in Sources */,
 				891C0F411D5479510075A228 /* ViewController+MASAdditions.m in Sources */,
 				89CB2E361D62FEE500FB37A5 /* SocketIOTransportWebsocket.m in Sources */,
 				89EB0BCA1D585FFD0064CF3D /* SidePotEntity.m in Sources */,
+				8939DDBC1D8658B100D67CC1 /* IoriCircleProgress.m in Sources */,
+				8939DDBD1D8658B100D67CC1 /* IoriCircleProgressLayer.m in Sources */,
 				8983BB0E1D6ECA5D00B38455 /* DGActivityIndicatorBallScaleRippleAnimation.m in Sources */,
 				89CB2E381D62FEE500FB37A5 /* base64.c in Sources */,
 				89EB0BBB1D5819420064CF3D /* PokerEntity.m in Sources */,
@@ -941,6 +977,7 @@
 				8983BB221D6ECA5D00B38455 /* DGActivityIndicatorTripleRingsAnimation.m in Sources */,
 				89CB2E341D62FEE500FB37A5 /* SocketIOJSONSerialization.m in Sources */,
 				89CB2E331D62FEE500FB37A5 /* SocketIO.m in Sources */,
+				8939DDBB1D8658B100D67CC1 /* IoriCircleLayerView.m in Sources */,
 				8983BB031D6ECA5D00B38455 /* DGActivityIndicatorBallBeatAnimation.m in Sources */,
 				8983BB121D6ECA5D00B38455 /* DGActivityIndicatorBallZigZagAnimation.m in Sources */,
 				891C0F081D5443080075A228 /* AppDelegate.m in Sources */,
@@ -953,6 +990,7 @@
 				8983BB151D6ECA5D00B38455 /* DGActivityIndicatorDoubleBounceAnimation.m in Sources */,
 				8983BB231D6ECA5D00B38455 /* DGActivityIndicatorTwoDotsAnimation.m in Sources */,
 				8983BB091D6ECA5D00B38455 /* DGActivityIndicatorBallPulseAnimation.m in Sources */,
+				8939DDBA1D8658B100D67CC1 /* IoriCircleLayer.m in Sources */,
 				8983BB1B1D6ECA5D00B38455 /* DGActivityIndicatorNineDotsAnimation.m in Sources */,
 				8939DDA91D864A3700D67CC1 /* SDLoopProgressView.m in Sources */,
 				891C0F3F1D5479510075A228 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
