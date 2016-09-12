@@ -8,6 +8,7 @@
 
 #import "UISeat.h"
 #import "UserInfo.h"
+#import "PokerTableEntity.h"
 
 #define UserBg 1001
 
@@ -20,13 +21,16 @@
 
 -(void)setStatusFromPlayer:(PlayerEntity*)player
 {
+    //self.backgroundColor = [UIColor clearColor];
     self.labName.text = player.name;
     if(player)
     {
         self.userNameBg.hidden = NO;
         self.labBringIn.hidden = NO;
     }
-    self.labBringIn.text = [[NSDecimalNumber decimalNumberWithString:[[NSNumber numberWithInteger:player.bringInMoney] stringValue]] stringValue];
+    NSNumberFormatter *formate = [NSNumberFormatter new];
+    formate.numberStyle = NSNumberFormatterDecimalStyle;
+    self.labBringIn.text = [formate stringFromNumber:[NSNumber numberWithInteger:player.bringInMoney]];
     self.iconDelear.hidden = player.isButton ? NO : YES;
     
     if (player.handCard.arrayPoker.count >0)
@@ -48,6 +52,18 @@
         self.pokerContainer.hidden = YES;
     }
     //
+    
+    if(player.bet != 0)
+    {
+        self.labBet.text = [formate stringFromNumber:[NSNumber numberWithInteger:player.bet]];
+        self.betContainer.hidden = NO;
+    }
+    else
+    {
+        self.labBet.text = nil;
+        self.betContainer.hidden = YES;
+    }
+    
     if(player.actionStatus == PokerActionStatusEnumFold)
     {
         self.backgroundColor = [UIColor darkGrayColor];
@@ -65,6 +81,11 @@
     else if (player.actionStatus == PokerActionStatusEnumRaise)
     {
         self.labStatus.text = @"加注";
+        if(player.bet>0)
+        {
+            self.betContainer.hidden = NO;
+            self.labBet.text = [formate stringFromNumber:[NSNumber numberWithInteger:player.bet]];
+        }
     }
     else if (player.actionStatus == PokerActionStatusEnumAllIn)
     {
@@ -167,17 +188,11 @@
     {
         [self setStatusFromPlayer:player];
     }
-    [self updateHandCards:player.handCard.arrayPoker];
-    
-    if(player.bet != 0)
+    if([PokerTableEntity sharedInstance].hasUpdatedHandCard == NO  &&
+       [PokerTableEntity sharedInstance].tableStatus == PokerTableStatusEnumBet)
     {
-        self.labBet.text = [[NSNumber numberWithInteger:player.bet] stringValue];
-        self.betContainer.hidden = NO;
-    }
-    else
-    {
-        self.labBet.text = @"";
-        self.betContainer.hidden = YES;
+        [self updateHandCards:player.handCard.arrayPoker];
+        [PokerTableEntity sharedInstance].hasUpdatedHandCard = YES;
     }
 }
 
@@ -194,11 +209,11 @@
         {
             CardHelper *helper = [CardHelper sharedInstance];
             NSArray<PokerEntity*> *array = [helper getShuffle];
+            __block NSInteger iFound = 0;
             [array enumerateObjectsUsingBlock:^(PokerEntity * _Nonnull obj,
                                                 NSUInteger idx,
                                                 BOOL * _Nonnull stop)
              {
-                 NSInteger iFound = 0;
                  if(obj.numberValue == pokers[0].numberValue
                     && obj.pokerSuit ==  pokers[0].pokerSuit)
                  {

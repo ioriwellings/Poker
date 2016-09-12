@@ -14,6 +14,11 @@
 
 @implementation SeatEntity
 
+-(void)clearSeat
+{
+    [self.seatView clear];
+}
+
 -(void)updateSeatUI
 {
     if(self.pokerTable.nextActionPlayer &&

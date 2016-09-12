@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="YfZ-qu-XoD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="8Vr-3d-eY5">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -451,6 +451,80 @@
             </objects>
             <point key="canvasLocation" x="203" y="345"/>
         </scene>
+        <!--Login View Controller-->
+        <scene sceneID="E7X-n3-ZFK">
+            <objects>
+                <viewController id="8Vr-3d-eY5" customClass="LoginViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jqh-sh-Xav"/>
+                        <viewControllerLayoutGuide type="bottom" id="9qH-ND-Cza"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="a9N-fZ-dwg">
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sq9-V2-t2P">
+                                <rect key="frame" x="254" y="193" width="60" height="30"/>
+                                <state key="normal" title="进入房间"/>
+                                <connections>
+                                    <action selector="btnLogin_click:" destination="8Vr-3d-eY5" eventType="touchUpInside" id="haC-hs-8pL"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Iori" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mFI-Mp-i8E">
+                                <rect key="frame" x="259" y="49" width="80" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="arl-s9-5bv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4cJ-UG-Wz1">
+                                <rect key="frame" x="259" y="96" width="80" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="scI-3J-SZ2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昵称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LXZ-Y6-3kK">
+                                <rect key="frame" x="198" y="53" width="34" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="房间名称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bmP-Cw-BgF">
+                                <rect key="frame" x="164" y="100" width="68" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mFI-Mp-i8E" firstAttribute="leading" secondItem="LXZ-Y6-3kK" secondAttribute="trailing" constant="27" id="8VS-iN-AAW"/>
+                            <constraint firstItem="LXZ-Y6-3kK" firstAttribute="centerY" secondItem="mFI-Mp-i8E" secondAttribute="centerY" id="D0q-7R-eTb"/>
+                            <constraint firstItem="sq9-V2-t2P" firstAttribute="top" secondItem="4cJ-UG-Wz1" secondAttribute="bottom" constant="67" id="Ikc-yE-RpS"/>
+                            <constraint firstItem="4cJ-UG-Wz1" firstAttribute="leading" secondItem="sq9-V2-t2P" secondAttribute="trailing" constant="-55" id="LGC-1h-LS8"/>
+                            <constraint firstItem="sq9-V2-t2P" firstAttribute="centerY" secondItem="a9N-fZ-dwg" secondAttribute="centerY" multiplier="1.3" id="Swy-J9-cC2"/>
+                            <constraint firstItem="mFI-Mp-i8E" firstAttribute="trailing" secondItem="4cJ-UG-Wz1" secondAttribute="trailing" id="fOZ-Vl-udZ"/>
+                            <constraint firstItem="4cJ-UG-Wz1" firstAttribute="top" secondItem="mFI-Mp-i8E" secondAttribute="bottom" constant="17" id="htL-uz-c9R"/>
+                            <constraint firstItem="4cJ-UG-Wz1" firstAttribute="leading" secondItem="bmP-Cw-BgF" secondAttribute="trailing" constant="27" id="kKp-ew-nVo"/>
+                            <constraint firstItem="sq9-V2-t2P" firstAttribute="centerX" secondItem="a9N-fZ-dwg" secondAttribute="centerX" id="qCo-Gy-Wft"/>
+                            <constraint firstItem="bmP-Cw-BgF" firstAttribute="centerY" secondItem="4cJ-UG-Wz1" secondAttribute="centerY" id="yMd-NV-PX5"/>
+                        </constraints>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="txtRoomID" destination="4cJ-UG-Wz1" id="P25-bD-RVH"/>
+                        <outlet property="txtUserName" destination="mFI-Mp-i8E" id="6c6-u3-col"/>
+                        <segue destination="YfZ-qu-XoD" kind="show" identifier="segueLogin" id="hgt-V5-hKv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lXU-Gm-xvh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="762" y="-204"/>
+        </scene>
         <!--Poker Table View Controler-->
         <scene sceneID="Q83-fF-uB3">
             <objects>
@@ -555,17 +629,20 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="bg_user_1" translatesAutoresizingMaskIntoConstraints="NO" id="gMC-Jo-4mC">
+                                        <rect key="frame" x="17" y="26" width="40" height="40"/>
+                                    </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zWe-gv-CAE" userLabel="hiddenCardView">
                                         <rect key="frame" x="62" y="44" width="34" height="42"/>
                                         <subviews>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0" translatesAutoresizingMaskIntoConstraints="NO" id="xon-y3-xE3">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0.png" translatesAutoresizingMaskIntoConstraints="NO" id="xon-y3-xE3">
                                                 <rect key="frame" x="5" y="0.0" width="29" height="37"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="37" id="syk-K9-j5j"/>
                                                     <constraint firstAttribute="width" constant="29" id="yeE-Ce-EyG"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0" translatesAutoresizingMaskIntoConstraints="NO" id="1tx-zl-xch" userLabel="poker_0_1">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0.png" translatesAutoresizingMaskIntoConstraints="NO" id="1tx-zl-xch" userLabel="poker_0_1">
                                                 <rect key="frame" x="0.0" y="5" width="29" height="37"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="37" id="Cjg-TE-Yd8"/>
@@ -601,14 +678,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bw3-pc-ydF" userLabel="handCardContainer">
                                         <rect key="frame" x="68" y="46" width="53" height="40"/>
                                         <subviews>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1" translatesAutoresizingMaskIntoConstraints="NO" id="PWw-bZ-Sj0">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="PWw-bZ-Sj0">
                                                 <rect key="frame" x="0.0" y="0.0" width="31" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="Gom-Fj-vkU"/>
                                                     <constraint firstAttribute="width" constant="31" id="aKA-pj-Xxb"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1" translatesAutoresizingMaskIntoConstraints="NO" id="i5x-rn-YBm">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="i5x-rn-YBm">
                                                 <rect key="frame" x="22" y="0.0" width="31" height="40"/>
                                             </imageView>
                                         </subviews>
@@ -627,6 +704,8 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="gMC-Jo-4mC" firstAttribute="centerX" secondItem="cRY-dS-OWv" secondAttribute="centerX" id="3oH-8U-bLi"/>
+                                    <constraint firstItem="gMC-Jo-4mC" firstAttribute="centerY" secondItem="cRY-dS-OWv" secondAttribute="centerY" id="5jw-0r-96k"/>
                                     <constraint firstItem="cRY-dS-OWv" firstAttribute="top" secondItem="6wC-GQ-Pb2" secondAttribute="bottom" constant="-11" id="6eY-eS-6g5"/>
                                     <constraint firstItem="GjO-lk-GxJ" firstAttribute="centerX" secondItem="cRY-dS-OWv" secondAttribute="centerX" id="6qy-QE-11K"/>
                                     <constraint firstItem="sRL-Qc-bsh" firstAttribute="width" secondItem="cRY-dS-OWv" secondAttribute="width" id="Avc-EZ-QkP"/>
@@ -654,7 +733,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mdg-es-mvg" userLabel="seatView01" customClass="UISeat">
-                                <rect key="frame" x="80" y="179" width="121" height="86"/>
+                                <rect key="frame" x="93" y="179" width="121" height="86"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T2j-WU-Dr0" userLabel="betView">
                                         <rect key="frame" x="10" y="0.0" width="56" height="23"/>
@@ -703,14 +782,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="87j-Rf-LuB" userLabel="hiddenCardView">
                                         <rect key="frame" x="62" y="44" width="34" height="42"/>
                                         <subviews>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0" translatesAutoresizingMaskIntoConstraints="NO" id="Pce-4I-Fpu">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0.png" translatesAutoresizingMaskIntoConstraints="NO" id="Pce-4I-Fpu">
                                                 <rect key="frame" x="5" y="0.0" width="29" height="37"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="37" id="Czp-I3-waO"/>
                                                     <constraint firstAttribute="width" constant="29" id="cU3-LF-bpC"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0" translatesAutoresizingMaskIntoConstraints="NO" id="hUT-84-aPO" userLabel="poker_0_1">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0.png" translatesAutoresizingMaskIntoConstraints="NO" id="hUT-84-aPO" userLabel="poker_0_1">
                                                 <rect key="frame" x="0.0" y="5" width="29" height="37"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="37" id="Qxr-MC-HWS"/>
@@ -746,14 +825,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oaF-47-q66" userLabel="handCardContainer">
                                         <rect key="frame" x="68" y="46" width="53" height="40"/>
                                         <subviews>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1" translatesAutoresizingMaskIntoConstraints="NO" id="VBZ-30-0rL">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="VBZ-30-0rL">
                                                 <rect key="frame" x="0.0" y="0.0" width="31" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="D09-eg-sMg"/>
                                                     <constraint firstAttribute="width" constant="31" id="zIj-Rp-WLN"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1" translatesAutoresizingMaskIntoConstraints="NO" id="FPb-Vh-Jso">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="FPb-Vh-Jso">
                                                 <rect key="frame" x="22" y="0.0" width="31" height="40"/>
                                             </imageView>
                                         </subviews>
@@ -799,7 +878,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fnv-oh-cJC" userLabel="seatView02" customClass="UISeat">
-                                <rect key="frame" x="2" y="114" width="121" height="66"/>
+                                <rect key="frame" x="1" y="114" width="121" height="66"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x0j-n2-sPZ" userLabel="betView">
                                         <rect key="frame" x="58" y="0.0" width="56" height="23"/>
@@ -848,14 +927,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gL4-Ko-rO2" userLabel="hiddenCardView">
                                         <rect key="frame" x="62" y="24" width="34" height="42"/>
                                         <subviews>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0" translatesAutoresizingMaskIntoConstraints="NO" id="xnS-hQ-WxU">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0.png" translatesAutoresizingMaskIntoConstraints="NO" id="xnS-hQ-WxU">
                                                 <rect key="frame" x="5" y="0.0" width="29" height="37"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="29" id="IU0-OZ-syn"/>
                                                     <constraint firstAttribute="height" constant="37" id="Plz-s4-u3l"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0" translatesAutoresizingMaskIntoConstraints="NO" id="WM1-lE-08W" userLabel="poker_0_1">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0.png" translatesAutoresizingMaskIntoConstraints="NO" id="WM1-lE-08W" userLabel="poker_0_1">
                                                 <rect key="frame" x="0.0" y="5" width="29" height="37"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="37" id="Cau-xY-BR8"/>
@@ -891,14 +970,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ks5-jl-bnA" userLabel="handCardContainer">
                                         <rect key="frame" x="68" y="26" width="53" height="40"/>
                                         <subviews>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1" translatesAutoresizingMaskIntoConstraints="NO" id="Lun-ZN-tPG">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="Lun-ZN-tPG">
                                                 <rect key="frame" x="0.0" y="0.0" width="31" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="MXP-er-ZOK"/>
                                                     <constraint firstAttribute="width" constant="31" id="Omb-t6-7KG"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1" translatesAutoresizingMaskIntoConstraints="NO" id="EER-kG-LFY">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="EER-kG-LFY">
                                                 <rect key="frame" x="22" y="0.0" width="31" height="40"/>
                                             </imageView>
                                         </subviews>
@@ -944,7 +1023,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="87x-qG-yQ5" userLabel="seatView03" customClass="UISeat">
-                                <rect key="frame" x="52" y="29" width="121" height="86"/>
+                                <rect key="frame" x="62" y="29" width="121" height="86"/>
                                 <subviews>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" horizontalHuggingPriority="750" image="icon_delear" translatesAutoresizingMaskIntoConstraints="NO" id="eae-j9-Eso">
                                         <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
@@ -968,14 +1047,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zsI-T5-CXn" userLabel="hiddenCardView">
                                         <rect key="frame" x="62" y="21" width="34" height="42"/>
                                         <subviews>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0" translatesAutoresizingMaskIntoConstraints="NO" id="Dwd-6P-y8d">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0.png" translatesAutoresizingMaskIntoConstraints="NO" id="Dwd-6P-y8d">
                                                 <rect key="frame" x="5" y="0.0" width="29" height="37"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="37" id="EwC-rJ-gGP"/>
                                                     <constraint firstAttribute="width" constant="29" id="YFJ-iw-CYn"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0" translatesAutoresizingMaskIntoConstraints="NO" id="YeN-Ci-0bk" userLabel="poker_0_1">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0.png" translatesAutoresizingMaskIntoConstraints="NO" id="YeN-Ci-0bk" userLabel="poker_0_1">
                                                 <rect key="frame" x="0.0" y="5" width="29" height="37"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="29" id="hFO-mB-RKp"/>
@@ -1011,14 +1090,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ix2-oz-Q8t" userLabel="handCardContainer">
                                         <rect key="frame" x="68" y="23" width="53" height="40"/>
                                         <subviews>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1" translatesAutoresizingMaskIntoConstraints="NO" id="aqO-Zh-6vf">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="aqO-Zh-6vf">
                                                 <rect key="frame" x="0.0" y="0.0" width="31" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="EcO-Op-lqJ"/>
                                                     <constraint firstAttribute="width" constant="31" id="ZwR-Gh-FPf"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1" translatesAutoresizingMaskIntoConstraints="NO" id="N6s-gI-Owb">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="N6s-gI-Owb">
                                                 <rect key="frame" x="22" y="0.0" width="31" height="40"/>
                                             </imageView>
                                         </subviews>
@@ -1138,14 +1217,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dbg-bU-NG3" userLabel="hiddenCardView">
                                         <rect key="frame" x="62" y="21" width="34" height="42"/>
                                         <subviews>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0" translatesAutoresizingMaskIntoConstraints="NO" id="8MK-Zv-xP3">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0.png" translatesAutoresizingMaskIntoConstraints="NO" id="8MK-Zv-xP3">
                                                 <rect key="frame" x="5" y="0.0" width="29" height="37"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="37" id="pJX-7K-ps5"/>
                                                     <constraint firstAttribute="width" constant="29" id="yw1-Z1-y4h"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0" translatesAutoresizingMaskIntoConstraints="NO" id="qBe-4W-YLv" userLabel="poker_0_1">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0.png" translatesAutoresizingMaskIntoConstraints="NO" id="qBe-4W-YLv" userLabel="poker_0_1">
                                                 <rect key="frame" x="0.0" y="5" width="29" height="37"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="37" id="b2W-cC-xkd"/>
@@ -1181,14 +1260,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vm1-2G-VOt" userLabel="handCardContainer">
                                         <rect key="frame" x="68" y="23" width="53" height="40"/>
                                         <subviews>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1" translatesAutoresizingMaskIntoConstraints="NO" id="pCg-Wr-skj">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="pCg-Wr-skj">
                                                 <rect key="frame" x="0.0" y="0.0" width="31" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="0Pw-fU-jq6"/>
                                                     <constraint firstAttribute="width" constant="31" id="FjB-WL-ALY"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1" translatesAutoresizingMaskIntoConstraints="NO" id="EYM-vt-wAL">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="EYM-vt-wAL">
                                                 <rect key="frame" x="22" y="0.0" width="31" height="40"/>
                                             </imageView>
                                         </subviews>
@@ -1283,14 +1362,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oVN-RE-aN0" userLabel="hiddenCardView">
                                         <rect key="frame" x="62" y="21" width="34" height="42"/>
                                         <subviews>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0" translatesAutoresizingMaskIntoConstraints="NO" id="jch-iJ-PTE">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0.png" translatesAutoresizingMaskIntoConstraints="NO" id="jch-iJ-PTE">
                                                 <rect key="frame" x="5" y="0.0" width="29" height="37"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="29" id="0UH-Gi-1BV"/>
                                                     <constraint firstAttribute="height" constant="37" id="UZ6-tU-08c"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0" translatesAutoresizingMaskIntoConstraints="NO" id="7iu-8a-gxD" userLabel="poker_0_1">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0.png" translatesAutoresizingMaskIntoConstraints="NO" id="7iu-8a-gxD" userLabel="poker_0_1">
                                                 <rect key="frame" x="0.0" y="5" width="29" height="37"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="37" id="Azv-k3-OZO"/>
@@ -1326,14 +1405,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="clq-WR-wwF" userLabel="handCardContainer">
                                         <rect key="frame" x="68" y="23" width="53" height="40"/>
                                         <subviews>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1" translatesAutoresizingMaskIntoConstraints="NO" id="EBx-ja-n9Q">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="EBx-ja-n9Q">
                                                 <rect key="frame" x="0.0" y="0.0" width="31" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="T7T-fI-xtT"/>
                                                     <constraint firstAttribute="width" constant="31" id="nuv-iY-pHX"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1" translatesAutoresizingMaskIntoConstraints="NO" id="eqI-mw-KmL">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="eqI-mw-KmL">
                                                 <rect key="frame" x="22" y="0.0" width="31" height="40"/>
                                             </imageView>
                                         </subviews>
@@ -1379,7 +1458,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="arm-u1-iK2" userLabel="seatView06" customClass="UISeat">
-                                <rect key="frame" x="431" y="29" width="121" height="86"/>
+                                <rect key="frame" x="440" y="29" width="121" height="86"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ddX-tc-FXi" userLabel="betView">
                                         <rect key="frame" x="10" y="63" width="56" height="23"/>
@@ -1428,14 +1507,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oc6-DL-cJx" userLabel="hiddenCardView">
                                         <rect key="frame" x="62" y="21" width="34" height="42"/>
                                         <subviews>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0" translatesAutoresizingMaskIntoConstraints="NO" id="Kq5-kJ-Cly">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0.png" translatesAutoresizingMaskIntoConstraints="NO" id="Kq5-kJ-Cly">
                                                 <rect key="frame" x="5" y="0.0" width="29" height="37"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="37" id="P4d-2K-eiN"/>
                                                     <constraint firstAttribute="width" constant="29" id="gPZ-JU-z1h"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0" translatesAutoresizingMaskIntoConstraints="NO" id="YkP-wI-JnV" userLabel="poker_0_1">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0.png" translatesAutoresizingMaskIntoConstraints="NO" id="YkP-wI-JnV" userLabel="poker_0_1">
                                                 <rect key="frame" x="0.0" y="5" width="29" height="37"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="29" id="udL-Zp-Tnr"/>
@@ -1471,14 +1550,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pfe-eI-1TC" userLabel="handCardContainer">
                                         <rect key="frame" x="68" y="23" width="53" height="40"/>
                                         <subviews>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1" translatesAutoresizingMaskIntoConstraints="NO" id="5LA-Ae-anC">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="5LA-Ae-anC">
                                                 <rect key="frame" x="0.0" y="0.0" width="31" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="lqS-aR-Kah"/>
                                                     <constraint firstAttribute="width" constant="31" id="zbw-r4-dFH"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1" translatesAutoresizingMaskIntoConstraints="NO" id="xHg-jE-n2Y">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="xHg-jE-n2Y">
                                                 <rect key="frame" x="22" y="0.0" width="31" height="40"/>
                                             </imageView>
                                         </subviews>
@@ -1524,7 +1603,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NNv-Sw-hhI" userLabel="seatView07" customClass="UISeat">
-                                <rect key="frame" x="445" y="114" width="112" height="66"/>
+                                <rect key="frame" x="451" y="114" width="112" height="66"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qMC-tC-cnU" userLabel="betView">
                                         <rect key="frame" x="-3" y="0.0" width="56" height="23"/>
@@ -1573,14 +1652,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SdM-5g-b9q" userLabel="hiddenCardView">
                                         <rect key="frame" x="19" y="24" width="34" height="42"/>
                                         <subviews>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0" translatesAutoresizingMaskIntoConstraints="NO" id="cxv-za-G1R">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0.png" translatesAutoresizingMaskIntoConstraints="NO" id="cxv-za-G1R">
                                                 <rect key="frame" x="5" y="0.0" width="29" height="37"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="29" id="Vxb-pe-jAQ"/>
                                                     <constraint firstAttribute="height" constant="37" id="Xg3-fV-tT8"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0" translatesAutoresizingMaskIntoConstraints="NO" id="2bu-fg-gtE" userLabel="poker_0_1">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0.png" translatesAutoresizingMaskIntoConstraints="NO" id="2bu-fg-gtE" userLabel="poker_0_1">
                                                 <rect key="frame" x="0.0" y="5" width="29" height="37"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="37" id="ces-XM-oea"/>
@@ -1616,14 +1695,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bgj-tL-FKo" userLabel="handCardContainer">
                                         <rect key="frame" x="0.0" y="26" width="53" height="40"/>
                                         <subviews>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1" translatesAutoresizingMaskIntoConstraints="NO" id="EGj-50-pgu">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="EGj-50-pgu">
                                                 <rect key="frame" x="0.0" y="0.0" width="31" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="31" id="ggi-qr-XYl"/>
                                                     <constraint firstAttribute="height" constant="40" id="rpz-rC-2G5"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1" translatesAutoresizingMaskIntoConstraints="NO" id="6NG-i4-5Nm">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="6NG-i4-5Nm">
                                                 <rect key="frame" x="22" y="0.0" width="31" height="40"/>
                                             </imageView>
                                         </subviews>
@@ -1669,7 +1748,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ad-oP-R9v" userLabel="seatView08" customClass="UISeat">
-                                <rect key="frame" x="403" y="179" width="121" height="86"/>
+                                <rect key="frame" x="416" y="179" width="121" height="86"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9FQ-dG-7t6" userLabel="betView">
                                         <rect key="frame" x="10" y="0.0" width="56" height="23"/>
@@ -1718,14 +1797,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WOi-Su-Sl3" userLabel="hiddenCardView">
                                         <rect key="frame" x="62" y="44" width="34" height="42"/>
                                         <subviews>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0" translatesAutoresizingMaskIntoConstraints="NO" id="Njh-oI-E9R">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0.png" translatesAutoresizingMaskIntoConstraints="NO" id="Njh-oI-E9R">
                                                 <rect key="frame" x="5" y="0.0" width="29" height="37"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="37" id="Amb-sx-KFF"/>
                                                     <constraint firstAttribute="width" constant="29" id="mBs-Wv-NvA"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0" translatesAutoresizingMaskIntoConstraints="NO" id="EzE-PM-NE3" userLabel="poker_0_1">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_0.png" translatesAutoresizingMaskIntoConstraints="NO" id="EzE-PM-NE3" userLabel="poker_0_1">
                                                 <rect key="frame" x="0.0" y="5" width="29" height="37"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="29" id="CYe-g8-iYf"/>
@@ -1761,14 +1840,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bcb-0a-i2g" userLabel="handCardContainer">
                                         <rect key="frame" x="68" y="46" width="53" height="40"/>
                                         <subviews>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1" translatesAutoresizingMaskIntoConstraints="NO" id="93A-p1-UYg">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="93A-p1-UYg">
                                                 <rect key="frame" x="0.0" y="0.0" width="31" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="31" id="Jqp-4R-bM6"/>
                                                     <constraint firstAttribute="height" constant="40" id="PMq-kX-cYV"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1" translatesAutoresizingMaskIntoConstraints="NO" id="uTa-9c-Kqg">
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="poker_a_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="uTa-9c-Kqg">
                                                 <rect key="frame" x="22" y="0.0" width="31" height="40"/>
                                             </imageView>
                                         </subviews>
@@ -1816,19 +1895,19 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wHA-pQ-mAp" userLabel="commCardContainer">
                                 <rect key="frame" x="160" y="101" width="249" height="86"/>
                                 <subviews>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" placeholderIntrinsicWidth="37" placeholderIntrinsicHeight="46" image="poker_0" translatesAutoresizingMaskIntoConstraints="NO" id="vkk-zq-fan">
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" placeholderIntrinsicWidth="37" placeholderIntrinsicHeight="46" image="poker_0.png" translatesAutoresizingMaskIntoConstraints="NO" id="vkk-zq-fan">
                                         <rect key="frame" x="192" y="20" width="37" height="46"/>
                                     </imageView>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" placeholderIntrinsicWidth="37" placeholderIntrinsicHeight="46" image="poker_a_1" translatesAutoresizingMaskIntoConstraints="NO" id="S0i-gI-LQK">
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" placeholderIntrinsicWidth="37" placeholderIntrinsicHeight="46" image="poker_a_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="S0i-gI-LQK">
                                         <rect key="frame" x="149" y="20" width="37" height="46"/>
                                     </imageView>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" placeholderIntrinsicWidth="37" placeholderIntrinsicHeight="46" image="poker_a_1" translatesAutoresizingMaskIntoConstraints="NO" id="faa-E3-vvl">
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" placeholderIntrinsicWidth="37" placeholderIntrinsicHeight="46" image="poker_a_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="faa-E3-vvl">
                                         <rect key="frame" x="106" y="20" width="37" height="46"/>
                                     </imageView>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" placeholderIntrinsicWidth="37" placeholderIntrinsicHeight="46" image="poker_a_1" translatesAutoresizingMaskIntoConstraints="NO" id="WOh-Ch-bps">
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" placeholderIntrinsicWidth="37" placeholderIntrinsicHeight="46" image="poker_a_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="WOh-Ch-bps">
                                         <rect key="frame" x="63" y="20" width="37" height="46"/>
                                     </imageView>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" placeholderIntrinsicWidth="37" placeholderIntrinsicHeight="46" image="poker_a_1" translatesAutoresizingMaskIntoConstraints="NO" id="MaD-Nd-3yd">
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" placeholderIntrinsicWidth="37" placeholderIntrinsicHeight="46" image="poker_a_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="MaD-Nd-3yd">
                                         <rect key="frame" x="20" y="20" width="37" height="46"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="37" id="R9c-El-LHu"/>
@@ -1933,10 +2012,23 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="time_bg" translatesAutoresizingMaskIntoConstraints="NO" id="hTr-Pc-gT1">
+                                <rect key="frame" x="20" y="228" width="44" height="40"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="time_mask" translatesAutoresizingMaskIntoConstraints="NO" id="e0c-uH-ris">
+                                <rect key="frame" x="22" y="228" width="40" height="40"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="51j-O7-RkU">
+                                <rect key="frame" x="33" y="237" width="18" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.31372549019607843" green="0.82745098039215681" blue="0.8901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="PIk-ab-hCP" firstAttribute="top" secondItem="HrP-Tg-X0M" secondAttribute="bottom" constant="10" id="0SS-gm-cEz"/>
+                            <constraint firstItem="e0c-uH-ris" firstAttribute="centerY" secondItem="hTr-Pc-gT1" secondAttribute="centerY" id="3tJ-xZ-b8U"/>
                             <constraint firstItem="NMl-Mk-MEI" firstAttribute="centerY" secondItem="2CE-nP-Y2N" secondAttribute="centerY" id="49V-Jc-W7C"/>
                             <constraint firstItem="cRY-dS-OWv" firstAttribute="centerX" secondItem="YM9-cb-bzu" secondAttribute="centerX" id="7gx-aa-Y5w"/>
                             <constraint firstItem="ieI-kC-AoY" firstAttribute="leading" secondItem="HrP-Tg-X0M" secondAttribute="trailing" constant="10" id="8MI-u3-apH"/>
@@ -1946,38 +2038,43 @@
                             <constraint firstItem="Fnv-oh-cJC" firstAttribute="centerY" secondItem="YM9-cb-bzu" secondAttribute="centerY" multiplier="0.92" id="FKy-CO-xu9"/>
                             <constraint firstItem="Bhy-Ff-4xb" firstAttribute="leading" secondItem="2CE-nP-Y2N" secondAttribute="trailing" constant="50" id="Ftg-tY-QzL"/>
                             <constraint firstItem="NMl-Mk-MEI" firstAttribute="leading" secondItem="2CE-nP-Y2N" secondAttribute="trailing" constant="10" id="GXx-D1-rgV"/>
-                            <constraint firstItem="Mdg-es-mvg" firstAttribute="leading" secondItem="YM9-cb-bzu" secondAttribute="leading" constant="80" id="H4T-rB-Xsg"/>
                             <constraint firstItem="PIk-ab-hCP" firstAttribute="top" secondItem="Sux-Lc-KJq" secondAttribute="bottom" constant="10" id="HJh-mb-PA1"/>
                             <constraint firstItem="YLw-Zh-Bff" firstAttribute="centerY" secondItem="Sux-Lc-KJq" secondAttribute="centerY" id="Jmz-NP-aKr"/>
                             <constraint firstAttribute="trailing" secondItem="gzO-Uw-HlL" secondAttribute="trailing" id="KW5-wK-eLc"/>
                             <constraint firstItem="PIk-ab-hCP" firstAttribute="top" secondItem="xWj-st-cox" secondAttribute="bottom" id="Kcp-vj-GEO"/>
                             <constraint firstItem="G9d-79-ZhY" firstAttribute="top" secondItem="87x-qG-yQ5" secondAttribute="top" id="LMT-z8-fKM"/>
+                            <constraint firstItem="hTr-Pc-gT1" firstAttribute="leading" secondItem="YM9-cb-bzu" secondAttribute="leading" constant="20" id="Mid-6k-wOD"/>
                             <constraint firstItem="2CE-nP-Y2N" firstAttribute="centerY" secondItem="zKu-n9-YVG" secondAttribute="centerY" id="Mz7-u4-x3P"/>
                             <constraint firstItem="IAO-N6-SCy" firstAttribute="top" secondItem="G9d-79-ZhY" secondAttribute="top" id="RJV-au-i8s"/>
+                            <constraint firstItem="zKu-n9-YVG" firstAttribute="top" secondItem="hTr-Pc-gT1" secondAttribute="bottom" constant="22" id="RPb-8M-Lax"/>
                             <constraint firstItem="IAO-N6-SCy" firstAttribute="centerX" secondItem="7sy-oD-3IM" secondAttribute="centerX" multiplier="1.2" id="SbM-Mq-nAX"/>
                             <constraint firstItem="zKu-n9-YVG" firstAttribute="leading" secondItem="YM9-cb-bzu" secondAttribute="leading" id="T50-aA-bQl"/>
-                            <constraint firstAttribute="trailing" secondItem="6ad-oP-R9v" secondAttribute="trailing" constant="44" id="Tqd-ak-ega"/>
                             <constraint firstItem="arm-u1-iK2" firstAttribute="top" secondItem="IAO-N6-SCy" secondAttribute="top" id="TyR-II-i2u"/>
+                            <constraint firstItem="Mdg-es-mvg" firstAttribute="centerX" secondItem="7sy-oD-3IM" secondAttribute="centerX" multiplier="0.5" id="Vo5-F0-ljh"/>
                             <constraint firstAttribute="trailing" secondItem="ieI-kC-AoY" secondAttribute="trailing" constant="10" id="Vp6-4J-OYz"/>
-                            <constraint firstItem="arm-u1-iK2" firstAttribute="centerX" secondItem="6ad-oP-R9v" secondAttribute="centerX" constant="28" id="WM2-f9-O3p"/>
+                            <constraint firstItem="arm-u1-iK2" firstAttribute="centerX" secondItem="6ad-oP-R9v" secondAttribute="centerX" multiplier="1.05" id="WM2-f9-O3p"/>
                             <constraint firstItem="Op6-8u-JQg" firstAttribute="centerY" secondItem="Bhy-Ff-4xb" secondAttribute="centerY" id="X9O-9j-UDG"/>
+                            <constraint firstItem="51j-O7-RkU" firstAttribute="centerX" secondItem="e0c-uH-ris" secondAttribute="centerX" id="Xvi-jb-sw3"/>
                             <constraint firstItem="xWj-st-cox" firstAttribute="top" secondItem="YM9-cb-bzu" secondAttribute="top" id="YOD-Sq-dXY"/>
                             <constraint firstItem="Bhy-Ff-4xb" firstAttribute="centerY" secondItem="NMl-Mk-MEI" secondAttribute="centerY" id="YWa-Nb-Ibn"/>
                             <constraint firstItem="wHA-pQ-mAp" firstAttribute="centerY" secondItem="YM9-cb-bzu" secondAttribute="centerY" multiplier="0.9" id="Zsf-f6-s4c"/>
+                            <constraint firstItem="e0c-uH-ris" firstAttribute="centerX" secondItem="hTr-Pc-gT1" secondAttribute="centerX" id="aUm-By-uyz"/>
                             <constraint firstItem="PIk-ab-hCP" firstAttribute="top" secondItem="zKu-n9-YVG" secondAttribute="bottom" id="b53-eL-fsd"/>
                             <constraint firstItem="gzO-Uw-HlL" firstAttribute="top" secondItem="YM9-cb-bzu" secondAttribute="top" id="bA4-8i-8Zt"/>
                             <constraint firstItem="NNv-Sw-hhI" firstAttribute="centerY" secondItem="Fnv-oh-cJC" secondAttribute="centerY" id="ciR-wD-yKm"/>
+                            <constraint firstItem="51j-O7-RkU" firstAttribute="centerY" secondItem="e0c-uH-ris" secondAttribute="centerY" id="csL-0a-hsC"/>
                             <constraint firstItem="wxO-3L-Kyv" firstAttribute="leading" secondItem="YM9-cb-bzu" secondAttribute="leading" id="evj-Dd-tPT"/>
                             <constraint firstItem="PIk-ab-hCP" firstAttribute="top" secondItem="ieI-kC-AoY" secondAttribute="bottom" constant="10" id="f1i-JN-kCZ"/>
                             <constraint firstItem="2CE-nP-Y2N" firstAttribute="leading" secondItem="zKu-n9-YVG" secondAttribute="trailing" constant="10" id="hAF-3J-52g"/>
                             <constraint firstItem="wHA-pQ-mAp" firstAttribute="centerX" secondItem="YM9-cb-bzu" secondAttribute="centerX" id="iWY-e4-aFK"/>
                             <constraint firstItem="6ad-oP-R9v" firstAttribute="centerY" secondItem="7sy-oD-3IM" secondAttribute="centerY" id="j1O-HX-qYH"/>
                             <constraint firstItem="HrP-Tg-X0M" firstAttribute="leading" secondItem="Sux-Lc-KJq" secondAttribute="trailing" constant="10" id="j4Y-3y-4EL"/>
+                            <constraint firstItem="6ad-oP-R9v" firstAttribute="centerX" secondItem="7sy-oD-3IM" secondAttribute="centerX" multiplier="1.55" id="lcT-Us-UHD"/>
                             <constraint firstAttribute="trailing" secondItem="xWj-st-cox" secondAttribute="trailing" id="md0-jj-BED"/>
-                            <constraint firstItem="87x-qG-yQ5" firstAttribute="centerX" secondItem="Mdg-es-mvg" secondAttribute="centerX" constant="-28" id="oGW-5W-sAA"/>
+                            <constraint firstItem="87x-qG-yQ5" firstAttribute="centerX" secondItem="Mdg-es-mvg" secondAttribute="centerX" multiplier="0.8" id="oGW-5W-sAA"/>
+                            <constraint firstItem="Fnv-oh-cJC" firstAttribute="centerX" secondItem="Mdg-es-mvg" secondAttribute="centerX" multiplier="0.4" id="ohz-qH-aXt"/>
                             <constraint firstItem="87x-qG-yQ5" firstAttribute="centerY" secondItem="wHA-pQ-mAp" secondAttribute="centerY" multiplier="0.5" id="r88-J7-c2u"/>
-                            <constraint firstItem="Fnv-oh-cJC" firstAttribute="leading" secondItem="YM9-cb-bzu" secondAttribute="leading" constant="2" id="rEP-S1-JF4"/>
-                            <constraint firstItem="NNv-Sw-hhI" firstAttribute="centerX" secondItem="6ad-oP-R9v" secondAttribute="centerX" multiplier="1.08" id="sI4-ey-wgs"/>
+                            <constraint firstItem="NNv-Sw-hhI" firstAttribute="centerX" secondItem="6ad-oP-R9v" secondAttribute="centerX" multiplier="1.065" id="sI4-ey-wgs"/>
                             <constraint firstItem="xWj-st-cox" firstAttribute="leading" secondItem="YM9-cb-bzu" secondAttribute="leading" id="sZD-Lx-POL"/>
                             <constraint firstItem="SMf-ZV-PrA" firstAttribute="centerY" secondItem="YLw-Zh-Bff" secondAttribute="centerY" id="uaG-Jv-TcT"/>
                             <constraint firstItem="YLw-Zh-Bff" firstAttribute="leading" secondItem="SMf-ZV-PrA" secondAttribute="trailing" constant="10" id="waR-Yh-UF8"/>
@@ -2116,13 +2213,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lEM-8e-mkr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="783" y="352"/>
+            <point key="canvasLocation" x="762" y="253"/>
         </scene>
     </scenes>
     <resources>
         <image name="bg" width="568" height="319"/>
         <image name="bg_name" width="60" height="25"/>
         <image name="bg_user" width="37" height="37"/>
+        <image name="bg_user_1" width="40" height="40"/>
         <image name="btnAllIn" width="41" height="41"/>
         <image name="btn_a_1" width="41" height="41"/>
         <image name="btn_a_2" width="41" height="41"/>
@@ -2132,7 +2230,9 @@
         <image name="btn_more" width="41" height="33"/>
         <image name="icon_chip_3" width="20" height="23"/>
         <image name="icon_delear" width="15" height="15"/>
-        <image name="poker_0" width="37" height="46"/>
-        <image name="poker_a_1" width="37" height="46"/>
+        <image name="poker_0.png" width="37" height="46"/>
+        <image name="poker_a_1.png" width="37" height="46"/>
+        <image name="time_bg" width="44" height="40"/>
+        <image name="time_mask" width="40" height="40"/>
     </resources>
 </document>

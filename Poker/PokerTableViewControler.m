@@ -60,7 +60,7 @@
     NSString *host = strServerIP = [data objectForKey:@"host"];
     NSInteger port = iServerPort = [[data objectForKey:@"port"] intValue];
     NSString *name = [UserInfo sharedUser].userID;
-    NSString *channel = @"abcd";
+    NSString *channel = [UserInfo sharedUser].roomName;
     [pomelo connectToHost:host
                    onPort:port
              withCallback:^(Pomelo *p)
@@ -228,8 +228,9 @@
     
     [self clearCommCard];
     [arrayPlayer removeAllObjects];
-    pokerTable.tableStatus = (PokerTableStatusEnum)[[dictGame objectForKey:@"gameState"] integerValue];
-    pokerTable.mainPots.mainPot = 0;
+    pokerTable.tableStatus = (PokerTableStatusEnum)[IoriJsonHelper getIntegerForKey:@"gameState" fromDict:dict];
+    pokerTable.hasUpdatedHandCard = NO;
+    pokerTable.mainPots.mainPot = pokerTable.sb + pokerTable.bb;
     
     [arrayPlayerList enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull playerObj2, NSUInteger idx2, BOOL * _Nonnull stop2)
      {
@@ -252,6 +253,7 @@
                  poker.numberValue = [[arrayCardList[1] objectForKey:@"value"] integerValue];
                  [player.handCard.arrayPoker addObject:poker];
                  //player.handCard.patternStringValue = [[dictGame objectForKey:@"playerCardList"] objectForKey:@"cardType"];
+                 //(uis)self.seatView[player.iSeatIndex] update
              }
              else
              {
@@ -269,6 +271,8 @@
 {
     [self mergePlayer:(NSDictionary*)callback];
     [self setNextActionPlayerFromDict:(NSDictionary*)callback];
+    pokerTable.tableStatus = PokerTableStatusEnumBet;
+    pokerTable.mainPots.mainPot = [self getMainPotFromDictionary:callback];
     [self updateTableInfoUI];
 }
 
@@ -276,6 +280,7 @@
 {
     [self mergePlayer:(NSDictionary*)callback];
     [self setNextActionPlayerFromDict:(NSDictionary*)callback];
+    pokerTable.tableStatus = PokerTableStatusEnumBet;
     [self updateTableInfoUI];
 }
 
@@ -283,6 +288,8 @@
 {
     [self mergePlayer:(NSDictionary*)callback];
     [self setNextActionPlayerFromDict:(NSDictionary*)callback];
+    pokerTable.tableStatus = PokerTableStatusEnumBet;
+    pokerTable.mainPots.mainPot = [self getMainPotFromDictionary:callback];
     [self updateTableInfoUI];
 }
 
@@ -290,6 +297,8 @@
 {
     [self mergePlayer:(NSDictionary*)callback];
     [self setNextActionPlayerFromDict:(NSDictionary*)callback];
+    pokerTable.tableStatus = PokerTableStatusEnumBet;
+    pokerTable.mainPots.mainPot = [self getMainPotFromDictionary:callback];
     [self updateTableInfoUI];
 }
 
@@ -305,9 +314,11 @@
          {
              //[weakself mergePlayer:obj newPlayer:foldPlayer]
              [arrayPlayer replaceObjectAtIndex:idx withObject:foldPlayer];
+             *stop = YES;
          };
      }];
     //[self player2Seat];
+    pokerTable.tableStatus = PokerTableStatusEnumBet;
     [self updateTableInfoUI];
 }
 
@@ -343,6 +354,15 @@
 
 -(void)onPlayerKick:(NSDictionary*)dict
 {
+    PlayerEntity *kicter = [self getPlayerFromDictionary:[IoriJsonHelper getDictForKey:@"playerList" fromDict:dict]];
+    [arrayPlayer enumerateObjectsUsingBlock:^(PlayerEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
+    {
+        if(kicter.playerID == obj.playerID)
+        {
+            [arrayPlayer removeObject:obj];
+            *stop = YES;
+        }
+    }];
     [self player2Seat];
     [self updateTableInfoUI];
 }
@@ -381,6 +401,10 @@
     oldPlayer.bringInMoney = newPlayer.bringInMoney;
     oldPlayer.ownMoney = newPlayer.ownMoney;
     return oldPlayer;
+}
+-(NSInteger)getMainPotFromDictionary:(NSDictionary*)dict
+{
+    return [IoriJsonHelper getIntegerForKey:@"winPools" fromDict:dict];
 }
 
 -(PlayerEntity*)getPlayerFromDictionary:(NSDictionary*)dict
@@ -517,9 +541,9 @@
     
     [self countBet];
     
+    __block NSInteger iFound = 0;
     [array enumerateObjectsUsingBlock:^(PokerEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
      {
-         NSInteger iFound = 0;
          if(obj.numberValue == pokerTable.communityCards[0].numberValue
             && obj.pokerSuit ==  pokerTable.communityCards[0].pokerSuit)
          {
@@ -553,9 +577,9 @@
     
     [self countBet];
     
+    __block NSInteger iFound = 0;
     [array enumerateObjectsUsingBlock:^(PokerEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
      {
-         NSInteger iFound = 0;
          if(obj.numberValue == pokerTable.communityCards[3].numberValue
             && obj.pokerSuit ==  pokerTable.communityCards[3].pokerSuit)
          {
@@ -577,9 +601,9 @@
     
     [self countBet];
     
+    __block NSInteger iFound = 0;
     [array enumerateObjectsUsingBlock:^(PokerEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
      {
-         NSInteger iFound = 0;
          if(obj.numberValue == pokerTable.communityCards[4].numberValue
             && obj.pokerSuit ==  pokerTable.communityCards[4].pokerSuit)
          {
@@ -639,7 +663,6 @@
         }
         seat.player.bet = 0;
     }];
-    //self.labPotBet.text = [NSString stringWithFormat:@"%ld", pokerTable.mainPots.mainPot];
 }
 
 
@@ -648,7 +671,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    [UserInfo sharedUser].userID = @"iori";
+    //[UserInfo sharedUser].userID = @"iori";
     
     [self initTableLayout];
     

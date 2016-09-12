@@ -11,6 +11,8 @@
 #import "PlayerEntity.h"
 #import "CardHelper.h"
 
+@class PokerTableEntity;
+
 @interface UISeat : UIView
 
 @property (nonatomic, weak) UILabel *labStatus;
@@ -31,7 +33,7 @@
 @property (nonatomic, weak) UIButton *btnAllIn;
 @property (nonatomic, weak) UIButton *btnFold;
 @property (nonatomic, weak) UILabel *labAllIn;
-
+@property (nonatomic, weak) PokerTableEntity *pokerTable;
 @property (nonatomic, readonly, getter=userNameBg) UIView *userNameBg;
 
 -(void)clear;

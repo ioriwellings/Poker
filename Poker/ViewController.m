@@ -618,9 +618,9 @@
     
     [self countBet];
 
+    __block NSInteger iFound = 0;
     [array enumerateObjectsUsingBlock:^(PokerEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
      {
-         NSInteger iFound = 0;
          if(obj.numberValue == pokerTable.communityCards[0].numberValue
             && obj.pokerSuit ==  pokerTable.communityCards[0].pokerSuit)
          {
@@ -655,9 +655,9 @@
     
     [self countBet];
     
+    __block NSInteger iFound = 0;
     [array enumerateObjectsUsingBlock:^(PokerEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
      {
-         NSInteger iFound = 0;
          if(obj.numberValue == pokerTable.communityCards[3].numberValue
             && obj.pokerSuit ==  pokerTable.communityCards[3].pokerSuit)
          {
@@ -678,10 +678,11 @@
 //    [helper makePoker:array[14] containerView:self.card05];
     
     [self countBet];
+    __block NSInteger iFound = 0;
     
     [array enumerateObjectsUsingBlock:^(PokerEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
      {
-         NSInteger iFound = 0;
+         
          if(obj.numberValue == pokerTable.communityCards[4].numberValue
             && obj.pokerSuit ==  pokerTable.communityCards[4].pokerSuit)
          {

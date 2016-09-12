@@ -22,6 +22,7 @@
 @property (nonatomic, copy) NSString *userLoginName;
 @property (nonatomic, copy) NSString *pwd;
 @property (nonatomic, strong) NSString *userDisplayName;
+@property (nonatomic, copy) NSString *roomName;
 
 + (UserInfo*)sharedUser;
 - (void)exit;

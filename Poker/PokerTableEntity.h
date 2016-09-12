@@ -53,6 +53,7 @@ typedef NS_ENUM(NSUInteger, PokerTableStatusEnum) {
 @property (nonatomic, weak) PlayerEntity *foldPlayer;
 @property (nonatomic, strong) NSDecimalNumber *minBring;
 @property (nonatomic, strong) NSDecimalNumber *maxBring;
+@property (nonatomic, assign) BOOL hasUpdatedHandCard;
 
 @property (nonatomic, assign) NSInteger sb;
 @property (nonatomic, assign) NSInteger bb;

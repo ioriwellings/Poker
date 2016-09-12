@@ -69,6 +69,10 @@ static PokerTableEntity *_instance;
     {
         if(obj.player)
             [obj updateSeatUI];
+        else
+        {
+            [obj clearSeat];
+        }
     }];
     
     if(self.tableStatus == PokerTableStatusEnumNone)

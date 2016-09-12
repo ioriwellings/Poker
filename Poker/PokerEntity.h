@@ -32,7 +32,7 @@ typedef NS_ENUM(NSUInteger, PokerPatternEnum)
 
 @interface PokerEntity : NSObject
 
-@property (nonatomic, readonly) NSString *stringValue;
+@property (nonatomic, readonly, getter=getStringValue) NSString *stringValue;
 @property (nonatomic, assign) NSInteger numberValue;
 @property (nonatomic, assign) PokerSuitEnum pokerSuit;
 @property (nonatomic, assign) BOOL isKicker;

@@ -20,5 +20,6 @@
 @property (nonatomic, weak) PokerTableEntity *pokerTable;
 
 -(void)updateSeatUI;
+-(void)clearSeat;
 
 @end

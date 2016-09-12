@@ -54,14 +54,18 @@ static CardHelper* __helper = nil; //仅模块内使用
 
 -(void)makePokerByNum:(NSInteger)num pokerSuit:(PokerSuitEnum)suit containerView:(UIView *)view
 {
+    [view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
+     {
+         [obj removeFromSuperview];
+     }];
     if([view isKindOfClass:[UIImageView class]])
     {
-        ((UIImageView*)view).image = nil;
+        PokerEntity *poker = [PokerEntity new];
+        poker.numberValue = num;
+        poker.pokerSuit = suit;
+        ((UIImageView*)view).image = [self getImageByPoker:poker];
+        return;
     }
-    [view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
-    {
-        [obj removeFromSuperview];
-    }];
     UILabel *labNum = [UILabel new];
     UILabel *labSuit = [UILabel new];
     labSuit.font = [UIFont systemFontOfSize:26];
@@ -118,5 +122,29 @@ static CardHelper* __helper = nil; //仅模块内使用
         make.centerY.equalTo(view.mas_centerY).multipliedBy(1.2);
     }];
     view.layer.cornerRadius = 4;
+}
+
+-(UIImage*)getImageByPoker:(PokerEntity*)poker
+{
+    NSString *strName = @"poker_";
+    if(poker.pokerSuit == PokerSuitEnumDiamonds)
+    {
+        strName = [strName stringByAppendingString:@"c_"];
+    }
+    else if (poker.pokerSuit == PokerSuitEnumClubs)
+    {
+        strName = [strName stringByAppendingString:@"b_"];
+    }
+    else if (poker.pokerSuit == PokerSuitEnumHearts)
+    {
+        strName = [strName stringByAppendingString:@"a_"];
+    }
+    else if(poker.pokerSuit == PokerSuitEnumSpades)
+    {
+        strName = [strName stringByAppendingString:@"d_"];
+    }
+    strName = [strName stringByAppendingString:[[NSNumber numberWithInteger:poker.numberValue] stringValue]];
+    
+    return [UIImage imageNamed:strName];
 }
 @end
