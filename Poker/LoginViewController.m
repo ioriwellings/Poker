@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "IHKeyboardAvoiding.h"
 
 @interface LoginViewController ()
 
@@ -18,7 +19,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.progressView.progress = .30;
+    //self.progressView.progress = .30;
+    //self.view2.progress = .5;
+    [IHKeyboardAvoiding setAvoidingView:self.view];
+    [IHKeyboardAvoiding setPadding:-120];
 }
 
 - (void)didReceiveMemoryWarning {

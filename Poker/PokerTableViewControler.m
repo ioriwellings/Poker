@@ -7,6 +7,7 @@
 //
 
 #import "PokerTableViewControler.h"
+#import "IHKeyboardAvoiding.h"
 
 @implementation PokerTableViewControler
 
@@ -180,18 +181,21 @@
 -(void)onFlop:(NSDictionary*)dict
 {
     [self loadFlopCardFromDict:(NSDictionary*)dict];
+    pokerTable.mainPots.mainPot = [self getMainPotFromDictionary:dict];
     [self updateTableInfoUI];
 }
 
 -(void)onTurn:(NSDictionary*)dict
 {
     [self loadTurnCardFromDict:(NSDictionary *)dict];
+    pokerTable.mainPots.mainPot = [self getMainPotFromDictionary:dict];
     [self updateTableInfoUI];
 }
 
 -(void)onRiver:(NSDictionary*)dict
 {
     [self loadRiverCardFromDict:(NSDictionary *)dict];
+    pokerTable.mainPots.mainPot = [self getMainPotFromDictionary:dict];
     [self updateTableInfoUI];
 }
 
@@ -228,9 +232,10 @@
     
     [self clearCommCard];
     [arrayPlayer removeAllObjects];
-    pokerTable.tableStatus = (PokerTableStatusEnum)[IoriJsonHelper getIntegerForKey:@"gameState" fromDict:dict];
+    pokerTable.tableStatus = PokerTableStatusEnumBet;
     pokerTable.hasUpdatedHandCard = NO;
     pokerTable.mainPots.mainPot = pokerTable.sb + pokerTable.bb;
+    [self clearBetPots];
     
     [arrayPlayerList enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull playerObj2, NSUInteger idx2, BOOL * _Nonnull stop2)
      {
@@ -252,8 +257,8 @@
                  poker.pokerSuit = (PokerSuitEnum)[[arrayCardList[1] objectForKey:@"color"] integerValue];
                  poker.numberValue = [[arrayCardList[1] objectForKey:@"value"] integerValue];
                  [player.handCard.arrayPoker addObject:poker];
-                 //player.handCard.patternStringValue = [[dictGame objectForKey:@"playerCardList"] objectForKey:@"cardType"];
-                 //(uis)self.seatView[player.iSeatIndex] update
+                 player.handCard.pattern = (PokerPatternEnum)[IoriJsonHelper getIntegerForKey:@"cardType" fromDict:dictGame];
+                 self.labCardType.text = player.handCard.patternStringValue;
              }
              else
              {
@@ -269,16 +274,16 @@
 
 -(void)onCall:(NSDictionary*)callback
 {
-    [self mergePlayer:(NSDictionary*)callback];
+    [self mergeActionPlayer:(NSDictionary*)callback];
     [self setNextActionPlayerFromDict:(NSDictionary*)callback];
     pokerTable.tableStatus = PokerTableStatusEnumBet;
-    pokerTable.mainPots.mainPot = [self getMainPotFromDictionary:callback];
+    pokerTable.allPots = [self getAllPotFromDictionary:callback];
     [self updateTableInfoUI];
 }
 
 -(void)onCheck:(NSDictionary*)callback
 {
-    [self mergePlayer:(NSDictionary*)callback];
+    [self mergeActionPlayer:(NSDictionary*)callback];
     [self setNextActionPlayerFromDict:(NSDictionary*)callback];
     pokerTable.tableStatus = PokerTableStatusEnumBet;
     [self updateTableInfoUI];
@@ -286,38 +291,27 @@
 
 -(void)onAllIn:(NSDictionary*)callback
 {
-    [self mergePlayer:(NSDictionary*)callback];
+    [self mergeActionPlayer:(NSDictionary*)callback];
     [self setNextActionPlayerFromDict:(NSDictionary*)callback];
     pokerTable.tableStatus = PokerTableStatusEnumBet;
-    pokerTable.mainPots.mainPot = [self getMainPotFromDictionary:callback];
+    pokerTable.allPots = [self getAllPotFromDictionary:callback];
     [self updateTableInfoUI];
 }
 
 -(void)onRaise:(NSDictionary*)callback
 {
-    [self mergePlayer:(NSDictionary*)callback];
+    [self mergeActionPlayer:(NSDictionary*)callback];
     [self setNextActionPlayerFromDict:(NSDictionary*)callback];
     pokerTable.tableStatus = PokerTableStatusEnumBet;
-    pokerTable.mainPots.mainPot = [self getMainPotFromDictionary:callback];
+    pokerTable.allPots = [self getAllPotFromDictionary:callback];
     [self updateTableInfoUI];
 }
 
 -(void)onFold:(NSDictionary*)callback
 {
-    [self mergePlayer:(NSDictionary*)callback];
+    PlayerEntity* foldPlayer = [self mergeActionPlayer:(NSDictionary*)callback];
     [self setNextActionPlayerFromDict:(NSDictionary*)callback];
-    PlayerEntity *foldPlayer = [self getPlayerFromDictionary:[IoriJsonHelper getDictForKey:@"playerList" fromDict:(NSDictionary*)callback]];
     pokerTable.foldPlayer = foldPlayer;
-    [arrayPlayer enumerateObjectsUsingBlock:^(PlayerEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
-     {
-         if ([obj.playerID isEqualToString:foldPlayer.playerID])
-         {
-             //[weakself mergePlayer:obj newPlayer:foldPlayer]
-             [arrayPlayer replaceObjectAtIndex:idx withObject:foldPlayer];
-             *stop = YES;
-         };
-     }];
-    //[self player2Seat];
     pokerTable.tableStatus = PokerTableStatusEnumBet;
     [self updateTableInfoUI];
 }
@@ -339,8 +333,7 @@
                   [pokerTable.mainPots.players addObject:obj2];
                   obj2.actionStatus = PokerActionStatusEnumNone;
                   obj2.isWiner = YES;
-                  obj2.handCard.pattern = (PokerPatternEnum)[IoriJsonHelper getIntegerForKey:@"cardtype" fromDict:obj];
-                  //obj2.handCard.patternStringValue = [[dictGame objectForKey:@"playerCardList"] objectForKey:@"cardType"];
+                  obj2.handCard.pattern = (PokerPatternEnum)[IoriJsonHelper getIntegerForKey:@"cardType" fromDict:obj];
                   *stop2 = YES;
               }
           }];
@@ -354,6 +347,7 @@
 
 -(void)onPlayerKick:(NSDictionary*)dict
 {
+    [self setNextActionPlayerFromDict:dict];
     PlayerEntity *kicter = [self getPlayerFromDictionary:[IoriJsonHelper getDictForKey:@"playerList" fromDict:dict]];
     [arrayPlayer enumerateObjectsUsingBlock:^(PlayerEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
     {
@@ -367,7 +361,7 @@
     [self updateTableInfoUI];
 }
 
--(PlayerEntity*)mergePlayer:(NSDictionary*)dict
+-(PlayerEntity*)mergeActionPlayer:(NSDictionary*)dict
 {
     __block PlayerEntity *result = nil;
     PlayerEntity *actionPlayer = [self getPlayerFromDictionary:[IoriJsonHelper getDictForKey:@"playerList"
@@ -402,7 +396,14 @@
     oldPlayer.ownMoney = newPlayer.ownMoney;
     return oldPlayer;
 }
+
 -(NSInteger)getMainPotFromDictionary:(NSDictionary*)dict
+{
+    NSDictionary *mainPools = [IoriJsonHelper getDictForKey:@"mainPools" fromDict:dict];
+    return [IoriJsonHelper getIntegerForKey:@"value" fromDict:mainPools];
+}
+
+-(NSInteger)getAllPotFromDictionary:(NSDictionary*)dict
 {
     return [IoriJsonHelper getIntegerForKey:@"winPools" fromDict:dict];
 }
@@ -458,6 +459,7 @@
         obj.btnRaise = self.btnRaise;
         obj.txtRaise = self.txtRaise;
         obj.labAllIn = self.labAllIn;
+        obj.waittingView = self.waittingImageViews[idx];
         [obj clear];
         UIButton *btnSit = self.btnSits[idx];
         btnSit.tag = idx;
@@ -470,14 +472,26 @@
         [pokerTable.seats addObject:seat];
         
     }];
+    [self clearBetPots];
+}
+
+-(void)clearBetPots
+{
+    [self.betPots enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
+     {
+         UIView *betView = obj;
+         betView.hidden = YES;
+     }];
 }
 
 -(void)updateTableInfoUI
 {
     [pokerTable updateUI];
-    if(pokerTable.mainPots.mainPot > 0)
+    if(pokerTable.allPots > 0)
     {
-        self.labMainBot.text = [NSString stringWithFormat:@"%ld", pokerTable.mainPots.mainPot];
+        NSNumberFormatter *formater = [NSNumberFormatter new];
+        formater.numberStyle = NSNumberFormatterDecimalStyle;
+        self.labMainBot.text = [formater stringFromNumber:[NSNumber numberWithInteger:pokerTable.allPots]];
     }
     else
     {
@@ -532,6 +546,7 @@
             [subView removeFromSuperview];
         }];
     }];
+    [pokerTable.communityCards removeAllObjects];
 }
 
 -(void)flopCard
@@ -617,6 +632,13 @@
      }];
 }
 
+-(void)showMyCardType:(NSDictionary*)dict
+{
+    PlayerEntity *player = [PlayerEntity new];
+    player.handCard.pattern = (PokerPatternEnum)[IoriJsonHelper getIntegerForKey:@"cardType" fromDict:dict];
+    self.labCardType.text = player.handCard.patternStringValue;
+}
+
 -(void)loadFlopCardFromDict:(NSDictionary*)dict
 {
     NSArray<NSDictionary*> *arrayCardList = [IoriJsonHelper getArrayForKey:@"publicCardList" fromDict:dict];
@@ -627,6 +649,7 @@
          poker.numberValue = [[obj objectForKey:@"value"] integerValue];
          [pokerTable.communityCards addObject:poker];
      }];
+    [self showMyCardType:dict];
     pokerTable.tableStatus = PokerTableStatusEnumFlop;
 }
 
@@ -638,6 +661,7 @@
     poker.numberValue = [[arrayCardList[0] objectForKey:@"value"] integerValue];
     [pokerTable.communityCards addObject:poker];
     pokerTable.tableStatus = PokerTableStatusEnumTurn;
+    [self showMyCardType:dict];
 }
 
 -(void)loadRiverCardFromDict:(NSDictionary*)dict
@@ -648,21 +672,29 @@
     poker.numberValue = [[arrayCardList[0] objectForKey:@"value"] integerValue];
     [pokerTable.communityCards addObject:poker];
     pokerTable.tableStatus = PokerTableStatusEnumRiver;
+    [self showMyCardType:dict];
 }
 
 
 -(void)countBet
 {
-    [pokerTable.seats enumerateObjectsUsingBlock:^(SeatEntity * _Nonnull seat, NSUInteger idx, BOOL * _Nonnull stop) {
+    [pokerTable.seats enumerateObjectsUsingBlock:^(SeatEntity * _Nonnull seat, NSUInteger idx, BOOL * _Nonnull stop)
+    {
         UISeat *view = seat.seatView;
         view.labBet.text = @"";
         view.betContainer.hidden = YES;
         if(seat.player.bet != 0)
         {
-            pokerTable.mainPots.mainPot += seat.player.bet;
+            //pokerTable.mainPots.mainPot += seat.player.bet;
         }
         seat.player.bet = 0;
     }];
+    UIView *betPot01 = self.betPots[0];
+    betPot01.hidden = NO;
+    UILabel *labBet = betPot01.subviews[0];
+    NSNumberFormatter *formater = [NSNumberFormatter new];
+    formater.numberStyle = NSNumberFormatterDecimalStyle;
+    labBet.text = [formater stringFromNumber:[NSNumber numberWithInteger:pokerTable.mainPots.mainPot]];
 }
 
 
@@ -672,6 +704,7 @@
 {
     [super viewDidLoad];
     //[UserInfo sharedUser].userID = @"iori";
+    [IHKeyboardAvoiding setAvoidingView:self.view];
     
     [self initTableLayout];
     

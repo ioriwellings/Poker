@@ -44,10 +44,14 @@
 @property (strong, nonatomic) IBOutletCollection(UIView) NSArray *hiddenCardContainer;
 @property (strong, nonatomic) IBOutletCollection(UIView) NSArray *handCardContainer;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *btnSits;
+@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *waittingImageViews;
+@property (strong, nonatomic) IBOutletCollection(UIView) NSArray *betPots;
+
 @property (weak, nonatomic) IBOutlet UILabel *labMainBot;
 @property (weak, nonatomic) IBOutlet UILabel *labBlindBet;
 @property (weak, nonatomic) IBOutlet UITextField *txtRaise;
 @property (weak, nonatomic) IBOutlet UILabel *labAllIn;
+@property (weak, nonatomic) IBOutlet UILabel *labCardType;
 
 - (IBAction)btnSit_click:(UIButton *)sender;
 

@@ -27,7 +27,8 @@
 -(void)loadNextActionFromDictOfArray:(NSArray<NSDictionary *> *)arrayDict
 {
     self.nextActions = [NSMutableArray arrayWithCapacity:10];
-    [arrayDict enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [arrayDict enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
+    {
         NextAction *action = [NextAction new];
         action.status = [[obj objectForKey:@"type"] integerValue];
         action.value = [[obj objectForKey:@"value"] integerValue];

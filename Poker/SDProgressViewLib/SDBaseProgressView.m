@@ -10,12 +10,20 @@
 
 @implementation SDBaseProgressView
 
+-(instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    self.progress = .5;
+    return self;
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = SDProgressViewBackgroundColor;
         self.layer.cornerRadius = 5;
         self.clipsToBounds = YES;
+        self.progress = .5;
     }
     return self;
 }

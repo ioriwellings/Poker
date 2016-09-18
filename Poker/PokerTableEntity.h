@@ -44,6 +44,7 @@ typedef NS_ENUM(NSUInteger, PokerTableStatusEnum) {
 
 @property (nonatomic, strong) RoomEntity *roomInfo;
 @property (nonatomic, strong, readonly) NSMutableArray<SeatEntity*> *seats;
+@property (nonatomic, assign) NSInteger allPots;
 @property (nonatomic, strong) MainPotEntity *mainPots;
 @property (nonatomic, assign) PokerTableStatusEnum tableStatus;
 @property (nonatomic, strong) NSMutableArray<SidePotEntity*> *sidePots;

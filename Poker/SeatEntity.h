@@ -17,7 +17,7 @@
 @property (nonatomic, assign) NSInteger iIndex;
 @property (nonatomic, strong) PlayerEntity *player;
 @property (nonatomic, strong) UISeat *seatView;
-@property (nonatomic, weak) PokerTableEntity *pokerTable;
+@property (nonatomic, strong) PokerTableEntity *pokerTable;
 
 -(void)updateSeatUI;
 -(void)clearSeat;

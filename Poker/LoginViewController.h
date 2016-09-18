@@ -18,4 +18,5 @@
 - (IBAction)btnLogin_click:(UIButton *)sender;
 
 @property (weak, nonatomic) IBOutlet SDTransparentPieProgressView *progressView;
+@property (weak, nonatomic) IBOutlet SDTransparentPieProgressView *view2;
 @end

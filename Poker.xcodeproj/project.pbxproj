@@ -37,6 +37,8 @@
 		8939DDBC1D8658B100D67CC1 /* IoriCircleProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 8939DDB51D8658B100D67CC1 /* IoriCircleProgress.m */; };
 		8939DDBD1D8658B100D67CC1 /* IoriCircleProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8939DDB71D8658B100D67CC1 /* IoriCircleProgressLayer.m */; };
 		8939DDBE1D8658B100D67CC1 /* IoriVerticalBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8939DDB91D8658B100D67CC1 /* IoriVerticalBar.m */; };
+		8939DDC11D868C2F00D67CC1 /* UIImageView+ProgressMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 8939DDC01D868C2F00D67CC1 /* UIImageView+ProgressMask.m */; };
+		894998CD1D8E488D0001DD42 /* IHKeyboardAvoiding.m in Sources */ = {isa = PBXBuildFile; fileRef = 894998CC1D8E488D0001DD42 /* IHKeyboardAvoiding.m */; };
 		894DE64D1D795E6000F18876 /* PokerTableViewControler.m in Sources */ = {isa = PBXBuildFile; fileRef = 894DE64C1D795E6000F18876 /* PokerTableViewControler.m */; };
 		8983BAB91D6EC97000B38455 /* IoriJsonHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8983BAB41D6EC97000B38455 /* IoriJsonHelper.m */; };
 		8983BABA1D6EC97000B38455 /* MessageBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 8983BAB61D6EC97000B38455 /* MessageBox.m */; };
@@ -221,6 +223,10 @@
 		8939DDB71D8658B100D67CC1 /* IoriCircleProgressLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoriCircleProgressLayer.m; sourceTree = "<group>"; };
 		8939DDB81D8658B100D67CC1 /* IoriVerticalBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoriVerticalBar.h; sourceTree = "<group>"; };
 		8939DDB91D8658B100D67CC1 /* IoriVerticalBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoriVerticalBar.m; sourceTree = "<group>"; };
+		8939DDBF1D868C2F00D67CC1 /* UIImageView+ProgressMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+ProgressMask.h"; path = "Poker/IoriProgressView/UIImageView+ProgressMask.h"; sourceTree = SOURCE_ROOT; };
+		8939DDC01D868C2F00D67CC1 /* UIImageView+ProgressMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+ProgressMask.m"; path = "Poker/IoriProgressView/UIImageView+ProgressMask.m"; sourceTree = SOURCE_ROOT; };
+		894998CB1D8E488D0001DD42 /* IHKeyboardAvoiding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IHKeyboardAvoiding.h; sourceTree = "<group>"; };
+		894998CC1D8E488D0001DD42 /* IHKeyboardAvoiding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IHKeyboardAvoiding.m; sourceTree = "<group>"; };
 		894DE64B1D795E6000F18876 /* PokerTableViewControler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokerTableViewControler.h; sourceTree = "<group>"; };
 		894DE64C1D795E6000F18876 /* PokerTableViewControler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PokerTableViewControler.m; sourceTree = "<group>"; };
 		8983BAB31D6EC97000B38455 /* IoriJsonHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoriJsonHelper.h; sourceTree = "<group>"; };
@@ -557,6 +563,8 @@
 				8939DDA41D864A3700D67CC1 /* SDRotationLoopProgressView.m */,
 				8939DDA51D864A3700D67CC1 /* SDTransparentPieProgressView.h */,
 				8939DDA61D864A3700D67CC1 /* SDTransparentPieProgressView.m */,
+				8939DDBF1D868C2F00D67CC1 /* UIImageView+ProgressMask.h */,
+				8939DDC01D868C2F00D67CC1 /* UIImageView+ProgressMask.m */,
 			);
 			path = SDProgressViewLib;
 			sourceTree = "<group>";
@@ -587,6 +595,8 @@
 				8983BAB61D6EC97000B38455 /* MessageBox.m */,
 				8983BAB71D6EC97000B38455 /* UserInfo.h */,
 				8983BAB81D6EC97000B38455 /* UserInfo.m */,
+				894998CB1D8E488D0001DD42 /* IHKeyboardAvoiding.h */,
+				894998CC1D8E488D0001DD42 /* IHKeyboardAvoiding.m */,
 			);
 			path = Iori;
 			sourceTree = "<group>";
@@ -911,6 +921,7 @@
 			files = (
 				8939DDAB1D864A3700D67CC1 /* SDPieLoopProgressView.m in Sources */,
 				89EB0BD01D58789C0064CF3D /* UISeat.m in Sources */,
+				8939DDC11D868C2F00D67CC1 /* UIImageView+ProgressMask.m in Sources */,
 				8983BB0F1D6ECA5D00B38455 /* DGActivityIndicatorBallScaleRippleMultipleAnimation.m in Sources */,
 				891C0F3A1D5479510075A228 /* MASConstraintMaker.m in Sources */,
 				8983BABA1D6EC97000B38455 /* MessageBox.m in Sources */,
@@ -941,6 +952,7 @@
 				89CB2E391D62FEE500FB37A5 /* NSData+SRB64Additions.m in Sources */,
 				891C0F3B1D5479510075A228 /* MASLayoutConstraint.m in Sources */,
 				8983BB171D6ECA5D00B38455 /* DGActivityIndicatorLineScaleAnimation.m in Sources */,
+				894998CD1D8E488D0001DD42 /* IHKeyboardAvoiding.m in Sources */,
 				8983BB1E1D6ECA5D00B38455 /* DGActivityIndicatorRotatingTrigonAnimation.m in Sources */,
 				891C0F3E1D5479510075A228 /* NSArray+MASAdditions.m in Sources */,
 				8983BAB91D6EC97000B38455 /* IoriJsonHelper.m in Sources */,

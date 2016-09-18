@@ -12,6 +12,12 @@
 
 #define UserBg 1001
 
+@interface UISeat ()
+{
+    PlayerEntity *currentPlayer;
+}
+@end
+
 @implementation UISeat
 
 -(UIView*)userNameBg
@@ -22,6 +28,7 @@
 -(void)setStatusFromPlayer:(PlayerEntity*)player
 {
     //self.backgroundColor = [UIColor clearColor];
+    currentPlayer = player;
     self.labName.text = player.name;
     if(player)
     {
@@ -47,7 +54,10 @@
         }
         else
         {
-            self.hiddenCards.hidden = NO;
+            if(player.actionStatus != PokerActionStatusEnumWaitingNext)
+            {
+                self.hiddenCards.hidden = NO;
+            }
         }
         self.pokerContainer.hidden = YES;
     }
@@ -90,6 +100,11 @@
     else if (player.actionStatus == PokerActionStatusEnumAllIn)
     {
         self.labStatus.text = @"全下";
+    }
+    else if(player.actionStatus == PokerActionStatusEnumWaitingBet)
+    {
+        self.labStatus.text = @"等待下注";
+        self.labBet.text = @"";
     }
     else if(player.actionStatus == PokerActionStatusEnumWaitingNext)
     {
@@ -166,6 +181,7 @@
     self.labBringIn.text = nil;
     self.labBet.text = nil;
     self.pokerContainer.hidden = YES;
+    self.backgroundColor = [UIColor clearColor];
 }
 
 -(void)resetByPlayer:(PlayerEntity *)player
@@ -189,7 +205,8 @@
         [self setStatusFromPlayer:player];
     }
     if([PokerTableEntity sharedInstance].hasUpdatedHandCard == NO  &&
-       [PokerTableEntity sharedInstance].tableStatus == PokerTableStatusEnumBet)
+       [PokerTableEntity sharedInstance].tableStatus == PokerTableStatusEnumBet &&
+       player.handCard.arrayPoker.count > 0)
     {
         [self updateHandCards:player.handCard.arrayPoker];
         [PokerTableEntity sharedInstance].hasUpdatedHandCard = YES;
@@ -239,7 +256,10 @@
 {
     if(self.hiddenCards.hidden == NO)
     {
-        self.hiddenCards.hidden = YES;
+        if([currentPlayer.playerID isEqualToString:[UserInfo sharedUser].userID] == NO)
+        {
+            self.hiddenCards.hidden = YES;
+        }
     }
     else if (self.pokerContainer.hidden == NO)
     {
