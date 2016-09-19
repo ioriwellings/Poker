@@ -11,7 +11,7 @@
 
 @interface SidePotEntity : MainPotEntity
 
-@property (nonatomic, strong) NSDecimalNumber *sidePot;
+@property (nonatomic, assign) NSInteger bet;
 @property (nonatomic, assign) NSInteger iLevel;
 @property (nonatomic, strong) NSMutableArray<SidePotEntity*> *sidePots;
 

@@ -9,6 +9,7 @@
 #import "UISeat.h"
 #import "UserInfo.h"
 #import "PokerTableEntity.h"
+#import "UIView+DCAnimationKit.h"
 
 #define UserBg 1001
 
@@ -42,9 +43,17 @@
     
     if (player.handCard.arrayPoker.count >0)
     {
-        
-        self.hiddenCards.hidden = YES;
-        self.pokerContainer.hidden = NO;
+        if(player.isWiner)
+        {
+            self.hiddenCards.hidden = YES;
+            self.pokerContainer.hidden = NO;
+            //[self updateHandCards:player.handCard.arrayPoker];亮牌
+        }
+        else if(player.actionStatus == PokerActionEnumFold)
+        {
+            self.hiddenCards.hidden = YES;
+            self.pokerContainer.hidden = NO;
+        }
     }
     else
     {
@@ -241,6 +250,7 @@
                     && obj.pokerSuit ==  pokers[1].pokerSuit)
                  {
                      [helper makePoker:array[idx] containerView:self.poker01];
+                     
                      iFound ++;
                  }
                  if(iFound > 1)
@@ -248,6 +258,8 @@
                      *stop = YES;
                  }
              }];
+            [self.poker00 flip:nil delay:0];
+            [self.poker01 flip:nil delay:0.1];
         }
     }
 }
@@ -263,7 +275,10 @@
     }
     else if (self.pokerContainer.hidden == NO)
     {
-        self.pokerContainer.hidden = YES;
+        if([currentPlayer.playerID isEqualToString:[UserInfo sharedUser].userID] == NO)
+        {
+            self.pokerContainer.hidden = YES;
+        }
     }
 }
 

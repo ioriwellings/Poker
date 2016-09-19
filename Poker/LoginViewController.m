@@ -7,7 +7,7 @@
 //
 
 #import "LoginViewController.h"
-#import "IHKeyboardAvoiding.h"
+#import "IQKeyboardManager.h"
 
 @interface LoginViewController ()
 
@@ -21,8 +21,11 @@
     
     //self.progressView.progress = .30;
     //self.view2.progress = .5;
-    [IHKeyboardAvoiding setAvoidingView:self.view];
-    [IHKeyboardAvoiding setPadding:-120];
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
