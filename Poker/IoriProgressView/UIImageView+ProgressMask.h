@@ -11,5 +11,7 @@
 @interface UIImageView (ProgressMask)
 
 -(void)updateImageWithProgress:(CGFloat)progress;
+-(void)animationCircleProgress;
+-(void)removeCircleProgressAnimation;
 
 @end

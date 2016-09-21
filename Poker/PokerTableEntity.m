@@ -54,13 +54,18 @@ static PokerTableEntity *_instance;
     self = [super init];
     if(self)
     {
-        _seats = [NSMutableArray arrayWithCapacity:10];
-        _mainPots = [MainPotEntity new];
-        _sidePots = [NSMutableArray arrayWithCapacity:10];
-        _nextActionPlayer = [NextActionPlayer new];
-        _communityCards = [NSMutableArray arrayWithCapacity:10];
+        [self reset];
     }
     return self;
+}
+
+-(void)reset
+{
+    _seats = [NSMutableArray arrayWithCapacity:10];
+    _mainPots = [MainPotEntity new];
+    _sidePots = [NSMutableArray arrayWithCapacity:10];
+    _nextActionPlayer = [NextActionPlayer new];
+    _communityCards = [NSMutableArray arrayWithCapacity:10];
 }
 
 

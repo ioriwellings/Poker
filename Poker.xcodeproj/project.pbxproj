@@ -614,8 +614,6 @@
 				8939DDA41D864A3700D67CC1 /* SDRotationLoopProgressView.m */,
 				8939DDA51D864A3700D67CC1 /* SDTransparentPieProgressView.h */,
 				8939DDA61D864A3700D67CC1 /* SDTransparentPieProgressView.m */,
-				8939DDBF1D868C2F00D67CC1 /* UIImageView+ProgressMask.h */,
-				8939DDC01D868C2F00D67CC1 /* UIImageView+ProgressMask.m */,
 			);
 			path = SDProgressViewLib;
 			sourceTree = "<group>";
@@ -623,6 +621,8 @@
 		8939DDAF1D8658B100D67CC1 /* IoriProgressView */ = {
 			isa = PBXGroup;
 			children = (
+				8939DDBF1D868C2F00D67CC1 /* UIImageView+ProgressMask.h */,
+				8939DDC01D868C2F00D67CC1 /* UIImageView+ProgressMask.m */,
 				8939DDB01D8658B100D67CC1 /* IoriCircleLayer.h */,
 				8939DDB11D8658B100D67CC1 /* IoriCircleLayer.m */,
 				8939DDB21D8658B100D67CC1 /* IoriCircleLayerView.h */,

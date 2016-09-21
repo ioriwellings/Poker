@@ -43,13 +43,13 @@
     
     if (player.handCard.arrayPoker.count >0)
     {
-        if(player.isWiner)
+        if(player.isNeedShowCards)
         {
             self.hiddenCards.hidden = YES;
             self.pokerContainer.hidden = NO;
-            //[self updateHandCards:player.handCard.arrayPoker];亮牌
+            [self updateHandCards:player.handCard.arrayPoker];//亮牌
         }
-        else if(player.actionStatus == PokerActionEnumFold)
+        else if(player.actionStatus == PokerActionEnumFold && [[UserInfo sharedUser].userID isEqualToString:player.playerID])
         {
             self.hiddenCards.hidden = YES;
             self.pokerContainer.hidden = NO;
@@ -203,8 +203,8 @@
 
 -(void)updateStatusByPlayer:(PlayerEntity *)player
 {
-    if(player.actionStatus == PokerActionStatusEnumNone ||
-       player.actionStatus == PokerActionStatusEnumWaitingNext)
+    if((player.actionStatus == PokerActionStatusEnumNone ||
+       player.actionStatus == PokerActionStatusEnumWaitingNext) && player.isWiner == NO)
     {
         [self resetByPlayer:player];
         self.labBringIn.hidden = NO;
@@ -258,8 +258,8 @@
                      *stop = YES;
                  }
              }];
-            [self.poker00 flip:nil delay:0];
-            [self.poker01 flip:nil delay:0.1];
+            [self.poker00 flip:^{[self.poker01 flip:nil delay:0];} delay:0];
+            
         }
     }
 }

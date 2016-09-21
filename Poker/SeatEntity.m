@@ -53,20 +53,26 @@
 {
     self.seatView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:.4];
     self.seatView.waittingView.hidden = NO;
-    updateWaittingTimer = [NSTimer scheduledTimerWithTimeInterval:.2 target:self selector:@selector(updateWaittingView) userInfo:nil repeats:YES];
+    [self updateWaittingView];
+    //updateWaittingTimer = [NSTimer scheduledTimerWithTimeInterval:.2 target:self selector:@selector(updateWaittingView) userInfo:nil repeats:YES];
 }
 
 -(void)updateWaittingView
 {
-    progress +=0.02;
+    [self.seatView.waittingView setHidden:NO];
+    [self.seatView.waittingView animationCircleProgress];
+    /*progress +=0.02;
     [self.seatView.waittingView updateImageWithProgress:progress];
+    
     if(progress>=1)
     {
         progress = 0;
         [updateWaittingTimer invalidate];
         [self.seatView.waittingView setHidden:YES];
-        [self.seatView.waittingView updateImageWithProgress:0];
+        //[self.seatView.waittingView updateImageWithProgress:0];
+        [self.seatView.waittingView removeCircleProgressAnimation];
     }
+     */
 }
 
 -(void)dissWaittingView
@@ -81,12 +87,13 @@
     }
     self.seatView.backgroundColor = [UIColor clearColor];
     self.seatView.waittingView.hidden = YES;
-    if(updateWaittingTimer.isValid)
-    {
-        [updateWaittingTimer invalidate];
-        [self.seatView.waittingView updateImageWithProgress:0];
-        progress = 0;
-    }
+    [self.seatView.waittingView removeCircleProgressAnimation];
+//    if(updateWaittingTimer.isValid)
+//    {
+//        [updateWaittingTimer invalidate];
+//        [self.seatView.waittingView updateImageWithProgress:0];
+//        progress = 0;
+//    }
 }
 
 -(void)displayActionButtons

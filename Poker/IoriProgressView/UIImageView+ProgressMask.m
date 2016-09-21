@@ -11,6 +11,7 @@
 #define ToRad(deg) 		( (M_PI * (deg)) / 180.0 )
 #define degreesToRadians(x) (M_PI*(x)/180.0) //把角度转换成PI的方式
 
+
 @implementation UIImageView (ProgressMask)
 
 -(void)updateImageWithProgress:(CGFloat)progress
@@ -23,6 +24,49 @@
     layer.contentsGravity = kCAGravityResizeAspectFill;
     layer.mask = [self getShapeLayer:layer.frame progress:progress];
     [self setImage:[self imageFromLayer:layer]];
+}
+
+-(void)animationCircleProgress
+{
+    
+    NSLog(@"%s", __func__);
+    __weak typeof(self) ws = self;
+    self.hidden = NO;
+    CALayer *layer = self.layer;
+    layer.mask = [self getShapeLayer:layer.bounds progress:1];
+    
+    CALayer *maskLayer = layer.mask;
+    CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+    anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    anim.fillMode = kCAFillModeBackwards;
+    anim.removedOnCompletion = YES;
+    anim.autoreverses = NO;
+    anim.fromValue = [NSNumber numberWithFloat:0.0];
+    anim.duration = 5;
+    anim.byValue = [NSNumber numberWithFloat: .5];
+    anim.toValue = [NSNumber numberWithFloat:100/100.0];
+    anim.delegate = ws;
+    [maskLayer removeAnimationForKey:@"runStroke"];
+    [maskLayer addAnimation:anim forKey:@"runStroke"];
+}
+
+- (void)animationDidStart:(CAAnimation *)anim
+{
+    
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    if(flag)
+        [self removeCircleProgressAnimation];
+}
+
+-(void)removeCircleProgressAnimation
+{
+    [self.layer.mask removeAnimationForKey:@"runStroke"];
+    [self.layer setMask:nil];
+    //self.image = nil;
+    self.hidden = YES;
 }
 
 -(CAShapeLayer*)getShapeLayer:(CGRect)frame progress:(CGFloat)progress

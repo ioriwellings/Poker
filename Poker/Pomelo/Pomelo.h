@@ -23,7 +23,7 @@ typedef void(^PomeloCallback)(id callback);
 @interface Pomelo : NSObject <SocketIODelegate>
 {
     
-    __unsafe_unretained id<PomeloDelegate> _delegate;
+    __weak id<PomeloDelegate> _delegate;
     
     NSMutableDictionary *_callbacks;
     NSInteger _reqId;

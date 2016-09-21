@@ -65,5 +65,6 @@ typedef NS_ENUM(NSUInteger, PokerTableStatusEnum) {
 @property (nonatomic, weak) id<PokerTableUpdateUIDelegate> updateUIDelegate;
 
 +(instancetype)sharedInstance;
+-(void)reset;
 -(void)updateUI;
 @end

@@ -48,7 +48,12 @@ NSString* const SocketIOException = @"SocketIOException";
 # pragma mark -
 # pragma mark SocketIO's private interface
 
+
+
 @interface SocketIO (Private)
+{
+   
+}
 
 - (NSArray*) arrayOfCaptureComponentsMatchedByRegex:(NSString*)regex;
 
@@ -83,6 +88,7 @@ NSString* const SocketIOException = @"SocketIOException";
 {
     self = [super init];
     if (self) {
+        ws = self;
         _delegate = delegate;
         _queue = [[NSMutableArray alloc] init];
         _ackCount = 0;
@@ -350,7 +356,7 @@ NSString* const SocketIOException = @"SocketIOException";
 - (void) onTimeout 
 {
     DEBUGLOG(@"Timed out waiting for heartbeat.");
-    [self onDisconnect:[NSError errorWithDomain:SocketIOError
+    [ws onDisconnect:[NSError errorWithDomain:SocketIOError
                                            code:SocketIOHeartbeatTimeout
                                        userInfo:nil]];
 }
@@ -362,9 +368,8 @@ NSString* const SocketIOException = @"SocketIOException";
         [_timeout invalidate];
         _timeout = nil;
     }
-    
     _timeout = [NSTimer scheduledTimerWithTimeInterval:_heartbeatTimeout
-                                                target:self 
+                                                target:self
                                               selector:@selector(onTimeout) 
                                               userInfo:nil 
                                                repeats:NO];
@@ -756,6 +761,7 @@ didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
     
     _queue = nil;
     _acks = nil;
+    NSLog(@"%s", __func__);
 }
 
 

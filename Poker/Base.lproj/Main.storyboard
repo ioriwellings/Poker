@@ -634,7 +634,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" image="bg_user_1" translatesAutoresizingMaskIntoConstraints="NO" id="gMC-Jo-4mC">
+                                    <imageView hidden="YES" opaque="NO" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" image="bg_user_1" translatesAutoresizingMaskIntoConstraints="NO" id="gMC-Jo-4mC">
                                         <rect key="frame" x="17" y="26" width="40" height="40"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zWe-gv-CAE" userLabel="hiddenCardView">

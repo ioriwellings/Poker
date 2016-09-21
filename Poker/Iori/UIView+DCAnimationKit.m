@@ -31,6 +31,7 @@
         self.alpha = 1;
     } completion:^(BOOL flag)
     {
+        self.alpha = 1;
         if(finished && flag)
         {
             finished();

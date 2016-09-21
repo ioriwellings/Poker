@@ -9,6 +9,7 @@
 #import "PokerTableViewControler.h"
 #import "IQKeyboardManager.h"
 #import "UIView+DCAnimationKit.h"
+#import "MessageBox.h"
 
 @interface PokerTableViewControler ()
 @property (nonatomic, assign) BOOL hasFlopCard;
@@ -21,16 +22,21 @@
 
 -(void)reconnectToHost
 {
-    pomelo = [[Pomelo alloc] initWithDelegate:self];
+    __weak typeof(self) ws = self;
+    [MessageBox displayLoadingInView:ws.view];
+    pomelo = [[Pomelo alloc] initWithDelegate:ws];
     [pomelo connectToHost:@"192.168.0.101" onPort:13014 withCallback:^(Pomelo *p)
      {
          NSDictionary *params = [NSDictionary dictionaryWithObject:[UserInfo sharedUser].userID forKey:@"uid"];
-         [pomelo requestWithRoute:@"gate.gateHandler.queryEntry" andParams:params andCallback:^(NSDictionary *result)
+         [p requestWithRoute:@"gate.gateHandler.queryEntry"
+                   andParams:params
+                 andCallback:^(NSDictionary *result)
           {
               p.isDisconnectByUser = YES;
               [p disconnectWithCallback:^(Pomelo *p)
                {
-                   [self entryWithData:result];
+                   [MessageBox removeLoading:nil];
+                   [ws entryWithData:result];
                }];
               
           }];
@@ -44,6 +50,7 @@
 - (void)PomeloDidDisconnect:(Pomelo *)_pomelo withError:(NSError *)error;
 {
     //NSLog(@"-%s, error:%@", __func__, error);
+    [MessageBox removeLoading:nil];
     if([[error.userInfo objectForKey:@"isDisconnectByUser"] boolValue] == NO)
     {
         [self reconnectToHost];
@@ -56,14 +63,16 @@
 - (void)Pomelo:(Pomelo *)pomelo didReceiveMessage:(NSArray *)message
 {
     //NSLog(@"-%s, message:%@", __func__, message);
+    __weak typeof(self) ws = self;
     NSDictionary *dict = (NSDictionary*)message;
     if([[dict objectForKey:@"code"] integerValue] == 500)
     {
-        [self reconnectToHost];
+        [ws reconnectToHost];
     }
 }
 - (void)entryWithData:(NSDictionary *)data
 {
+    __weak typeof(self) ws = self;
     NSString *host = strServerIP = [data objectForKey:@"host"];
     NSInteger port = iServerPort = [[data objectForKey:@"port"] intValue];
     NSString *name = [UserInfo sharedUser].userID;
@@ -76,13 +85,14 @@
                                  name, @"username",
                                  channel, @"rid",
                                  nil];
-         __weak typeof(self) weak = self;
          [p requestWithRoute:@"connector.entryHandler.enter"
                    andParams:params
                  andCallback:^(NSDictionary *result)
           {
+              [ws initTableLayout];
               //观战者
               NSArray *userList = [[result objectForKey:@"dataInfo"] objectForKey:@"observerPlayerList"];
+              NSLog(@"%@",userList);
               //房间信息
               NSDictionary *room = [IoriJsonHelper getDictForKey:@"room" fromDict:result];
               RoomEntity *roomInfo = [RoomEntity new];
@@ -102,28 +112,29 @@
                       [arrayPlayer addObject:player];
                   }
               }];
-              [weak player2Seat];
-              [weak updateTableInfoUI];
+              [ws player2Seat];
+              [ws updateTableInfoUI];
+              [MessageBox removeLoading:nil];
               
               [p onRoute:@"onNewPlayerEnter" withCallback:^(NSDictionary *data)
                {
-                   [self onNewPlayerEnter:data];
+                   [ws onNewPlayerEnter:data];
                }];
               [p onRoute:@"onFlop" withCallback:^(id callback)
                {
-                   [self onFlop:(NSDictionary *)callback];
+                   [ws onFlop:(NSDictionary *)callback];
                }];
               [p onRoute:@"onTurn" withCallback:^(id callback)
                {
-                   [self onTurn:(NSDictionary *)callback];
+                   [ws onTurn:(NSDictionary *)callback];
                }];
               [p onRoute:@"onRiver" withCallback:^(id callback)
                {
-                   [self onRiver:(NSDictionary *)callback];
+                   [ws onRiver:(NSDictionary *)callback];
                }];
               [p onRoute:@"onSitDown" withCallback:^(id callback)
                {
-                   [self onSitDown:(NSDictionary *)callback];
+                   [ws onSitDown:(NSDictionary *)callback];
                }];
               [p onRoute:@"onEnterRomm" withCallback:^(id callback)
                {
@@ -131,35 +142,35 @@
                }];
               [p onRoute:@"onGameStart" withCallback:^(id callback)
                {
-                   [self onGameStart:(NSDictionary *)callback];
+                   [ws onGameStart:(NSDictionary *)callback];
                }];
               [p onRoute:@"onCall" withCallback:^(id callback)
                {
-                   [self onCall:(NSDictionary *)callback];
+                   [ws onCall:(NSDictionary *)callback];
                }];
               [p onRoute:@"onCheck" withCallback:^(id callback)
                {
-                   [self onCheck:(NSDictionary *)callback];
+                   [ws onCheck:(NSDictionary *)callback];
                }];
               [p onRoute:@"onAllIn" withCallback:^(id callback)
                {
-                   [self onAllIn:(NSDictionary *)callback];
+                   [ws onAllIn:(NSDictionary *)callback];
                }];
               [p onRoute:@"onRaise" withCallback:^(id callback)
                {
-                   [self onRaise:(NSDictionary *)callback];
+                   [ws onRaise:(NSDictionary *)callback];
                }];
               [p onRoute:@"onFold" withCallback:^(id callback)
                {
-                   [self onFold:(NSDictionary *)callback];
+                   [ws onFold:(NSDictionary *)callback];
                }];
               [p onRoute:@"onShowdown" withCallback:^(id callback)
                {
-                   [self onShowdown:(NSDictionary *)callback];
+                   [ws onShowdown:(NSDictionary *)callback];
                }];
               [p onRoute:@"onPlayerKick" withCallback:^(id callback)
               {
-                  [self onPlayerKick:(NSDictionary *)callback];;
+                  [ws onPlayerKick:(NSDictionary *)callback];;
               }];
           }];
      }];
@@ -167,7 +178,13 @@
 
 -(void)setNextActionPlayerFromDict:(NSDictionary*)dict
 {
-    pokerTable.nextActionPlayer.nextPlayerIndex = [IoriJsonHelper getIntegerForKey:@"tokenPlayerIndex" fromDict:dict];
+    NSString *strValue = [IoriJsonHelper getStringForKey:@"tokenPlayerIndex" fromDict:dict];
+    if(strValue == nil)
+    {
+        pokerTable.nextActionPlayer.nextPlayerIndex = -1;
+    }
+    else
+        pokerTable.nextActionPlayer.nextPlayerIndex = [strValue integerValue];
     [pokerTable.nextActionPlayer
      loadNextActionFromDictOfArray:(NSArray*)[IoriJsonHelper
                                               getObjectForKey:@"tokenPlayerAction"
@@ -214,6 +231,7 @@
     [self loadChipsInfo:dict];
     [self loadFlopCardFromDict:(NSDictionary*)dict];
     pokerTable.mainPots.mainPot = [self getMainPotFromDictionary:dict];
+    [self setNextActionPlayerFromDict:dict];
     [self updateTableInfoUI];
 }
 
@@ -222,6 +240,7 @@
     [self loadChipsInfo:dict];
     [self loadTurnCardFromDict:(NSDictionary *)dict];
     pokerTable.mainPots.mainPot = [self getMainPotFromDictionary:dict];
+    [self setNextActionPlayerFromDict:dict];
     [self updateTableInfoUI];
 }
 
@@ -230,6 +249,7 @@
     [self loadChipsInfo:dict];
     [self loadRiverCardFromDict:(NSDictionary *)dict];
     pokerTable.mainPots.mainPot = [self getMainPotFromDictionary:dict];
+    [self setNextActionPlayerFromDict:dict];
     [self updateTableInfoUI];
 }
 
@@ -272,6 +292,11 @@
     [pokerTable.mainPots.players removeAllObjects];
     [pokerTable.sidePots removeAllObjects];
     [self clearBetPots];
+    [self.handCardContainer enumerateObjectsUsingBlock:^(UIView*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
+    {
+        obj.subviews[0].alpha = 0;
+        obj.subviews[1].alpha = 0;
+    }];
     
     [arrayPlayerList enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull playerObj2, NSUInteger idx2, BOOL * _Nonnull stop2)
      {
@@ -502,9 +527,11 @@
 
 -(void)initTableLayout//初始化座位
 {
+    __weak typeof(self) ws = self;
     arrayAudience = [NSMutableArray arrayWithCapacity:10];
     arrayPlayer = [NSMutableArray arrayWithCapacity:10];
     PokerTableEntity *table = [PokerTableEntity sharedInstance];
+    [table reset];
     table.updateUIDelegate = self;
     pokerTable = table;
     self.btnAllIn.enabled = NO;
@@ -538,7 +565,7 @@
         [obj clear];
         UIButton *btnSit = self.btnSits[idx];
         btnSit.tag = idx;
-        [btnSit addTarget:self action:@selector(btnSit_click:) forControlEvents:UIControlEventTouchUpInside];
+        [btnSit addTarget:ws action:@selector(btnSit_click:) forControlEvents:UIControlEventTouchUpInside];
         
         SeatEntity *seat = [SeatEntity new];
         seat.iIndex = idx;
@@ -627,6 +654,7 @@
 
 -(void)flopCard
 {
+    if(pokerTable.communityCards.count<3)return;
     CardHelper *helper = [CardHelper sharedInstance];
     NSArray<PokerEntity*> *array = [helper getShuffle];
     
@@ -670,6 +698,7 @@
 
 -(void)turnCard
 {
+    if(pokerTable.communityCards.count<4)return;
     CardHelper *helper = [CardHelper sharedInstance];
     NSArray<PokerEntity*> *array = [helper getShuffle];
     //    [helper makePoker:array[13] containerView:self.card04];
@@ -702,6 +731,7 @@
 
 -(void)riverCard
 {
+    if(pokerTable.communityCards.count<5)return;
     CardHelper *helper = [CardHelper sharedInstance];
     NSArray<PokerEntity*> *array = [helper getShuffle];
     
@@ -802,7 +832,6 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    //[UserInfo sharedUser].userID = @"iori";
     
     [self initTableLayout];
     
@@ -812,9 +841,13 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-//    [self flopCard];
-//    [self turnCard];
-//    [self riverCard];
+}
+
+-(void)dealloc
+{
+    [pomelo disconnect];
+    pomelo = nil;
+    NSLog(@"%@:%s",self,__func__);
 }
 
 #pragma mark - button action

@@ -12,6 +12,7 @@
 #import "Pomelo.h"
 #import "UserInfo.h"
 #import "IoriJsonHelper.h"
+#import "UIImageView+ProgressMask.h"
 
 @interface PokerTableViewControler : UIViewController <PomeloDelegate, PokerTableUpdateUIDelegate>
 {

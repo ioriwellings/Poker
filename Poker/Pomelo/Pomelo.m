@@ -114,6 +114,10 @@ static NSString const *_disconnectCallback = @"__disconnectCallback__";
 - (void) socketIO:(SocketIO *)socket onError:(NSError *)error
 {
     NSLog(@"=====by Iori:%s error:%@", __func__, error);
+    if([_delegate respondsToSelector:@selector(PomeloDidDisconnect:withError:)])
+    {
+        [_delegate PomeloDidDisconnect:self withError:error];
+    }
 }
 
 # pragma mark -
@@ -196,5 +200,6 @@ static NSString const *_disconnectCallback = @"__disconnectCallback__";
     socketIO = nil;
     _callbacks = nil;
     _delegate = nil;
+    NSLog(@"%s", __func__);
 }
 @end

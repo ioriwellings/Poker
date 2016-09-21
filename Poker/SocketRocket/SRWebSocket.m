@@ -650,7 +650,10 @@ static __strong NSData *CRLFCRLF;
 {
     SRFastLog(@"Received message");
     dispatch_async(_callbackQueue, ^{
-        [self.delegate webSocket:self didReceiveMessage:message];
+        if([self.delegate respondsToSelector:@selector(webSocket:didReceiveMessage:)])
+        {
+            [self.delegate webSocket:self didReceiveMessage:message];
+        }
     });
 }
 

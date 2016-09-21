@@ -61,13 +61,14 @@ typedef enum {
 
 @interface SocketIO : NSObject <NSURLConnectionDelegate, SocketIOTransportDelegate>
 {
+    __weak typeof(SocketIO*) ws;
     NSString *_host;
     NSInteger _port;
     NSString *_sid;
     NSString *_endpoint;
     NSDictionary *_params;
     
-    __unsafe_unretained id<SocketIODelegate> _delegate;
+    __weak id<SocketIODelegate> _delegate;
     
     NSObject <SocketIOTransport> *_transport;
     
@@ -95,7 +96,7 @@ typedef enum {
 @property (nonatomic, readonly) NSTimeInterval heartbeatTimeout;
 @property (nonatomic) BOOL useSecure;
 @property (nonatomic, readonly) BOOL isConnected, isConnecting;
-@property (nonatomic, unsafe_unretained) id<SocketIODelegate> delegate;
+@property (nonatomic, weak) id<SocketIODelegate> delegate;
 
 - (id) initWithDelegate:(id<SocketIODelegate>)delegate;
 - (void) connectToHost:(NSString *)host onPort:(NSInteger)port;
