@@ -186,6 +186,9 @@
 		89EB0BCD1D5860280064CF3D /* MainPotEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EB0BCC1D5860280064CF3D /* MainPotEntity.m */; };
 		89EB0BD01D58789C0064CF3D /* UISeat.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EB0BCF1D58789C0064CF3D /* UISeat.m */; };
 		89F6BF0A1D659C780061C922 /* RoomEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F6BF091D659C780061C922 /* RoomEntity.m */; };
+		A59514951D927689006FFFF6 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A59514941D927689006FFFF6 /* Login.storyboard */; };
+		A59514A11D9282B4006FFFF6 /* TT0248M_.TTF in Resources */ = {isa = PBXBuildFile; fileRef = A595149F1D9282B4006FFFF6 /* TT0248M_.TTF */; };
+		A59514A21D9282B4006FFFF6 /* TT0249M_.TTF in Resources */ = {isa = PBXBuildFile; fileRef = A59514A01D9282B4006FFFF6 /* TT0249M_.TTF */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -484,6 +487,10 @@
 		89EB0BCF1D58789C0064CF3D /* UISeat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISeat.m; sourceTree = "<group>"; };
 		89F6BF081D659C780061C922 /* RoomEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomEntity.h; sourceTree = "<group>"; };
 		89F6BF091D659C780061C922 /* RoomEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomEntity.m; sourceTree = "<group>"; };
+		A59514941D927689006FFFF6 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		A595149D1D92820E006FFFF6 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		A595149F1D9282B4006FFFF6 /* TT0248M_.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = TT0248M_.TTF; sourceTree = "<group>"; };
+		A59514A01D9282B4006FFFF6 /* TT0249M_.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = TT0249M_.TTF; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -528,6 +535,7 @@
 		891C0F021D5443080075A228 /* Poker */ = {
 			isa = PBXGroup;
 			children = (
+				A59514961D9277D1006FFFF6 /* login */,
 				894998CE1D8E57740001DD42 /* IQKeyboardManager */,
 				8939DDAF1D8658B100D67CC1 /* IoriProgressView */,
 				8939DD951D864A3700D67CC1 /* SDProgressViewLib */,
@@ -540,6 +548,7 @@
 				891C0F1A1D5478AE0075A228 /* CardHelper */,
 				891C0F061D5443080075A228 /* AppDelegate.h */,
 				891C0F071D5443080075A228 /* AppDelegate.m */,
+				A595149D1D92820E006FFFF6 /* Config.h */,
 				891C0F091D5443080075A228 /* ViewController.h */,
 				891C0F0A1D5443080075A228 /* ViewController.m */,
 				899638151D81468200A05D8A /* LoginViewController.h */,
@@ -547,6 +556,7 @@
 				894DE64B1D795E6000F18876 /* PokerTableViewControler.h */,
 				894DE64C1D795E6000F18876 /* PokerTableViewControler.m */,
 				891C0F0C1D5443080075A228 /* Main.storyboard */,
+				A59514941D927689006FFFF6 /* Login.storyboard */,
 				891C0F0F1D5443080075A228 /* Assets.xcassets */,
 				891C0F111D5443080075A228 /* LaunchScreen.storyboard */,
 				891C0F141D5443080075A228 /* Info.plist */,
@@ -980,6 +990,22 @@
 			path = SocketRocket;
 			sourceTree = "<group>";
 		};
+		A59514961D9277D1006FFFF6 /* login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = login;
+			sourceTree = "<group>";
+		};
+		A595149E1D9282B4006FFFF6 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A595149F1D9282B4006FFFF6 /* TT0248M_.TTF */,
+				A59514A01D9282B4006FFFF6 /* TT0249M_.TTF */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1070,8 +1096,10 @@
 				8967225F1D937C0D00EF3063 /* dongdong.wav in Resources */,
 				896722621D937C0D00EF3063 /* fapai2.wav in Resources */,
 				899638131D81088200A05D8A /* poker_d_8@2x.png in Resources */,
+				A59514951D927689006FFFF6 /* Login.storyboard in Resources */,
 				899637FD1D81088200A05D8A /* poker_c_12@2x.png in Resources */,
 				899638141D81088200A05D8A /* poker_d_9@2x.png in Resources */,
+				A59514A11D9282B4006FFFF6 /* TT0248M_.TTF in Resources */,
 				894999021D8E57740001DD42 /* IQKeyboardManager.bundle in Resources */,
 				899638031D81088200A05D8A /* poker_c_5@2x.png in Resources */,
 				899637EC1D81088200A05D8A /* poker_a_8@2x.png in Resources */,
