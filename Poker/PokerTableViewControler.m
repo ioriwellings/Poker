@@ -10,6 +10,7 @@
 #import "IQKeyboardManager.h"
 #import "UIView+DCAnimationKit.h"
 #import "MessageBox.h"
+#import "NSString+AudioFile.h"
 
 @interface PokerTableViewControler ()
 @property (nonatomic, assign) BOOL hasFlopCard;
@@ -17,6 +18,48 @@
 @end
 
 @implementation PokerTableViewControler
+
+#pragma mark -play sound effect-
+
+-(void)playSoundFaPai
+{
+    [@"fapai.wav" playSoundEffect];
+}
+
+-(void)playSoundFlop
+{
+    [@"fapai3.wav" playSoundEffect];
+}
+
+-(void)playSoundFold
+{
+    [@"foldpai.wav" playSoundEffect];
+}
+
+-(void)playDingDing
+{
+    [@"half_time.wav" playSoundEffect];
+}
+
+-(void)playDongDong
+{
+    [@"dongdong.wav" playSoundEffect];
+}
+
+-(void)playSoundChip
+{
+    [@"chip.wav" playSoundEffect];
+}
+
+-(void)playSoundBetCount
+{
+    [@"chipfly.wav" playSoundEffect];
+}
+
+-(void)playSoundOnTurn
+{
+    [@"on_turn.wav" playSoundEffect];
+}
 
 #pragma mark -pomelo method-
 
@@ -335,6 +378,7 @@
 
 -(void)onCall:(NSDictionary*)callback
 {
+    [self playSoundChip];
     [self mergeActionPlayer:(NSDictionary*)callback];
     [self setNextActionPlayerFromDict:(NSDictionary*)callback];
     pokerTable.tableStatus = PokerTableStatusEnumBet;
@@ -352,6 +396,7 @@
 
 -(void)onAllIn:(NSDictionary*)callback
 {
+    [self playSoundChip];
     [self mergeActionPlayer:(NSDictionary*)callback];
     [self setNextActionPlayerFromDict:(NSDictionary*)callback];
     pokerTable.tableStatus = PokerTableStatusEnumBet;
@@ -361,6 +406,7 @@
 
 -(void)onRaise:(NSDictionary*)callback
 {
+    [self playSoundChip];
     [self mergeActionPlayer:(NSDictionary*)callback];
     [self setNextActionPlayerFromDict:(NSDictionary*)callback];
     pokerTable.tableStatus = PokerTableStatusEnumBet;
@@ -370,6 +416,7 @@
 
 -(void)onFold:(NSDictionary*)callback
 {
+    [self playSoundFold];
     PlayerEntity* foldPlayer = [self mergeActionPlayer:(NSDictionary*)callback];
     [self setNextActionPlayerFromDict:(NSDictionary*)callback];
     pokerTable.foldPlayer = foldPlayer;
@@ -694,6 +741,7 @@
     [self.commCards[2] flip:^{
         self.hasFlopCard = YES;
     } delay:0.3];
+    [self playSoundFlop];
 }
 
 -(void)turnCard
@@ -727,6 +775,7 @@
     {
         [self.commCards[3] flip:^{self.hasFlopCard = NO;self.hasTurnCard = YES;} delay:0];
     }
+    [self playSoundFaPai];
 }
 
 -(void)riverCard
@@ -759,6 +808,7 @@
     {
         [self.commCards[4] flip:^{self.hasTurnCard = NO;} delay:.1];
     }
+    [self playSoundFaPai];
 }
 
 -(void)showMyCardType:(NSDictionary*)dict

@@ -56,6 +56,20 @@
 		894999021D8E57740001DD42 /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 894998F31D8E57740001DD42 /* IQKeyboardManager.bundle */; };
 		894999051D8E6A870001DD42 /* UIView+DCAnimationKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 894999041D8E6A860001DD42 /* UIView+DCAnimationKit.m */; };
 		894DE64D1D795E6000F18876 /* PokerTableViewControler.m in Sources */ = {isa = PBXBuildFile; fileRef = 894DE64C1D795E6000F18876 /* PokerTableViewControler.m */; };
+		896722241D9277A100EF3063 /* NSString+AudioFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 896722231D9277A100EF3063 /* NSString+AudioFile.m */; };
+		8967225D1D937C0D00EF3063 /* chip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 896722501D937C0D00EF3063 /* chip.wav */; };
+		8967225E1D937C0D00EF3063 /* chipfly.wav in Resources */ = {isa = PBXBuildFile; fileRef = 896722511D937C0D00EF3063 /* chipfly.wav */; };
+		8967225F1D937C0D00EF3063 /* dongdong.wav in Resources */ = {isa = PBXBuildFile; fileRef = 896722521D937C0D00EF3063 /* dongdong.wav */; };
+		896722601D937C0D00EF3063 /* fapai.wav in Resources */ = {isa = PBXBuildFile; fileRef = 896722531D937C0D00EF3063 /* fapai.wav */; };
+		896722611D937C0D00EF3063 /* fapai1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 896722541D937C0D00EF3063 /* fapai1.wav */; };
+		896722621D937C0D00EF3063 /* fapai2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 896722551D937C0D00EF3063 /* fapai2.wav */; };
+		896722631D937C0D00EF3063 /* fapai3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 896722561D937C0D00EF3063 /* fapai3.wav */; };
+		896722641D937C0D00EF3063 /* fapaia.wav in Resources */ = {isa = PBXBuildFile; fileRef = 896722571D937C0D00EF3063 /* fapaia.wav */; };
+		896722651D937C0D00EF3063 /* fapaib.wav in Resources */ = {isa = PBXBuildFile; fileRef = 896722581D937C0D00EF3063 /* fapaib.wav */; };
+		896722661D937C0D00EF3063 /* foldpai.wav in Resources */ = {isa = PBXBuildFile; fileRef = 896722591D937C0D00EF3063 /* foldpai.wav */; };
+		896722671D937C0D00EF3063 /* half_time.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8967225A1D937C0D00EF3063 /* half_time.wav */; };
+		896722681D937C0D00EF3063 /* hechip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8967225B1D937C0D00EF3063 /* hechip.wav */; };
+		896722691D937C0D00EF3063 /* on_turn.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8967225C1D937C0D00EF3063 /* on_turn.wav */; };
 		8983BAB91D6EC97000B38455 /* IoriJsonHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8983BAB41D6EC97000B38455 /* IoriJsonHelper.m */; };
 		8983BABA1D6EC97000B38455 /* MessageBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 8983BAB61D6EC97000B38455 /* MessageBox.m */; };
 		8983BABB1D6EC97000B38455 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8983BAB81D6EC97000B38455 /* UserInfo.m */; };
@@ -279,6 +293,21 @@
 		894999041D8E6A860001DD42 /* UIView+DCAnimationKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+DCAnimationKit.m"; sourceTree = "<group>"; };
 		894DE64B1D795E6000F18876 /* PokerTableViewControler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokerTableViewControler.h; sourceTree = "<group>"; };
 		894DE64C1D795E6000F18876 /* PokerTableViewControler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PokerTableViewControler.m; sourceTree = "<group>"; };
+		896722221D9277A100EF3063 /* NSString+AudioFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AudioFile.h"; sourceTree = "<group>"; };
+		896722231D9277A100EF3063 /* NSString+AudioFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AudioFile.m"; sourceTree = "<group>"; };
+		896722501D937C0D00EF3063 /* chip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = chip.wav; sourceTree = "<group>"; };
+		896722511D937C0D00EF3063 /* chipfly.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = chipfly.wav; sourceTree = "<group>"; };
+		896722521D937C0D00EF3063 /* dongdong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = dongdong.wav; sourceTree = "<group>"; };
+		896722531D937C0D00EF3063 /* fapai.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fapai.wav; sourceTree = "<group>"; };
+		896722541D937C0D00EF3063 /* fapai1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fapai1.wav; sourceTree = "<group>"; };
+		896722551D937C0D00EF3063 /* fapai2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fapai2.wav; sourceTree = "<group>"; };
+		896722561D937C0D00EF3063 /* fapai3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fapai3.wav; sourceTree = "<group>"; };
+		896722571D937C0D00EF3063 /* fapaia.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fapaia.wav; sourceTree = "<group>"; };
+		896722581D937C0D00EF3063 /* fapaib.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fapaib.wav; sourceTree = "<group>"; };
+		896722591D937C0D00EF3063 /* foldpai.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = foldpai.wav; sourceTree = "<group>"; };
+		8967225A1D937C0D00EF3063 /* half_time.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = half_time.wav; sourceTree = "<group>"; };
+		8967225B1D937C0D00EF3063 /* hechip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hechip.wav; sourceTree = "<group>"; };
+		8967225C1D937C0D00EF3063 /* on_turn.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = on_turn.wav; sourceTree = "<group>"; };
 		8983BAB31D6EC97000B38455 /* IoriJsonHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IoriJsonHelper.h; sourceTree = "<group>"; };
 		8983BAB41D6EC97000B38455 /* IoriJsonHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoriJsonHelper.m; sourceTree = "<group>"; };
 		8983BAB51D6EC97000B38455 /* MessageBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageBox.h; sourceTree = "<group>"; };
@@ -521,6 +550,7 @@
 				891C0F0F1D5443080075A228 /* Assets.xcassets */,
 				891C0F111D5443080075A228 /* LaunchScreen.storyboard */,
 				891C0F141D5443080075A228 /* Info.plist */,
+				896722351D92811200EF3063 /* audiosEffect */,
 				899637A91D81088200A05D8A /* images */,
 				891C0F031D5443080075A228 /* Supporting Files */,
 			);
@@ -716,6 +746,26 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		896722351D92811200EF3063 /* audiosEffect */ = {
+			isa = PBXGroup;
+			children = (
+				896722501D937C0D00EF3063 /* chip.wav */,
+				896722511D937C0D00EF3063 /* chipfly.wav */,
+				896722521D937C0D00EF3063 /* dongdong.wav */,
+				896722531D937C0D00EF3063 /* fapai.wav */,
+				896722541D937C0D00EF3063 /* fapai1.wav */,
+				896722551D937C0D00EF3063 /* fapai2.wav */,
+				896722561D937C0D00EF3063 /* fapai3.wav */,
+				896722571D937C0D00EF3063 /* fapaia.wav */,
+				896722581D937C0D00EF3063 /* fapaib.wav */,
+				896722591D937C0D00EF3063 /* foldpai.wav */,
+				8967225A1D937C0D00EF3063 /* half_time.wav */,
+				8967225B1D937C0D00EF3063 /* hechip.wav */,
+				8967225C1D937C0D00EF3063 /* on_turn.wav */,
+			);
+			path = audiosEffect;
+			sourceTree = "<group>";
+		};
 		8983BAB21D6EC97000B38455 /* Iori */ = {
 			isa = PBXGroup;
 			children = (
@@ -729,6 +779,8 @@
 				894998CC1D8E488D0001DD42 /* IHKeyboardAvoiding.m */,
 				894999031D8E6A860001DD42 /* UIView+DCAnimationKit.h */,
 				894999041D8E6A860001DD42 /* UIView+DCAnimationKit.m */,
+				896722221D9277A100EF3063 /* NSString+AudioFile.h */,
+				896722231D9277A100EF3063 /* NSString+AudioFile.m */,
 			);
 			path = Iori;
 			sourceTree = "<group>";
@@ -987,6 +1039,7 @@
 			files = (
 				899637EF1D81088200A05D8A /* poker_b_11@2x.png in Resources */,
 				899637F21D81088200A05D8A /* poker_b_1@2x.png in Resources */,
+				896722691D937C0D00EF3063 /* on_turn.wav in Resources */,
 				899637EE1D81088200A05D8A /* poker_b_10@2x.png in Resources */,
 				8996380E1D81088200A05D8A /* poker_d_3@2x.png in Resources */,
 				899638011D81088200A05D8A /* poker_c_3@2x.png in Resources */,
@@ -995,19 +1048,27 @@
 				8996380D1D81088200A05D8A /* poker_d_2@2x.png in Resources */,
 				899637E91D81088200A05D8A /* poker_a_5@2x.png in Resources */,
 				899637FA1D81088200A05D8A /* poker_b_9@2x.png in Resources */,
+				896722661D937C0D00EF3063 /* foldpai.wav in Resources */,
 				899637FB1D81088200A05D8A /* poker_c_10@2x.png in Resources */,
 				899637F81D81088200A05D8A /* poker_b_7@2x.png in Resources */,
+				896722601D937C0D00EF3063 /* fapai.wav in Resources */,
+				896722671D937C0D00EF3063 /* half_time.wav in Resources */,
 				899637F51D81088200A05D8A /* poker_b_4@2x.png in Resources */,
 				899638021D81088200A05D8A /* poker_c_4@2x.png in Resources */,
 				899637E51D81088200A05D8A /* poker_a_1@2x.png in Resources */,
 				899637EB1D81088200A05D8A /* poker_a_7@2x.png in Resources */,
 				891C0F101D5443080075A228 /* Assets.xcassets in Resources */,
 				899638061D81088200A05D8A /* poker_c_8@2x.png in Resources */,
+				896722681D937C0D00EF3063 /* hechip.wav in Resources */,
 				899638071D81088200A05D8A /* poker_c_9@2x.png in Resources */,
 				8996380C1D81088200A05D8A /* poker_d_1@2x.png in Resources */,
 				899637ED1D81088200A05D8A /* poker_a_9@2x.png in Resources */,
+				896722611D937C0D00EF3063 /* fapai1.wav in Resources */,
+				8967225E1D937C0D00EF3063 /* chipfly.wav in Resources */,
 				899637F91D81088200A05D8A /* poker_b_8@2x.png in Resources */,
 				899638051D81088200A05D8A /* poker_c_7@2x.png in Resources */,
+				8967225F1D937C0D00EF3063 /* dongdong.wav in Resources */,
+				896722621D937C0D00EF3063 /* fapai2.wav in Resources */,
 				899638131D81088200A05D8A /* poker_d_8@2x.png in Resources */,
 				899637FD1D81088200A05D8A /* poker_c_12@2x.png in Resources */,
 				899638141D81088200A05D8A /* poker_d_9@2x.png in Resources */,
@@ -1028,15 +1089,19 @@
 				899637E71D81088200A05D8A /* poker_a_3@2x.png in Resources */,
 				899637F11D81088200A05D8A /* poker_b_13@2x.png in Resources */,
 				899638111D81088200A05D8A /* poker_d_6@2x.png in Resources */,
+				896722641D937C0D00EF3063 /* fapaia.wav in Resources */,
 				8996380A1D81088200A05D8A /* poker_d_12@2x.png in Resources */,
 				899637E31D81088200A05D8A /* poker_a_12@2x.png in Resources */,
 				899637EA1D81088200A05D8A /* poker_a_6@2x.png in Resources */,
+				8967225D1D937C0D00EF3063 /* chip.wav in Resources */,
 				899638101D81088200A05D8A /* poker_d_5@2x.png in Resources */,
 				899637E11D81088200A05D8A /* poker_a_10@2x.png in Resources */,
 				899637F41D81088200A05D8A /* poker_b_3@2x.png in Resources */,
 				891C0F0E1D5443080075A228 /* Main.storyboard in Resources */,
+				896722651D937C0D00EF3063 /* fapaib.wav in Resources */,
 				899637E21D81088200A05D8A /* poker_a_11@2x.png in Resources */,
 				899637E81D81088200A05D8A /* poker_a_4@2x.png in Resources */,
+				896722631D937C0D00EF3063 /* fapai3.wav in Resources */,
 				8996380B1D81088200A05D8A /* poker_d_13@2x.png in Resources */,
 				899637F31D81088200A05D8A /* poker_b_2@2x.png in Resources */,
 				899637E01D81088200A05D8A /* poker_0@2x.png in Resources */,
@@ -1058,6 +1123,7 @@
 				8939DDC11D868C2F00D67CC1 /* UIImageView+ProgressMask.m in Sources */,
 				8983BB0F1D6ECA5D00B38455 /* DGActivityIndicatorBallScaleRippleMultipleAnimation.m in Sources */,
 				891C0F3A1D5479510075A228 /* MASConstraintMaker.m in Sources */,
+				896722241D9277A100EF3063 /* NSString+AudioFile.m in Sources */,
 				8983BABA1D6EC97000B38455 /* MessageBox.m in Sources */,
 				89CB2E311D62FEE500FB37A5 /* Pomelo.m in Sources */,
 				8983BB1C1D6ECA5D00B38455 /* DGActivityIndicatorRotatingSandglassAnimation.m in Sources */,

@@ -12,6 +12,7 @@
 #import "UISeat.h"
 #import "UserInfo.h"
 #import "UIImageView+ProgressMask.h"
+#import "NSString+AudioFile.h"
 
 @interface SeatEntity ()
 {
@@ -21,6 +22,11 @@
 @end
 
 @implementation SeatEntity
+
+-(void)playOnTurn
+{
+    [@"dongdong.wav" playSoundEffect];
+}
 
 -(void)clearSeat
 {
@@ -38,6 +44,7 @@
         }
         if([[UserInfo sharedUser].userID isEqualToString:self.player.playerID])
         {
+            [self performSelector:@selector(playOnTurn) withObject:nil afterDelay:.6];
             [self displayActionButtons];
         }
     }

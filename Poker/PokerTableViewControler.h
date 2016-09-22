@@ -55,7 +55,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *labCardType;
 
 - (IBAction)btnSit_click:(UIButton *)sender;
-
 - (IBAction)btnMenu_click:(UIButton *)sender;
 - (IBAction)btnMore_click:(UIButton *)sender;
 - (IBAction)btnCheck_click:(UIButton *)sender;
