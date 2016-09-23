@@ -14,7 +14,7 @@
 
 void soundCompleteCallback(SystemSoundID soundID,void * clientData)
 {
-    NSLog(@"播放完成...");
+    //NSLog(@"播放完成...");
     AudioServicesDisposeSystemSoundID(soundID);
 }
 
@@ -95,7 +95,7 @@ static AVAudioPlayer *__player;
 #pragma mark - 播放器代理方法
 -(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
-    NSLog(@"音乐播放完成...");
+    //NSLog(@"音乐播放完成...");
     //根据实际情况播放完成可以将会话关闭，其他音频应用继续播放
     [[AVAudioSession sharedInstance]setActive:NO error:nil];
 }

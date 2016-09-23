@@ -10,20 +10,42 @@
 #import "UserInfo.h"
 #import "PokerTableEntity.h"
 #import "UIView+DCAnimationKit.h"
+#import "NSString+Addition.h"
 
 #define UserBg 1001
 
 @interface UISeat ()
 {
     PlayerEntity *currentPlayer;
+    CGRect iconChipFrame;
 }
 @end
 
 @implementation UISeat
 
+
+
 -(UIView*)userNameBg
 {
     return [self viewWithTag:UserBg];
+}
+
+-(void)flyChipAnimation
+{
+    if(currentPlayer.isDirty == NO) return;
+    __weak typeof(self) ws = self;
+    if(CGRectIsEmpty(iconChipFrame))
+    {
+        iconChipFrame = [self.iconChip frame];
+    }
+    CGPoint newPoint = [self convertRect:self.waittingView.frame toView:self.betContainer].origin;
+    newPoint.x += self.waittingView.frame.size.width/3.0;
+    newPoint.y += self.waittingView.frame.size.height/3.0;
+    self.iconChip.frame = CGRectMake(newPoint.x,
+                                     newPoint.y,
+                                     self.iconChip.frame.size.width,
+                                     self.iconChip.frame.size.height);
+    [ws.iconChip setPoint:iconChipFrame.origin duration:.3 finished:^{currentPlayer.isDirty = NO;}];
 }
 
 -(void)setStatusFromPlayer:(PlayerEntity*)player
@@ -36,10 +58,10 @@
         self.userNameBg.hidden = NO;
         self.labBringIn.hidden = NO;
     }
-    NSNumberFormatter *formate = [NSNumberFormatter new];
-    formate.numberStyle = NSNumberFormatterDecimalStyle;
-    self.labBringIn.text = [formate stringFromNumber:[NSNumber numberWithInteger:player.bringInMoney]];
+
+    self.labBringIn.text = [NSString getFormatedNumberByInteger:player.bringInMoney];
     self.iconDelear.hidden = player.isButton ? NO : YES;
+    self.iconWinner.hidden = YES;
     
     if (player.handCard.arrayPoker.count >0)
     {
@@ -72,12 +94,7 @@
     }
     //
     
-    if(player.bet != 0)
-    {
-        self.labBet.text = [formate stringFromNumber:[NSNumber numberWithInteger:player.bet]];
-        self.betContainer.hidden = NO;
-    }
-    else
+    if(player.bet == 0)
     {
         self.labBet.text = nil;
         self.betContainer.hidden = YES;
@@ -85,50 +102,59 @@
     
     if(player.actionStatus == PokerActionStatusEnumFold)
     {
-        self.backgroundColor = [UIColor darkGrayColor];
-        self.labStatus.text = @"弃牌";
+        //self.backgroundColor = [UIColor darkGrayColor];
+        self.labStatus.text = NSLocalizedString(@"FoldCard", nil);
         [self foldCard];
     }
     else if(player.actionStatus == PokerActionStatusEnumCheck)
     {
-        self.labStatus.text = @"看牌";
+        self.labStatus.text = NSLocalizedString(@"CheckCard", nil);
     }
     else if (player.actionStatus == PokerActionStatusEnumCall)
     {
-        self.labStatus.text = @"跟注";
+        self.labStatus.text = NSLocalizedString(@"Call", nil);
+        self.betContainer.hidden = NO;
+        [self flyChipAnimation];
     }
     else if (player.actionStatus == PokerActionStatusEnumRaise)
     {
-        self.labStatus.text = @"加注";
+        self.labStatus.text = NSLocalizedString(@"Raise", nil);
         if(player.bet>0)
         {
             self.betContainer.hidden = NO;
-            self.labBet.text = [formate stringFromNumber:[NSNumber numberWithInteger:player.bet]];
+            self.labBet.text = [NSString getFormatedNumberByInteger:player.bet];
+            [self flyChipAnimation];
         }
     }
     else if (player.actionStatus == PokerActionStatusEnumAllIn)
     {
-        self.labStatus.text = @"全下";
+        self.labStatus.text = NSLocalizedString(@"AllIn", nil);;
+        self.betContainer.hidden = NO;
+        self.labBet.text = [NSString getFormatedNumberByInteger:player.bet];
+        [self flyChipAnimation];
     }
     else if(player.actionStatus == PokerActionStatusEnumWaitingBet)
     {
-        self.labStatus.text = @"等待下注";
+        self.labStatus.text = NSLocalizedString(@"Wait", nil);
         self.labBet.text = @"";
     }
     else if(player.actionStatus == PokerActionStatusEnumWaitingNext)
     {
-        self.labStatus.text = @"等待下一轮";
+        self.labStatus.text = NSLocalizedString(@"WaitNext", nil);;
         self.labBet.text = @"";
     }
     else if (player.actionStatus == PokerActionStatusEnumSB)
     {
-        self.labStatus.text = @"小盲";
+        self.labStatus.text = NSLocalizedString(@"SB", nil);;
         if(player.bet>0)
+        {
             self.labBet.text = [[NSNumber numberWithInteger:player.bet] stringValue];
+            self.betContainer.hidden = NO;
+        }
     }
     else if (player.actionStatus == PokerActionStatusEnumBB)
     {
-        self.labStatus.text = @"大盲";
+        self.labStatus.text = NSLocalizedString(@"BB", nil);;
         if(player.bet>0)
         {
             self.labBet.text = [[NSNumber numberWithInteger:player.bet] stringValue];
@@ -140,7 +166,7 @@
         self.labStatus.text = @"";
         if(player.isBigBlind)
         {
-            self.labStatus.text = @"大盲注";
+            self.labStatus.text = NSLocalizedString(@"BB", nil);
             if(player.bet >0 )
             {
                 self.labBet.text = [[NSNumber numberWithInteger:player.bet] stringValue];
@@ -149,7 +175,7 @@
         }
         if(player.isSmallBlind)
         {
-            self.labStatus.text = @"小盲注";
+            self.labStatus.text = NSLocalizedString(@"SB", nil);
             if(player.bet > 0)
             {
                 self.labBet.text = [[NSNumber numberWithInteger:player.bet] stringValue];
@@ -167,20 +193,26 @@
             //else if ()
             if(strResult == nil)
             {
-                self.labStatus.text = @"赢";
+                self.labStatus.text = NSLocalizedString(@"Win", nil);;
             }
             else
             {
                 self.labStatus.text = [NSString stringWithFormat:@"%@%@",
                                        strResult,
-                                       @" 赢"];
+                                       NSLocalizedString(@"Win", nil)];
             }
+            self.iconWinner.hidden = NO;
+        }
+        else
+        {
+            self.iconWinner.hidden = YES;
         }
     }
 }
 
 -(void)clear
 {
+    self.iconWinner.hidden = YES;
     self.betContainer.hidden = YES;
     self.userNameBg.hidden = YES;
     self.hiddenCards.hidden = YES;
@@ -198,6 +230,7 @@
     self.pokerContainer.hidden = YES;
     self.hiddenCards.hidden = YES;
     self.betContainer.hidden = YES;
+    self.iconWinner.hidden = YES;
     [self setStatusFromPlayer:player];
 }
 

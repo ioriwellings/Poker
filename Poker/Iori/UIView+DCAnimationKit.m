@@ -48,6 +48,23 @@
     [UIView commitAnimations];
 }
 
+-(void)setPoint:(CGPoint)point duration:(NSTimeInterval)time finished:(DCAnimationFinished)finished
+{
+    [UIView animateWithDuration:time animations:^{
+        CGRect frame = self.frame;
+        frame.origin = point;
+        self.frame = frame;
+    }completion:^(BOOL f){
+        if(finished && f == YES)
+            finished();
+    }];
+}
 
+-(CGPoint)getViewCenterInView:(UIView*)parentView
+{
+    CGPoint point = CGPointMake(self.frame.origin.x+self.frame.size.width/2.0,
+                       self.frame.origin.y+self.frame.size.height/2.0);
+    return [self convertPoint:point toView:parentView];
+}
 
 @end

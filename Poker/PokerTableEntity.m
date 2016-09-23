@@ -61,6 +61,7 @@ static PokerTableEntity *_instance;
 
 -(void)reset
 {
+    _tableStatus = PokerTableStatusEnumNone;
     _seats = [NSMutableArray arrayWithCapacity:10];
     _mainPots = [MainPotEntity new];
     _sidePots = [NSMutableArray arrayWithCapacity:10];
