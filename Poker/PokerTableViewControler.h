@@ -50,6 +50,7 @@
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *waittingImageViews;
 @property (strong, nonatomic) IBOutletCollection(UIView) NSArray *betPots;
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *iconWinner;
+@property (weak, nonatomic) IBOutlet UIView *MainBetView;
 
 @property (weak, nonatomic) IBOutlet UILabel *labMainBot;
 @property (weak, nonatomic) IBOutlet UILabel *labBlindBet;

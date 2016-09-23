@@ -355,6 +355,8 @@
     pokerTable.tableStatus = PokerTableStatusEnumBet;
     pokerTable.hasUpdatedHandCard = NO;
     pokerTable.mainPots.mainPot = pokerTable.sb + pokerTable.bb;
+    pokerTable.allPots = pokerTable.mainPots.mainPot;
+    pokerTable.mainPots.mainPot = 0;
     [pokerTable.mainPots.players removeAllObjects];
     [pokerTable.sidePots removeAllObjects];
     [self clearBetPots];
@@ -716,6 +718,18 @@
     {
         self.labMainBot.text = nil;
     }
+    if(pokerTable.mainPots.mainPot >0 )
+    {
+        self.MainBetView.hidden =NO;
+        UILabel *labBet = self.MainBetView.subviews[0];
+        labBet.text = [NSString getFormatedNumberByInteger:pokerTable.mainPots.mainPot];
+    }
+    else
+    {
+        self.MainBetView.hidden =YES;
+        UILabel *labBet = self.MainBetView.subviews[0];
+        labBet.text = nil;
+    }
     self.labBlindBet.text = [NSString stringWithFormat:@"盲注:%ld/%ld", pokerTable.bb, pokerTable.sb];
 }
 
@@ -935,24 +949,27 @@
 
 -(void)countBet
 {
+    __weak typeof(self) ws = self;
     [pokerTable.seats enumerateObjectsUsingBlock:^(SeatEntity * _Nonnull seat, NSUInteger idx, BOOL * _Nonnull stop)
-    {
-        UISeat *view = seat.seatView;
-        view.labBet.text = @"";
-        view.betContainer.hidden = YES;
-        if(seat.player.bet != 0)
-        {
-            //pokerTable.mainPots.mainPot += seat.player.bet;
-        }
-        seat.player.bet = 0;
-    }];
+     {
+         UISeat *view = seat.seatView;
+         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+             view.labBet.text = @"";
+             view.betContainer.hidden = YES;;
+         });
+         if(seat.player.bet != 0)
+         {
+             //pokerTable.mainPots.mainPot += seat.player.bet;
+         }
+         seat.player.bet = 0;
+     }];
     [pokerTable.sidePots enumerateObjectsUsingBlock:^(SidePotEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
-    {
-        UIView *betPot01 = self.betPots[idx];
-        betPot01.hidden = NO;
-        UILabel *labBet = betPot01.subviews[0];
-        labBet.text = [NSString getFormatedNumberByInteger:obj.bet];
-    }];
+     {
+         UIView *betPot01 = ws.betPots[idx];
+         betPot01.hidden = NO;
+         UILabel *labBet = betPot01.subviews[0];
+         labBet.text = [NSString getFormatedNumberByInteger:obj.bet];
+     }];
 }
 
 

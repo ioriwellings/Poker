@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="8Vr-3d-eY5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="YfZ-qu-XoD">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -2123,6 +2123,31 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rda-6G-QrH" userLabel="betView00">
+                                <rect key="frame" x="124" y="116" width="56" height="23"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1300" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5UJ-5E-cvK">
+                                        <rect key="frame" x="23" y="0.0" width="33" height="23"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="icon_chip_3" translatesAutoresizingMaskIntoConstraints="NO" id="I2i-wJ-zNr">
+                                        <rect key="frame" x="0.0" y="0.0" width="20" height="23"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="I2i-wJ-zNr" firstAttribute="centerY" secondItem="5UJ-5E-cvK" secondAttribute="centerY" id="5hO-oc-Qeg"/>
+                                    <constraint firstAttribute="bottom" secondItem="I2i-wJ-zNr" secondAttribute="bottom" id="AlL-Io-Q5r"/>
+                                    <constraint firstItem="5UJ-5E-cvK" firstAttribute="top" secondItem="Rda-6G-QrH" secondAttribute="top" id="Xds-kN-2zn"/>
+                                    <constraint firstAttribute="trailing" secondItem="5UJ-5E-cvK" secondAttribute="trailing" id="giz-PL-Ld8"/>
+                                    <constraint firstItem="I2i-wJ-zNr" firstAttribute="top" secondItem="Rda-6G-QrH" secondAttribute="top" id="hXr-ma-b3b"/>
+                                    <constraint firstItem="5UJ-5E-cvK" firstAttribute="leading" secondItem="I2i-wJ-zNr" secondAttribute="trailing" constant="3" id="pcL-2S-tRc"/>
+                                    <constraint firstAttribute="bottom" secondItem="5UJ-5E-cvK" secondAttribute="bottom" id="s81-Vx-hfa"/>
+                                    <constraint firstItem="I2i-wJ-zNr" firstAttribute="leading" secondItem="Rda-6G-QrH" secondAttribute="leading" id="vL7-8d-ZyA"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="92u-aB-HTk" userLabel="betView01">
                                 <rect key="frame" x="124" y="144" width="56" height="23"/>
                                 <subviews>
@@ -2362,6 +2387,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="PIk-ab-hCP" firstAttribute="top" secondItem="HrP-Tg-X0M" secondAttribute="bottom" constant="10" id="0SS-gm-cEz"/>
+                            <constraint firstItem="Rda-6G-QrH" firstAttribute="centerY" secondItem="t9K-aN-DUk" secondAttribute="centerY" id="1fv-Qs-gZH"/>
                             <constraint firstItem="GNp-fH-t8M" firstAttribute="leading" secondItem="YM9-cb-bzu" secondAttribute="leading" id="301-aP-YTR"/>
                             <constraint firstItem="e0c-uH-ris" firstAttribute="centerY" secondItem="hTr-Pc-gT1" secondAttribute="centerY" id="3tJ-xZ-b8U"/>
                             <constraint firstItem="cRY-dS-OWv" firstAttribute="centerX" secondItem="YM9-cb-bzu" secondAttribute="centerX" id="7gx-aa-Y5w"/>
@@ -2423,6 +2449,7 @@
                             <constraint firstItem="xWj-st-cox" firstAttribute="leading" secondItem="YM9-cb-bzu" secondAttribute="leading" id="sZD-Lx-POL"/>
                             <constraint firstItem="SKH-fZ-oHu" firstAttribute="leading" secondItem="vkk-zq-fan" secondAttribute="trailing" constant="3" id="sld-Du-xl9"/>
                             <constraint firstItem="SMf-ZV-PrA" firstAttribute="centerY" secondItem="YLw-Zh-Bff" secondAttribute="centerY" id="uaG-Jv-TcT"/>
+                            <constraint firstItem="Rda-6G-QrH" firstAttribute="trailing" secondItem="92u-aB-HTk" secondAttribute="trailing" id="udB-Ib-lKV"/>
                             <constraint firstItem="YLw-Zh-Bff" firstAttribute="leading" secondItem="SMf-ZV-PrA" secondAttribute="trailing" constant="10" id="waR-Yh-UF8"/>
                             <constraint firstItem="TaF-UL-eGa" firstAttribute="centerY" secondItem="dor-jS-i51" secondAttribute="centerY" id="wyW-c2-VwY"/>
                             <constraint firstItem="7sy-oD-3IM" firstAttribute="centerY" secondItem="wHA-pQ-mAp" secondAttribute="centerY" multiplier="1.54" id="xGy-9V-pOP"/>
@@ -2435,6 +2462,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="MainBetView" destination="Rda-6G-QrH" id="jyU-Sl-3tS"/>
                         <outlet property="btnAllIn" destination="YLw-Zh-Bff" id="3DX-8M-oPz"/>
                         <outlet property="btnCall" destination="HrP-Tg-X0M" id="pjj-Qr-CXL"/>
                         <outlet property="btnCheck" destination="ieI-kC-AoY" id="vBY-tr-o8S"/>
