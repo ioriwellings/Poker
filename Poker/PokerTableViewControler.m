@@ -297,6 +297,14 @@
     [self updateTableInfoUI];
 }
 
+
+-(void)showStartButton
+{
+    if(pokerTable.tableStatus == PokerTableStatusEnumNone && arrayPlayer.count == 1)
+    {
+        self.maskContainer.hidden = NO;
+    }
+}
 -(void)onSitDown:(NSDictionary*)dict
 {
     NSDictionary *player = [IoriJsonHelper getDictForKey:@"observerPlayerList" fromDict:dict];
@@ -317,10 +325,7 @@
     PlayerEntity *playerObj = [self getPlayerFromDictionary:[IoriJsonHelper getDictForKey:@"playerList" fromDict:dict]];
     //    playerObj.iSeatIndex =
     [arrayPlayer addObject:playerObj];
-    if(pokerTable.tableStatus == PokerTableStatusEnumNone && arrayPlayer.count == 1)
-    {
-        self.maskContainer.hidden = NO;
-    }
+    [self showStartButton];
     [self player2Seat];
     [self updateTableInfoUI];
 }
@@ -504,18 +509,24 @@
 {
     [self setNextActionPlayerFromDict:dict];
     PlayerEntity *kicter = [self getPlayerFromDictionary:[IoriJsonHelper getDictForKey:@"playerList" fromDict:dict]];
+    __block __weak PlayerEntity *playerSelf = nil;
     [arrayPlayer enumerateObjectsUsingBlock:^(PlayerEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
     {
         if(kicter.playerID == obj.playerID)
         {
             [arrayPlayer removeObject:obj];
-            *stop = YES;
+            //*stop = YES;
+        }
+        if(obj.playerID == [UserInfo sharedUser].userID)
+        {
+            playerSelf = obj;
         }
     }];
-    if(pokerTable.tableStatus == PokerTableStatusEnumNone && arrayPlayer.count == 1)
+    if(playerSelf.iSeatIndex == [IoriJsonHelper getIntegerForKey:@"gameStartMaster" fromDict:dict])
     {
-        self.maskContainer.hidden = NO;
+        [self showStartButton];
     }
+    [self showStartButton];
     [self player2Seat];
     [self updateTableInfoUI];
 }
