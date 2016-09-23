@@ -11,4 +11,5 @@
 
 #define PK_FONT_A "fonts/TT0248M_.TTF"
 #define PK_FONT_B "fonts/TT0249M_.TTF"
+#define ip
 #endif /* config_h */
