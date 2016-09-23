@@ -172,9 +172,16 @@
 		89EB0BCD1D5860280064CF3D /* MainPotEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EB0BCC1D5860280064CF3D /* MainPotEntity.m */; };
 		89EB0BD01D58789C0064CF3D /* UISeat.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EB0BCF1D58789C0064CF3D /* UISeat.m */; };
 		89F6BF0A1D659C780061C922 /* RoomEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F6BF091D659C780061C922 /* RoomEntity.m */; };
+		A5047BB71D952B4800BC0C7C /* PKlobbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5047BB61D952B4800BC0C7C /* PKlobbyViewController.m */; };
+		A5047BBA1D952BAD00BC0C7C /* PKlobbyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5047BB91D952BAD00BC0C7C /* PKlobbyCell.m */; };
+		A547C7D51D938B4100B8A6A0 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = A547C7D41D938B4100B8A6A0 /* LoginView.m */; };
 		A59514951D927689006FFFF6 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A59514941D927689006FFFF6 /* Login.storyboard */; };
 		A59514A11D9282B4006FFFF6 /* TT0248M_.TTF in Resources */ = {isa = PBXBuildFile; fileRef = A595149F1D9282B4006FFFF6 /* TT0248M_.TTF */; };
 		A59514A21D9282B4006FFFF6 /* TT0249M_.TTF in Resources */ = {isa = PBXBuildFile; fileRef = A59514A01D9282B4006FFFF6 /* TT0249M_.TTF */; };
+		A5960F0A1D93C6610057BAE7 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5960F091D93C6610057BAE7 /* RegisterViewController.m */; };
+		A5960F0E1D93C8940057BAE7 /* PKViewTransfer.m in Sources */ = {isa = PBXBuildFile; fileRef = A5960F0D1D93C8940057BAE7 /* PKViewTransfer.m */; };
+		A5960F111D93CCC20057BAE7 /* GloubVariables.m in Sources */ = {isa = PBXBuildFile; fileRef = A5960F101D93CCC20057BAE7 /* GloubVariables.m */; };
+		A5DB2F821D94D3C3007ABD7A /* PkMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB2F811D94D3C3007ABD7A /* PkMainViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -458,10 +465,24 @@
 		89EB0BCF1D58789C0064CF3D /* UISeat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISeat.m; sourceTree = "<group>"; };
 		89F6BF081D659C780061C922 /* RoomEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomEntity.h; sourceTree = "<group>"; };
 		89F6BF091D659C780061C922 /* RoomEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomEntity.m; sourceTree = "<group>"; };
+		A5047BB51D952B4800BC0C7C /* PKlobbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKlobbyViewController.h; sourceTree = "<group>"; };
+		A5047BB61D952B4800BC0C7C /* PKlobbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKlobbyViewController.m; sourceTree = "<group>"; };
+		A5047BB81D952BAD00BC0C7C /* PKlobbyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKlobbyCell.h; sourceTree = "<group>"; };
+		A5047BB91D952BAD00BC0C7C /* PKlobbyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKlobbyCell.m; sourceTree = "<group>"; };
+		A547C7D31D938B4100B8A6A0 /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
+		A547C7D41D938B4100B8A6A0 /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		A59514941D927689006FFFF6 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		A595149D1D92820E006FFFF6 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		A595149F1D9282B4006FFFF6 /* TT0248M_.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = TT0248M_.TTF; sourceTree = "<group>"; };
 		A59514A01D9282B4006FFFF6 /* TT0249M_.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = TT0249M_.TTF; sourceTree = "<group>"; };
+		A5960F081D93C6610057BAE7 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		A5960F091D93C6610057BAE7 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		A5960F0C1D93C8940057BAE7 /* PKViewTransfer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKViewTransfer.h; sourceTree = "<group>"; };
+		A5960F0D1D93C8940057BAE7 /* PKViewTransfer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKViewTransfer.m; sourceTree = "<group>"; };
+		A5960F0F1D93CCC20057BAE7 /* GloubVariables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GloubVariables.h; sourceTree = "<group>"; };
+		A5960F101D93CCC20057BAE7 /* GloubVariables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GloubVariables.m; sourceTree = "<group>"; };
+		A5DB2F801D94D3C3007ABD7A /* PkMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PkMainViewController.h; sourceTree = "<group>"; };
+		A5DB2F811D94D3C3007ABD7A /* PkMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PkMainViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -506,6 +527,7 @@
 		891C0F021D5443080075A228 /* Poker */ = {
 			isa = PBXGroup;
 			children = (
+				A5047BB41D952ADF00BC0C7C /* gamelobby */,
 				A59514961D9277D1006FFFF6 /* login */,
 				894998CE1D8E57740001DD42 /* IQKeyboardManager */,
 				8939DDAF1D8658B100D67CC1 /* IoriProgressView */,
@@ -526,6 +548,10 @@
 				899638161D81468200A05D8A /* LoginViewController.m */,
 				894DE64B1D795E6000F18876 /* PokerTableViewControler.h */,
 				894DE64C1D795E6000F18876 /* PokerTableViewControler.m */,
+				A5960F0C1D93C8940057BAE7 /* PKViewTransfer.h */,
+				A5960F0D1D93C8940057BAE7 /* PKViewTransfer.m */,
+				A5960F0F1D93CCC20057BAE7 /* GloubVariables.h */,
+				A5960F101D93CCC20057BAE7 /* GloubVariables.m */,
 				891C0F0C1D5443080075A228 /* Main.storyboard */,
 				A59514941D927689006FFFF6 /* Login.storyboard */,
 				891C0F0F1D5443080075A228 /* Assets.xcassets */,
@@ -939,9 +965,26 @@
 			path = SocketRocket;
 			sourceTree = "<group>";
 		};
+		A5047BB41D952ADF00BC0C7C /* gamelobby */ = {
+			isa = PBXGroup;
+			children = (
+				A5047BB51D952B4800BC0C7C /* PKlobbyViewController.h */,
+				A5047BB61D952B4800BC0C7C /* PKlobbyViewController.m */,
+				A5047BB81D952BAD00BC0C7C /* PKlobbyCell.h */,
+				A5047BB91D952BAD00BC0C7C /* PKlobbyCell.m */,
+			);
+			name = gamelobby;
+			sourceTree = "<group>";
+		};
 		A59514961D9277D1006FFFF6 /* login */ = {
 			isa = PBXGroup;
 			children = (
+				A5DB2F801D94D3C3007ABD7A /* PkMainViewController.h */,
+				A5DB2F811D94D3C3007ABD7A /* PkMainViewController.m */,
+				A547C7D31D938B4100B8A6A0 /* LoginView.h */,
+				A547C7D41D938B4100B8A6A0 /* LoginView.m */,
+				A5960F081D93C6610057BAE7 /* RegisterViewController.h */,
+				A5960F091D93C6610057BAE7 /* RegisterViewController.m */,
 			);
 			name = login;
 			sourceTree = "<group>";
@@ -1083,6 +1126,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8939DDAB1D864A3700D67CC1 /* SDPieLoopProgressView.m in Sources */,
+				A5DB2F821D94D3C3007ABD7A /* PkMainViewController.m in Sources */,
 				894998FC1D8E57740001DD42 /* IQTextView.m in Sources */,
 				89EB0BD01D58789C0064CF3D /* UISeat.m in Sources */,
 				8939DDC11D868C2F00D67CC1 /* UIImageView+ProgressMask.m in Sources */,
@@ -1098,20 +1142,24 @@
 				8983BB211D6ECA5D00B38455 /* DGActivityIndicatorTriplePulseAnimation.m in Sources */,
 				8939DDBE1D8658B100D67CC1 /* IoriVerticalBar.m in Sources */,
 				891C0F0B1D5443080075A228 /* ViewController.m in Sources */,
+				A5960F0A1D93C6610057BAE7 /* RegisterViewController.m in Sources */,
 				891C0F1D1D5478CD0075A228 /* CardHelper.m in Sources */,
 				891C0F391D5479510075A228 /* MASConstraint.m in Sources */,
 				891C0F411D5479510075A228 /* ViewController+MASAdditions.m in Sources */,
+				A5047BB71D952B4800BC0C7C /* PKlobbyViewController.m in Sources */,
 				89CB2E361D62FEE500FB37A5 /* SocketIOTransportWebsocket.m in Sources */,
 				89EB0BCA1D585FFD0064CF3D /* SidePotEntity.m in Sources */,
 				8939DDBC1D8658B100D67CC1 /* IoriCircleProgress.m in Sources */,
 				8939DDBD1D8658B100D67CC1 /* IoriCircleProgressLayer.m in Sources */,
 				8983BB0E1D6ECA5D00B38455 /* DGActivityIndicatorBallScaleRippleAnimation.m in Sources */,
+				A5960F111D93CCC20057BAE7 /* GloubVariables.m in Sources */,
 				89CB2E381D62FEE500FB37A5 /* base64.c in Sources */,
 				894998F91D8E57740001DD42 /* IQUIWindow+Hierarchy.m in Sources */,
 				894998FE1D8E57740001DD42 /* IQPreviousNextView.m in Sources */,
 				894998F61D8E57740001DD42 /* IQUITextFieldView+Additions.m in Sources */,
 				89EB0BBB1D5819420064CF3D /* PokerEntity.m in Sources */,
 				89EB0BC41D58588E0064CF3D /* PokerHandsEntity.m in Sources */,
+				A5960F0E1D93C8940057BAE7 /* PKViewTransfer.m in Sources */,
 				894999011D8E57740001DD42 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				8983BB041D6ECA5D00B38455 /* DGActivityIndicatorBallClipRotateAnimation.m in Sources */,
 				894998FF1D8E57740001DD42 /* IQTitleBarButtonItem.m in Sources */,
@@ -1148,6 +1196,7 @@
 				891C0F401D5479510075A228 /* View+MASAdditions.m in Sources */,
 				8939DDAE1D864A3700D67CC1 /* SDTransparentPieProgressView.m in Sources */,
 				8939DDAC1D864A3700D67CC1 /* SDPieProgressView.m in Sources */,
+				A5047BBA1D952BAD00BC0C7C /* PKlobbyCell.m in Sources */,
 				8983BB131D6ECA5D00B38455 /* DGActivityIndicatorBallZigZagDeflectAnimation.m in Sources */,
 				8983BB0D1D6ECA5D00B38455 /* DGActivityIndicatorBallScaleMultipleAnimation.m in Sources */,
 				8983BB161D6ECA5D00B38455 /* DGActivityIndicatorFiveDotsAnimation.m in Sources */,
@@ -1166,6 +1215,7 @@
 				894998FB1D8E57740001DD42 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				89CB2E331D62FEE500FB37A5 /* SocketIO.m in Sources */,
 				8939DDBB1D8658B100D67CC1 /* IoriCircleLayerView.m in Sources */,
+				A547C7D51D938B4100B8A6A0 /* LoginView.m in Sources */,
 				8983BB031D6ECA5D00B38455 /* DGActivityIndicatorBallBeatAnimation.m in Sources */,
 				8983BB121D6ECA5D00B38455 /* DGActivityIndicatorBallZigZagAnimation.m in Sources */,
 				891C0F081D5443080075A228 /* AppDelegate.m in Sources */,
