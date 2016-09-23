@@ -142,10 +142,10 @@
 }
 
 //delegate
--(id<CAAction>)actionForLayer:(CALayer *)layer forKey:(NSString *)event
-{
-    NSLog(@"%s", __FUNCTION__);
-    return [super actionForLayer:layer forKey:event];
-}
+//-(id<CAAction>)actionForLayer:(CALayer *)layer forKey:(NSString *)event
+//{
+//    NSLog(@"%s", __FUNCTION__);
+//    return [super actionForLayer:layer forKey:event];
+//}
 
 @end
