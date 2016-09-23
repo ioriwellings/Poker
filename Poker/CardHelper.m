@@ -63,7 +63,9 @@ static CardHelper* __helper = nil; //仅模块内使用
         PokerEntity *poker = [PokerEntity new];
         poker.numberValue = num;
         poker.pokerSuit = suit;
-        ((UIImageView*)view).image = [self getImageByPoker:poker];
+        UIImageView *imageView = (UIImageView*)view;
+        imageView.image = nil;
+        imageView.image = [self getImageByPoker:poker];
         return;
     }
     UILabel *labNum = [UILabel new];

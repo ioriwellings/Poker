@@ -13,6 +13,8 @@
 #import "UserInfo.h"
 #import "IoriJsonHelper.h"
 #import "UIImageView+ProgressMask.h"
+#import "NSString+Addition.h"
+
 
 @interface PokerTableViewControler : UIViewController <PomeloDelegate, PokerTableUpdateUIDelegate>
 {
@@ -47,15 +49,21 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *btnSits;
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *waittingImageViews;
 @property (strong, nonatomic) IBOutletCollection(UIView) NSArray *betPots;
+@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *iconWinner;
 
 @property (weak, nonatomic) IBOutlet UILabel *labMainBot;
 @property (weak, nonatomic) IBOutlet UILabel *labBlindBet;
 @property (weak, nonatomic) IBOutlet UITextField *txtRaise;
 @property (weak, nonatomic) IBOutlet UILabel *labAllIn;
 @property (weak, nonatomic) IBOutlet UILabel *labCardType;
+@property (weak, nonatomic) IBOutlet UISlider *slider;
+@property (weak, nonatomic) IBOutlet UIImageView *sliderBG;
+@property (weak, nonatomic) IBOutlet UILabel *labRaise;
+@property (weak, nonatomic) IBOutlet UIView *sliderContainer;
+@property (weak, nonatomic) IBOutlet UIView *maskContainer;
+
 
 - (IBAction)btnSit_click:(UIButton *)sender;
-
 - (IBAction)btnMenu_click:(UIButton *)sender;
 - (IBAction)btnMore_click:(UIButton *)sender;
 - (IBAction)btnCheck_click:(UIButton *)sender;
@@ -63,5 +71,6 @@
 - (IBAction)btnRaise_click:(UIButton *)sender;
 - (IBAction)btnAllin_click:(UIButton *)sender;
 - (IBAction)btnFold_click:(UIButton *)sender;
+- (IBAction)slider_valueChanged:(UISlider *)sender;
 
 @end

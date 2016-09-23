@@ -24,12 +24,15 @@
 @property (nonatomic, weak) UIView *pokerContainer;
 @property (nonatomic, weak) UIView *poker00;
 @property (nonatomic, weak) UIView *poker01;
+@property (nonatomic, weak) UIImageView *iconWinner;
 @property (nonatomic, weak) UIImageView *iconDelear;
 @property (nonatomic, weak) UIImageView *waittingView;
+@property (nonatomic, weak) UIImageView *iconChip;
 @property (nonatomic, weak) UIButton *btnCheck;
 @property (nonatomic, weak) UIButton *btnCall;
 @property (nonatomic, weak) UIButton *btnRaise;
-@property (nonatomic, weak) UITextField *txtRaise;
+@property (nonatomic, weak) UILabel *labRaise;
+@property (nonatomic, weak) UISlider *slider;
 @property (nonatomic, weak) UIButton *btnAllIn;
 @property (nonatomic, weak) UIButton *btnFold;
 @property (nonatomic, weak) UILabel *labAllIn;

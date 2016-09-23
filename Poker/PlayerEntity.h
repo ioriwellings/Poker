@@ -49,5 +49,6 @@ typedef NS_ENUM(NSUInteger, PokerActionStatusEnum)
 @property (nonatomic, copy) NSString *imageHead;
 @property (nonatomic, strong, readonly) PokerHandsEntity *handCard;
 @property (nonatomic, assign) PokerActionStatusEnum actionStatus;
+@property (nonatomic, assign) BOOL isDirty;
 
 @end

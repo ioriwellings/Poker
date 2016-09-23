@@ -12,6 +12,8 @@
 #import "UISeat.h"
 #import "UserInfo.h"
 #import "UIImageView+ProgressMask.h"
+#import "NSString+AudioFile.h"
+#import "NSString+Addition.h"
 
 @interface SeatEntity ()
 {
@@ -21,6 +23,11 @@
 @end
 
 @implementation SeatEntity
+
+-(void)playOnTurn
+{
+    [@"dongdong.wav" playSoundEffect];
+}
 
 -(void)clearSeat
 {
@@ -38,6 +45,7 @@
         }
         if([[UserInfo sharedUser].userID isEqualToString:self.player.playerID])
         {
+            [self performSelector:@selector(playOnTurn) withObject:nil afterDelay:.6];
             [self displayActionButtons];
         }
     }
@@ -51,7 +59,7 @@
 
 -(void)displayWaittingView
 {
-    self.seatView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:.4];
+//    self.seatView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:.4];
     self.seatView.waittingView.hidden = NO;
     [self updateWaittingView];
     //updateWaittingTimer = [NSTimer scheduledTimerWithTimeInterval:.2 target:self selector:@selector(updateWaittingView) userInfo:nil repeats:YES];
@@ -129,7 +137,7 @@
     self.seatView.btnCall.enabled = NO;
     self.seatView.btnCheck.enabled = NO;
     self.seatView.btnAllIn.enabled = NO;
-    self.seatView.txtRaise.text = nil;
+    self.seatView.labRaise.text = nil;
     self.seatView.labAllIn.text = nil;
 
     //only call, fold.
@@ -147,7 +155,10 @@
     if (hasRaiseAction)
     {
         self.seatView.btnRaise.enabled = YES;
-        self.seatView.txtRaise.text = [[NSNumber numberWithInteger: raiseValue] stringValue];
+        self.seatView.labRaise.text = [NSString getFormatedNumberByInteger:raiseValue];
+        self.seatView.slider.minimumValue = raiseValue;
+        self.seatView.slider.value = raiseValue;
+        self.seatView.slider.maximumValue = self.player.bringInMoney;
         self.seatView.labAllIn.text = [[NSNumber numberWithInteger:allInValue] stringValue];
     }
     if(hasAllIn)

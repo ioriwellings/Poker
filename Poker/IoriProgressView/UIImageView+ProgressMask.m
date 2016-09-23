@@ -42,7 +42,7 @@
     anim.removedOnCompletion = YES;
     anim.autoreverses = NO;
     anim.fromValue = [NSNumber numberWithFloat:0.0];
-    anim.duration = 5;
+    anim.duration = 15;
     anim.byValue = [NSNumber numberWithFloat: .5];
     anim.toValue = [NSNumber numberWithFloat:100/100.0];
     anim.delegate = ws;
