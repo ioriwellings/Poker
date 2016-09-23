@@ -99,6 +99,10 @@
         self.labBet.text = nil;
         self.betContainer.hidden = YES;
     }
+    else
+    {
+        self.labBet.text = [NSString getFormatedNumberByInteger:player.bet];
+    }
     
     if(player.actionStatus == PokerActionStatusEnumFold)
     {
@@ -113,7 +117,7 @@
     else if (player.actionStatus == PokerActionStatusEnumCall)
     {
         self.labStatus.text = NSLocalizedString(@"Call", nil);
-        self.betContainer.hidden = NO;
+        if(player.bet >0 ) self.betContainer.hidden = NO;
         [self flyChipAnimation];
     }
     else if (player.actionStatus == PokerActionStatusEnumRaise)
@@ -122,15 +126,13 @@
         if(player.bet>0)
         {
             self.betContainer.hidden = NO;
-            self.labBet.text = [NSString getFormatedNumberByInteger:player.bet];
             [self flyChipAnimation];
         }
     }
     else if (player.actionStatus == PokerActionStatusEnumAllIn)
     {
         self.labStatus.text = NSLocalizedString(@"AllIn", nil);;
-        self.betContainer.hidden = NO;
-        self.labBet.text = [NSString getFormatedNumberByInteger:player.bet];
+        if(player.bet >0 ) self.betContainer.hidden = NO;
         [self flyChipAnimation];
     }
     else if(player.actionStatus == PokerActionStatusEnumWaitingBet)
@@ -157,7 +159,6 @@
         self.labStatus.text = NSLocalizedString(@"BB", nil);;
         if(player.bet>0)
         {
-            self.labBet.text = [[NSNumber numberWithInteger:player.bet] stringValue];
             self.betContainer.hidden = NO;
         }
     }
@@ -169,7 +170,6 @@
             self.labStatus.text = NSLocalizedString(@"BB", nil);
             if(player.bet >0 )
             {
-                self.labBet.text = [[NSNumber numberWithInteger:player.bet] stringValue];
                 self.betContainer.hidden = NO;
             }
         }
@@ -178,7 +178,6 @@
             self.labStatus.text = NSLocalizedString(@"SB", nil);
             if(player.bet > 0)
             {
-                self.labBet.text = [[NSNumber numberWithInteger:player.bet] stringValue];
                 self.betContainer.hidden = NO;
             }
         }
@@ -292,7 +291,6 @@
                  }
              }];
             [self.poker00 flip:^{[self.poker01 flip:nil delay:0];} delay:0];
-            
         }
     }
 }

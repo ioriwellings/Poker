@@ -27,7 +27,7 @@
     self.alpha = 0;
     [UIView animateWithDuration:.65 delay:interval options:0 animations:^{
         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self cache:YES];
+        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self cache:NO];
         self.alpha = 1;
     } completion:^(BOOL flag)
     {

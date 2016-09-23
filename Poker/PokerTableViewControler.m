@@ -325,7 +325,17 @@
     PlayerEntity *playerObj = [self getPlayerFromDictionary:[IoriJsonHelper getDictForKey:@"playerList" fromDict:dict]];
     //    playerObj.iSeatIndex =
     [arrayPlayer addObject:playerObj];
-    if(playerObj.playerID == [UserInfo sharedUser].userID)
+    
+    __block PlayerEntity *playerSelf = nil;
+    [arrayPlayer enumerateObjectsUsingBlock:^(PlayerEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
+     {
+         if([obj.playerID isEqualToString:[UserInfo sharedUser].userID])
+         {
+             playerSelf = obj;
+             *stop = YES;
+         }
+     }];
+    if(playerSelf.iSeatIndex == [IoriJsonHelper getIntegerForKey:@"gameStartMaster" fromDict:dict])
     {
         [self showStartButton];
     }
@@ -755,6 +765,14 @@
         {
             [subView removeFromSuperview];
         }];
+    }];
+    [self.handCardContainer enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
+    {
+        UIView *view = (UIView*)obj;
+        UIImageView *imageView = (UIImageView*)view.subviews[0];
+        imageView.image = nil;
+        imageView = (UIImageView*)view.subviews[1];
+        imageView.image = nil;
     }];
     [pokerTable.communityCards removeAllObjects];
 }

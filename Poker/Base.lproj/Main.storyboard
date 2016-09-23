@@ -724,7 +724,6 @@
                                     <constraint firstItem="gMC-Jo-4mC" firstAttribute="centerY" secondItem="cRY-dS-OWv" secondAttribute="centerY" id="5jw-0r-96k"/>
                                     <constraint firstItem="cRY-dS-OWv" firstAttribute="top" secondItem="6wC-GQ-Pb2" secondAttribute="bottom" constant="-11" id="6eY-eS-6g5"/>
                                     <constraint firstItem="GjO-lk-GxJ" firstAttribute="centerX" secondItem="cRY-dS-OWv" secondAttribute="centerX" id="6qy-QE-11K"/>
-                                    <constraint firstItem="sRL-Qc-bsh" firstAttribute="width" secondItem="cRY-dS-OWv" secondAttribute="width" id="Avc-EZ-QkP"/>
                                     <constraint firstItem="bw3-pc-ydF" firstAttribute="bottom" secondItem="CBQ-4s-gBm" secondAttribute="bottom" id="B2p-sL-eZu"/>
                                     <constraint firstItem="zWe-gv-CAE" firstAttribute="bottom" secondItem="CBQ-4s-gBm" secondAttribute="bottom" id="CBu-QP-ufX"/>
                                     <constraint firstAttribute="bottom" secondItem="CBQ-4s-gBm" secondAttribute="bottom" id="CFW-jS-jOi"/>
@@ -748,11 +747,6 @@
                                     <constraint firstItem="6wC-GQ-Pb2" firstAttribute="leading" secondItem="7sy-oD-3IM" secondAttribute="leading" id="zmM-fC-uWB"/>
                                     <constraint firstItem="VK4-it-7UO" firstAttribute="top" secondItem="DDv-1x-jf8" secondAttribute="bottom" constant="-2" id="zzp-ho-8XB"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="Avc-EZ-QkP"/>
-                                    </mask>
-                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mdg-es-mvg" userLabel="seatView01" customClass="UISeat">
                                 <rect key="frame" x="93" y="179" width="121" height="86"/>
