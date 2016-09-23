@@ -8,6 +8,8 @@
 
 #import "PKlobbyViewController.h"
 #import "PKlobbyCell.h"
+#import "UserInfo.h"
+#import "PokerTableViewControler.h"
 
 @implementation PKlobbyViewController
 - (void)viewDidLoad {
@@ -55,7 +57,14 @@
     NSString *roomID = [NSString stringWithFormat:@"%@",[rowData objectForKey:@"roomID"]];
     NSLog(@"roomID ==== %@",roomID);
 //    __weak typeof(self) weakSelf = self;
-
+    //创建
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    // 读取账户
+    NSString * playerNickName = [userDefaults objectForKey:@"playerNickName"];
+    [UserInfo sharedUser].userID = playerNickName;
+    [UserInfo sharedUser].roomName = roomID;
+    PokerTableViewControler *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
+    [self presentViewController:vc animated:YES completion:NULL];
 }
 
 -(void)getdata{
