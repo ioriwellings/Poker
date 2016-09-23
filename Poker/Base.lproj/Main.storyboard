@@ -635,7 +635,7 @@
                                             <action selector="btnSit_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="RcW-rf-oe0"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRL-Qc-bsh">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRL-Qc-bsh">
                                         <rect key="frame" x="19" y="27" width="37" height="37"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -748,6 +748,11 @@
                                     <constraint firstItem="6wC-GQ-Pb2" firstAttribute="leading" secondItem="7sy-oD-3IM" secondAttribute="leading" id="zmM-fC-uWB"/>
                                     <constraint firstItem="VK4-it-7UO" firstAttribute="top" secondItem="DDv-1x-jf8" secondAttribute="bottom" constant="-2" id="zzp-ho-8XB"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Avc-EZ-QkP"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mdg-es-mvg" userLabel="seatView01" customClass="UISeat">
                                 <rect key="frame" x="93" y="179" width="121" height="86"/>
@@ -790,7 +795,7 @@
                                             <action selector="btnSit_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="EaH-wx-YQX"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KCA-D9-Ts0">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KCA-D9-Ts0">
                                         <rect key="frame" x="19" y="27" width="37" height="37"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -903,6 +908,11 @@
                                     <constraint firstAttribute="bottom" secondItem="KA5-Yb-Dld" secondAttribute="bottom" id="zhl-G0-pL0"/>
                                     <constraint firstItem="87j-Rf-LuB" firstAttribute="bottom" secondItem="KA5-Yb-Dld" secondAttribute="bottom" id="zob-ye-DkC"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="B8Y-Fc-ir2"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fnv-oh-cJC" userLabel="seatView02" customClass="UISeat">
                                 <rect key="frame" x="1" y="114" width="121" height="66"/>
@@ -945,7 +955,7 @@
                                             <action selector="btnSit_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="7MJ-gk-8bE"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDo-eC-ScZ">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDo-eC-ScZ">
                                         <rect key="frame" x="19" y="7" width="37" height="37"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1058,6 +1068,11 @@
                                     <constraint firstItem="ks5-jl-bnA" firstAttribute="leading" secondItem="VAW-Ew-miv" secondAttribute="trailing" id="xJF-vt-bcf"/>
                                     <constraint firstAttribute="trailing" secondItem="ks5-jl-bnA" secondAttribute="trailing" id="zdm-wR-vnr"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="DXZ-rc-pUi"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="87x-qG-yQ5" userLabel="seatView03" customClass="UISeat">
                                 <rect key="frame" x="62" y="29" width="121" height="86"/>
@@ -1255,7 +1270,7 @@
                                             <action selector="btnSit_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="Yom-Zh-Xph"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qds-Wm-lqt">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qds-Wm-lqt">
                                         <rect key="frame" x="19" y="4" width="37" height="37"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1368,6 +1383,11 @@
                                     <constraint firstItem="qds-Wm-lqt" firstAttribute="height" secondItem="JUI-6X-09R" secondAttribute="height" id="trv-3B-HdL"/>
                                     <constraint firstItem="A49-LX-wMc" firstAttribute="centerX" secondItem="JUI-6X-09R" secondAttribute="centerX" id="y4n-pE-9PD"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="UZX-xo-chU"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IAO-N6-SCy" userLabel="seatView05" customClass="UISeat">
                                 <rect key="frame" x="309" y="29" width="121" height="86"/>
@@ -1410,7 +1430,7 @@
                                             <action selector="btnSit_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="eZb-2Q-JHu"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dnt-fS-Zbe">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dnt-fS-Zbe">
                                         <rect key="frame" x="19" y="4" width="37" height="37"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1523,6 +1543,11 @@
                                     <constraint firstItem="hoP-eK-g2d" firstAttribute="centerY" secondItem="y3T-uG-Um6" secondAttribute="centerY" id="v0T-pD-4os"/>
                                     <constraint firstItem="y3T-uG-Um6" firstAttribute="top" secondItem="6hp-SC-pBr" secondAttribute="bottom" constant="-11" id="wxq-ex-ARY"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Zzy-TH-Jtu"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="arm-u1-iK2" userLabel="seatView06" customClass="UISeat">
                                 <rect key="frame" x="440" y="29" width="121" height="86"/>
@@ -1565,7 +1590,7 @@
                                             <action selector="btnSit_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="wZJ-FH-gQt"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kFt-Ez-Ucw">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kFt-Ez-Ucw">
                                         <rect key="frame" x="19" y="4" width="37" height="37"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1678,6 +1703,11 @@
                                     <constraint firstItem="Pfe-eI-1TC" firstAttribute="bottom" secondItem="DGV-2Y-RyT" secondAttribute="bottom" id="xs0-gY-LSn"/>
                                     <constraint firstItem="m9Z-mR-0Q3" firstAttribute="centerX" secondItem="DGV-2Y-RyT" secondAttribute="centerX" id="yVF-Bx-PTj"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="XnN-2G-na6"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NNv-Sw-hhI" userLabel="seatView07" customClass="UISeat">
                                 <rect key="frame" x="451" y="114" width="112" height="66"/>
@@ -1720,7 +1750,7 @@
                                             <action selector="btnSit_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="Zso-20-rCp"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1a-ax-G9j">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1a-ax-G9j">
                                         <rect key="frame" x="64" y="7" width="37" height="37"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1833,6 +1863,11 @@
                                     <constraint firstItem="SdM-5g-b9q" firstAttribute="bottom" secondItem="2Ug-Uc-f70" secondAttribute="bottom" id="th2-vo-OU3"/>
                                     <constraint firstItem="Rha-Fp-4Cx" firstAttribute="top" secondItem="vo6-F6-faB" secondAttribute="bottom" constant="-2" id="v14-Xf-lFX"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="GCe-8C-gkl"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ad-oP-R9v" userLabel="seatView08" customClass="UISeat">
                                 <rect key="frame" x="416" y="179" width="121" height="86"/>
@@ -1875,7 +1910,7 @@
                                             <action selector="btnSit_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="TAt-O0-kSA"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KvB-jH-vuJ">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KvB-jH-vuJ">
                                         <rect key="frame" x="19" y="27" width="37" height="37"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1988,6 +2023,11 @@
                                     <constraint firstItem="KvB-jH-vuJ" firstAttribute="width" secondItem="kwE-Ep-WFT" secondAttribute="width" id="xBI-i5-2ge"/>
                                     <constraint firstItem="WOi-Su-Sl3" firstAttribute="bottom" secondItem="ILk-dJ-urM" secondAttribute="bottom" id="xGI-JB-P4S"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="xBI-i5-2ge"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wHA-pQ-mAp" userLabel="commCardContainer">
                                 <rect key="frame" x="160" y="101" width="249" height="86"/>

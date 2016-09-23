@@ -325,7 +325,10 @@
     PlayerEntity *playerObj = [self getPlayerFromDictionary:[IoriJsonHelper getDictForKey:@"playerList" fromDict:dict]];
     //    playerObj.iSeatIndex =
     [arrayPlayer addObject:playerObj];
-    [self showStartButton];
+    if(playerObj.playerID == [UserInfo sharedUser].userID)
+    {
+        [self showStartButton];
+    }
     [self player2Seat];
     [self updateTableInfoUI];
 }
@@ -998,6 +1001,7 @@
 
 - (IBAction)btnCheck_click:(UIButton *)sender
 {
+    self.sliderContainer.hidden = YES;
     [pomelo requestWithRoute:@"game.gameHandler.check" andParams:@{} andCallback:^(id callback) {
         ;
     }];
@@ -1005,6 +1009,7 @@
 
 - (IBAction)btnCall_click:(UIButton *)sender
 {
+    self.sliderContainer.hidden = YES;
     [pomelo requestWithRoute:@"game.gameHandler.call" andParams:@{} andCallback:^(id callback) {
         ;
     }];
@@ -1035,6 +1040,7 @@ static BOOL isRaiseClicked;
 
 - (IBAction)btnAllin_click:(UIButton *)sender
 {
+    self.sliderContainer.hidden = YES;
     [pomelo requestWithRoute:@"game.gameHandler.allIn" andParams:@{} andCallback:^(id callback) {
         ;
     }];
@@ -1042,6 +1048,7 @@ static BOOL isRaiseClicked;
 
 - (IBAction)btnFold_click:(UIButton *)sender
 {
+    self.sliderContainer.hidden = YES;
     [pomelo requestWithRoute:@"game.gameHandler.fold" andParams:@{} andCallback:^(id callback) {
         ;
     }];
@@ -1058,15 +1065,5 @@ static BOOL isRaiseClicked;
     [pomelo requestWithRoute:@"game.gameHandler.gameStart" andParams:@{} andCallback:^(id callback) {
         
     }];
-}
-
-- (IBAction)btnCheck2_click:(UIButton *)sender
-{
-    [pomelo requestWithRoute:@"game.gameHandler.playerAction"
-                   andParams:@{@"playerID":@"112211",
-                               @"actionType":@(PokerActionEnumCheck)} andCallback:^(id callback)
-     {
-         ;
-     }];
 }
 @end
