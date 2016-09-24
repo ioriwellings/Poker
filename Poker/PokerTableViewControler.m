@@ -1009,15 +1009,20 @@
     [super viewDidAppear:animated];
 }
 
+-(BOOL)shouldAutorotate
+{
+    return YES;
+}
+
 -(UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskLandscape;
 }
 
--(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
-{
-    return UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;
-}
+//-(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+//{
+//    return UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;
+//}
 
 -(void)dealloc
 {

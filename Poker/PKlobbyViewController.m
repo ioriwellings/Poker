@@ -19,7 +19,10 @@
     [self.historyTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     NSString * moneyQWE = [GloubVariables sharedInstance].money;
-    [self.money setText:moneyQWE];
+    
+    NSString *longMoney = [NSString stringWithFormat:@"%@",moneyQWE];
+    
+    [self.money setText:longMoney];
     [self getdata];
 }
 
@@ -36,7 +39,8 @@
     NSInteger row = [indexPath row];
     NSDictionary *rowData = [self.arrOnlineCheckHistory objectAtIndex:row];
     
-    cell.title = [NSString stringWithFormat:@"sb:%@ bb:%@ player: %@/%@",
+    cell.title = [NSString stringWithFormat:@"NO.%@   sb:%@ bb:%@ player: %@/%@",
+                  [rowData objectForKey:@"roomID"],
                   [rowData objectForKey:@"smallBlind"],
                   [rowData objectForKey:@"bigBlind"]
                   ,[rowData objectForKey:@"playerCount"],
@@ -82,14 +86,34 @@
                  [p requestWithRoute:@"connector.entryHandler.getHall" andParams:params andCallback:^(NSDictionary *result){
                      //                            NSArray *userList = [result objectForKey:@"users"];
                      NSArray *roomList = [result objectForKey:@"roomList"];
-                     
                      if (roomList.count > 0) {
                          self.arrOnlineCheckHistory = roomList;
                          [ws.historyTable reloadData];
                      }
-                     
                  }];
              }];
+}
+
+- (IBAction)reloadlist:(id)sender
+{
+    [self getdata];
+}
+
+- (IBAction)back:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+-(void)dealloc
+{
+    [pomelo disconnect];
+    pomelo = nil;
+    NSLog(@"%@:%s",self,__func__);
 }
 @end
 
