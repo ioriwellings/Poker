@@ -39,11 +39,13 @@
     NSInteger row = [indexPath row];
     NSDictionary *rowData = [self.arrOnlineCheckHistory objectAtIndex:row];
     
-    cell.title = [NSString stringWithFormat:@"NO.%@   sb:%@ bb:%@ player: %@/%@",
+    cell.title = [NSString stringWithFormat:@"NO.%@   sb:%@ bb:%@ ",
                   [rowData objectForKey:@"roomID"],
                   [rowData objectForKey:@"smallBlind"],
-                  [rowData objectForKey:@"bigBlind"]
-                  ,[rowData objectForKey:@"playerCount"],
+                  [rowData objectForKey:@"bigBlind"]];
+    
+    cell.people =[NSString stringWithFormat:@"%@/%@",
+                  [rowData objectForKey:@"playerCount"],
                   [rowData objectForKey:@"maxPlayerCount"]];
 //    sb:50 bb:100 player: 3/9
 //    roomID  smallBlind bigBlind playerCount maxPlayerCount

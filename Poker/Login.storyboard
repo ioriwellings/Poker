@@ -274,7 +274,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="78"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6J8-zj-7as" id="QvS-5a-mfW">
-                                            <frame key="frameInset" width="375" height="77"/>
+                                            <frame key="frameInset" width="375" height="78"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MOQ-sY-hNH">
@@ -284,7 +284,7 @@
                                                                 <constraint firstAttribute="width" constant="56" id="aDS-lW-0YI"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sb:50 bb:100 player: 3/9" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHu-so-XRP">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sb:50 bb:100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHu-so-XRP">
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="25" id="vzb-yj-jNi"/>
                                                             </constraints>
@@ -297,16 +297,27 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/9" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YOB-ql-Glw">
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="20" id="JaO-J6-XM2"/>
+                                                                <constraint firstAttribute="width" constant="30" id="syl-3h-q44"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.12549019610000001" green="0.2156862745" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.86274509803921573" green="0.87058823529411766" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="EHu-so-XRP" firstAttribute="trailing" secondItem="Ddx-ii-gpQ" secondAttribute="trailing" id="3zP-df-gOo"/>
                                                         <constraint firstItem="m19-Zf-VTh" firstAttribute="leading" secondItem="MOQ-sY-hNH" secondAttribute="leading" constant="15" id="Eky-bi-kOG"/>
+                                                        <constraint firstItem="YOB-ql-Glw" firstAttribute="centerX" secondItem="m19-Zf-VTh" secondAttribute="centerX" id="KoY-xJ-NND"/>
                                                         <constraint firstItem="m19-Zf-VTh" firstAttribute="centerY" secondItem="MOQ-sY-hNH" secondAttribute="centerY" id="PZN-iP-U6x"/>
                                                         <constraint firstItem="Ddx-ii-gpQ" firstAttribute="top" secondItem="EHu-so-XRP" secondAttribute="bottom" id="aRH-O2-3IH"/>
                                                         <constraint firstItem="m19-Zf-VTh" firstAttribute="bottom" secondItem="Ddx-ii-gpQ" secondAttribute="bottom" id="bvw-Ov-gRb"/>
                                                         <constraint firstItem="EHu-so-XRP" firstAttribute="leading" secondItem="m19-Zf-VTh" secondAttribute="trailing" constant="16" id="dtg-t6-sEy"/>
                                                         <constraint firstItem="EHu-so-XRP" firstAttribute="top" secondItem="MOQ-sY-hNH" secondAttribute="topMargin" id="gqI-ft-szY"/>
+                                                        <constraint firstItem="YOB-ql-Glw" firstAttribute="centerY" secondItem="m19-Zf-VTh" secondAttribute="centerY" id="o0c-pS-vee"/>
                                                         <constraint firstItem="EHu-so-XRP" firstAttribute="leading" secondItem="Ddx-ii-gpQ" secondAttribute="leading" id="riW-G2-9b1"/>
                                                         <constraint firstItem="EHu-so-XRP" firstAttribute="trailing" secondItem="MOQ-sY-hNH" secondAttribute="trailingMargin" id="xx1-IP-xNV"/>
                                                     </constraints>
@@ -334,6 +345,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="labPeople3" destination="YOB-ql-Glw" id="u1S-UE-XYg"/>
                                             <outlet property="toptitle" destination="EHu-so-XRP" id="u2D-Sm-v5A"/>
                                         </connections>
                                     </tableViewCell>
