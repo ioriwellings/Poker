@@ -69,7 +69,7 @@
     NSString * playerNickName = [userDefaults objectForKey:@"playerNickName"];
     [UserInfo sharedUser].userID = playerNickName;
     [UserInfo sharedUser].roomName = roomID;
-    PokerTableViewControler *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
+    PokerTableViewControler *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PokerTableViewControler"];
     [self presentViewController:vc animated:YES completion:NULL];
 }
 

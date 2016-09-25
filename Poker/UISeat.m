@@ -18,12 +18,38 @@
 {
     PlayerEntity *currentPlayer;
     CGRect iconChipFrame;
+    BOOL isBetHiddenAnimate;
 }
 @end
 
 @implementation UISeat
 
+-(instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    if(self = [super initWithCoder:aDecoder])
+    {
+        isBetHiddenAnimate = NO;
+    }
+    return self;;
+}
 
+-(instancetype)initWithFrame:(CGRect)frame
+{
+    if(self = [super initWithFrame:frame])
+    {
+        isBetHiddenAnimate=  NO;
+    }
+    return self;
+}
+
+-(instancetype)init
+{
+    if(self = [super init])
+    {
+        isBetHiddenAnimate = NO;
+    }
+    return self;
+}
 
 -(UIView*)userNameBg
 {
@@ -93,11 +119,28 @@
         self.pokerContainer.hidden = YES;
     }
     //
-    
+    __weak typeof(self) ws = self;
     if(player.bet == 0)
     {
-        self.labBet.text = nil;
-        self.betContainer.hidden = YES;
+        if(isBetHiddenAnimate == NO && ws.betContainer.hidden == NO)
+        {
+            isBetHiddenAnimate = YES;
+            CGRect originFrame = ws.betContainer.frame;
+            [UIView animateWithDuration:.65 delay:1.2 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                ws.betContainer.alpha = 1;
+                CGRect frame = [ws.refMainPotView.superview convertRect:ws.refMainPotView.frame toView:ws];
+                ws.betContainer.frame = frame;
+            } completion:^(BOOL finished)
+            {
+                if(finished)
+                {
+                    ws.betContainer.hidden = YES;
+                    ws.betContainer.frame = originFrame;
+                    ws.labBet.text = nil;
+                    isBetHiddenAnimate = NO;
+                }
+            }];
+        }
     }
     else
     {
@@ -221,6 +264,7 @@
     self.labBringIn.text = nil;
     self.labBet.text = nil;
     self.pokerContainer.hidden = YES;
+    self.waittingView.hidden = YES;
     self.backgroundColor = [UIColor clearColor];
 }
 
@@ -230,6 +274,7 @@
     self.hiddenCards.hidden = YES;
     self.betContainer.hidden = YES;
     self.iconWinner.hidden = YES;
+    self.waittingView.hidden = YES;
     [self setStatusFromPlayer:player];
 }
 

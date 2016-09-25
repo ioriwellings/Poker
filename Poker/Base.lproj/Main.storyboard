@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="YfZ-qu-XoD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="8Vr-3d-eY5">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -533,7 +533,7 @@
         <!--Poker Table View Controler-->
         <scene sceneID="Q83-fF-uB3">
             <objects>
-                <viewController id="YfZ-qu-XoD" customClass="PokerTableViewControler" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PokerTableViewControler" id="YfZ-qu-XoD" customClass="PokerTableViewControler" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zgg-dZ-qWa"/>
                         <viewControllerLayoutGuide type="bottom" id="PIk-ab-hCP"/>
@@ -545,13 +545,6 @@
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="xWj-st-cox">
                                 <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wxO-3L-Kyv" userLabel="btnMenu">
-                                <rect key="frame" x="0.0" y="0.0" width="41" height="33"/>
-                                <state key="normal" image="btn_menu"/>
-                                <connections>
-                                    <action selector="btnMenu_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="Sul-P5-P8e"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzO-Uw-HlL" userLabel="btnMore">
                                 <rect key="frame" x="527" y="0.0" width="41" height="33"/>
                                 <state key="normal" image="btn_more"/>
@@ -2123,7 +2116,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rda-6G-QrH" userLabel="betView00">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rda-6G-QrH" userLabel="betView00">
                                 <rect key="frame" x="124" y="116" width="56" height="23"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1300" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5UJ-5E-cvK">
@@ -2383,6 +2376,13 @@
                                     <constraint firstItem="tKQ-5s-NbM" firstAttribute="centerX" secondItem="GNp-fH-t8M" secondAttribute="centerX" id="xEa-Ee-MzE"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wxO-3L-Kyv" userLabel="btnMenu">
+                                <rect key="frame" x="0.0" y="0.0" width="41" height="33"/>
+                                <state key="normal" image="btn_menu"/>
+                                <connections>
+                                    <action selector="btnMenu_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="Sul-P5-P8e"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

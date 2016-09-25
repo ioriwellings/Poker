@@ -73,16 +73,6 @@ static PokerTableEntity *_instance;
 
 -(void)updateUI
 {
-    [self.seats enumerateObjectsUsingBlock:^(SeatEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
-    {
-        if(obj.player)
-            [obj updateSeatUI];
-        else
-        {
-            [obj clearSeat];
-        }
-    }];
-    
     if(self.tableStatus == PokerTableStatusEnumNone)
     {
         if([self.updateUIDelegate respondsToSelector:@selector(clearCommCard)])
@@ -111,5 +101,14 @@ static PokerTableEntity *_instance;
             [self.updateUIDelegate riverCard];
         }
     }
+    [self.seats enumerateObjectsUsingBlock:^(SeatEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
+    {
+        if(obj.player)
+            [obj updateSeatUI];
+        else
+        {
+            [obj clearSeat];
+        }
+    }];
 }
 @end

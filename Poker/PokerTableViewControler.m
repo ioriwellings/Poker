@@ -69,7 +69,7 @@
     __weak typeof(self) ws = self;
     [MessageBox displayLoadingInView:ws.view];
     pomelo = [[Pomelo alloc] initWithDelegate:ws];
-    [pomelo connectToHost:@"192.168.0.101" onPort:13014 withCallback:^(Pomelo *p)
+    [pomelo connectToHost:@"192.168.0.101" onPort:3014 withCallback:^(Pomelo *p)
      {
          NSDictionary *params = [NSDictionary dictionaryWithObject:[UserInfo sharedUser].userID forKey:@"uid"];
          [p requestWithRoute:@"gate.gateHandler.queryEntry"
@@ -251,6 +251,7 @@
     }];
 }
 
+//隐藏边池
 -(void)hiddenChips
 {
     [self.betPots enumerateObjectsUsingBlock:^(UIView*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
@@ -265,13 +266,16 @@
 {
     NSLog(@"onRoute:onNewPlayerEnter------");
     NSDictionary *dictP = [IoriJsonHelper getDictForKey:@"observerPlayerList" fromDict:dict];
+    if([dictP isKindOfClass:[NSNull class]])
+    {
+        return;
+    }
     PlayerEntity *player = [self getPlayerFromDictionary:dictP];
     [arrayAudience addObject:player];
 }
 
 -(void)onFlop:(NSDictionary*)dict
 {
-    [self hiddenChips];
     [self loadChipsInfo:dict];
     [self loadFlopCardFromDict:(NSDictionary*)dict];
     pokerTable.mainPots.mainPot = [self getMainPotFromDictionary:dict];
@@ -335,7 +339,8 @@
              *stop = YES;
          }
      }];
-    if(playerSelf.iSeatIndex == [IoriJsonHelper getIntegerForKey:@"gameStartMaster" fromDict:dict])
+    if(playerSelf !=nil &&
+       playerSelf.iSeatIndex == [IoriJsonHelper getIntegerForKey:@"gameStartMaster" fromDict:dict])
     {
         [self showStartButton];
     }
@@ -455,6 +460,7 @@
 -(void)onShowdown:(NSDictionary*)callback
 {
     [pokerTable.mainPots.players removeAllObjects];
+    pokerTable.mainPots.mainPot = 0;
     [pokerTable.nextActionPlayer.nextActions removeAllObjects];
     pokerTable.nextActionPlayer.nextPlayerIndex = -1;
     NSArray<NSDictionary*> *arrayWiners = [IoriJsonHelper getArrayForKey:@"MainPools" fromDict:(NSDictionary*)callback];
@@ -527,21 +533,21 @@
     __block __weak PlayerEntity *playerSelf = nil;
     [arrayPlayer enumerateObjectsUsingBlock:^(PlayerEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
     {
-        if(kicter.playerID == obj.playerID)
+        if([kicter.playerID isEqualToString: obj.playerID])
         {
             [arrayPlayer removeObject:obj];
             //*stop = YES;
         }
-        if(obj.playerID == [UserInfo sharedUser].userID)
+        if([obj.playerID isEqualToString: [UserInfo sharedUser].userID])
         {
             playerSelf = obj;
         }
     }];
-    if(playerSelf.iSeatIndex == [IoriJsonHelper getIntegerForKey:@"gameStartMaster" fromDict:dict])
+    if(playerSelf != nil &&
+       playerSelf.iSeatIndex == [IoriJsonHelper getIntegerForKey:@"gameStartMaster" fromDict:dict])
     {
         [self showStartButton];
     }
-    [self showStartButton];
     [self player2Seat];
     [self updateTableInfoUI];
 }
@@ -610,37 +616,6 @@
     return playerObj;
 }
 
-//-(void)flyChipAnimation
-//{
-//    UIView *seatView = self.btnSits[0];
-//    CGPoint point = CGPointMake(seatView.frame.origin.x,
-//                                seatView.frame.origin.y);
-//    point = [self.iconChips[0] convertPoint:point toView:self.iconChips[0]];
-//    CGPoint newPoint4 = CGPointMake([self.iconChips[0] frame].origin.x,
-//                                    [self.iconChips[0] frame].origin.y);
-//    CGPoint newpoint5;
-//    if(point.x < newPoint4.x)
-//    {
-//        newpoint5.x = newPoint4.x - point.x;
-//    }
-//    else
-//    {
-//        newpoint5.x = newPoint4.x + point.x;
-//    }
-//    if(point.y < newPoint4.y)
-//    {
-//        newpoint5.y = newPoint4.y - point.y;
-//    }
-//    else
-//    {
-//        newpoint5.y = newPoint4.y + point.y;
-//    }
-//   // newpoint5 = [self.iconChips[0] convertPoint:newpoint5 fromView:self.view];
-//    [self.iconChips[0] setPoint:newpoint5 duration:2 finished:^{
-//    }];
-//    
-//}
-
 -(void)initTableLayout//初始化座位
 {
     __weak typeof(self) ws = self;
@@ -681,6 +656,8 @@
         obj.slider = self.slider;
         obj.labAllIn = self.labAllIn;
         obj.waittingView = self.waittingImageViews[idx];
+        obj.refMainPotView = self.MainBetView;
+        obj.refSidePotsContainerViews = self.betPots;
         [obj clear];
         UIButton *btnSit = self.btnSits[idx];
         btnSit.tag = idx;
@@ -952,16 +929,22 @@
     __weak typeof(self) ws = self;
     [pokerTable.seats enumerateObjectsUsingBlock:^(SeatEntity * _Nonnull seat, NSUInteger idx, BOOL * _Nonnull stop)
      {
-         UISeat *view = seat.seatView;
-         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-             view.labBet.text = @"";
-             view.betContainer.hidden = YES;;
-         });
+//         UISeat *view = seat.seatView;
+//
+//         view.labBet.text = @"";
+//         view.betContainer.hidden = YES;;
+
          if(seat.player.bet != 0)
          {
              //pokerTable.mainPots.mainPot += seat.player.bet;
          }
          seat.player.bet = 0;
+         
+//         [UIView animateWithDuration:2.0 animations:^{
+//             ;
+//         } completion:^(BOOL finished) {
+//             ;
+//         }];
      }];
     [pokerTable.sidePots enumerateObjectsUsingBlock:^(SidePotEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
      {
@@ -1013,16 +996,6 @@
 {
     return YES;
 }
-
--(UIInterfaceOrientationMask)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskLandscape;
-}
-
-//-(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
-//{
-//    return UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;
-//}
 
 -(void)dealloc
 {
