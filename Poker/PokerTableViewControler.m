@@ -992,9 +992,9 @@
     [super viewDidAppear:animated];
 }
 
--(UIInterfaceOrientationMask)supportedInterfaceOrientations
+-(BOOL)shouldAutorotate
 {
-    return UIInterfaceOrientationMaskLandscape;
+    return YES;
 }
 
 -(void)dealloc

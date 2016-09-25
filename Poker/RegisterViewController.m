@@ -55,17 +55,37 @@
                                                                                     style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
                                                                                         //取消按钮
                                                                                         NSLog(@"我是取消按钮");
+                                                                                        [self dismissViewControllerAnimated:YES completion:nil];
                                                                                     }];
                              [alertControl addAction:cancelAction];//cancel
                              //显示警报框
-                             [self presentViewController:alertControl animated:YES completion:nil];
-                             [self dismissViewControllerAnimated:YES completion:nil];
-                         }                         
+                             [self presentViewController:alertControl animated:YES completion:^{
+//                                  [self dismissViewControllerAnimated:YES completion:nil];
+                             }];
+                             
+                             
+                             
+
+                             
+//                        [self dismissViewControllerAnimated:YES completion:nil];
+//                             [self dismissViewControllerAnimated:YES completion:^{
+//                                 NSDictionary *dictionary = [NSDictionary dictionaryWithObject:playerNickName forKey:@"name"];
+//                                 [[NSNotificationCenter defaultCenter] postNotificationName:@"do" object:self userInfo:dictionary];
+//
+//                             }];
+//                             [self removeFromParentViewController];
+//                             [self performSelector:@selector(closeMe) withObject:nil afterDelay:0.01];
+                             
+                             
+                         }
                      }];
                  }];
     }
     
     
+}
+- (void) closeMe {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)backBtnClick:(id)sender {
@@ -74,7 +94,9 @@
 
 -(void)dealloc
 {
-    
+    [pomelo disconnect];
+    pomelo = nil;
+    NSLog(@"%@:%s",self,__func__);
 }
 
 @end

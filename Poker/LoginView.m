@@ -81,7 +81,7 @@
                          NSString *error = [result objectForKey:@"error"];
                          NSString *msg = [result objectForKey:@"msg"];
 
-                         if ([error isKindOfClass:[NSNull class]]) {
+                         if (error) {
                              //失败
                             
                              UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:@"MESSAGE" message:error preferredStyle:UIAlertControllerStyleAlert];
@@ -230,6 +230,9 @@
 
 -(void)dealloc
 {
+    [pomelo disconnect];
+    pomelo = nil;
+    NSLog(@"%@:%s",self,__func__);
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

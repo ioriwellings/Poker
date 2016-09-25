@@ -7,6 +7,7 @@
 //
 
 #import "PkMainViewController.h"
+#import "PKlobbyViewController.h"
 
 @implementation PkMainViewController
 
@@ -62,6 +63,9 @@
                                                       block:^(UIViewController *vc) {
                                                           [self presentViewController:vc animated:YES completion:nil];
                                                       }];
+    
+//    PKlobbyViewController *vc = [[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateInitialViewController];
+//    [self presentViewController:vc animated:YES completion:NULL];
     
 }
 
@@ -122,7 +126,9 @@
 
 -(void)dealloc
 {
-    
+    [pomelo disconnect];
+    pomelo = nil;
+    NSLog(@"%@:%s",self,__func__);
 }
 
 @end

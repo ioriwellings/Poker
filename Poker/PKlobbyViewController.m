@@ -8,6 +8,8 @@
 
 #import "PKlobbyViewController.h"
 #import "PKlobbyCell.h"
+#import "UserInfo.h"
+#import "PokerTableViewControler.h"
 
 @implementation PKlobbyViewController
 - (void)viewDidLoad {
@@ -17,7 +19,10 @@
     [self.historyTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     NSString * moneyQWE = [GloubVariables sharedInstance].money;
-    [self.money setText:moneyQWE];
+    
+    NSString *longMoney = [NSString stringWithFormat:@"%@",moneyQWE];
+    
+    [self.money setText:longMoney];
     [self getdata];
 }
 
@@ -34,10 +39,13 @@
     NSInteger row = [indexPath row];
     NSDictionary *rowData = [self.arrOnlineCheckHistory objectAtIndex:row];
     
-    cell.title = [NSString stringWithFormat:@"sb:%@ bb:%@ player: %@/%@",
+    cell.title = [NSString stringWithFormat:@"NO.%@   sb:%@ bb:%@ ",
+                  [rowData objectForKey:@"roomID"],
                   [rowData objectForKey:@"smallBlind"],
-                  [rowData objectForKey:@"bigBlind"]
-                  ,[rowData objectForKey:@"playerCount"],
+                  [rowData objectForKey:@"bigBlind"]];
+    
+    cell.people =[NSString stringWithFormat:@"%@/%@",
+                  [rowData objectForKey:@"playerCount"],
                   [rowData objectForKey:@"maxPlayerCount"]];
 //    sb:50 bb:100 player: 3/9
 //    roomID  smallBlind bigBlind playerCount maxPlayerCount
@@ -55,7 +63,14 @@
     NSString *roomID = [NSString stringWithFormat:@"%@",[rowData objectForKey:@"roomID"]];
     NSLog(@"roomID ==== %@",roomID);
 //    __weak typeof(self) weakSelf = self;
-
+    //创建
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    // 读取账户
+    NSString * playerNickName = [userDefaults objectForKey:@"playerNickName"];
+    [UserInfo sharedUser].userID = playerNickName;
+    [UserInfo sharedUser].roomName = roomID;
+    PokerTableViewControler *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
+    [self presentViewController:vc animated:YES completion:NULL];
 }
 
 -(void)getdata{
@@ -73,14 +88,34 @@
                  [p requestWithRoute:@"connector.entryHandler.getHall" andParams:params andCallback:^(NSDictionary *result){
                      //                            NSArray *userList = [result objectForKey:@"users"];
                      NSArray *roomList = [result objectForKey:@"roomList"];
-                     
                      if (roomList.count > 0) {
                          self.arrOnlineCheckHistory = roomList;
                          [ws.historyTable reloadData];
                      }
-                     
                  }];
              }];
+}
+
+- (IBAction)reloadlist:(id)sender
+{
+    [self getdata];
+}
+
+- (IBAction)back:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+-(void)dealloc
+{
+    [pomelo disconnect];
+    pomelo = nil;
+    NSLog(@"%@:%s",self,__func__);
 }
 @end
 
