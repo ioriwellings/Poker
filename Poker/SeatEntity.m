@@ -92,6 +92,7 @@
         self.seatView.btnCall.enabled = NO;
         self.seatView.btnCheck.enabled = NO;
         self.seatView.btnAllIn.enabled = NO;
+        self.seatView.slider.superview.hidden = YES;
     }
     self.seatView.backgroundColor = [UIColor clearColor];
     self.seatView.waittingView.hidden = YES;
@@ -134,6 +135,7 @@
     }];
     self.seatView.btnFold.enabled = YES;
     self.seatView.btnRaise.enabled = NO;
+    self.seatView.slider.superview.hidden = YES;
     self.seatView.btnCall.enabled = NO;
     self.seatView.btnCheck.enabled = NO;
     self.seatView.btnAllIn.enabled = NO;

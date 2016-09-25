@@ -38,6 +38,8 @@
 @property (nonatomic, weak) UILabel *labAllIn;
 @property (nonatomic, weak) PokerTableEntity *pokerTable;
 @property (nonatomic, readonly, getter=userNameBg) UIView *userNameBg;
+@property (nonatomic, weak) UIView *refMainPotView;
+@property (nonatomic, weak) NSArray<UIView*> *refSidePotsContainerViews;
 
 -(void)clear;
 -(void)resetByPlayer:(PlayerEntity*)player;
