@@ -4,7 +4,7 @@
         <deployment version="2048" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Login View-->
@@ -162,7 +162,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fE-3S-6eo">
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="Next">
-                                            <color key="titleColor" red="0.97807776492647269" green="0.99029391172259684" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="0.98236554861068726" green="0.99239474534988403" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="btnRegister:" destination="9uj-XI-2fc" eventType="touchUpInside" id="5TL-8C-GaE"/>
@@ -185,7 +185,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mark" translatesAutoresizingMaskIntoConstraints="NO" id="aLs-Xw-ZZv"/>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*Creaye your identity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OD4-KM-UEP">
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" red="0.5725490196078431" green="0.57647058823529407" blue="0.58039215686274503" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.63931536674499512" green="0.64302802085876465" blue="0.64654791355133057" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="My PE ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pO5-Yi-woB">
@@ -193,7 +193,7 @@
                                     <constraint firstAttribute="height" constant="30" id="GTj-i5-vR6"/>
                                     <constraint firstAttribute="width" constant="220" id="clP-3i-ZCq"/>
                                 </constraints>
-                                <color key="textColor" red="0.67843137249999996" green="0.67843137249999996" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.73364275693893433" green="0.73366016149520874" blue="0.73365074396133423" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -202,7 +202,7 @@
                                     <constraint firstAttribute="width" constant="220" id="ZFo-ML-JnW"/>
                                     <constraint firstAttribute="height" constant="30" id="vL5-6J-6FK"/>
                                 </constraints>
-                                <color key="textColor" red="0.67843137249999996" green="0.67843137249999996" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.73364275693893433" green="0.73366016149520874" blue="0.73365074396133423" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -268,13 +268,13 @@
                                 <state key="highlighted" backgroundImage="bg_tab_2"/>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="78" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dwe-fg-VOO">
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PKlobbyCell" rowHeight="78" id="6J8-zj-7as" customClass="PKlobbyCell">
                                         <rect key="frame" x="0.0" y="28" width="375" height="78"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6J8-zj-7as" id="QvS-5a-mfW">
-                                            <frame key="frameInset" width="375" height="78"/>
+                                            <frame key="frameInset" width="375" height="77"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MOQ-sY-hNH">
@@ -303,11 +303,11 @@
                                                                 <constraint firstAttribute="width" constant="30" id="syl-3h-q44"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" red="0.12549019610000001" green="0.2156862745" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="textColor" red="0.16378301382064819" green="0.28080087900161743" blue="0.37091845273971558" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.86274509803921573" green="0.87058823529411766" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.88925987482070923" green="0.8959534764289856" blue="0.90230536460876465" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="EHu-so-XRP" firstAttribute="trailing" secondItem="Ddx-ii-gpQ" secondAttribute="trailing" id="3zP-df-gOo"/>
                                                         <constraint firstItem="m19-Zf-VTh" firstAttribute="leading" secondItem="MOQ-sY-hNH" secondAttribute="leading" constant="15" id="Eky-bi-kOG"/>
@@ -323,7 +323,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vG7-j0-j4h">
-                                                    <color key="backgroundColor" red="0.59215686274509804" green="0.59215686274509804" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.6571614146232605" green="0.6571771502494812" blue="0.6571686863899231" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="TtH-4d-F3U"/>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="dK6-l1-2Dx"/>
@@ -364,7 +364,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.12549019607843137" green="0.21568627450980393" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.16378301382064819" green="0.28080087900161743" blue="0.37091845273971558" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="gA7-QK-EpJ" secondAttribute="bottom" constant="19" id="35g-Ds-c8p"/>
                                     <constraint firstItem="gA7-QK-EpJ" firstAttribute="top" secondItem="V0D-Ep-ZWo" secondAttribute="top" constant="20" id="7f3-Ta-ytG"/>
@@ -382,7 +382,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Y7s-XT-jmU" firstAttribute="leading" secondItem="an6-b8-T8T" secondAttribute="leading" id="1T7-xL-M8Z"/>
                             <constraint firstItem="wix-nD-RHQ" firstAttribute="leading" secondItem="Y7s-XT-jmU" secondAttribute="trailing" constant="1" id="1te-fs-5Yo"/>
@@ -434,10 +434,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="acm-th-ZZc">
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I95-02-kfy">
-                                        <color key="backgroundColor" red="0.050980392156862744" green="0.094117647058823528" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.056060172617435455" green="0.12721851468086243" blue="0.21314945816993713" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r3l-Rg-Wnw">
-                                        <color key="backgroundColor" red="0.050980392159999999" green="0.094117647060000004" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.056060172617435455" green="0.12721851468086243" blue="0.21314945816993713" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="btnGoGame_click:" destination="hja-Xn-wpr" eventType="touchUpInside" id="Rnp-8M-uWn"/>
                                         </connections>
@@ -445,12 +445,12 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_home_2" translatesAutoresizingMaskIntoConstraints="NO" id="raF-P2-IBo"/>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quick Game" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLT-zU-YUf">
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" red="0.62745098039215685" green="0.62745098039215685" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.68876492977142334" green="0.68878144025802612" blue="0.68877249956130981" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lobby" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BgD-go-mIM">
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" red="0.67843137249999996" green="0.67843137249999996" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.73364275693893433" green="0.73366016149520874" blue="0.73365074396133423" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_home_1" translatesAutoresizingMaskIntoConstraints="NO" id="R25-QK-0J7"/>
@@ -504,7 +504,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="eAm-a3-Hkq" firstAttribute="top" secondItem="ceI-wK-VXh" secondAttribute="bottom" constant="51" id="2RB-yQ-qvi"/>
                             <constraint firstItem="Bc1-Fb-Qdq" firstAttribute="top" secondItem="Npw-B1-kmb" secondAttribute="bottom" id="489-XQ-eRv"/>
