@@ -9,7 +9,10 @@
 #ifndef Config_h
 #define Config_h
 
-#define PK_FONT_A "fonts/TT0248M_.TTF"
-#define PK_FONT_B "fonts/TT0249M_.TTF"
-#define ip
+#define PK_FONT_A @"Square721 Cn BT Roman"
+#define PK_FONT_B @"Square721 Cn BT Bold"
+#define PK_SERVER_IP @"192.168.0.101"
+#define PK_SERVER_PORT 3014
+
+
 #endif /* config_h */

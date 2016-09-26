@@ -21,5 +21,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *txtUserID;
 @property (weak, nonatomic) IBOutlet UIButton *btnLogin;
 @property (weak, nonatomic) IBOutlet UIButton *btnGoGame;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *aidView;
 
 @end

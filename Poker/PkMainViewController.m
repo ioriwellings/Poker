@@ -23,20 +23,22 @@
     if (!isLogin) {
         [self.btnGoGame setEnabled:NO];//不能点击
     }
-    [self lodaData];
+    
     __weak typeof(self) ws = self;
     pomelo = [[Pomelo alloc] initWithDelegate:ws];
-    [pomelo connectToHost:@"192.168.0.101" onPort:3014 withCallback:^(Pomelo *p){
+    [pomelo connectToHost:PK_SERVER_IP onPort:PK_SERVER_PORT withCallback:^(Pomelo *p){
         NSDictionary *params = [NSDictionary dictionaryWithObject:@"13" forKey:@"uid"];
+        self.aidView.hidden = NO;
+        [self.aidView startAnimating];
+        [self.btnLogin setEnabled:NO];
         [pomelo requestWithRoute:@"gate.gateHandler.queryEntry" andParams:params andCallback:^(NSDictionary *result){
-            NSLog(@"abc%@",[result objectForKey:@"host"]);
+            NSLog(@"abc host== %@",[result objectForKey:@"host"]);
             [pomelo disconnectWithCallback:^(Pomelo *p){
                 [ws entryWithData:result];
+                [self lodaData];
             }];
-        }];
+        }]; 
     }];
-    
-    
     
 }
 
@@ -44,6 +46,8 @@
 {
     [GloubVariables sharedInstance].host = [data objectForKey:@"host"];
     [GloubVariables sharedInstance].port = [[data objectForKey:@"port"] intValue];
+    
+    
 }
 
 
@@ -100,27 +104,108 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     // 读取账户
     NSString * playerNickName = [userDefaults objectForKey:@"playerNickName"];
-    //读取密码
+    //读取钱
     NSString * playerMoney = [userDefaults objectForKey:@"playerMoney"];
-//    NSMutableDictionary *dict  = [NSMutableDictionary dictionary];
+    //读取密码
+    NSString * playerPassword = [userDefaults objectForKey:@"playerPassword"];
+    NSMutableDictionary *dict  = [NSMutableDictionary dictionary];
     //这里判空避免拿不到数据 崩溃
-    if (playerNickName != nil && playerMoney != nil) {
-//        [dict setObject:name forKey:@"phone"];
-//        [dict setObject:password forKey:@"password"];
-//        [memberMan loginIn:dict];//调登录借口
-        self.btnLogin.hidden = YES;
-        self.txtUserID.hidden = NO;        
-        [self.txtUserID setText:playerNickName];
+    if (playerNickName != nil && playerMoney != nil && playerPassword != nil) {
         
-        
-//        NSInteger dcm = 10;
-//        相应的字符串为
-//        NSString *str = [NSString stringWithFormat:@"zd%",dcm];
-        NSString *longMoney = [NSString stringWithFormat:@"%@",playerMoney];
-        [GloubVariables sharedInstance].money = longMoney;
+        [dict setObject:playerNickName forKey:@"loginName"];
+        [dict setObject:playerPassword forKey:@"password"];
+        [self loginIn:dict]; //调登录借口
         isLogin = true;
-        [self.btnGoGame setEnabled:YES];
+        
+    }else{
+        self.aidView.hidden =YES;
+        [self.aidView stopAnimating];
+         [self.btnLogin setEnabled:YES];
     }
+}
+
+
+-(void)loginIn:(NSDictionary*)dict{
+
+    NSString* name = [dict objectForKey:@"loginName"];
+    NSString* channel = [dict objectForKey:@"password"];
+    __weak typeof(self) ws = self;
+    pomelo = [[Pomelo alloc] initWithDelegate:ws];
+    if (([name length] > 0) && ([channel length] > 0)) {
+        [pomelo connectToHost:[GloubVariables sharedInstance].host
+                       onPort:[GloubVariables sharedInstance].port
+                 withCallback:^(Pomelo *p){
+                     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                                             name, @"loginName",
+                                             channel, @"passWord",
+                                             nil];
+                     [p requestWithRoute:@"connector.entryHandler.login" andParams:params andCallback:^(NSDictionary *result){
+                         //                            NSArray *userList = [result objectForKey:@"users"];
+                         NSString *error = [result objectForKey:@"error"];
+                         NSString *msg = [result objectForKey:@"msg"];
+                         if (error) {
+                             //失败
+                             UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:@"MESSAGE" message:error preferredStyle:UIAlertControllerStyleAlert];
+                             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel"
+                                                                                    style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                                                                                        //取消按钮
+                                                                                        NSLog(@"我是取消按钮");
+                                                                                    }];
+                             [alertControl addAction:cancelAction];//cancel
+                             //显示警报框
+                             [self presentViewController:alertControl animated:YES completion:nil];
+                             self.aidView.hidden =YES;
+                             [self.aidView stopAnimating];
+                             
+                         }else{
+                             
+                             NSDictionary *data = [result objectForKey:@"playerInfo"];
+                             //成功
+                             NSString *playerNickName = [data objectForKey:@"playerNickName"];
+                             NSString *playerMoney = [data objectForKey:@"playerMoney"];
+                             [GloubVariables sharedInstance].money = playerMoney;
+                             [self newNSUserDefault:data];
+                             [self dismissViewControllerAnimated:YES completion:^{
+                                 NSDictionary *dictionary = [NSDictionary dictionaryWithObject:playerNickName forKey:@"name"];
+                                 [[NSNotificationCenter defaultCenter] postNotificationName:@"do" object:self userInfo:dictionary];
+                             }];
+                             
+                             self.btnLogin.hidden = YES;
+                             self.txtUserID.hidden = NO;
+                             self.txtUserID .font = [UIFont fontWithName:PK_FONT_A size:100];
+                             [self.txtUserID setText:playerNickName];
+                             
+                             NSString *longMoney = [NSString stringWithFormat:@"%@",playerMoney];
+                             [GloubVariables sharedInstance].money = longMoney;
+                             
+                             [self.btnGoGame setEnabled:YES];
+                             self.aidView.hidden =YES;
+                             [self.aidView stopAnimating];
+                         }
+                     }];
+                 }];
+    }
+}
+
+
+/*
+ *简单的存储数据
+ */
+- (void)newNSUserDefault:(NSDictionary *)userInfo{
+    NSString *playerNickName = [userInfo objectForKey:@"playerNickName"];
+    NSString *playerMoney = [userInfo objectForKey:@"playerMoney"];
+    //快速创建
+    [[NSUserDefaults standardUserDefaults] setObject:userInfo forKey:@"userLoginInfo"];
+    //储存MONEY
+    [[NSUserDefaults standardUserDefaults]setObject:playerMoney forKey:@"playerMoney"];
+    //储存账户
+    [[NSUserDefaults standardUserDefaults ]setObject:playerNickName forKey:@"playerNickName"];
+    //密码
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString * playerPassword = [userDefaults objectForKey:@"playerPassword"];
+    [[NSUserDefaults standardUserDefaults ]setObject:playerPassword forKey:@"playerPassword"];
+    //必须
+    [[NSUserDefaults standardUserDefaults]synchronize];
 }
 
 

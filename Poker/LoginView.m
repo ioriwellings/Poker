@@ -138,6 +138,8 @@
     [[NSUserDefaults standardUserDefaults]setObject:playerMoney forKey:@"playerMoney"];
     //储存账户
     [[NSUserDefaults standardUserDefaults ]setObject:playerNickName forKey:@"playerNickName"];
+    //密码
+    [[NSUserDefaults standardUserDefaults ]setObject:self.txtPWD.text forKey:@"playerPassword"];
     //必须
     [[NSUserDefaults standardUserDefaults]synchronize];
 }
