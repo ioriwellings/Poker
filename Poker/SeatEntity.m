@@ -54,7 +54,10 @@
         [self dissWaittingView];
     }
     
-    [self.seatView updateStatusByPlayer:self.player];
+    if(self.isDirty)
+    {
+        [self.seatView updateStatusByPlayer:self.player];
+    }
 }
 
 -(void)displayWaittingView

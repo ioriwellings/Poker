@@ -19,6 +19,8 @@
     PlayerEntity *currentPlayer;
     CGRect iconChipFrame;
     BOOL isBetHiddenAnimate;
+    BOOL isFlyBetAnimate;
+    CGRect betContainerRect;
 }
 @end
 
@@ -59,19 +61,27 @@
 -(void)flyChipAnimation
 {
     if(currentPlayer.isDirty == NO) return;
+    if(isFlyBetAnimate == YES) return;
+    isFlyBetAnimate = YES;
     __weak typeof(self) ws = self;
-    if(CGRectIsEmpty(iconChipFrame))
-    {
-        iconChipFrame = [self.iconChip frame];
-    }
+    __weak UIImageView *temp = (UIImageView*)[UIView duplicateImageView:ws.iconChip];
+    temp.hidden = NO;
+    [ws.betContainer addSubview:temp];
     CGPoint newPoint = [self convertRect:self.waittingView.frame toView:self.betContainer].origin;
     newPoint.x += self.waittingView.frame.size.width/3.0;
     newPoint.y += self.waittingView.frame.size.height/3.0;
-    self.iconChip.frame = CGRectMake(newPoint.x,
+    temp.frame = CGRectMake(newPoint.x,
                                      newPoint.y,
-                                     self.iconChip.frame.size.width,
-                                     self.iconChip.frame.size.height);
-    [ws.iconChip setPoint:iconChipFrame.origin duration:.3 finished:^{currentPlayer.isDirty = NO;}];
+                                     temp.frame.size.width,
+                                     temp.frame.size.height);
+    [temp setPoint:ws.iconChip.frame.origin
+          duration:.3
+          finished:^{
+              currentPlayer.isDirty = NO;
+              [temp removeFromSuperview];
+              ws.iconChip.hidden = NO;
+              isFlyBetAnimate = NO;
+          }];
 }
 
 -(void)setStatusFromPlayer:(PlayerEntity*)player
@@ -122,21 +132,22 @@
     __weak typeof(self) ws = self;
     if(player.bet == 0)
     {
-        if(isBetHiddenAnimate == NO && ws.betContainer.hidden == NO)
+        if(isBetHiddenAnimate == NO && ws.betContainer.hidden == NO)//countbet
         {
             isBetHiddenAnimate = YES;
-            CGRect originFrame = ws.betContainer.frame;
-            [UIView animateWithDuration:.65 delay:1.2 options:UIViewAnimationOptionCurveEaseOut animations:^{
-                ws.betContainer.alpha = 1;
-                CGRect frame = [ws.refMainPotView.superview convertRect:ws.refMainPotView.frame toView:ws];
-                ws.betContainer.frame = frame;
+            CGRect mainBetViewFrame = [ws.refMainBetView.superview convertRect:ws.refMainBetView.frame toView:ws];
+            UIView *temp = [UIView duplicateBetContainer:ws.betContainer];
+            [ws addSubview:temp];
+            ws.labBet.text = nil;
+            ws.betContainer.hidden = YES;
+            [UIView animateWithDuration:IoriAnimationDuration delay:IoriAnimationDelayInterval options:UIViewAnimationOptionCurveEaseOut animations:^
+            {
+                temp.frame=mainBetViewFrame;
             } completion:^(BOOL finished)
             {
                 if(finished)
                 {
-                    ws.betContainer.hidden = YES;
-                    ws.betContainer.frame = originFrame;
-                    ws.labBet.text = nil;
+                    [temp removeFromSuperview];
                     isBetHiddenAnimate = NO;
                 }
             }];
@@ -160,8 +171,11 @@
     else if (player.actionStatus == PokerActionStatusEnumCall)
     {
         self.labStatus.text = NSLocalizedString(@"Call", nil);
-        if(player.bet >0 ) self.betContainer.hidden = NO;
-        [self flyChipAnimation];
+        if(player.bet >0 )
+        {
+            self.betContainer.hidden = NO;
+            [self flyChipAnimation];
+        }
     }
     else if (player.actionStatus == PokerActionStatusEnumRaise)
     {
@@ -175,8 +189,11 @@
     else if (player.actionStatus == PokerActionStatusEnumAllIn)
     {
         self.labStatus.text = NSLocalizedString(@"AllIn", nil);;
-        if(player.bet >0 ) self.betContainer.hidden = NO;
-        [self flyChipAnimation];
+        if(player.bet >0 )
+        {
+            self.betContainer.hidden = NO;
+            [self flyChipAnimation];
+        }
     }
     else if(player.actionStatus == PokerActionStatusEnumWaitingBet)
     {
@@ -270,12 +287,12 @@
 
 -(void)resetByPlayer:(PlayerEntity *)player
 {
+    [self setStatusFromPlayer:player];
     self.pokerContainer.hidden = YES;
     self.hiddenCards.hidden = YES;
     self.betContainer.hidden = YES;
     self.iconWinner.hidden = YES;
     self.waittingView.hidden = YES;
-    [self setStatusFromPlayer:player];
 }
 
 -(void)updateStatusByPlayer:(PlayerEntity *)player

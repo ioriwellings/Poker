@@ -18,6 +18,7 @@
 @property (nonatomic, strong) PlayerEntity *player;
 @property (nonatomic, strong) UISeat *seatView;
 @property (nonatomic, strong) PokerTableEntity *pokerTable;
+@property (nonatomic, assign) BOOL isDirty;
 
 -(void)updateSeatUI;
 -(void)clearSeat;

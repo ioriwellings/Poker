@@ -73,5 +73,6 @@
 - (IBAction)btnAllin_click:(UIButton *)sender;
 - (IBAction)btnFold_click:(UIButton *)sender;
 - (IBAction)slider_valueChanged:(UISlider *)sender;
-
+-(IBAction)btnPutCard:(UIButton*)sender;
+-(IBAction)btnDownCard:(UIButton*)sender;
 @end

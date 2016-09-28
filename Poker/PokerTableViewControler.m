@@ -14,6 +14,8 @@
 #import "Masonry.h"
 
 @interface PokerTableViewControler ()
+{
+}
 @property (nonatomic, assign) BOOL hasFlopCard;
 @property (nonatomic, assign) BOOL hasTurnCard;
 @end
@@ -157,6 +159,7 @@
                   }
               }];
               [ws player2Seat];
+              [self markDirtySeatWithPlayerArray:arrayPlayer];
               [ws updateTableInfoUI];
               [MessageBox removeLoading:nil];
               
@@ -260,6 +263,31 @@
     }];
 }
 
+-(void)markDirtySeatWithPlayer:(PlayerEntity*)player
+{
+    [pokerTable.seats enumerateObjectsUsingBlock:^(SeatEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if(obj.player.iSeatIndex == player.iSeatIndex)
+        {
+            obj.isDirty = YES;
+            *stop = YES;
+        }
+    }];
+}
+
+-(void)markDirtySeatWithPlayerArray:(NSArray<PlayerEntity*>*)players
+{
+    [players enumerateObjectsUsingBlock:^(PlayerEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self markDirtySeatWithPlayer:obj];
+    }];
+}
+
+-(void)clearAllSeatDirty
+{
+    [pokerTable.seats enumerateObjectsUsingBlock:^(SeatEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        obj.isDirty = NO;
+    }];
+}
+
 #pragma mark - commPokerMethods
 
 -(void)onNewPlayerEnter:(NSDictionary*)dict
@@ -280,6 +308,7 @@
     [self loadFlopCardFromDict:(NSDictionary*)dict];
     pokerTable.mainPots.mainPot = [self getMainPotFromDictionary:dict];
     [self setNextActionPlayerFromDict:dict];
+    [self markDirtySeatWithPlayerArray:arrayPlayer];
     [self updateTableInfoUI];
 }
 
@@ -289,6 +318,7 @@
     [self loadTurnCardFromDict:(NSDictionary *)dict];
     pokerTable.mainPots.mainPot = [self getMainPotFromDictionary:dict];
     [self setNextActionPlayerFromDict:dict];
+    [self markDirtySeatWithPlayerArray:arrayPlayer];
     [self updateTableInfoUI];
 }
 
@@ -298,13 +328,14 @@
     [self loadRiverCardFromDict:(NSDictionary *)dict];
     pokerTable.mainPots.mainPot = [self getMainPotFromDictionary:dict];
     [self setNextActionPlayerFromDict:dict];
+    [self markDirtySeatWithPlayerArray:arrayPlayer];
     [self updateTableInfoUI];
 }
 
 
 -(void)showStartButton
 {
-    if(pokerTable.tableStatus == PokerTableStatusEnumNone && arrayPlayer.count == 1)
+    //if(pokerTable.tableStatus == PokerTableStatusEnumNone && arrayPlayer.count == 1)
     {
         self.maskContainer.hidden = NO;
     }
@@ -345,6 +376,7 @@
         [self showStartButton];
     }
     [self player2Seat];
+    [self markDirtySeatWithPlayer:playerObj];
     [self updateTableInfoUI];
 }
 
@@ -403,6 +435,7 @@
     NSDictionary *dictNextPlayer = [IoriJsonHelper getDictForKey:@"tokenPlayer" fromDict:dictBody];
     [self setNextActionPlayerFromDict:dictNextPlayer];
     [self player2Seat];
+    [self markDirtySeatWithPlayerArray:arrayPlayer];
     [self updateTableInfoUI];
 }
 
@@ -414,14 +447,16 @@
     [self setNextActionPlayerFromDict:(NSDictionary*)callback];
     pokerTable.tableStatus = PokerTableStatusEnumBet;
     pokerTable.allPots = [self getAllPotFromDictionary:callback];
+    [self markDirtySeatWithPlayer:player];
     [self updateTableInfoUI];
 }
 
 -(void)onCheck:(NSDictionary*)callback
 {
-    [self mergeActionPlayer:(NSDictionary*)callback];
+    PlayerEntity *player = [self mergeActionPlayer:(NSDictionary*)callback];
     [self setNextActionPlayerFromDict:(NSDictionary*)callback];
     pokerTable.tableStatus = PokerTableStatusEnumBet;
+    [self markDirtySeatWithPlayer:player];
     [self updateTableInfoUI];
 }
 
@@ -433,6 +468,7 @@
     [self setNextActionPlayerFromDict:(NSDictionary*)callback];
     pokerTable.tableStatus = PokerTableStatusEnumBet;
     pokerTable.allPots = [self getAllPotFromDictionary:callback];
+    [self markDirtySeatWithPlayer:player];
     [self updateTableInfoUI];
 }
 
@@ -444,6 +480,7 @@
     [self setNextActionPlayerFromDict:(NSDictionary*)callback];
     pokerTable.tableStatus = PokerTableStatusEnumBet;
     pokerTable.allPots = [self getAllPotFromDictionary:callback];
+    [self markDirtySeatWithPlayer:player];
     [self updateTableInfoUI];
 }
 
@@ -454,15 +491,17 @@
     [self setNextActionPlayerFromDict:(NSDictionary*)callback];
     pokerTable.foldPlayer = foldPlayer;
     pokerTable.tableStatus = PokerTableStatusEnumBet;
+    [self markDirtySeatWithPlayer:foldPlayer];
     [self updateTableInfoUI];
 }
 
 -(void)onShowdown:(NSDictionary*)callback
 {
-    [pokerTable.mainPots.players removeAllObjects];
     pokerTable.mainPots.mainPot = 0;
     [pokerTable.nextActionPlayer.nextActions removeAllObjects];
     pokerTable.nextActionPlayer.nextPlayerIndex = -1;
+    NSArray *arrayOpenCardPlayer = [IoriJsonHelper getArrayForKey:@"playerList" fromDict:callback];
+    NSArray *arrayOpenCardList = [IoriJsonHelper getArrayForKey:@"playerCardList" fromDict:callback];
     NSArray<NSDictionary*> *arrayWiners = [IoriJsonHelper getArrayForKey:@"MainPools" fromDict:(NSDictionary*)callback];
     [arrayWiners enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
      {
@@ -470,12 +509,13 @@
          NSString *playerID = [IoriJsonHelper getStringForKey:@"playerID" fromDict:obj];
          [arrayPlayer enumerateObjectsUsingBlock:^(PlayerEntity * _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2)
           {
+              obj2.actionStatus = PokerActionStatusEnumNone;
               if([playerID isEqualToString:obj2.playerID])
               {
                   [pokerTable.mainPots.players addObject:obj2];
-                  obj2.actionStatus = PokerActionStatusEnumNone;
                   obj2.isWiner = YES;
-                  [obj2.handCard.arrayPoker removeAllObjects];
+                  obj2.winBet = [[obj objectForKey:@"value"] integerValue];
+                  [obj2.handCard.arrayPoker removeAllObjects];//不能删手牌
                   NSArray<NSDictionary*> *arrayCards = [IoriJsonHelper getArrayForKey:@"cardlist" fromDict:obj];
                   [arrayCards enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj3, NSUInteger idx3, BOOL * _Nonnull stop3)
                   {
@@ -485,7 +525,7 @@
                       [obj2.handCard.arrayPoker addObject:poker];
                   }];
                   obj2.handCard.pattern = (PokerPatternEnum)[IoriJsonHelper getIntegerForKey:@"cardType" fromDict:obj];
-                  *stop2 = YES;
+                  //*stop2 = YES;
               }
           }];
      }];
@@ -500,12 +540,14 @@
             NSString *playerID = [IoriJsonHelper getStringForKey:@"playerID" fromDict:dictPlayer];
             [arrayPlayer enumerateObjectsUsingBlock:^(PlayerEntity * _Nonnull playerEntity, NSUInteger idx3, BOOL * _Nonnull stop3)
             {
+                playerEntity.actionStatus = PokerActionStatusEnumNone;
                 if([playerID isEqualToString:playerEntity.playerID])
                 {
                     sidePot.bet = [[dictPlayer objectForKey:@"value"] integerValue];
                     [sidePot.players addObject:playerEntity];
-                    playerEntity.actionStatus = PokerActionStatusEnumNone;
+                    //playerEntity.actionStatus = PokerActionStatusEnumNone;
                     playerEntity.isWiner = YES;
+                    playerEntity.winBet = 0;
                     playerEntity.handCard.pattern = (PokerPatternEnum)[IoriJsonHelper getIntegerForKey:@"cardType" fromDict:dictPlayer];
                     [playerEntity.handCard.arrayPoker removeAllObjects];
                     NSArray<NSDictionary*> *arrayCards = [IoriJsonHelper getArrayForKey:@"cardlist" fromDict:dictPlayer];
@@ -516,14 +558,16 @@
                          poker.pokerSuit = [IoriJsonHelper getIntegerForKey:@"color" fromDict:obj4];
                          [playerEntity.handCard.arrayPoker addObject:poker];
                      }];
-                    *stop3 = YES;
+                    //*stop3 = YES;
                 };;
             }];
         }];
     }];
     [self player2Seat];
     [self countBet];
+    [self markDirtySeatWithPlayerArray:arrayPlayer];
     [self updateTableInfoUI];
+    [pokerTable.mainPots.players removeAllObjects];
 }
 
 -(void)onPlayerKick:(NSDictionary*)dict
@@ -531,11 +575,12 @@
     [self setNextActionPlayerFromDict:dict];
     PlayerEntity *kicter = [self getPlayerFromDictionary:[IoriJsonHelper getDictForKey:@"playerList" fromDict:dict]];
     __block __weak PlayerEntity *playerSelf = nil;
+    __block PlayerEntity *willDeletePlayer = nil;
     [arrayPlayer enumerateObjectsUsingBlock:^(PlayerEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
     {
         if([kicter.playerID isEqualToString: obj.playerID])
         {
-            [arrayPlayer removeObject:obj];
+            willDeletePlayer = obj;
             //*stop = YES;
         }
         if([obj.playerID isEqualToString: [UserInfo sharedUser].userID])
@@ -543,12 +588,15 @@
             playerSelf = obj;
         }
     }];
+    if(willDeletePlayer)
+        [arrayPlayer removeObject:willDeletePlayer];
     if(playerSelf != nil &&
        playerSelf.iSeatIndex == [IoriJsonHelper getIntegerForKey:@"gameStartMaster" fromDict:dict])
     {
         [self showStartButton];
     }
     [self player2Seat];
+    [self markDirtySeatWithPlayer:kicter];
     [self updateTableInfoUI];
 }
 
@@ -656,7 +704,7 @@
         obj.slider = self.slider;
         obj.labAllIn = self.labAllIn;
         obj.waittingView = self.waittingImageViews[idx];
-        obj.refMainPotView = self.MainBetView;
+        obj.refMainBetView = self.MainBetView;
         obj.refSidePotsContainerViews = self.betPots;
         [obj clear];
         UIButton *btnSit = self.btnSits[idx];
@@ -695,19 +743,65 @@
     {
         self.labMainBot.text = nil;
     }
+    
+    __weak UILabel *labBet = self.MainBetView.subviews[0];
+    __weak typeof(self) ws = self;
     if(pokerTable.mainPots.mainPot >0 )
     {
-        self.MainBetView.hidden =NO;
-        UILabel *labBet = self.MainBetView.subviews[0];
-        labBet.text = [NSString getFormatedNumberByInteger:pokerTable.mainPots.mainPot];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((IoriAnimationDuration+IoriAnimationDelayInterval) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            ws.MainBetView.hidden = NO;
+            labBet.text = [NSString getFormatedNumberByInteger:pokerTable.mainPots.mainPot];
+        });
     }
     else
     {
-        self.MainBetView.hidden =YES;
-        UILabel *labBet = self.MainBetView.subviews[0];
-        labBet.text = nil;
+        if(pokerTable.mainPots.players.count >0)
+        {
+            __block NSInteger iBet = 0;
+            [pokerTable.mainPots.players enumerateObjectsUsingBlock:^(PlayerEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                iBet += obj.winBet;
+            }];
+
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((IoriAnimationDelayInterval+IoriAnimationDuration) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                labBet.text = [NSString getFormatedNumberByInteger:iBet];
+                ws.MainBetView.hidden = NO;;
+            });
+
+            [pokerTable.mainPots.players enumerateObjectsUsingBlock:^(PlayerEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
+            {
+                //PlayerEntity *obj = pokerTable.mainPots.players[0];
+                NSInteger iSeatIndex = obj.iSeatIndex;
+                UIView *temp = [UIView duplicateBetContainer:ws.MainBetView];
+                [temp.subviews[0] setHidden:YES];
+                [temp.subviews[1] setHidden:YES];
+                [ws.view addSubview:temp];
+                [temp.subviews[0] setText:[NSString getFormatedNumberByInteger:obj.winBet]];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((2*IoriAnimationDelayInterval+IoriAnimationDuration) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    labBet.text = nil;
+                    ws.MainBetView.hidden = YES;
+                    [temp.subviews[1] setHidden:NO];
+                    [temp.subviews[0] setHidden:YES];
+
+                });
+                [UIView animateWithDuration:IoriAnimationDuration delay:2.4*IoriAnimationDelayInterval options:UIViewAnimationOptionCurveEaseOut animations:^{
+                    temp.frame = [ws.seatView[iSeatIndex] frame];
+                } completion:^(BOOL finished)
+                {
+                    if(finished)
+                    {
+                        [temp removeFromSuperview];
+                    }
+                }];
+            }
+            ];
+        }
+        else
+        {
+            ws.MainBetView.hidden = YES;
+        }
     }
-    self.labBlindBet.text = [NSString stringWithFormat:@"盲注:%ld/%ld", pokerTable.bb, pokerTable.sb];
+    self.labBlindBet.text = [NSString stringWithFormat:@"Blind:%ld/%ld", pokerTable.sb, pokerTable.bb];
+    [self clearAllSeatDirty];
 }
 
 -(void)player2Seat
@@ -930,21 +1024,9 @@
     [pokerTable.seats enumerateObjectsUsingBlock:^(SeatEntity * _Nonnull seat, NSUInteger idx, BOOL * _Nonnull stop)
      {
 //         UISeat *view = seat.seatView;
-//
 //         view.labBet.text = @"";
 //         view.betContainer.hidden = YES;;
-
-         if(seat.player.bet != 0)
-         {
-             //pokerTable.mainPots.mainPot += seat.player.bet;
-         }
          seat.player.bet = 0;
-         
-//         [UIView animateWithDuration:2.0 animations:^{
-//             ;
-//         } completion:^(BOOL finished) {
-//             ;
-//         }];
      }];
     [pokerTable.sidePots enumerateObjectsUsingBlock:^(SidePotEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
      {
@@ -994,7 +1076,12 @@
 
 -(BOOL)shouldAutorotate
 {
-    return YES;
+    return NO;
+}
+
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscape;
 }
 
 -(void)dealloc
@@ -1086,6 +1173,20 @@ static BOOL isRaiseClicked;
 {
     self.maskContainer.hidden = YES;
     [pomelo requestWithRoute:@"game.gameHandler.gameStart" andParams:@{} andCallback:^(id callback) {
+        
+    }];
+}
+
+-(IBAction)btnPutCard:(UIButton*)sender
+{
+    [pomelo requestWithRoute:@"game.gameHandler.openCard" andParams:@{} andCallback:^(id callback) {
+        
+    }];
+}
+
+-(IBAction)btnDownCard:(UIButton*)sender
+{
+    [pomelo requestWithRoute:@"game.gameHandler.downCard" andParams:@{} andCallback:^(id callback) {
         
     }];
 }
