@@ -723,6 +723,7 @@
 
 -(void)clearBetPots
 {
+    self.MainBetView.hidden = YES;
     [self.betPots enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
      {
          UIView *betView = obj;
