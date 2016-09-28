@@ -533,7 +533,7 @@
         <!--Poker Table View Controler-->
         <scene sceneID="Q83-fF-uB3">
             <objects>
-                <viewController storyboardIdentifier="PokerTableViewControler" id="YfZ-qu-XoD" customClass="PokerTableViewControler" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PokerTableViewControler" extendedLayoutIncludesOpaqueBars="YES" id="YfZ-qu-XoD" customClass="PokerTableViewControler" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zgg-dZ-qWa"/>
                         <viewControllerLayoutGuide type="bottom" id="PIk-ab-hCP"/>
@@ -545,6 +545,12 @@
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="xWj-st-cox">
                                 <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ROOM:406" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZA-SD-fh9">
+                                <rect key="frame" x="49" y="2" width="68" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzO-Uw-HlL" userLabel="btnMore">
                                 <rect key="frame" x="527" y="0.0" width="41" height="33"/>
                                 <state key="normal" image="btn_more"/>
@@ -628,8 +634,8 @@
                                             <action selector="btnSit_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="RcW-rf-oe0"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRL-Qc-bsh">
-                                        <rect key="frame" x="19" y="27" width="37" height="37"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRL-Qc-bsh">
+                                        <rect key="frame" x="26" y="27" width="24" height="37"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -782,8 +788,8 @@
                                             <action selector="btnSit_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="EaH-wx-YQX"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KCA-D9-Ts0">
-                                        <rect key="frame" x="19" y="27" width="37" height="37"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KCA-D9-Ts0">
+                                        <rect key="frame" x="26" y="27" width="24" height="37"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -942,8 +948,8 @@
                                             <action selector="btnSit_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="7MJ-gk-8bE"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDo-eC-ScZ">
-                                        <rect key="frame" x="19" y="7" width="37" height="37"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDo-eC-ScZ">
+                                        <rect key="frame" x="26" y="7" width="24" height="37"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -1257,8 +1263,8 @@
                                             <action selector="btnSit_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="Yom-Zh-Xph"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qds-Wm-lqt">
-                                        <rect key="frame" x="19" y="4" width="37" height="37"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qds-Wm-lqt">
+                                        <rect key="frame" x="26" y="4" width="24" height="37"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -1417,8 +1423,8 @@
                                             <action selector="btnSit_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="eZb-2Q-JHu"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dnt-fS-Zbe">
-                                        <rect key="frame" x="19" y="4" width="37" height="37"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dnt-fS-Zbe">
+                                        <rect key="frame" x="26" y="4" width="24" height="37"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -1577,8 +1583,8 @@
                                             <action selector="btnSit_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="wZJ-FH-gQt"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kFt-Ez-Ucw">
-                                        <rect key="frame" x="19" y="4" width="37" height="37"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kFt-Ez-Ucw">
+                                        <rect key="frame" x="26" y="4" width="24" height="37"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -1737,8 +1743,8 @@
                                             <action selector="btnSit_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="Zso-20-rCp"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1a-ax-G9j">
-                                        <rect key="frame" x="64" y="7" width="37" height="37"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1a-ax-G9j">
+                                        <rect key="frame" x="71" y="7" width="24" height="37"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -1897,8 +1903,8 @@
                                             <action selector="btnSit_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="TAt-O0-kSA"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KvB-jH-vuJ">
-                                        <rect key="frame" x="19" y="27" width="37" height="37"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="弃牌" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KvB-jH-vuJ">
+                                        <rect key="frame" x="26" y="27" width="24" height="37"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -2056,8 +2062,8 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Poker Elite" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vlB-m5-upn">
-                                        <rect key="frame" x="96" y="69" width="56" height="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Poker Elite" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vlB-m5-upn">
+                                        <rect key="frame" x="90" y="69" width="69" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -2111,7 +2117,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4mW-rS-uyX">
-                                <rect key="frame" x="-79" y="21" width="0.0" height="0.0"/>
+                                <rect key="frame" x="-79" y="55" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -2386,6 +2392,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="fZA-SD-fh9" firstAttribute="leading" secondItem="wxO-3L-Kyv" secondAttribute="trailing" constant="8" id="05M-HU-S9e"/>
                             <constraint firstItem="PIk-ab-hCP" firstAttribute="top" secondItem="HrP-Tg-X0M" secondAttribute="bottom" constant="10" id="0SS-gm-cEz"/>
                             <constraint firstItem="Rda-6G-QrH" firstAttribute="centerY" secondItem="t9K-aN-DUk" secondAttribute="centerY" id="1fv-Qs-gZH"/>
                             <constraint firstItem="GNp-fH-t8M" firstAttribute="leading" secondItem="YM9-cb-bzu" secondAttribute="leading" id="301-aP-YTR"/>
@@ -2395,6 +2402,7 @@
                             <constraint firstItem="wxO-3L-Kyv" firstAttribute="top" secondItem="YM9-cb-bzu" secondAttribute="top" id="9Kw-9U-wFh"/>
                             <constraint firstItem="GNp-fH-t8M" firstAttribute="top" secondItem="YM9-cb-bzu" secondAttribute="top" id="9Ma-oV-MqA"/>
                             <constraint firstItem="231-sJ-AVE" firstAttribute="centerX" secondItem="Sux-Lc-KJq" secondAttribute="centerX" id="B3S-02-twW"/>
+                            <constraint firstItem="fZA-SD-fh9" firstAttribute="top" secondItem="YM9-cb-bzu" secondAttribute="top" constant="2" id="DNM-20-qrW"/>
                             <constraint firstItem="SMf-ZV-PrA" firstAttribute="top" secondItem="YLw-Zh-Bff" secondAttribute="top" id="EeG-0v-qdd"/>
                             <constraint firstItem="G9d-79-ZhY" firstAttribute="centerX" secondItem="7sy-oD-3IM" secondAttribute="centerX" multiplier="0.78" id="Ehi-m1-bi0"/>
                             <constraint firstItem="Fnv-oh-cJC" firstAttribute="centerY" secondItem="YM9-cb-bzu" secondAttribute="centerY" multiplier="0.92" id="FKy-CO-xu9"/>

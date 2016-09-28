@@ -1085,6 +1085,11 @@
     return UIInterfaceOrientationMaskLandscape;
 }
 
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 -(void)dealloc
 {
     [pomelo disconnect];

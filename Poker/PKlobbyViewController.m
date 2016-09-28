@@ -12,6 +12,12 @@
 #import "PokerTableViewControler.h"
 
 @implementation PKlobbyViewController
+
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.historyTable.delegate = self;
