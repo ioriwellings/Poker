@@ -11,19 +11,40 @@
 #import "UserInfo.h"
 #import "PokerTableViewControler.h"
 
+@interface PKlobbyViewController (){
+    
+}
+@end
 @implementation PKlobbyViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.historyTable.delegate = self;
     self.historyTable.dataSource = self;
     [self.historyTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     NSString * moneyQWE = [GloubVariables sharedInstance].money;
-    
     NSString *longMoney = [NSString stringWithFormat:@"%@",moneyQWE];
-    
     [self.money setText:longMoney];
     [self getdata];
+    self.tmpBtn = self.btnBtnA;
+    self.btnBtnA.selected = YES;
+    self.btnBtnB.selected = NO;
+
+//    NSArray * array = [NSArray arrayWithObjects:@"默认",@"销量",@"价格",@"时间", nil];
+//    for (int i = 0; i<4; i ++) {
+//        UIButton * button = [[UIButton alloc]initWithFrame:CGRectMake(80*i, 0, 80, 40)];
+//        [button setTitle:[array objectAtIndex:i] forState:UIControlStateNormal];
+//        [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+//        [button setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+//        [button.titleLabel setFont:[UIFont systemFontOfSize:14]];
+//        [button.layer setBorderWidth:0.3];
+//        button.userInteractionEnabled = YES;
+//        [button addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
+//        [button setBackgroundColor:[UIColor whiteColor]];
+//        [button setTag:i];
+//        [self.view addSubview:button];
+//    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -77,6 +98,7 @@
     NSString *name;
     NSString *channel;
     __weak typeof(self) ws = self;
+     __weak typeof(self) weakSelf = self;
     pomelo = [[Pomelo alloc] initWithDelegate:ws];
     [pomelo connectToHost:[GloubVariables sharedInstance].host
                    onPort:[GloubVariables sharedInstance].port
@@ -90,7 +112,7 @@
                      NSArray *roomList = [result objectForKey:@"roomList"];
                      if (roomList.count > 0) {
                          self.arrOnlineCheckHistory = roomList;
-                         [ws.historyTable reloadData];
+                         [weakSelf.historyTable reloadData];
                      }
                  }];
              }];
@@ -98,8 +120,35 @@
 
 - (IBAction)reloadlist:(id)sender
 {
+    UIButton*btn = (UIButton *)sender;
+    btn.selected = !btn.selected;
     [self getdata];
 }
+
+- (IBAction)reloadlist_B:(id)sender
+{
+//   self.btnBtnA.highlighted = NO;
+    self.btnBtnB.highlighted = YES;
+//    [self getdata];
+}
+
+- (IBAction)buttonSelected:(id)sender{
+        UIButton*btn = (UIButton *)sender;
+        if (_tmpBtn == nil){
+            btn.selected = YES;
+            _tmpBtn = sender;
+        }
+        else if (_tmpBtn !=nil && _tmpBtn == sender){
+            btn.selected = YES;
+        }
+        else if (_tmpBtn!= btn && _tmpBtn!=nil){
+            _tmpBtn.selected = NO;
+            btn.selected = YES;
+            _tmpBtn = btn;
+            [self getdata];
+        }
+}
+
 
 - (IBAction)back:(id)sender
 {
@@ -110,6 +159,22 @@
 {
     [super viewWillAppear:animated];
 }
+
+//-(void)buttonSelected:(UIButton*)sender{
+//    if (_tmpBtn == nil){
+//        sender.selected = YES;
+//        _tmpBtn = sender;
+//    }
+//    else if (_tmpBtn !=nil && _tmpBtn == sender){
+//        sender.selected = YES;
+//        
+//    }
+//    else if (_tmpBtn!= btn && _tmpBtn!=nil){
+//        _tmpBtn.selected = NO;
+//        sender.selected = YES;
+//        _tmpBtn = btn;
+//    }
+//}
 
 -(void)dealloc
 {

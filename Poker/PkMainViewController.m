@@ -9,28 +9,56 @@
 #import "PkMainViewController.h"
 #import "PKlobbyViewController.h"
 
+#import "NewPagedFlowView.h"
+#import "PGIndexBannerSubiew.h"
+
+#define Width [UIScreen mainScreen].bounds.size.width
+
+@interface PkMainViewController ()<NewPagedFlowViewDelegate, NewPagedFlowViewDataSource>\
+/**
+ *  图片数组
+ */
+@property (nonatomic, strong) NSMutableArray *imageArray;
+
+/**
+ *  指示label
+ */
+@property (nonatomic, strong) UILabel *indicateLabel;
+
+@end
+
 @implementation PkMainViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+//    banner00
+//    banner01.png
+//    banner02.png
+//    banner03.png
+//    banner04.png
+//    for (int index = 0; index < 5; index++) {
+//        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"Yosemite%02d",index]];
+//        [self.imageArray addObject:image];
+//    }
+    
     [self initData];
 }
 
 - (void)initData{
     isLogin = false;
     
-    if (!isLogin) {
-        [self.btnGoGame setEnabled:NO];//不能点击
-    }
-    
+  //  if (!isLogin) {
+  //      [self.btnGoGame setEnabled:NO];//不能点击
+  //  }
+ //   [self.btnLogin setEnabled:NO];
     __weak typeof(self) ws = self;
     pomelo = [[Pomelo alloc] initWithDelegate:ws];
     [pomelo connectToHost:PK_SERVER_IP onPort:PK_SERVER_PORT withCallback:^(Pomelo *p){
         NSDictionary *params = [NSDictionary dictionaryWithObject:@"13" forKey:@"uid"];
         self.aidView.hidden = NO;
         [self.aidView startAnimating];
-        [self.btnLogin setEnabled:NO];
+        
         [pomelo requestWithRoute:@"gate.gateHandler.queryEntry" andParams:params andCallback:^(NSDictionary *result){
             NSLog(@"abc host== %@",[result objectForKey:@"host"]);
             [pomelo disconnectWithCallback:^(Pomelo *p){
@@ -46,8 +74,6 @@
 {
     [GloubVariables sharedInstance].host = [data objectForKey:@"host"];
     [GloubVariables sharedInstance].port = [[data objectForKey:@"port"] intValue];
-    
-    
 }
 
 
@@ -120,7 +146,7 @@
     }else{
         self.aidView.hidden =YES;
         [self.aidView stopAnimating];
-         [self.btnLogin setEnabled:YES];
+       //  [self.btnLogin setEnabled:YES];
     }
 }
 
