@@ -67,4 +67,33 @@
     return [self convertPoint:point toView:parentView];
 }
 
+// Duplicate UIView
++ (UIView*)duplicate:(UIView*)view
+{
+    NSData * tempArchive = [NSKeyedArchiver archivedDataWithRootObject:view];
+    return [NSKeyedUnarchiver unarchiveObjectWithData:tempArchive];
+}
+
++(UIImageView*)duplicateImageView:(UIImageView*)view
+{
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:view.image];
+    imageView.frame = view.frame;
+    return imageView;
+}
+
++(UIView*)duplicateBetContainer:(UIView *)view
+{
+    UILabel *labOrigin = view.subviews[0];
+    UIImageView *icon = view.subviews[1];
+    UIView *temp = [[UIView alloc] initWithFrame:view.frame];
+    UILabel *labTemp = [[UILabel alloc] initWithFrame:labOrigin.frame];
+    labTemp.textColor = [UIColor whiteColor];
+    labTemp.text = labOrigin.text;
+    labTemp.font = labOrigin.font;
+    labTemp.textAlignment = NSTextAlignmentCenter;
+    [temp addSubview:labTemp];
+    [temp addSubview:[UIView duplicateImageView:icon]];;
+    return temp;
+}
+
 @end

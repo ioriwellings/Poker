@@ -15,4 +15,9 @@ typedef void (^DCAnimationFinished)(void);
 -(void)setPoint:(CGPoint)point duration:(NSTimeInterval)time finished:(DCAnimationFinished)finished;
 -(void)flip:(DCAnimationFinished)finished delay:(NSTimeInterval)interval;
 -(CGPoint)getViewCenterInView:(UIView*)parentView;
+
+// Duplicate UIView
++ (UIView*)duplicate:(UIView*)view;
++(UIImageView*)duplicateImageView:(UIImageView*)view;
++(UIView*)duplicateBetContainer:(UIView *)view;
 @end
