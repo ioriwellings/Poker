@@ -1090,6 +1090,11 @@
     return UIStatusBarStyleLightContent;
 }
 
+-(BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
 -(void)dealloc
 {
     [pomelo disconnect];

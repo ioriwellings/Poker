@@ -2389,6 +2389,10 @@
                                     <action selector="btnMenu_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="Sul-P5-P8e"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zp9-Ew-gwZ" userLabel="actionContainerView">
+                                <rect key="frame" x="0.0" y="192" width="568" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
