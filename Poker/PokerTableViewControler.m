@@ -142,11 +142,14 @@
               //房间信息
               NSDictionary *room = [IoriJsonHelper getDictForKey:@"room" fromDict:result];
               RoomEntity *roomInfo = [RoomEntity new];
+              roomInfo.roomID = [room objectForKey:@"roomID"];
+              roomInfo.roomName = [room objectForKey:@"roomName"];
               roomInfo.roomBaseBigBlind = [IoriJsonHelper getIntegerForKey:@"roomBaseBigBlind" fromDict:room];
               roomInfo.roomBaseSmallBlind = [IoriJsonHelper getIntegerForKey:@"roomBaseSmallBlind" fromDict:room];
               pokerTable.sb = roomInfo.roomBaseSmallBlind;
               pokerTable.bb = roomInfo.roomBaseBigBlind;
               pokerTable.roomInfo = roomInfo;
+              ws.labRoom.text = [NSString stringWithFormat:@"Room:%@", roomInfo.roomID];
               
               //在坐玩家
               NSArray *arrayPlayerList = [[[result objectForKey:@"dataInfo"] objectForKey:@"game"] objectForKey:@"playerList"];
@@ -673,11 +676,7 @@
     [table reset];
     table.updateUIDelegate = self;
     pokerTable = table;
-    self.btnAllIn.enabled = NO;
-    self.btnFold.enabled = NO;
-    self.btnRaise.enabled = NO;
-    self.btnCheck.enabled = NO;
-    self.btnCall.enabled = NO;
+    self.actionContainer.hidden = YES;
     [self clearCommCard];
     [self.seatView enumerateObjectsUsingBlock:^(UISeat   * _Nonnull obj,
                                                 NSUInteger idx,
@@ -695,14 +694,6 @@
         obj.iconWinner = self.iconWinner[idx];
         obj.poker00 = obj.pokerContainer.subviews[0];
         obj.poker01 = obj.pokerContainer.subviews[1];
-        obj.btnAllIn = self.btnAllIn;
-        obj.btnCall = self.btnCall;
-        obj.btnCheck = self.btnCheck;
-        obj.btnFold = self.btnFold;
-        obj.btnRaise = self.btnRaise;
-        obj.labRaise = self.labRaise;
-        obj.slider = self.slider;
-        obj.labAllIn = self.labAllIn;
         obj.waittingView = self.waittingImageViews[idx];
         obj.refMainBetView = self.MainBetView;
         obj.refSidePotsContainerViews = self.betPots;
@@ -780,6 +771,7 @@
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((2*IoriAnimationDelayInterval+IoriAnimationDuration) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     labBet.text = nil;
                     ws.MainBetView.hidden = YES;
+                    
                     [temp.subviews[1] setHidden:NO];
                     [temp.subviews[0] setHidden:YES];
 
@@ -1040,28 +1032,112 @@
 
 
 #pragma mark - viewcontroller life cycle -
+static long iRaiseMinValue,iRaiseMaxValue;
+
+-(void)handleActionNotificationWithPlayer:(NSNotification*)notif
+{
+    if([notif.name isEqualToString:ClosePlayerActionNotification])
+    {
+        self.actionContainer.hidden = YES;
+        return;
+    }
+    self.actionContainer.hidden = NO;
+    SeatEntity *seat = notif.object;
+    __block BOOL hasCheckActon = NO, hasCallAction = NO, hasRaiseAction = NO, hasAllIn = NO;
+    __block NSInteger callValue= 0, raiseValue =0, allInValue = 0;
+    [pokerTable.nextActionPlayer.nextActions enumerateObjectsUsingBlock:^(NextAction * _Nonnull obj,
+                                                                               NSUInteger idx,
+                                                                               BOOL * _Nonnull stop)
+    {
+        if(obj.status == PokerActionStatusEnumCheck)
+        {
+            hasCheckActon = YES;
+        }
+        else if (obj.status == PokerActionStatusEnumCall)
+        {
+            hasCallAction = YES;
+            callValue = obj.value;
+            iRaiseMinValue = callValue;
+        }
+        else if (obj.status == PokerActionStatusEnumRaise)
+        {
+            hasRaiseAction = YES;
+            raiseValue = obj.value;
+        }
+        else if (obj.status == PokerActionStatusEnumAllIn)
+        {
+            hasAllIn = YES;
+            allInValue = obj.value;
+            iRaiseMaxValue = allInValue;
+        }
+    }];
+    self.btnFold.enabled = YES;
+    self.btnRaise.enabled = NO;
+    self.slider.enabled = NO;
+    self.btnMin.enabled = NO;
+    self.btnMax.enabled = NO;
+    self.btnSetMin.enabled = NO;
+    self.btnSetHalf.enabled = NO;
+    self.btnSetPot.enabled = NO;
+    self.btnSetMax.enabled = NO;
+    self.btnCall.enabled = NO;
+    self.btnCall.hidden = YES;
+    self.btnCheck.enabled = NO;
+    self.btnCheck.hidden = YES;
+    self.txtRaise.text = nil;
+    [self.btnRaise setTitle:@"" forState:UIControlStateNormal];
+
+    //only call, fold.
+    //check ,raise, (option)allin, fold
+    //call, raise, (option)allin, fold
+    //call, allin, fold;
+    if(hasCheckActon)
+    {
+        self.btnCheck.enabled = YES;
+        self.btnCheck.hidden = NO;
+    }
+    if(hasCallAction)
+    {
+        self.btnCall.enabled = YES;
+        self.btnCall.hidden = NO;
+    }
+    if (hasRaiseAction)
+    {
+        self.btnRaise.enabled = YES;
+        self.txtRaise.text = [[NSNumber numberWithInteger: raiseValue] stringValue];
+        [self.btnRaise setTitle:[NSString getFormatedNumberByInteger:raiseValue] forState:UIControlStateNormal];
+        self.slider.minimumValue = raiseValue;
+        self.slider.value = raiseValue;
+        self.slider.maximumValue = seat.player.bringInMoney;
+        self.slider.enabled = YES;
+        self.btnMin.enabled = YES;
+        self.btnMax.enabled = YES;
+        self.btnSetMax.enabled = YES;
+        self.btnSetMin.enabled = YES;
+        self.btnSetHalf.enabled = YES;
+        self.btnSetPot.enabled = YES;
+    }
+}
 
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    self.slider.transform = CGAffineTransformMakeRotation(-M_PI_2);
-    [self.slider mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(self.sliderBG.mas_height).offset(-20);
-        make.height.mas_equalTo(12);
-    }];
     
     //设置未滑动位置背景图片
-    [self.slider setMinimumTrackImage:[UIImage imageNamed:@"iori_slider_1"] forState:UIControlStateNormal];
+    [self.slider setMinimumTrackImage:[UIImage imageNamed:@"slider_1_new"] forState:UIControlStateNormal];
     //设置已滑动位置背景图
-    [self.slider setMaximumTrackImage:[UIImage imageNamed:@"iori_slider_bg"] forState:UIControlStateNormal];
+    [self.slider setMaximumTrackImage:[UIImage imageNamed:@"slider_bg_new"] forState:UIControlStateNormal];
     //设置滑块图标图片
-//    [self.slider setThumbImage:[UIImage imageNamed:@"main_slider_btn.png"] forState:UIControlStateNormal];
+    [self.slider setThumbImage:[UIImage imageNamed:@"btn_raise_1"] forState:UIControlStateNormal];
     //设置点击滑块状态图标
 //    [self.slider setThumbImage:[UIImage imageNamed:@"main_slider_btn.png"] forState:UIControlStateHighlighted];
     
     [self initTableLayout];
     
     [self reconnectToHost];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleActionNotificationWithPlayer:) name:ShowPlayerActionNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleActionNotificationWithPlayer:) name:ClosePlayerActionNotification object:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -1097,6 +1173,7 @@
 
 -(void)dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [pomelo disconnect];
     pomelo = nil;
     NSLog(@"%@:%s",self,__func__);
@@ -1118,11 +1195,17 @@
 
 - (IBAction)btnMore_click:(UIButton *)sender
 {
+//    [pomelo requestWithRoute:@"connector.entryHandler.gameReplay"
+//                   andParams:@{@"gameReplayType":@(1), @"playerID":@"cy103"}
+//            andCallback:^(NSDictionary *result)
+//     {
+//         NSLog(@"result:%@",result);
+//     }];
 }
 
 - (IBAction)btnCheck_click:(UIButton *)sender
 {
-    self.sliderContainer.hidden = YES;
+    [self closeActionPanel];
     [pomelo requestWithRoute:@"game.gameHandler.check" andParams:@{} andCallback:^(id callback) {
         ;
     }];
@@ -1130,46 +1213,36 @@
 
 - (IBAction)btnCall_click:(UIButton *)sender
 {
-    self.sliderContainer.hidden = YES;
+    [self closeActionPanel];
     [pomelo requestWithRoute:@"game.gameHandler.call" andParams:@{} andCallback:^(id callback) {
         ;
     }];
 }
 
-static BOOL isRaiseClicked;
 - (IBAction)btnRaise_click:(UIButton *)sender
 {
-    if(isRaiseClicked == NO)
-    {
-        isRaiseClicked = YES;
-        [sender setImage:[UIImage imageNamed:@"btn_a_3_1.png"] forState:UIControlStateNormal];
-        self.sliderContainer.hidden = NO;
-    }
-    else
-    {
-        NSNumberFormatter *formatter = [NSNumberFormatter new];
-        formatter.numberStyle = NSNumberFormatterDecimalStyle;
-        NSNumber *number = [formatter numberFromString:self.labRaise.text];
-        [pomelo requestWithRoute:@"game.gameHandler.raise" andParams:@{@"chip":[number stringValue] } andCallback:^(id callback) {
-            ;
-        }];
-        isRaiseClicked = NO;
-        [sender setImage:[UIImage imageNamed:@"btn_a_2_0.png"] forState:UIControlStateNormal];
-        self.sliderContainer.hidden = YES;
-    }
+    [pomelo requestWithRoute:@"game.gameHandler.raise" andParams:@{@"chip":self.txtRaise.text } andCallback:^(id callback) {
+        ;
+    }];
+    [self closeActionPanel];
 }
 
 - (IBAction)btnAllin_click:(UIButton *)sender
 {
-    self.sliderContainer.hidden = YES;
+    [self closeActionPanel];
     [pomelo requestWithRoute:@"game.gameHandler.allIn" andParams:@{} andCallback:^(id callback) {
         ;
     }];
 }
 
+-(void)closeActionPanel
+{
+    self.actionContainer.hidden = YES;
+}
+
 - (IBAction)btnFold_click:(UIButton *)sender
 {
-    self.sliderContainer.hidden = YES;
+    [self closeActionPanel];
     [pomelo requestWithRoute:@"game.gameHandler.fold" andParams:@{} andCallback:^(id callback) {
         ;
     }];
@@ -1177,7 +1250,7 @@ static BOOL isRaiseClicked;
 
 - (IBAction)slider_valueChanged:(UISlider *)sender
 {
-    self.labRaise.text = [NSString getFormatedNumberByInteger:sender.value];
+    self.txtRaise.text = [[NSNumber numberWithInteger:sender.value] stringValue];
 }
 
 - (IBAction)btnStart_click:(UIButton *)sender
@@ -1200,5 +1273,51 @@ static BOOL isRaiseClicked;
     [pomelo requestWithRoute:@"game.gameHandler.downCard" andParams:@{} andCallback:^(id callback) {
         
     }];
+}
+
+- (IBAction)btnMin_click:(UIButton *)sender
+{
+    self.slider.value -=1;
+    if(self.slider.value < iRaiseMinValue)
+    {
+        self.slider.value = iRaiseMinValue;
+    }
+    self.txtRaise.text = [NSString getFormatedNumberByInteger:self.slider.value];
+    [self.btnRaise setTitle:self.txtRaise.text forState:UIControlStateNormal];
+}
+
+- (IBAction)btnMax:(UIButton *)sender
+{
+    self.slider.value +=1;
+    if(self.slider.value > iRaiseMaxValue)
+    {
+        self.slider.value = iRaiseMaxValue;
+    }
+    self.txtRaise.text = [NSString getFormatedNumberByInteger:self.slider.value];
+    [self.btnRaise setTitle:self.txtRaise.text forState:UIControlStateNormal];
+}
+
+- (IBAction)btnSetMin_click:(UIButton *)sender
+{
+    self.txtRaise.text = [NSString getFormatedNumberByInteger:iRaiseMinValue];
+    [self.btnRaise setTitle:self.txtRaise.text forState:UIControlStateNormal];
+}
+
+- (IBAction)btnSetHalf_click:(UIButton *)sender
+{
+    self.txtRaise.text = [NSString getFormatedNumberByInteger:pokerTable.allPots/2];
+    [self.btnRaise setTitle:self.txtRaise.text forState:UIControlStateNormal];
+}
+
+- (IBAction)btnSetPot_click:(UIButton *)sender
+{
+    self.txtRaise.text = [NSString getFormatedNumberByInteger:pokerTable.allPots];
+    [self.btnRaise setTitle:self.txtRaise.text forState:UIControlStateNormal];
+}
+
+- (IBAction)btnSetMax_click:(UIButton *)sender
+{
+    self.txtRaise.text = [NSString getFormatedNumberByInteger:iRaiseMaxValue];
+    [self.btnRaise setTitle:self.txtRaise.text forState:UIControlStateNormal];
 }
 @end

@@ -15,4 +15,7 @@
 #define IoriAnimationDuration 0.35
 #define IoriAnimationDelayInterval 2.0
 
+#define ShowPlayerActionNotification @"ShowPlayerActionNotification"
+#define ClosePlayerActionNotification @"ClosePlayerActionNotification"
+
 #endif /* PrefixHeader_pch */

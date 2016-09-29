@@ -32,7 +32,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnCall;
 @property (weak, nonatomic) IBOutlet UIButton *btnRaise;
 @property (weak, nonatomic) IBOutlet UIButton *btnFold;
-@property (weak, nonatomic) IBOutlet UIButton *btnAllIn;
+@property (weak, nonatomic) IBOutlet UIButton *btnSetMin;
+@property (weak, nonatomic) IBOutlet UIButton *btnSetHalf;
+@property (weak, nonatomic) IBOutlet UIButton *btnSetPot;
+@property (weak, nonatomic) IBOutlet UIButton *btnSetMax;
+@property (weak, nonatomic) IBOutlet UIButton *btnMin;
+@property (weak, nonatomic) IBOutlet UIButton *btnMax;
 
 @property (strong, nonatomic) IBOutletCollection(UIView) NSArray *seatView;
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *commCards;
@@ -55,14 +60,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *labMainBot;
 @property (weak, nonatomic) IBOutlet UILabel *labBlindBet;
 @property (weak, nonatomic) IBOutlet UITextField *txtRaise;
-@property (weak, nonatomic) IBOutlet UILabel *labAllIn;
 @property (weak, nonatomic) IBOutlet UILabel *labCardType;
 @property (weak, nonatomic) IBOutlet UISlider *slider;
-@property (weak, nonatomic) IBOutlet UIImageView *sliderBG;
-@property (weak, nonatomic) IBOutlet UILabel *labRaise;
-@property (weak, nonatomic) IBOutlet UIView *sliderContainer;
 @property (weak, nonatomic) IBOutlet UIView *maskContainer;
-
+@property (weak, nonatomic) IBOutlet UIView *actionContainer;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *actionContainerBottomConstraint;
+@property (weak, nonatomic) IBOutlet UILabel *labRoom;
 
 - (IBAction)btnSit_click:(UIButton *)sender;
 - (IBAction)btnMenu_click:(UIButton *)sender;
@@ -73,6 +76,13 @@
 - (IBAction)btnAllin_click:(UIButton *)sender;
 - (IBAction)btnFold_click:(UIButton *)sender;
 - (IBAction)slider_valueChanged:(UISlider *)sender;
--(IBAction)btnPutCard:(UIButton*)sender;
--(IBAction)btnDownCard:(UIButton*)sender;
+- (IBAction)btnPutCard:(UIButton*)sender;
+- (IBAction)btnDownCard:(UIButton*)sender;
+- (IBAction)btnMin_click:(UIButton *)sender;
+- (IBAction)btnMax:(UIButton *)sender;
+- (IBAction)btnSetMin_click:(UIButton *)sender;
+- (IBAction)btnSetHalf_click:(UIButton *)sender;
+- (IBAction)btnSetPot_click:(UIButton *)sender;
+- (IBAction)btnSetMax_click:(UIButton *)sender;
+
 @end
