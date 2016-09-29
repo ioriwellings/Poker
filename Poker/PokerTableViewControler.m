@@ -1221,10 +1221,18 @@ static long iRaiseMinValue,iRaiseMaxValue;
 
 - (IBAction)btnRaise_click:(UIButton *)sender
 {
-    [pomelo requestWithRoute:@"game.gameHandler.raise" andParams:@{@"chip":self.txtRaise.text } andCallback:^(id callback) {
-        ;
-    }];
-    [self closeActionPanel];
+    NSInteger iBet = [self.txtRaise.text integerValue];
+    if(iBet == iRaiseMaxValue)
+    {
+        [self btnAllin_click:nil];
+    }
+    else
+    {
+        [pomelo requestWithRoute:@"game.gameHandler.raise" andParams:@{@"chip":self.txtRaise.text } andCallback:^(id callback) {
+            ;
+        }];
+        [self closeActionPanel];
+    }
 }
 
 - (IBAction)btnAllin_click:(UIButton *)sender
