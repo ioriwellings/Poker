@@ -1097,6 +1097,7 @@ static long iCallValue,iRaiseMinValue,iRaiseMaxValue, chipsInHand;
         {
             hasRaiseAction = YES;
             raiseValue = obj.value;
+            iRaiseMinValue = raiseValue;
         }
         else if (obj.status == PokerActionStatusEnumAllIn)
         {
