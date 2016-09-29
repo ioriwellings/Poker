@@ -1041,9 +1041,19 @@
      }];
 }
 
+-(void)closeActionPanel
+{
+    __weak typeof(self) ws = self;
+    self.actionContainer.hidden = YES;
+    self.numberPadView.hidden = YES;
+    self.actionContainerBottomConstraint.constant = 0;
+    [UIView animateWithDuration:IoriAnimationDuration animations:^{
+        [ws.view layoutIfNeeded];
+    }];
+}
 
 #pragma mark - viewcontroller life cycle -
-static long iRaiseMinValue,iRaiseMaxValue;
+static long iRaiseMinValue,iRaiseMaxValue, chipsInHand;
 
 -(void)handleActionNotificationWithPlayer:(NSNotification*)notif
 {
@@ -1051,6 +1061,7 @@ static long iRaiseMinValue,iRaiseMaxValue;
     [ws.view layoutIfNeeded];
     if([notif.name isEqualToString:ClosePlayerActionNotification])
     {
+        self.numberPadView.hidden = YES;
         self.actionContainer.hidden = YES;
         self.actionContainerBottomConstraint.constant = -self.actionContainer.frame.size.height;
         [UIView animateWithDuration:IoriAnimationDuration animations:^{
@@ -1065,6 +1076,7 @@ static long iRaiseMinValue,iRaiseMaxValue;
     }];
     
     SeatEntity *seat = notif.object;
+    chipsInHand = seat.player.bringInMoney;
     __block BOOL hasCheckActon = NO, hasCallAction = NO, hasRaiseAction = NO, hasAllIn = NO;
     __block NSInteger callValue= 0, raiseValue =0, allInValue = 0;
     [pokerTable.nextActionPlayer.nextActions enumerateObjectsUsingBlock:^(NextAction * _Nonnull obj,
@@ -1294,17 +1306,6 @@ static long iRaiseMinValue,iRaiseMaxValue;
     [self closeActionPanel];
     [pomelo requestWithRoute:@"game.gameHandler.allIn" andParams:@{} andCallback:^(id callback) {
         ;
-    }];
-}
-
--(void)closeActionPanel
-{
-    __weak typeof(self) ws = self;
-    self.actionContainer.hidden = YES;
-    self.numberPadView.hidden = YES;
-    self.actionContainerBottomConstraint.constant = 0;
-    [UIView animateWithDuration:IoriAnimationDuration animations:^{
-        [ws.view layoutIfNeeded];
     }];
 }
 
