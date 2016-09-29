@@ -357,7 +357,13 @@
 
 - (IBAction)btnTest:(id)sender
 {
-    [self test];
+ //   [self test];
+    
+    [[PKViewTransfer sharedViewTransfer] pushViewController:@"mainRom"
+                                                      story:@"MainResumption"
+                                                      block:^(UIViewController *vc) {
+                                                          [self presentViewController:vc animated:YES completion:nil];
+                                                      }];
 }
 
 - (void)test{
