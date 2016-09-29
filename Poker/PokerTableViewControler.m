@@ -1396,6 +1396,11 @@ static long iCallValue,iRaiseMinValue,iRaiseMaxValue, chipsInHand;
     [self.btnRaise setTitle:[NSString getFormatedNumberByInteger:iRaiseMaxValue] forState:UIControlStateNormal];
 }
 
+- (IBAction)btnNumberPad_click:(UIButton *)sender
+{
+    self.numberPadView.hidden = NO;
+}
+
 #pragma mark -number pad-
 
 - (IBAction)onBtnDel:(id)sender

@@ -86,5 +86,6 @@
 - (IBAction)btnSetHalf_click:(UIButton *)sender;
 - (IBAction)btnSetPot_click:(UIButton *)sender;
 - (IBAction)btnSetMax_click:(UIButton *)sender;
+- (IBAction)btnNumberPad_click:(UIButton *)sender;
 
 @end

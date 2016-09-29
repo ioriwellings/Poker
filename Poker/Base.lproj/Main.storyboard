@@ -2555,7 +2555,10 @@
                                         </connections>
                                     </slider>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EXv-XP-INT" userLabel="txtBet">
-                                        <rect key="frame" x="187" y="252" width="59" height="17"/>
+                                        <rect key="frame" x="187" y="247" width="59" height="26"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="26" id="kXf-2q-hLh"/>
+                                        </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="yes" keyboardType="phonePad"/>
@@ -2563,6 +2566,12 @@
                                             <action selector="txtRaise_beginEdit:" destination="YfZ-qu-XoD" eventType="editingDidBegin" id="9bY-P2-fJI"/>
                                         </connections>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YeR-fk-Dnn">
+                                        <rect key="frame" x="187" y="247" width="59" height="26"/>
+                                        <connections>
+                                            <action selector="btnNumberPad_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="QH1-Mi-zer"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="z7I-O8-CVh" firstAttribute="top" secondItem="Cbj-ip-pH0" secondAttribute="top" id="2C3-3C-vdd"/>
@@ -2582,9 +2591,11 @@
                                     <constraint firstItem="vLO-A0-718" firstAttribute="top" secondItem="4GS-Va-thq" secondAttribute="bottom" constant="-4" id="MuB-LR-f92"/>
                                     <constraint firstAttribute="trailing" secondItem="hS9-rB-tqz" secondAttribute="trailing" constant="4" id="Sbp-Fk-b7g"/>
                                     <constraint firstItem="sxt-Ms-8xb" firstAttribute="leading" secondItem="hS9-rB-tqz" secondAttribute="leading" id="Uds-gg-fFg"/>
+                                    <constraint firstItem="YeR-fk-Dnn" firstAttribute="leading" secondItem="EXv-XP-INT" secondAttribute="leading" id="WPw-fJ-l7t"/>
                                     <constraint firstItem="pik-it-Toe" firstAttribute="leading" secondItem="zp9-Ew-gwZ" secondAttribute="leading" constant="4" id="Wgx-wA-Mhr"/>
                                     <constraint firstItem="91e-X6-4el" firstAttribute="leading" secondItem="Cbj-ip-pH0" secondAttribute="trailing" id="Zjb-0O-ScM"/>
                                     <constraint firstItem="X6k-0W-efe" firstAttribute="leading" secondItem="pik-it-Toe" secondAttribute="trailing" constant="14" id="aEg-d5-BsJ"/>
+                                    <constraint firstItem="YeR-fk-Dnn" firstAttribute="trailing" secondItem="EXv-XP-INT" secondAttribute="trailing" id="cdL-hm-Khl"/>
                                     <constraint firstItem="Fwc-FB-WCZ" firstAttribute="centerX" secondItem="X6k-0W-efe" secondAttribute="centerX" id="f9i-Hf-I3x"/>
                                     <constraint firstItem="Fwc-FB-WCZ" firstAttribute="centerY" secondItem="X6k-0W-efe" secondAttribute="centerY" id="fVj-hV-qdO"/>
                                     <constraint firstItem="VMu-rB-tKW" firstAttribute="bottom" secondItem="X6k-0W-efe" secondAttribute="bottom" id="iUB-jG-AsG"/>
@@ -2593,7 +2604,9 @@
                                     <constraint firstItem="X6k-0W-efe" firstAttribute="bottom" secondItem="pik-it-Toe" secondAttribute="bottom" id="mWz-AO-8xl"/>
                                     <constraint firstItem="91e-X6-4el" firstAttribute="centerY" secondItem="vLO-A0-718" secondAttribute="centerY" id="mgX-81-fmU"/>
                                     <constraint firstItem="PvV-9D-2KP" firstAttribute="centerY" secondItem="hS9-rB-tqz" secondAttribute="centerY" id="oxo-U7-qG5"/>
+                                    <constraint firstItem="YeR-fk-Dnn" firstAttribute="bottom" secondItem="EXv-XP-INT" secondAttribute="bottom" id="qHy-gx-KQN"/>
                                     <constraint firstItem="VMu-rB-tKW" firstAttribute="leading" secondItem="X6k-0W-efe" secondAttribute="trailing" constant="8" id="qP2-7f-z4l"/>
+                                    <constraint firstItem="YeR-fk-Dnn" firstAttribute="top" secondItem="EXv-XP-INT" secondAttribute="top" id="qVr-WT-hcV"/>
                                     <constraint firstItem="Cbj-ip-pH0" firstAttribute="leading" secondItem="z7I-O8-CVh" secondAttribute="trailing" id="qva-64-ZPi"/>
                                     <constraint firstAttribute="bottom" secondItem="hS9-rB-tqz" secondAttribute="bottom" constant="6" id="rRl-6h-cD7"/>
                                     <constraint firstItem="vLO-A0-718" firstAttribute="leading" secondItem="91e-X6-4el" secondAttribute="trailing" id="sCn-k9-g6F"/>
