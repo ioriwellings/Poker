@@ -13,6 +13,7 @@
 #import "NSString+AudioFile.h"
 #import "Masonry.h"
 #import "Config.h"
+#import "GloubVariables.h"
 
 @interface PokerTableViewControler ()
 {
@@ -127,19 +128,20 @@
 - (void)entryWithData:(NSDictionary *)data
 {
     __weak typeof(self) ws = self;
-    NSString *host = strServerIP = [data objectForKey:@"host"];
-    NSInteger port = iServerPort = [[data objectForKey:@"port"] intValue];
-    NSString *name = [UserInfo sharedUser].userID;
-    NSString *channel = [UserInfo sharedUser].roomName;
-    [pomelo connectToHost:host
-                   onPort:port
-             withCallback:^(Pomelo *p)
-     {
+//    NSString *host = strServerIP = [data objectForKey:@"host"];
+//    NSInteger port = iServerPort = [[data objectForKey:@"port"] intValue];
+//    NSString *name = [UserInfo sharedUser].userID;
+//    NSString *channel = [UserInfo sharedUser].roomName;
+//    [pomelo connectToHost:host
+//                   onPort:port
+//             withCallback:^(Pomelo *p)
+//     {
          NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                                 name, @"username",
-                                 channel, @"rid",
+                                 [UserInfo sharedUser].userID, @"username",
+                                 [UserInfo sharedUser].roomName, @"rid",
                                  nil];
-         [p requestWithRoute:@"connector.entryHandler.enter"
+    Pomelo *p = self.OnePomelo;
+         [self.OnePomelo requestWithRoute:@"connector.entryHandler.enter"
                    andParams:params
                  andCallback:^(NSDictionary *result)
           {
@@ -231,7 +233,7 @@
                   [ws onPlayerKick:(NSDictionary *)callback];;
               }];
           }];
-     }];
+//     }];
 }
 
 -(void)setNextActionPlayerFromDict:(NSDictionary*)dict
