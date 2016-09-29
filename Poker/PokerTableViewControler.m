@@ -1036,12 +1036,23 @@ static long iRaiseMinValue,iRaiseMaxValue;
 
 -(void)handleActionNotificationWithPlayer:(NSNotification*)notif
 {
+    __weak typeof(self) ws = self;
+    [ws.view layoutIfNeeded];
     if([notif.name isEqualToString:ClosePlayerActionNotification])
     {
         self.actionContainer.hidden = YES;
+        self.actionContainerBottomConstraint.constant = -self.actionContainer.frame.size.height;
+        [UIView animateWithDuration:IoriAnimationDuration animations:^{
+            [ws.view layoutIfNeeded];
+        }];
         return;
     }
     self.actionContainer.hidden = NO;
+    self.actionContainerBottomConstraint.constant = 0;
+    [UIView animateWithDuration:IoriAnimationDuration animations:^{
+        [ws.view layoutIfNeeded];
+    }];
+    
     SeatEntity *seat = notif.object;
     __block BOOL hasCheckActon = NO, hasCallAction = NO, hasRaiseAction = NO, hasAllIn = NO;
     __block NSInteger callValue= 0, raiseValue =0, allInValue = 0;
@@ -1067,7 +1078,7 @@ static long iRaiseMinValue,iRaiseMaxValue;
         else if (obj.status == PokerActionStatusEnumAllIn)
         {
             hasAllIn = YES;
-            allInValue = obj.value;
+            allInValue = seat.player.bringInMoney;
             iRaiseMaxValue = allInValue;
         }
     }];
@@ -1116,6 +1127,11 @@ static long iRaiseMinValue,iRaiseMaxValue;
         self.btnSetMin.enabled = YES;
         self.btnSetHalf.enabled = YES;
         self.btnSetPot.enabled = YES;
+        
+        if(pokerTable.allPots/2 < iRaiseMinValue)
+        {
+            self.btnSetHalf.enabled = NO;
+        }
     }
 }
 
@@ -1221,10 +1237,18 @@ static long iRaiseMinValue,iRaiseMaxValue;
 
 - (IBAction)btnRaise_click:(UIButton *)sender
 {
-    [pomelo requestWithRoute:@"game.gameHandler.raise" andParams:@{@"chip":self.txtRaise.text } andCallback:^(id callback) {
-        ;
-    }];
-    [self closeActionPanel];
+    NSInteger iBet = [self.txtRaise.text integerValue];
+    if(iBet == iRaiseMaxValue)
+    {
+        [self btnAllin_click:nil];
+    }
+    else
+    {
+        [pomelo requestWithRoute:@"game.gameHandler.raise" andParams:@{@"chip":self.txtRaise.text } andCallback:^(id callback) {
+            ;
+        }];
+        [self closeActionPanel];
+    }
 }
 
 - (IBAction)btnAllin_click:(UIButton *)sender
@@ -1251,6 +1275,7 @@ static long iRaiseMinValue,iRaiseMaxValue;
 - (IBAction)slider_valueChanged:(UISlider *)sender
 {
     self.txtRaise.text = [[NSNumber numberWithInteger:sender.value] stringValue];
+    [self.btnRaise setTitle:[NSString getFormatedNumberByInteger:sender.value] forState:UIControlStateNormal];
 }
 
 - (IBAction)btnStart_click:(UIButton *)sender
@@ -1282,8 +1307,8 @@ static long iRaiseMinValue,iRaiseMaxValue;
     {
         self.slider.value = iRaiseMinValue;
     }
-    self.txtRaise.text = [NSString getFormatedNumberByInteger:self.slider.value];
-    [self.btnRaise setTitle:self.txtRaise.text forState:UIControlStateNormal];
+    self.txtRaise.text = [[NSNumber numberWithInteger:self.slider.value] stringValue];
+    [self.btnRaise setTitle:[NSString getFormatedNumberByInteger:self.slider.value] forState:UIControlStateNormal];
 }
 
 - (IBAction)btnMax:(UIButton *)sender
@@ -1293,31 +1318,31 @@ static long iRaiseMinValue,iRaiseMaxValue;
     {
         self.slider.value = iRaiseMaxValue;
     }
-    self.txtRaise.text = [NSString getFormatedNumberByInteger:self.slider.value];
-    [self.btnRaise setTitle:self.txtRaise.text forState:UIControlStateNormal];
+    self.txtRaise.text = [[NSNumber numberWithInteger:self.slider.value] stringValue];
+    [self.btnRaise setTitle:[NSString getFormatedNumberByInteger:self.slider.value] forState:UIControlStateNormal];
 }
 
 - (IBAction)btnSetMin_click:(UIButton *)sender
 {
-    self.txtRaise.text = [NSString getFormatedNumberByInteger:iRaiseMinValue];
-    [self.btnRaise setTitle:self.txtRaise.text forState:UIControlStateNormal];
+    self.txtRaise.text = [[NSNumber numberWithInteger:iRaiseMinValue] stringValue];
+    [self.btnRaise setTitle:[NSString getFormatedNumberByInteger:iRaiseMinValue] forState:UIControlStateNormal];
 }
 
 - (IBAction)btnSetHalf_click:(UIButton *)sender
 {
-    self.txtRaise.text = [NSString getFormatedNumberByInteger:pokerTable.allPots/2];
-    [self.btnRaise setTitle:self.txtRaise.text forState:UIControlStateNormal];
+    self.txtRaise.text = [[NSNumber numberWithInteger:pokerTable.allPots/2] stringValue];
+    [self.btnRaise setTitle:[NSString getFormatedNumberByInteger:pokerTable.allPots/2] forState:UIControlStateNormal];
 }
 
 - (IBAction)btnSetPot_click:(UIButton *)sender
 {
-    self.txtRaise.text = [NSString getFormatedNumberByInteger:pokerTable.allPots];
-    [self.btnRaise setTitle:self.txtRaise.text forState:UIControlStateNormal];
+    self.txtRaise.text = [[NSNumber numberWithInteger:pokerTable.allPots] stringValue];
+    [self.btnRaise setTitle:[NSString getFormatedNumberByInteger:pokerTable.allPots] forState:UIControlStateNormal];
 }
 
 - (IBAction)btnSetMax_click:(UIButton *)sender
 {
-    self.txtRaise.text = [NSString getFormatedNumberByInteger:iRaiseMaxValue];
-    [self.btnRaise setTitle:self.txtRaise.text forState:UIControlStateNormal];
+    self.txtRaise.text = [[NSNumber numberWithInteger:iRaiseMaxValue] stringValue];
+    [self.btnRaise setTitle:[NSString getFormatedNumberByInteger:iRaiseMaxValue] forState:UIControlStateNormal];
 }
 @end
