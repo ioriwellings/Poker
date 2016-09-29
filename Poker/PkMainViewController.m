@@ -13,6 +13,7 @@
 #import "PGIndexBannerSubiew.h"
 #import "PKlobbyViewController.h"
 #import "LoginView.h"
+#import "ResumptionOfMethod.h"
 
 #define Width [UIScreen mainScreen].bounds.size.width
 
@@ -371,7 +372,8 @@
     [[PKViewTransfer sharedViewTransfer] pushViewController:@"mainRom"
                                                       story:@"MainResumption"
                                                       block:^(UIViewController *vc) {
-                                                          
+                                                          ResumptionOfMethod *romd = (ResumptionOfMethod*)vc;
+                                                          romd.OnePomelo = pomelo;
                                                           [self presentViewController:vc animated:YES completion:nil];
                                                       }];
 }

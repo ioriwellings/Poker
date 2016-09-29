@@ -17,7 +17,7 @@
     NSTimer *timer;
     bool btnFlag;//控制button的隐藏显示
 }
-
+@property (weak, nonatomic) Pomelo *OnePomelo;
 @property (weak, nonatomic) IBOutlet UILabel *roomLb;
 @property (weak, nonatomic) IBOutlet UILabel *timeLb;
 

@@ -21,9 +21,7 @@
     timeNum=0;//当前时间
     clickCountNum=0;//点击次数
     btnFlag=YES;
-    
     // Do any additional setup after loading the view.
-    
     timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(playFunction) userInfo:nil repeats:YES];
 }
 - (NSString*)getTimer:(double)time
@@ -157,7 +155,6 @@
 -(void)reconnectToHost{}
 - (void)entryWithData{
     __weak typeof(self) ws = self;
-    pomelo = [[Pomelo alloc] initWithDelegate:ws];
     
     NSLog(@"%@",[GloubVariables sharedInstance].host);
     NSLog(@"%ld",(long)[GloubVariables sharedInstance].port);
@@ -166,40 +163,34 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     // 读取账户
     NSString * playerNickName = [userDefaults objectForKey:@"playerNickName"];
-    
-    
-    [pomelo connectToHost:[GloubVariables sharedInstance].host
-                   onPort:[GloubVariables sharedInstance].port
-             withCallback:^(Pomelo *p){
-                 NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                                         @"1", @"gameReplayType",
-                                         playerNickName,@"playerID",
-                                         nil];
-                 [p requestWithRoute:@"connector.entryHandler.gameReplay" andParams:params andCallback:^(NSDictionary *result){
-                     
-                     NSLog(@"result:%@",result);
-                     
-                     NSString *error = [result objectForKey:@"error"];
-                     if (error && ![error isEqual:@""]) {
-                         //失败
-                         
-                         UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:@"MESSAGE" message:error preferredStyle:UIAlertControllerStyleAlert];
-                         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel"
-                                                                                style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                                                                                    //取消按钮
-                                                                                    NSLog(@"我是取消按钮");
-                                                                                }];
-                         [alertControl addAction:cancelAction];//cancel
-                         //显示警报框
-                         [self presentViewController:alertControl animated:YES completion:nil];
-                     }else{
-                         //                            NSDictionary *dict = [result objectForKey:@"body"]  ;
-                         NSArray *arr1 = [result objectForKey:@"gameReplayData"];
-                         [self updateRoomLb:arr1];
-                         [self initData:arr1];
-                     }
-                 }];
-             }];
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            @"1", @"gameReplayType",
+                            playerNickName,@"playerID",
+                            nil];
+    [self.OnePomelo requestWithRoute:@"connector.entryHandler.gameReplay" andParams:params andCallback:^(NSDictionary *result){
+        
+        NSLog(@"result:%@",result);
+        
+        NSString *error = [result objectForKey:@"error"];
+        if (error && ![error isEqual:@""]) {
+            //失败
+            
+            UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:@"MESSAGE" message:error preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel"
+                                                                   style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                                                                       //取消按钮
+                                                                       NSLog(@"我是取消按钮");
+                                                                   }];
+            [alertControl addAction:cancelAction];//cancel
+            //显示警报框
+            [self presentViewController:alertControl animated:YES completion:nil];
+        }else{
+            //                            NSDictionary *dict = [result objectForKey:@"body"]  ;
+            NSArray *arr1 = [result objectForKey:@"gameReplayData"];
+            [self updateRoomLb:arr1];
+            [self initData:arr1];
+        }
+    }];
 }
 
 -(void)updateRoomLb:(NSArray*)arr{
