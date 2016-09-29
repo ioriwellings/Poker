@@ -1367,4 +1367,143 @@ static long iRaiseMinValue,iRaiseMaxValue;
     self.txtRaise.text = [[NSNumber numberWithInteger:iRaiseMaxValue] stringValue];
     [self.btnRaise setTitle:[NSString getFormatedNumberByInteger:iRaiseMaxValue] forState:UIControlStateNormal];
 }
+
+#pragma mark -number pad-
+
+- (IBAction)onBtnDel:(id)sender
+{
+    NSString *str = [self.txtRaise text];
+    int idx = (int)[str length]-1;
+    NSString *numStr;
+    if(idx<=0){
+        numStr = @"";
+    }else{
+        numStr = [str substringToIndex:idx];
+    }
+    self.txtRaise.text =  [self filterNumStr: numStr];
+}
+
+- (IBAction)onBtnClear:(id)sender
+{
+    self.txtRaise.text = [NSString stringWithFormat:@"%ld",iRaiseMinValue]; //filterNumStr(numStr: numStr)
+}
+
+- (IBAction)onBtnAssign:(id)sender
+{
+    UIView *view = [sender superview];
+    view.hidden = YES;
+    //[self closeActionPanel];
+    //assignValue = [self.text doubleValue];
+}
+- (IBAction)onBtnNumber:(id)sender
+{
+    NSString *nextNum;
+    UIButton * btn = (UIButton *)sender;
+    if( btn.tag == 0 )
+    {
+        nextNum = @"0";
+    }
+    else if(btn.tag == 1)
+    {
+        nextNum = @"1";
+    }
+    else if(btn.tag== 2)
+    {
+        nextNum = @"2";
+    }
+    else if(btn.tag== 3)
+    {
+        nextNum = @"3";
+    }
+    else if(btn.tag== 4)
+    {
+        nextNum = @"4";
+    }
+    else if(btn.tag== 5)
+    {
+        nextNum = @"5";
+    }
+    else if(btn.tag== 6)
+    {
+        nextNum = @"6";
+    }
+    else if(btn.tag== 7)
+    {
+        nextNum = @"7";
+    }
+    else if(btn.tag== 8)
+    {
+        nextNum = @"8";
+    }
+    else if(btn.tag== 9)
+    {
+        nextNum = @"9";
+    }
+    else if(btn.tag== 10)
+    {
+        nextNum = @"00";
+    }
+    else if(btn.tag== 11)
+    {
+        nextNum = @".";
+    }
+    
+    NSString *str = [self.txtRaise.text stringByAppendingString: nextNum];
+    self.txtRaise.text = [self filterNumStr: str];
+}
+
+- (NSString*)filterNumStr:(NSString*)numStr
+{
+    NSString* str;
+    if ([numStr isEqualToString:@""]) {
+        str = @"";
+        return str;
+    }
+    NSString* substr = [numStr substringFromIndex:numStr.length-1];
+    
+    if (pokerTable.sb - floor(pokerTable.sb)<0.001)
+    {  // 不允许输入浮点数
+        if([substr isEqualToString:@"."])
+        {
+            str = substr;
+        }
+        else
+        {
+            str = numStr;
+        }
+    }else{   // 可以输入浮点数
+        if([substr isEqualToString:@"."])
+        {
+            NSString* temp = [numStr substringToIndex:numStr.length-1];
+            NSRange range;
+            range = [temp rangeOfString:@"."];
+            if (range.location == NSNotFound)
+            {
+                str = numStr;
+            }
+            else
+            {
+                str = temp;
+                
+                //                if (temp.length - range.location >= 2){
+                //                    str = temp substring;
+                //                }else{
+                //                    str = temp;
+                //                }
+                //                //输入保留两位小数
+                //                if () {
+                //
+                //
+                //                }
+            }
+        }else{
+            
+            str = numStr;
+        }
+        
+        
+    }
+    
+    return str;
+}
 @end

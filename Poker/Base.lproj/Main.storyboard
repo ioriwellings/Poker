@@ -2082,7 +2082,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4mW-rS-uyX">
-                                <rect key="frame" x="-6" y="-78" width="0.0" height="0.0"/>
+                                <rect key="frame" x="-27" y="-53" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -2319,30 +2319,175 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zp9-Ew-gwZ" userLabel="actionContainerView">
-                                <rect key="frame" x="0.0" y="254" width="568" height="66"/>
+                                <rect key="frame" x="0.0" y="38" width="568" height="282"/>
                                 <subviews>
+                                    <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="4GS-Va-thq" userLabel="numberPadView">
+                                        <rect key="frame" x="351" y="0.0" width="217" height="220"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="num_bg" translatesAutoresizingMaskIntoConstraints="NO" id="YTB-c2-UxC" userLabel="bg">
+                                                <rect key="frame" x="0.0" y="0.0" width="217" height="220"/>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="btnDel" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sD1-xf-Ppw" userLabel="del">
+                                                <rect key="frame" x="18" y="4" width="51" height="33"/>
+                                                <state key="normal" image="num_del"/>
+                                                <connections>
+                                                    <action selector="onBtnDel:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="dO8-hm-oEh"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="btnClear" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGa-Qf-V65" userLabel="clear">
+                                                <rect key="frame" x="83" y="4" width="51" height="33"/>
+                                                <state key="normal" image="num_clear"/>
+                                                <connections>
+                                                    <action selector="onBtnClear:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="teV-Fs-Nox"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" restorationIdentifier="btn1" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BUp-id-LPr" userLabel="1">
+                                                <rect key="frame" x="18" y="139" width="51" height="33"/>
+                                                <state key="normal" image="num_1"/>
+                                            </button>
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" restorationIdentifier="btn3" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mHa-aK-jnV" userLabel="3">
+                                                <rect key="frame" x="147" y="139" width="51" height="33"/>
+                                                <state key="normal" image="num_3"/>
+                                                <connections>
+                                                    <action selector="onBtnNumber:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="kqp-8Z-W81"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="btn0" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HLh-aS-6xZ" userLabel="0">
+                                                <rect key="frame" x="18" y="183" width="51" height="33"/>
+                                                <state key="normal" image="num_0"/>
+                                                <connections>
+                                                    <action selector="onBtnNumber:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="GdF-Qs-qmY"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="10" contentMode="scaleToFill" restorationIdentifier="btn00" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DED-eN-Haz" userLabel="00">
+                                                <rect key="frame" x="83" y="183" width="51" height="33"/>
+                                                <state key="normal" image="num_00"/>
+                                                <connections>
+                                                    <action selector="onBtnNumber:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="h6T-QC-fkE"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="btnAsign" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8XB-6b-RC9" userLabel="assign">
+                                                <rect key="frame" x="147" y="4" width="51" height="33"/>
+                                                <state key="normal" image="num_assign"/>
+                                                <connections>
+                                                    <action selector="onBtnAssign:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="frm-Hz-en9"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="11" contentMode="scaleToFill" restorationIdentifier="btnDot" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Pb-ii-pbn" userLabel="dot">
+                                                <rect key="frame" x="147" y="183" width="51" height="33"/>
+                                                <state key="normal" image="num_dot"/>
+                                                <connections>
+                                                    <action selector="onBtnNumber:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="BTB-F8-rUr"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" restorationIdentifier="btn2" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DTI-F0-NeW" userLabel="2">
+                                                <rect key="frame" x="83" y="139" width="51" height="33"/>
+                                                <state key="normal" image="num_2"/>
+                                            </button>
+                                            <button opaque="NO" tag="7" contentMode="scaleToFill" restorationIdentifier="btn7" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EUd-Wp-Ig0" userLabel="7">
+                                                <rect key="frame" x="18" y="51" width="51" height="33"/>
+                                                <state key="normal" image="num_7"/>
+                                                <connections>
+                                                    <action selector="onBtnNumber:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="rzF-U9-rL3"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="4" contentMode="scaleToFill" restorationIdentifier="btn4" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AqU-fn-lOp" userLabel="4">
+                                                <rect key="frame" x="18" y="94" width="51" height="33"/>
+                                                <state key="normal" image="num_4"/>
+                                                <connections>
+                                                    <action selector="onBtnNumber:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="6dX-6X-0ge"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="5" contentMode="scaleToFill" restorationIdentifier="btn5" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehl-Co-FHX" userLabel="5">
+                                                <rect key="frame" x="83" y="94" width="51" height="33"/>
+                                                <state key="normal" image="num_5"/>
+                                                <connections>
+                                                    <action selector="onBtnNumber:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="KrZ-4q-p2j"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="6" contentMode="scaleToFill" restorationIdentifier="btn6" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O03-5B-M3B" userLabel="6">
+                                                <rect key="frame" x="147" y="94" width="51" height="33"/>
+                                                <state key="normal" image="num_6"/>
+                                                <connections>
+                                                    <action selector="onBtnNumber:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="u7d-0c-dgP"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="8" contentMode="scaleToFill" restorationIdentifier="btn8" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ht4-fR-ZlX" userLabel="8">
+                                                <rect key="frame" x="83" y="51" width="51" height="33"/>
+                                                <state key="normal" image="num_8"/>
+                                                <connections>
+                                                    <action selector="onBtnNumber:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="HlK-ef-giS"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="9" contentMode="scaleToFill" restorationIdentifier="btn9" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TbX-PZ-8ae" userLabel="9">
+                                                <rect key="frame" x="147" y="51" width="51" height="33"/>
+                                                <state key="normal" image="num_9"/>
+                                                <connections>
+                                                    <action selector="onBtnNumber:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="OTr-8v-yrW"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="AqU-fn-lOp" firstAttribute="top" secondItem="ehl-Co-FHX" secondAttribute="top" id="12y-je-fsu"/>
+                                            <constraint firstItem="ehl-Co-FHX" firstAttribute="top" secondItem="O03-5B-M3B" secondAttribute="top" id="5Xf-dY-yn4"/>
+                                            <constraint firstItem="YTB-c2-UxC" firstAttribute="leading" secondItem="4GS-Va-thq" secondAttribute="leading" id="5yQ-Le-pFW"/>
+                                            <constraint firstAttribute="width" constant="217" id="75f-g2-qhT"/>
+                                            <constraint firstItem="BUp-id-LPr" firstAttribute="leading" secondItem="HLh-aS-6xZ" secondAttribute="leading" id="884-Fz-V1E"/>
+                                            <constraint firstItem="EUd-Wp-Ig0" firstAttribute="leading" secondItem="AqU-fn-lOp" secondAttribute="leading" id="ADs-SD-DLC"/>
+                                            <constraint firstItem="Ht4-fR-ZlX" firstAttribute="leading" secondItem="ehl-Co-FHX" secondAttribute="leading" id="D5e-Pj-4RL"/>
+                                            <constraint firstItem="jGa-Qf-V65" firstAttribute="leading" secondItem="sD1-xf-Ppw" secondAttribute="trailing" constant="14" id="D7H-J5-Kxz"/>
+                                            <constraint firstItem="HLh-aS-6xZ" firstAttribute="top" secondItem="DED-eN-Haz" secondAttribute="top" id="Dwg-X3-331"/>
+                                            <constraint firstItem="EUd-Wp-Ig0" firstAttribute="top" secondItem="sD1-xf-Ppw" secondAttribute="bottom" constant="14" id="Esh-1x-uIW"/>
+                                            <constraint firstAttribute="trailing" secondItem="YTB-c2-UxC" secondAttribute="trailing" id="G2I-NX-zwa"/>
+                                            <constraint firstItem="8XB-6b-RC9" firstAttribute="leading" secondItem="jGa-Qf-V65" secondAttribute="trailing" constant="13" id="GQX-uq-rbD"/>
+                                            <constraint firstItem="ehl-Co-FHX" firstAttribute="leading" secondItem="DTI-F0-NeW" secondAttribute="leading" id="JA4-4S-mzw"/>
+                                            <constraint firstItem="HLh-aS-6xZ" firstAttribute="top" secondItem="BUp-id-LPr" secondAttribute="bottom" constant="11" id="KXa-Rz-mwl"/>
+                                            <constraint firstItem="BUp-id-LPr" firstAttribute="top" secondItem="DTI-F0-NeW" secondAttribute="top" id="LVJ-J4-e3k"/>
+                                            <constraint firstItem="AqU-fn-lOp" firstAttribute="top" secondItem="EUd-Wp-Ig0" secondAttribute="bottom" constant="10" id="P6K-I6-yk3"/>
+                                            <constraint firstAttribute="bottom" secondItem="YTB-c2-UxC" secondAttribute="bottom" id="Pxg-uW-Gx5"/>
+                                            <constraint firstItem="sD1-xf-Ppw" firstAttribute="top" secondItem="jGa-Qf-V65" secondAttribute="top" id="UCI-2f-hhC"/>
+                                            <constraint firstItem="sD1-xf-Ppw" firstAttribute="leading" secondItem="EUd-Wp-Ig0" secondAttribute="leading" id="UO4-GF-Kxq"/>
+                                            <constraint firstItem="jGa-Qf-V65" firstAttribute="top" secondItem="8XB-6b-RC9" secondAttribute="top" id="YiT-yh-DOA"/>
+                                            <constraint firstItem="8XB-6b-RC9" firstAttribute="leading" secondItem="TbX-PZ-8ae" secondAttribute="leading" id="b2A-rE-vj9"/>
+                                            <constraint firstItem="YTB-c2-UxC" firstAttribute="top" secondItem="4GS-Va-thq" secondAttribute="top" id="b8S-Gk-yPd"/>
+                                            <constraint firstItem="mHa-aK-jnV" firstAttribute="leading" secondItem="9Pb-ii-pbn" secondAttribute="leading" id="bng-IO-NEV"/>
+                                            <constraint firstItem="sD1-xf-Ppw" firstAttribute="top" secondItem="4GS-Va-thq" secondAttribute="top" constant="4" id="cYc-gF-Ifx"/>
+                                            <constraint firstItem="O03-5B-M3B" firstAttribute="leading" secondItem="mHa-aK-jnV" secondAttribute="leading" id="cpN-3Z-Bb3"/>
+                                            <constraint firstItem="sD1-xf-Ppw" firstAttribute="leading" secondItem="4GS-Va-thq" secondAttribute="leading" constant="18" id="dNW-cu-Ic6"/>
+                                            <constraint firstAttribute="bottom" secondItem="DED-eN-Haz" secondAttribute="bottom" constant="4" id="ebo-yb-hFL"/>
+                                            <constraint firstItem="DTI-F0-NeW" firstAttribute="top" secondItem="mHa-aK-jnV" secondAttribute="top" id="f5p-Qi-bA0"/>
+                                            <constraint firstItem="DED-eN-Haz" firstAttribute="top" secondItem="9Pb-ii-pbn" secondAttribute="top" id="fmm-86-uwI"/>
+                                            <constraint firstItem="TbX-PZ-8ae" firstAttribute="leading" secondItem="O03-5B-M3B" secondAttribute="leading" id="hTn-4d-aCy"/>
+                                            <constraint firstItem="BUp-id-LPr" firstAttribute="top" secondItem="AqU-fn-lOp" secondAttribute="bottom" constant="12" id="lKR-Qu-gFO"/>
+                                            <constraint firstItem="EUd-Wp-Ig0" firstAttribute="top" secondItem="Ht4-fR-ZlX" secondAttribute="top" id="ly4-qg-CgY"/>
+                                            <constraint firstItem="jGa-Qf-V65" firstAttribute="leading" secondItem="Ht4-fR-ZlX" secondAttribute="leading" id="mWa-G7-RKX"/>
+                                            <constraint firstItem="AqU-fn-lOp" firstAttribute="leading" secondItem="BUp-id-LPr" secondAttribute="leading" id="p3K-tB-3b8"/>
+                                            <constraint firstItem="Ht4-fR-ZlX" firstAttribute="top" secondItem="TbX-PZ-8ae" secondAttribute="top" id="uTa-8p-5sb"/>
+                                            <constraint firstItem="DTI-F0-NeW" firstAttribute="leading" secondItem="DED-eN-Haz" secondAttribute="leading" id="yWo-Nf-PEz"/>
+                                        </constraints>
+                                    </view>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="bet_bg" translatesAutoresizingMaskIntoConstraints="NO" id="hS9-rB-tqz">
-                                        <rect key="frame" x="183" y="28" width="381" height="32"/>
+                                        <rect key="frame" x="183" y="244" width="381" height="32"/>
                                     </imageView>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="bet_input" translatesAutoresizingMaskIntoConstraints="NO" id="sxt-Ms-8xb">
-                                        <rect key="frame" x="183" y="28" width="67" height="32"/>
+                                        <rect key="frame" x="183" y="244" width="67" height="32"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pik-it-Toe" userLabel="btnFold">
-                                        <rect key="frame" x="4" y="12" width="48" height="48"/>
+                                        <rect key="frame" x="4" y="228" width="48" height="48"/>
                                         <state key="normal" backgroundImage="btn_a_1_1.png"/>
                                         <connections>
                                             <action selector="btnFold_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="9yu-58-MCc"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X6k-0W-efe" userLabel="btnCheck">
-                                        <rect key="frame" x="66" y="12" width="48" height="48"/>
+                                        <rect key="frame" x="66" y="228" width="48" height="48"/>
                                         <state key="normal" backgroundImage="btn_a_4_1.png"/>
                                         <connections>
                                             <action selector="btnCheck_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="wDW-Mw-unG"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VMu-rB-tKW" userLabel="btnRaise">
-                                        <rect key="frame" x="122" y="12" width="48" height="48"/>
+                                        <rect key="frame" x="122" y="228" width="48" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="0F5-gB-KQ2"/>
                                             <constraint firstAttribute="width" constant="48" id="ya8-ib-HVX"/>
@@ -2355,62 +2500,62 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BDR-KZ-0ow" userLabel="btnMinValue">
-                                        <rect key="frame" x="258" y="30" width="31" height="28"/>
+                                        <rect key="frame" x="258" y="246" width="31" height="28"/>
                                         <state key="normal" backgroundImage="bet_minus-0"/>
                                         <connections>
                                             <action selector="btnMin_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="AGM-gd-38T"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0oU-Gn-fgk" userLabel="btnMaxValue">
-                                        <rect key="frame" x="531" y="30" width="31" height="28"/>
+                                        <rect key="frame" x="531" y="246" width="31" height="28"/>
                                         <state key="normal" backgroundImage="bet_add"/>
                                         <connections>
                                             <action selector="btnMax:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="pha-T3-mXl"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z7I-O8-CVh" userLabel="btnSetMin">
-                                        <rect key="frame" x="290" y="0.0" width="59" height="28"/>
+                                        <rect key="frame" x="290" y="216" width="59" height="28"/>
                                         <state key="normal" backgroundImage="bet_1_p"/>
                                         <connections>
                                             <action selector="btnSetMin_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="0Ey-3a-UmF"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cbj-ip-pH0" userLabel="btnSetHalf">
-                                        <rect key="frame" x="349" y="0.0" width="57" height="28"/>
+                                        <rect key="frame" x="349" y="216" width="57" height="28"/>
                                         <state key="normal" backgroundImage="bet_2_p"/>
                                         <connections>
                                             <action selector="btnSetHalf_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="hi6-a5-SEa"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="91e-X6-4el" userLabel="btnSetPot">
-                                        <rect key="frame" x="406" y="0.0" width="58" height="28"/>
+                                        <rect key="frame" x="406" y="216" width="58" height="28"/>
                                         <state key="normal" backgroundImage="bet_3_p"/>
                                         <connections>
                                             <action selector="btnSetPot_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="8ZI-Kv-EPg"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLO-A0-718" userLabel="btnSetMax">
-                                        <rect key="frame" x="464" y="0.0" width="59" height="28"/>
+                                        <rect key="frame" x="464" y="216" width="59" height="28"/>
                                         <state key="normal" image="bet_4_p"/>
                                         <connections>
                                             <action selector="btnSetMax_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="8je-V7-8Q5"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fwc-FB-WCZ">
-                                        <rect key="frame" x="66" y="12" width="48" height="48"/>
+                                        <rect key="frame" x="66" y="228" width="48" height="48"/>
                                         <state key="normal" backgroundImage="btn_a_2_1.png"/>
                                         <connections>
                                             <action selector="btnCall_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="9cI-ZE-l0w"/>
                                         </connections>
                                     </button>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="PvV-9D-2KP" userLabel="slider">
-                                        <rect key="frame" x="295" y="29" width="230" height="31"/>
+                                        <rect key="frame" x="295" y="245" width="230" height="31"/>
                                         <connections>
                                             <action selector="slider_valueChanged:" destination="YfZ-qu-XoD" eventType="valueChanged" id="6nm-eh-soj"/>
                                         </connections>
                                     </slider>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EXv-XP-INT" userLabel="txtBet">
-                                        <rect key="frame" x="187" y="36" width="59" height="17"/>
+                                        <rect key="frame" x="187" y="252" width="59" height="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="yes" keyboardType="phonePad"/>
@@ -2420,11 +2565,10 @@
                                     <constraint firstItem="z7I-O8-CVh" firstAttribute="top" secondItem="Cbj-ip-pH0" secondAttribute="top" id="2C3-3C-vdd"/>
                                     <constraint firstItem="pik-it-Toe" firstAttribute="bottom" secondItem="hS9-rB-tqz" secondAttribute="bottom" id="3i8-1k-T4f"/>
                                     <constraint firstItem="Cbj-ip-pH0" firstAttribute="centerY" secondItem="91e-X6-4el" secondAttribute="centerY" id="4jI-H4-59R"/>
-                                    <constraint firstAttribute="trailing" secondItem="0oU-Gn-fgk" secondAttribute="trailing" constant="4" id="Aqo-Qr-adW"/>
+                                    <constraint firstItem="4GS-Va-thq" firstAttribute="top" secondItem="zp9-Ew-gwZ" secondAttribute="top" id="BD1-gV-X4L"/>
                                     <constraint firstItem="hS9-rB-tqz" firstAttribute="top" secondItem="vLO-A0-718" secondAttribute="bottom" id="Byh-kq-XKv"/>
                                     <constraint firstItem="EXv-XP-INT" firstAttribute="centerY" secondItem="sxt-Ms-8xb" secondAttribute="centerY" id="C5f-6Q-3cm"/>
                                     <constraint firstItem="0oU-Gn-fgk" firstAttribute="centerY" secondItem="PvV-9D-2KP" secondAttribute="centerY" id="EoJ-R1-xec"/>
-                                    <constraint firstItem="z7I-O8-CVh" firstAttribute="centerY" secondItem="Cbj-ip-pH0" secondAttribute="centerY" id="GHD-0d-upJ"/>
                                     <constraint firstItem="0oU-Gn-fgk" firstAttribute="leading" secondItem="PvV-9D-2KP" secondAttribute="trailing" constant="8" id="H7l-eW-95w"/>
                                     <constraint firstItem="PvV-9D-2KP" firstAttribute="leading" secondItem="BDR-KZ-0ow" secondAttribute="trailing" constant="8" id="JJw-OG-70i"/>
                                     <constraint firstItem="EXv-XP-INT" firstAttribute="trailing" secondItem="sxt-Ms-8xb" secondAttribute="trailing" constant="-4" id="Jsf-xf-9eY"/>
@@ -2432,6 +2576,7 @@
                                     <constraint firstItem="vLO-A0-718" firstAttribute="trailing" secondItem="PvV-9D-2KP" secondAttribute="trailing" id="Lqm-x2-tFb"/>
                                     <constraint firstItem="sxt-Ms-8xb" firstAttribute="centerY" secondItem="hS9-rB-tqz" secondAttribute="centerY" id="MDD-sC-3Iy"/>
                                     <constraint firstItem="BDR-KZ-0ow" firstAttribute="leading" secondItem="sxt-Ms-8xb" secondAttribute="trailing" constant="8" id="MRE-M3-spa"/>
+                                    <constraint firstItem="vLO-A0-718" firstAttribute="top" secondItem="4GS-Va-thq" secondAttribute="bottom" constant="-4" id="MuB-LR-f92"/>
                                     <constraint firstAttribute="trailing" secondItem="hS9-rB-tqz" secondAttribute="trailing" constant="4" id="Sbp-Fk-b7g"/>
                                     <constraint firstItem="sxt-Ms-8xb" firstAttribute="leading" secondItem="hS9-rB-tqz" secondAttribute="leading" id="Uds-gg-fFg"/>
                                     <constraint firstItem="pik-it-Toe" firstAttribute="leading" secondItem="zp9-Ew-gwZ" secondAttribute="leading" constant="4" id="Wgx-wA-Mhr"/>
@@ -2442,7 +2587,6 @@
                                     <constraint firstItem="VMu-rB-tKW" firstAttribute="bottom" secondItem="X6k-0W-efe" secondAttribute="bottom" id="iUB-jG-AsG"/>
                                     <constraint firstItem="BDR-KZ-0ow" firstAttribute="centerY" secondItem="PvV-9D-2KP" secondAttribute="centerY" id="ilZ-hb-p9U"/>
                                     <constraint firstItem="0oU-Gn-fgk" firstAttribute="trailing" secondItem="hS9-rB-tqz" secondAttribute="trailing" constant="-2" id="lSJ-Zl-bmo"/>
-                                    <constraint firstItem="vLO-A0-718" firstAttribute="top" secondItem="zp9-Ew-gwZ" secondAttribute="top" id="lnz-DZ-gtD"/>
                                     <constraint firstItem="X6k-0W-efe" firstAttribute="bottom" secondItem="pik-it-Toe" secondAttribute="bottom" id="mWz-AO-8xl"/>
                                     <constraint firstItem="91e-X6-4el" firstAttribute="centerY" secondItem="vLO-A0-718" secondAttribute="centerY" id="mgX-81-fmU"/>
                                     <constraint firstItem="PvV-9D-2KP" firstAttribute="centerY" secondItem="hS9-rB-tqz" secondAttribute="centerY" id="oxo-U7-qG5"/>
@@ -2451,12 +2595,6 @@
                                     <constraint firstAttribute="bottom" secondItem="hS9-rB-tqz" secondAttribute="bottom" constant="6" id="rRl-6h-cD7"/>
                                     <constraint firstItem="vLO-A0-718" firstAttribute="leading" secondItem="91e-X6-4el" secondAttribute="trailing" id="sCn-k9-g6F"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="GHD-0d-upJ"/>
-                                        <exclude reference="Aqo-Qr-adW"/>
-                                    </mask>
-                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2468,6 +2606,7 @@
                             <constraint firstItem="cRY-dS-OWv" firstAttribute="centerX" secondItem="YM9-cb-bzu" secondAttribute="centerX" id="7gx-aa-Y5w"/>
                             <constraint firstItem="wxO-3L-Kyv" firstAttribute="top" secondItem="YM9-cb-bzu" secondAttribute="top" id="9Kw-9U-wFh"/>
                             <constraint firstItem="GNp-fH-t8M" firstAttribute="top" secondItem="YM9-cb-bzu" secondAttribute="top" id="9Ma-oV-MqA"/>
+                            <constraint firstAttribute="trailing" secondItem="4GS-Va-thq" secondAttribute="trailing" id="CCQ-gU-OCN"/>
                             <constraint firstItem="fZA-SD-fh9" firstAttribute="top" secondItem="YM9-cb-bzu" secondAttribute="top" constant="2" id="DNM-20-qrW"/>
                             <constraint firstItem="G9d-79-ZhY" firstAttribute="centerX" secondItem="7sy-oD-3IM" secondAttribute="centerX" multiplier="0.78" id="Ehi-m1-bi0"/>
                             <constraint firstItem="Fnv-oh-cJC" firstAttribute="centerY" secondItem="YM9-cb-bzu" secondAttribute="centerY" multiplier="0.92" id="FKy-CO-xu9"/>
@@ -2715,6 +2854,22 @@
         <image name="icon_chip_2" width="16" height="14"/>
         <image name="icon_chip_3" width="20" height="23"/>
         <image name="icon_delear" width="15" height="15"/>
+        <image name="num_0" width="51" height="33"/>
+        <image name="num_00" width="51" height="33"/>
+        <image name="num_1" width="51" height="33"/>
+        <image name="num_2" width="51" height="33"/>
+        <image name="num_3" width="51" height="33"/>
+        <image name="num_4" width="51" height="33"/>
+        <image name="num_5" width="51" height="33"/>
+        <image name="num_6" width="51" height="33"/>
+        <image name="num_7" width="51" height="33"/>
+        <image name="num_8" width="51" height="33"/>
+        <image name="num_9" width="51" height="33"/>
+        <image name="num_assign" width="51" height="33"/>
+        <image name="num_bg" width="183" height="210"/>
+        <image name="num_clear" width="51" height="33"/>
+        <image name="num_del" width="51" height="33"/>
+        <image name="num_dot" width="51" height="33"/>
         <image name="poker_0.png" width="37" height="46"/>
         <image name="poker_a_1.png" width="37" height="46"/>
         <image name="time_bg" width="44" height="40"/>
