@@ -1418,6 +1418,10 @@ static long iRaiseMinValue,iRaiseMaxValue;
     view.hidden = YES;
     //[self closeActionPanel];
     //assignValue = [self.text doubleValue];
+    NSInteger assignValue = [self.txtRaise.text integerValue];
+    assignValue = MAX(iRaiseMinValue, assignValue);
+    assignValue = MIN(assignValue, chipsInHand);
+    self.txtRaise.text = [NSString stringWithFormat:@"%ld",assignValue ];
 }
 - (IBAction)onBtnNumber:(id)sender
 {
