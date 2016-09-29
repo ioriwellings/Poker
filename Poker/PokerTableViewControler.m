@@ -80,22 +80,23 @@
     {
         pomelo = [[Pomelo alloc] initWithDelegate:ws];
     }
-    [pomelo connectToHost:PK_SERVER_IP onPort:PK_SERVER_PORT withCallback:^(Pomelo *p)
-     {
-         NSDictionary *params = [NSDictionary dictionaryWithObject:[UserInfo sharedUser].userID forKey:@"uid"];
-         [p requestWithRoute:@"gate.gateHandler.queryEntry"
-                   andParams:params
-                 andCallback:^(NSDictionary *result)
-          {
-              p.isDisconnectByUser = YES;
-              [p disconnectWithCallback:^(Pomelo *p)
-               {
-                   [MessageBox removeLoading:nil];
-                   [ws entryWithData:result];
-               }];
-              
-          }];
-     }];
+//    [pomelo connectToHost:PK_SERVER_IP onPort:PK_SERVER_PORT withCallback:^(Pomelo *p)
+//     {
+//         NSDictionary *params = [NSDictionary dictionaryWithObject:[UserInfo sharedUser].userID forKey:@"uid"];
+//    Pomelo *p = self.OnePomelo;
+//         [p requestWithRoute:@"gate.gateHandler.queryEntry"
+//                   andParams:params
+//                 andCallback:^(NSDictionary *result)
+//          {
+//              p.isDisconnectByUser = YES;
+//              [p disconnectWithCallback:^(Pomelo *p)
+//               {
+//                   [MessageBox removeLoading:nil];
+                   [ws entryWithData:nil];
+//               }];
+//              
+//          }];
+//     }];
 }
 
 - (void)PomeloDidConnect:(Pomelo *)pomelo
