@@ -260,7 +260,7 @@
                                        strResult,
                                        NSLocalizedString(@"Win", nil)];
             }
-            self.iconWinner.hidden = NO;
+            //self.iconWinner.hidden = NO;
         }
         else
         {

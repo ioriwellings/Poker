@@ -12,6 +12,7 @@
 #import "MessageBox.h"
 #import "NSString+AudioFile.h"
 #import "Masonry.h"
+#import "Config.h"
 
 @interface PokerTableViewControler ()
 {
@@ -71,7 +72,7 @@
     __weak typeof(self) ws = self;
     [MessageBox displayLoadingInView:ws.view];
     pomelo = [[Pomelo alloc] initWithDelegate:ws];
-    [pomelo connectToHost:@"192.168.0.101" onPort:3014 withCallback:^(Pomelo *p)
+    [pomelo connectToHost:PK_SERVER_IP onPort:PK_SERVER_PORT withCallback:^(Pomelo *p)
      {
          NSDictionary *params = [NSDictionary dictionaryWithObject:[UserInfo sharedUser].userID forKey:@"uid"];
          [p requestWithRoute:@"gate.gateHandler.queryEntry"
@@ -1115,6 +1116,7 @@ static long iRaiseMinValue,iRaiseMaxValue;
     if (hasRaiseAction)
     {
         self.btnRaise.enabled = YES;
+        self.txtRaise.enabled = YES;
         self.txtRaise.text = [[NSNumber numberWithInteger: raiseValue] stringValue];
         [self.btnRaise setTitle:[NSString getFormatedNumberByInteger:raiseValue] forState:UIControlStateNormal];
         self.slider.minimumValue = raiseValue;
@@ -1132,6 +1134,12 @@ static long iRaiseMinValue,iRaiseMaxValue;
         {
             self.btnSetHalf.enabled = NO;
         }
+    }
+    if(hasCheckActon == NO && hasCallAction == NO && hasRaiseAction == NO && hasAllIn == YES)
+    {
+        self.btnRaise.enabled = YES;
+        self.txtRaise.enabled = NO;
+        [self.btnRaise setTitle:[NSString getFormatedNumberByInteger:seat.player.bringInMoney] forState:UIControlStateNormal];
     }
 }
 
@@ -1238,7 +1246,11 @@ static long iRaiseMinValue,iRaiseMaxValue;
 - (IBAction)btnRaise_click:(UIButton *)sender
 {
     NSInteger iBet = [self.txtRaise.text integerValue];
-    if(iBet == iRaiseMaxValue)
+    if(iBet <= iRaiseMinValue)
+    {
+        [self btnCall_click:nil];
+    }
+    else if(iBet == iRaiseMaxValue)
     {
         [self btnAllin_click:nil];
     }
