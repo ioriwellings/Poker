@@ -349,7 +349,7 @@
 
 -(void)showStartButton
 {
-    //if(pokerTable.tableStatus == PokerTableStatusEnumNone && arrayPlayer.count == 1)
+    if(pokerTable.tableStatus == PokerTableStatusEnumNone)
     {
         self.maskContainer.hidden = NO;
     }
@@ -1041,9 +1041,19 @@
      }];
 }
 
+-(void)closeActionPanel
+{
+    __weak typeof(self) ws = self;
+    self.actionContainer.hidden = YES;
+    self.numberPadView.hidden = YES;
+    self.actionContainerBottomConstraint.constant = 0;
+    [UIView animateWithDuration:IoriAnimationDuration animations:^{
+        [ws.view layoutIfNeeded];
+    }];
+}
 
 #pragma mark - viewcontroller life cycle -
-static long iRaiseMinValue,iRaiseMaxValue;
+static long iRaiseMinValue,iRaiseMaxValue, chipsInHand;
 
 -(void)handleActionNotificationWithPlayer:(NSNotification*)notif
 {
@@ -1051,6 +1061,7 @@ static long iRaiseMinValue,iRaiseMaxValue;
     [ws.view layoutIfNeeded];
     if([notif.name isEqualToString:ClosePlayerActionNotification])
     {
+        self.numberPadView.hidden = YES;
         self.actionContainer.hidden = YES;
         self.actionContainerBottomConstraint.constant = -self.actionContainer.frame.size.height;
         [UIView animateWithDuration:IoriAnimationDuration animations:^{
@@ -1065,6 +1076,7 @@ static long iRaiseMinValue,iRaiseMaxValue;
     }];
     
     SeatEntity *seat = notif.object;
+    chipsInHand = seat.player.bringInMoney;
     __block BOOL hasCheckActon = NO, hasCallAction = NO, hasRaiseAction = NO, hasAllIn = NO;
     __block NSInteger callValue= 0, raiseValue =0, allInValue = 0;
     [pokerTable.nextActionPlayer.nextActions enumerateObjectsUsingBlock:^(NextAction * _Nonnull obj,
@@ -1144,6 +1156,14 @@ static long iRaiseMinValue,iRaiseMaxValue;
         {
             self.btnSetHalf.enabled = NO;
         }
+        if(pokerTable.allPots < iRaiseMinValue)
+        {
+            self.btnSetPot.enabled = NO;
+        }
+        if(seat.player.bringInMoney < iRaiseMinValue)
+        {
+            self.btnSetMax.enabled = NO;
+        }
     }
     if(hasCheckActon == NO && hasCallAction == NO && hasRaiseAction == NO && hasAllIn == YES)
     {
@@ -1208,12 +1228,20 @@ static long iRaiseMinValue,iRaiseMaxValue;
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [pomelo disconnect];
-    pomelo = nil;
+    [self quitRoom];
+//    [pomelo disconnect];
+//    pomelo = nil;
     NSLog(@"%@:%s",self,__func__);
 }
 
 #pragma mark - button action
+
+-(void)quitRoom
+{
+    [pomelo requestWithRoute:@"connector.entryHandler.exit" andParams:@{} andCallback:^(id callback) {
+        ;
+    }];
+}
 
 - (IBAction)btnSit_click:(UIButton *)sender
 {
@@ -1279,11 +1307,6 @@ static long iRaiseMinValue,iRaiseMaxValue;
     [pomelo requestWithRoute:@"game.gameHandler.allIn" andParams:@{} andCallback:^(id callback) {
         ;
     }];
-}
-
--(void)closeActionPanel
-{
-    self.actionContainer.hidden = YES;
 }
 
 - (IBAction)btnFold_click:(UIButton *)sender
@@ -1366,5 +1389,158 @@ static long iRaiseMinValue,iRaiseMaxValue;
 {
     self.txtRaise.text = [[NSNumber numberWithInteger:iRaiseMaxValue] stringValue];
     [self.btnRaise setTitle:[NSString getFormatedNumberByInteger:iRaiseMaxValue] forState:UIControlStateNormal];
+}
+
+#pragma mark -number pad-
+
+- (IBAction)onBtnDel:(id)sender
+{
+    NSString *str = [self.txtRaise text];
+    int idx = (int)[str length]-1;
+    NSString *numStr;
+    if(idx<=0){
+        numStr = @"";
+    }else{
+        numStr = [str substringToIndex:idx];
+    }
+    self.txtRaise.text =  [self filterNumStr: numStr];
+    [self.btnRaise setTitle:[NSString getFormatedNumberByInteger:[self.txtRaise.text integerValue]] forState:UIControlStateNormal];
+}
+
+- (IBAction)onBtnClear:(id)sender
+{
+    self.txtRaise.text = [NSString stringWithFormat:@"%ld",iRaiseMinValue]; //filterNumStr(numStr: numStr)
+    [self.btnRaise setTitle:[NSString getFormatedNumberByInteger:[self.txtRaise.text integerValue]] forState:UIControlStateNormal];
+}
+
+- (IBAction)onBtnAssign:(id)sender
+{
+    UIView *view = [sender superview];
+    view.hidden = YES;
+    //[self closeActionPanel];
+    //assignValue = [self.text doubleValue];
+    NSInteger assignValue = [self.txtRaise.text integerValue];
+    assignValue = MAX(iRaiseMinValue, assignValue);
+    assignValue = MIN(assignValue, chipsInHand);
+    self.txtRaise.text = [NSString stringWithFormat:@"%ld",assignValue ];
+    [self.btnRaise setTitle:[NSString getFormatedNumberByInteger:[self.txtRaise.text integerValue]] forState:UIControlStateNormal];
+}
+- (IBAction)onBtnNumber:(id)sender
+{
+    NSString *nextNum;
+    UIButton * btn = (UIButton *)sender;
+    if( btn.tag == 0 )
+    {
+        nextNum = @"0";
+    }
+    else if(btn.tag == 1)
+    {
+        nextNum = @"1";
+    }
+    else if(btn.tag== 2)
+    {
+        nextNum = @"2";
+    }
+    else if(btn.tag== 3)
+    {
+        nextNum = @"3";
+    }
+    else if(btn.tag== 4)
+    {
+        nextNum = @"4";
+    }
+    else if(btn.tag== 5)
+    {
+        nextNum = @"5";
+    }
+    else if(btn.tag== 6)
+    {
+        nextNum = @"6";
+    }
+    else if(btn.tag== 7)
+    {
+        nextNum = @"7";
+    }
+    else if(btn.tag== 8)
+    {
+        nextNum = @"8";
+    }
+    else if(btn.tag== 9)
+    {
+        nextNum = @"9";
+    }
+    else if(btn.tag== 10)
+    {
+        nextNum = @"00";
+    }
+    else if(btn.tag== 11)
+    {
+        nextNum = @".";
+    }
+    
+    NSString *str = [self.txtRaise.text stringByAppendingString: nextNum];
+    self.txtRaise.text = [self filterNumStr: str];
+    [self.btnRaise setTitle:[NSString getFormatedNumberByInteger:[self.txtRaise.text integerValue]] forState:UIControlStateNormal];
+}
+
+- (NSString*)filterNumStr:(NSString*)numStr
+{
+    NSString* str;
+    if ([numStr isEqualToString:@""]) {
+        str = @"";
+        return str;
+    }
+    NSString* substr = [numStr substringFromIndex:numStr.length-1];
+    
+    if (pokerTable.sb - floor(pokerTable.sb)<0.001)
+    {  // 不允许输入浮点数
+        if([substr isEqualToString:@"."])
+        {
+            str = substr;
+        }
+        else
+        {
+            str = numStr;
+        }
+    }else{   // 可以输入浮点数
+        if([substr isEqualToString:@"."])
+        {
+            NSString* temp = [numStr substringToIndex:numStr.length-1];
+            NSRange range;
+            range = [temp rangeOfString:@"."];
+            if (range.location == NSNotFound)
+            {
+                str = numStr;
+            }
+            else
+            {
+                str = temp;
+                
+                //                if (temp.length - range.location >= 2){
+                //                    str = temp substring;
+                //                }else{
+                //                    str = temp;
+                //                }
+                //                //输入保留两位小数
+                //                if () {
+                //
+                //
+                //                }
+            }
+        }else{
+            
+            str = numStr;
+        }
+        
+        
+    }
+    
+    return str;
+}
+
+- (IBAction)txtRaise_beginEdit:(UITextField *)sender
+{
+    [sender resignFirstResponder];
+    self.numberPadView.hidden = NO;
 }
 @end
