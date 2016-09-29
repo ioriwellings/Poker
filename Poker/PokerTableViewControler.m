@@ -1054,6 +1054,7 @@
 
 #pragma mark - viewcontroller life cycle -
 static long iCallValue,iRaiseMinValue,iRaiseMaxValue, chipsInHand;
+static bool hasOnlyAllIn;
 
 -(void)handleActionNotificationWithPlayer:(NSNotification*)notif
 {
@@ -1079,6 +1080,7 @@ static long iCallValue,iRaiseMinValue,iRaiseMaxValue, chipsInHand;
     chipsInHand = seat.player.bringInMoney;
     __block BOOL hasCheckActon = NO, hasCallAction = NO, hasRaiseAction = NO, hasAllIn = NO;
     __block NSInteger callValue= 0, raiseValue =0, allInValue = 0;
+    hasOnlyAllIn = 0;
     [pokerTable.nextActionPlayer.nextActions enumerateObjectsUsingBlock:^(NextAction * _Nonnull obj,
                                                                                NSUInteger idx,
                                                                                BOOL * _Nonnull stop)
@@ -1171,6 +1173,7 @@ static long iCallValue,iRaiseMinValue,iRaiseMaxValue, chipsInHand;
         self.btnRaise.enabled = YES;
         self.txtRaise.enabled = NO;
         [self.btnRaise setTitle:[NSString getFormatedNumberByInteger:seat.player.bringInMoney] forState:UIControlStateNormal];
+        hasOnlyAllIn = 1;
     }
 }
 
@@ -1284,6 +1287,11 @@ static long iCallValue,iRaiseMinValue,iRaiseMaxValue, chipsInHand;
 
 - (IBAction)btnRaise_click:(UIButton *)sender
 {
+    if(hasOnlyAllIn)
+    {
+        [self btnAllin_click:nil];
+        return;
+    }
     [self onBtnAssign:nil];
     NSInteger iBet = [self.txtRaise.text integerValue];
 //    if(iBet < iRaiseMinValue)
