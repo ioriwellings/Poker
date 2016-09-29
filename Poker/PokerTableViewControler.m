@@ -1053,7 +1053,7 @@
 }
 
 #pragma mark - viewcontroller life cycle -
-static long iRaiseMinValue,iRaiseMaxValue, chipsInHand;
+static long iCallValue,iRaiseMinValue,iRaiseMaxValue, chipsInHand;
 
 -(void)handleActionNotificationWithPlayer:(NSNotification*)notif
 {
@@ -1091,7 +1091,7 @@ static long iRaiseMinValue,iRaiseMaxValue, chipsInHand;
         {
             hasCallAction = YES;
             callValue = obj.value;
-            iRaiseMinValue = callValue;
+            iCallValue = callValue;
         }
         else if (obj.status == PokerActionStatusEnumRaise)
         {
