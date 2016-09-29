@@ -28,17 +28,10 @@
 @property (nonatomic, weak) UIImageView *iconDelear;
 @property (nonatomic, weak) UIImageView *waittingView;
 @property (nonatomic, weak) UIImageView *iconChip;
-@property (nonatomic, weak) UIButton *btnCheck;
-@property (nonatomic, weak) UIButton *btnCall;
-@property (nonatomic, weak) UIButton *btnRaise;
-@property (nonatomic, weak) UILabel *labRaise;
-@property (nonatomic, weak) UISlider *slider;
-@property (nonatomic, weak) UIButton *btnAllIn;
-@property (nonatomic, weak) UIButton *btnFold;
-@property (nonatomic, weak) UILabel *labAllIn;
+
 @property (nonatomic, weak) PokerTableEntity *pokerTable;
 @property (nonatomic, readonly, getter=userNameBg) UIView *userNameBg;
-@property (nonatomic, weak) UIView *refMainPotView;
+@property (nonatomic, weak) UIView *refMainBetView;
 @property (nonatomic, weak) NSArray<UIView*> *refSidePotsContainerViews;
 
 -(void)clear;
