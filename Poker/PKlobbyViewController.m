@@ -30,9 +30,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+ 
     self.historyTable.delegate = self;
     self.historyTable.dataSource = self;
     [self.historyTable setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
     
     NSString * moneyQWE = [GloubVariables sharedInstance].money;
     NSString *longMoney = [NSString stringWithFormat:@"%@",moneyQWE];
@@ -104,7 +106,7 @@
     [UserInfo sharedUser].userID = playerNickName;
     [UserInfo sharedUser].roomName = roomID;
     PokerTableViewControler *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PokerTableViewControler"];
-    vc.OnePomelo = pomelo;
+    vc.OnePomelo = self.OnePomelo;
     [self presentViewController:vc animated:YES completion:NULL];
 }
 
@@ -113,23 +115,34 @@
     NSString *channel;
     __weak typeof(self) ws = self;
      __weak typeof(self) weakSelf = self;
-    pomelo = [[Pomelo alloc] initWithDelegate:ws];
-    [pomelo connectToHost:[GloubVariables sharedInstance].host
-                   onPort:[GloubVariables sharedInstance].port
-             withCallback:^(Pomelo *p){
-                 NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                                         name, @"loginName",
-                                         channel, @"passWord",
-                                         nil];
-                 [p requestWithRoute:@"connector.entryHandler.getHall" andParams:params andCallback:^(NSDictionary *result){
-                     //                            NSArray *userList = [result objectForKey:@"users"];
-                     NSArray *roomList = [result objectForKey:@"roomList"];
-                     if (roomList.count > 0) {
-                         self.arrOnlineCheckHistory = roomList;
-                         [weakSelf.historyTable reloadData];
-                     }
-                 }];
-             }];
+//    [self.OnePomelo connectToHost:[GloubVariables sharedInstance].host
+//                   onPort:[GloubVariables sharedInstance].port
+//             withCallback:^(Pomelo *p){
+//                 NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+//                                         name, @"loginName",
+//                                         channel, @"passWord",
+//                                         nil];
+//                 [p requestWithRoute:@"connector.entryHandler.getHall" andParams:params andCallback:^(NSDictionary *result){
+//                     //                            NSArray *userList = [result objectForKey:@"users"];
+//                     NSArray *roomList = [result objectForKey:@"roomList"];
+//                     if (roomList.count > 0) {
+//                         self.arrOnlineCheckHistory = roomList;
+//                         [weakSelf.historyTable reloadData];
+//                     }
+//                 }];
+//             }];
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            name, @"loginName",
+                            channel, @"passWord",
+                            nil];
+    [self.OnePomelo requestWithRoute:@"connector.entryHandler.getHall" andParams:params andCallback:^(NSDictionary *result){
+        //                            NSArray *userList = [result objectForKey:@"users"];
+        NSArray *roomList = [result objectForKey:@"roomList"];
+        if (roomList.count > 0) {
+            self.arrOnlineCheckHistory = roomList;
+            [weakSelf.historyTable reloadData];
+        }
+    }];
 }
 
 - (IBAction)reloadlist:(id)sender
@@ -206,8 +219,6 @@
 
 -(void)dealloc
 {
-    [pomelo disconnect];
-    pomelo = nil;
     NSLog(@"%@:%s",self,__func__);
 }
 @end

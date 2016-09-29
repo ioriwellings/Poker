@@ -4,7 +4,7 @@
         <deployment version="2048" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="documents saved in the Xcode 8 format" minToolsVersion="7.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Klobby View Controller-->
@@ -16,7 +16,7 @@
                         <viewControllerLayoutGuide type="bottom" id="MAY-y2-Ha3"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ftH-LH-psT">
-                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list_bg" translatesAutoresizingMaskIntoConstraints="NO" id="ZnR-M8-meL"/>
@@ -80,10 +80,10 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PKlobbyCell" rowHeight="77" id="Zd1-sl-Q14" customClass="PKlobbyCell">
-                                        <rect key="frame" x="0.0" y="28" width="544" height="77"/>
+                                        <rect key="frame" x="0.0" y="28" width="475" height="77"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zd1-sl-Q14" id="8Ev-gc-3wv">
-                                            <frame key="frameInset" width="544" height="76"/>
+                                            <frame key="frameInset" width="475" height="76"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="huz-AM-Nj6">
@@ -190,7 +190,7 @@
                         <viewControllerLayoutGuide type="bottom" id="h6t-rw-dDd"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gvu-Fz-C3Q">
-                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login" translatesAutoresizingMaskIntoConstraints="NO" id="1m3-lY-T9c"/>
@@ -312,7 +312,7 @@
                         <viewControllerLayoutGuide type="bottom" id="D6W-T5-DOb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dsU-my-PW7">
-                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ooi-J4-Koh">
@@ -360,7 +360,7 @@
                                     <constraint firstAttribute="height" constant="81" id="W9G-fi-fYU"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yos-sz-559">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="111" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yos-sz-559">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="185" id="kcT-aD-uR1"/>
                                 </constraints>
@@ -384,7 +384,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O3q-iw-rt0">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="222" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O3q-iw-rt0">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="185" id="zip-Yx-Pu2"/>
                                 </constraints>
@@ -447,8 +447,8 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="txtPWD" destination="O3q-iw-rt0" id="vHQ-bt-TC7"/>
-                        <outlet property="txtUserID" destination="yos-sz-559" id="cVo-oX-IQC"/>
+                        <outlet property="txtPWD" destination="O3q-iw-rt0" id="T55-SM-1vV"/>
+                        <outlet property="txtUserID" destination="yos-sz-559" id="Bjv-tt-cIf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dO5-HS-hKH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -464,7 +464,7 @@
                         <viewControllerLayoutGuide type="bottom" id="YRJ-CZ-tia"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="j7t-1C-olm">
-                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="index_bg" translatesAutoresizingMaskIntoConstraints="NO" id="tGY-Ma-M6o"/>

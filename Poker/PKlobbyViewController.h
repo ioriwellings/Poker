@@ -13,7 +13,7 @@
 #import "PKViewTransfer.h"
 
 @interface PKlobbyViewController:UIViewController <UITableViewDelegate,UITableViewDataSource,PomeloDelegate>{
-    Pomelo *pomelo;
+    
 }
 @property (weak, nonatomic) IBOutlet UITableView *historyTable;
 @property (weak, nonatomic) IBOutlet UILabel *money;
@@ -22,4 +22,5 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnBtnA;
 @property (weak, nonatomic) IBOutlet UIButton *btnBtnB;
 @property (strong,nonatomic)UIButton * tmpBtn;
+@property (weak, nonatomic) Pomelo *OnePomelo;
 @end
