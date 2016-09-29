@@ -11,6 +11,7 @@
 @implementation GloubVariables
 @synthesize host;
 @synthesize port;
+@synthesize money;
 
 static GloubVariables *instance_;
 +(GloubVariables *)sharedInstance
