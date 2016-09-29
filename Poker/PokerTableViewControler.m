@@ -1036,12 +1036,23 @@ static long iRaiseMinValue,iRaiseMaxValue;
 
 -(void)handleActionNotificationWithPlayer:(NSNotification*)notif
 {
+    __weak typeof(self) ws = self;
+    [ws.view layoutIfNeeded];
     if([notif.name isEqualToString:ClosePlayerActionNotification])
     {
         self.actionContainer.hidden = YES;
+        self.actionContainerBottomConstraint.constant = -self.actionContainer.frame.size.height;
+        [UIView animateWithDuration:IoriAnimationDuration animations:^{
+            [ws.view layoutIfNeeded];
+        }];
         return;
     }
     self.actionContainer.hidden = NO;
+    self.actionContainerBottomConstraint.constant = 0;
+    [UIView animateWithDuration:IoriAnimationDuration animations:^{
+        [ws.view layoutIfNeeded];
+    }];
+    
     SeatEntity *seat = notif.object;
     __block BOOL hasCheckActon = NO, hasCallAction = NO, hasRaiseAction = NO, hasAllIn = NO;
     __block NSInteger callValue= 0, raiseValue =0, allInValue = 0;

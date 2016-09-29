@@ -2399,6 +2399,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fwc-FB-WCZ">
                                         <rect key="frame" x="66" y="12" width="48" height="48"/>
                                         <state key="normal" backgroundImage="btn_a_2_1.png"/>
+                                        <connections>
+                                            <action selector="btnCall_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="9cI-ZE-l0w"/>
+                                        </connections>
                                     </button>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="PvV-9D-2KP" userLabel="slider">
                                         <rect key="frame" x="295" y="29" width="230" height="31"/>
