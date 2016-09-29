@@ -1423,6 +1423,7 @@ static long iRaiseMinValue,iRaiseMaxValue, chipsInHand;
     assignValue = MAX(iRaiseMinValue, assignValue);
     assignValue = MIN(assignValue, chipsInHand);
     self.txtRaise.text = [NSString stringWithFormat:@"%ld",assignValue ];
+    [self.btnRaise setTitle:[NSString getFormatedNumberByInteger:[self.txtRaise.text integerValue]] forState:UIControlStateNormal];
 }
 - (IBAction)onBtnNumber:(id)sender
 {
