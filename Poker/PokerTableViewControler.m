@@ -1285,19 +1285,20 @@ static long iRaiseMinValue,iRaiseMaxValue, chipsInHand;
 {
     [self onBtnAssign:nil];
     NSInteger iBet = [self.txtRaise.text integerValue];
-    if(iBet < iRaiseMinValue)
-    {
-        [pomelo requestWithRoute:@"game.gameHandler.raise" andParams:@{@"chip":@(iRaiseMinValue)} andCallback:^(id callback) {
-            ;
-        }];
-    }
-    else if(iBet >= chipsInHand)
+//    if(iBet < iRaiseMinValue)
+//    {
+//        [pomelo requestWithRoute:@"game.gameHandler.raise" andParams:@{@"chip":@(iRaiseMinValue)} andCallback:^(id callback) {
+//            ;
+//        }];
+//    }
+    //else
+    if(iBet >= chipsInHand)
     {
         [self btnAllin_click:nil];
     }
     else
     {
-        [pomelo requestWithRoute:@"game.gameHandler.raise" andParams:@{@"chip":self.txtRaise.text } andCallback:^(id callback) {
+        [pomelo requestWithRoute:@"game.gameHandler.raise" andParams:@{@"chip":@(iBet) } andCallback:^(id callback) {
             ;
         }];
     }
