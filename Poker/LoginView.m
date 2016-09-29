@@ -75,6 +75,7 @@
         [dict setObject:playerNickName forKey:@"loginName"];
         [dict setObject:playerPassword forKey:@"password"];
         [self.txtUserID setText:playerNickName];
+        [self.txtPWD setText:playerPassword];
     }
 }
 
