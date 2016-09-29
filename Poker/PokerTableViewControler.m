@@ -349,7 +349,7 @@
 
 -(void)showStartButton
 {
-    //if(pokerTable.tableStatus == PokerTableStatusEnumNone && arrayPlayer.count == 1)
+    if(pokerTable.tableStatus == PokerTableStatusEnumNone)
     {
         self.maskContainer.hidden = NO;
     }
@@ -1144,6 +1144,14 @@ static long iRaiseMinValue,iRaiseMaxValue;
         {
             self.btnSetHalf.enabled = NO;
         }
+        if(pokerTable.allPots < iRaiseMinValue)
+        {
+            self.btnSetPot.enabled = NO;
+        }
+        if(seat.player.bringInMoney < iRaiseMinValue)
+        {
+            self.btnSetMax.enabled = NO;
+        }
     }
     if(hasCheckActon == NO && hasCallAction == NO && hasRaiseAction == NO && hasAllIn == YES)
     {
@@ -1208,12 +1216,20 @@ static long iRaiseMinValue,iRaiseMaxValue;
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [pomelo disconnect];
-    pomelo = nil;
+    [self quitRoom];
+//    [pomelo disconnect];
+//    pomelo = nil;
     NSLog(@"%@:%s",self,__func__);
 }
 
 #pragma mark - button action
+
+-(void)quitRoom
+{
+    [pomelo requestWithRoute:@"connector.entryHandler.exit" andParams:@{} andCallback:^(id callback) {
+        ;
+    }];
+}
 
 - (IBAction)btnSit_click:(UIButton *)sender
 {
@@ -1283,7 +1299,13 @@ static long iRaiseMinValue,iRaiseMaxValue;
 
 -(void)closeActionPanel
 {
+    __weak typeof(self) ws = self;
     self.actionContainer.hidden = YES;
+    self.numberPadView.hidden = YES;
+    self.actionContainerBottomConstraint.constant = 0;
+    [UIView animateWithDuration:IoriAnimationDuration animations:^{
+        [ws.view layoutIfNeeded];
+    }];
 }
 
 - (IBAction)btnFold_click:(UIButton *)sender
@@ -1381,11 +1403,13 @@ static long iRaiseMinValue,iRaiseMaxValue;
         numStr = [str substringToIndex:idx];
     }
     self.txtRaise.text =  [self filterNumStr: numStr];
+    [self.btnRaise setTitle:[NSString getFormatedNumberByInteger:[self.txtRaise.text integerValue]] forState:UIControlStateNormal];
 }
 
 - (IBAction)onBtnClear:(id)sender
 {
     self.txtRaise.text = [NSString stringWithFormat:@"%ld",iRaiseMinValue]; //filterNumStr(numStr: numStr)
+    [self.btnRaise setTitle:[NSString getFormatedNumberByInteger:[self.txtRaise.text integerValue]] forState:UIControlStateNormal];
 }
 
 - (IBAction)onBtnAssign:(id)sender
@@ -1450,6 +1474,7 @@ static long iRaiseMinValue,iRaiseMaxValue;
     
     NSString *str = [self.txtRaise.text stringByAppendingString: nextNum];
     self.txtRaise.text = [self filterNumStr: str];
+    [self.btnRaise setTitle:[NSString getFormatedNumberByInteger:[self.txtRaise.text integerValue]] forState:UIControlStateNormal];
 }
 
 - (NSString*)filterNumStr:(NSString*)numStr
@@ -1505,5 +1530,11 @@ static long iRaiseMinValue,iRaiseMaxValue;
     }
     
     return str;
+}
+
+- (IBAction)txtRaise_beginEdit:(UITextField *)sender
+{
+    [sender resignFirstResponder];
+    self.numberPadView.hidden = NO;
 }
 @end

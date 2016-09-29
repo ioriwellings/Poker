@@ -67,6 +67,7 @@
 @property (weak, nonatomic) IBOutlet UIView *actionContainer;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *actionContainerBottomConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *labRoom;
+@property (weak, nonatomic) IBOutlet UIView *numberPadView;
 
 - (IBAction)btnSit_click:(UIButton *)sender;
 - (IBAction)btnMenu_click:(UIButton *)sender;

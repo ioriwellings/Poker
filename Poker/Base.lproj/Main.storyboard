@@ -2321,7 +2321,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zp9-Ew-gwZ" userLabel="actionContainerView">
                                 <rect key="frame" x="0.0" y="38" width="568" height="282"/>
                                 <subviews>
-                                    <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="4GS-Va-thq" userLabel="numberPadView">
+                                    <view hidden="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="4GS-Va-thq" userLabel="numberPadView">
                                         <rect key="frame" x="351" y="0.0" width="217" height="220"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="num_bg" translatesAutoresizingMaskIntoConstraints="NO" id="YTB-c2-UxC" userLabel="bg">
@@ -2559,6 +2559,9 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="yes" keyboardType="phonePad"/>
+                                        <connections>
+                                            <action selector="txtRaise_beginEdit:" destination="YfZ-qu-XoD" eventType="editingDidBegin" id="9bY-P2-fJI"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                                 <constraints>
@@ -2683,6 +2686,7 @@
                         <outlet property="labMainBot" destination="5SC-dj-quv" id="ZVl-yd-6dO"/>
                         <outlet property="labRoom" destination="fZA-SD-fh9" id="wCv-bL-iS6"/>
                         <outlet property="maskContainer" destination="GNp-fH-t8M" id="z7g-K4-4Jm"/>
+                        <outlet property="numberPadView" destination="4GS-Va-thq" id="f2q-Av-pjJ"/>
                         <outlet property="slider" destination="PvV-9D-2KP" id="n3B-2K-0eU"/>
                         <outlet property="txtRaise" destination="EXv-XP-INT" id="nhP-ku-zwv"/>
                         <outletCollection property="seatView" destination="7sy-oD-3IM" id="1pI-UW-e9q"/>
