@@ -67,6 +67,7 @@ static PokerTableEntity *_instance;
     _sidePots = [NSMutableArray arrayWithCapacity:10];
     _nextActionPlayer = [NextActionPlayer new];
     _communityCards = [NSMutableArray arrayWithCapacity:10];
+    _allPots = 0;
 }
 
 
