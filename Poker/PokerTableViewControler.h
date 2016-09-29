@@ -28,6 +28,7 @@
     NSMutableArray<PlayerEntity*> *arrayAudience;
 }
 
+@property (weak, nonatomic) Pomelo *OnePomelo;
 @property (weak, nonatomic) IBOutlet UIButton *btnCheck;
 @property (weak, nonatomic) IBOutlet UIButton *btnCall;
 @property (weak, nonatomic) IBOutlet UIButton *btnRaise;

@@ -71,7 +71,14 @@
 {
     __weak typeof(self) ws = self;
     [MessageBox displayLoadingInView:ws.view];
-    pomelo = [[Pomelo alloc] initWithDelegate:ws];
+    if(self.OnePomelo != nil)
+    {
+        pomelo = self.OnePomelo;
+    }
+    else
+    {
+        pomelo = [[Pomelo alloc] initWithDelegate:ws];
+    }
     [pomelo connectToHost:PK_SERVER_IP onPort:PK_SERVER_PORT withCallback:^(Pomelo *p)
      {
          NSDictionary *params = [NSDictionary dictionaryWithObject:[UserInfo sharedUser].userID forKey:@"uid"];
@@ -100,7 +107,7 @@
     [MessageBox removeLoading:nil];
     if([[error.userInfo objectForKey:@"isDisconnectByUser"] boolValue] == NO)
     {
-        [self reconnectToHost];
+        //[self reconnectToHost];
     }
     else
     {
@@ -114,7 +121,7 @@
     NSDictionary *dict = (NSDictionary*)message;
     if([[dict objectForKey:@"code"] integerValue] == 500)
     {
-        [ws reconnectToHost];
+        //[ws reconnectToHost];
     }
 }
 - (void)entryWithData:(NSDictionary *)data

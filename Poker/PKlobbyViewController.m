@@ -104,6 +104,7 @@
     [UserInfo sharedUser].userID = playerNickName;
     [UserInfo sharedUser].roomName = roomID;
     PokerTableViewControler *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PokerTableViewControler"];
+    vc.OnePomelo = pomelo;
     [self presentViewController:vc animated:YES completion:NULL];
 }
 
