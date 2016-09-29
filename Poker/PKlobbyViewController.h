@@ -18,4 +18,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *historyTable;
 @property (weak, nonatomic) IBOutlet UILabel *money;
 @property (nonatomic, strong) NSArray* arrOnlineCheckHistory;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnBtnA;
+@property (weak, nonatomic) IBOutlet UIButton *btnBtnB;
+@property (strong,nonatomic)UIButton * tmpBtn;
 @end

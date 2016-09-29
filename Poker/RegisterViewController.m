@@ -13,7 +13,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.txtPWD.secureTextEntry = YES;
 }
 
 - (IBAction)btnRegister:(id)sender
