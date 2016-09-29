@@ -11,6 +11,7 @@
 #import "Pomelo.h"
 #import "Config.h"
 #import "PKViewTransfer.h"
+#import <sys/utsname.h>
 
 @interface PkMainViewController:UIViewController<PomeloDelegate>{
     Pomelo *pomelo;
@@ -23,4 +24,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnGoGame;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *aidView;
 @property (weak, nonatomic) IBOutlet UIPickerView *picker;
+
+@property (weak, nonatomic) IBOutlet UIView *centerView;
 @end

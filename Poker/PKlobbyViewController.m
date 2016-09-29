@@ -25,11 +25,13 @@
     
     NSString * moneyQWE = [GloubVariables sharedInstance].money;
     NSString *longMoney = [NSString stringWithFormat:@"%@",moneyQWE];
-    [self.money setText:longMoney];
+    [self.money setText:[self positiveFormat:longMoney]];
     [self getdata];
     self.tmpBtn = self.btnBtnA;
     self.btnBtnA.selected = YES;
     self.btnBtnB.selected = NO;
+    
+    
 
 //    NSArray * array = [NSArray arrayWithObjects:@"默认",@"销量",@"价格",@"时间", nil];
 //    for (int i = 0; i<4; i ++) {
@@ -175,6 +177,20 @@
 //        _tmpBtn = btn;
 //    }
 //}
+
+-(NSString *)positiveFormat:(NSString *)text{
+    
+    if(!text || [text floatValue] == 0){
+//        return @"0.00";
+        return @"0";
+    }else{
+        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+//        [numberFormatter setPositiveFormat:@",###.00;"];
+        [numberFormatter setPositiveFormat:@",###;"];
+        return [numberFormatter stringFromNumber:[NSNumber numberWithDouble:[text doubleValue]]];
+    }
+    return @"";
+}
 
 -(void)dealloc
 {
