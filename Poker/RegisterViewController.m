@@ -20,7 +20,6 @@
 {
     NSString* name = self.txtUserID.text;
     NSString* channel = self.txtPWD.text;
-    __weak typeof(self) ws = self;    
     if (([name length] > 0) && ([channel length] > 0)) {
         NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                                 name, @"loginName",
@@ -32,7 +31,7 @@
                                  //   NSArray *userList = [result objectForKey:@"users"];
                                  NSString *error = [result objectForKey:@"error"];
                                  NSString *msg = [result objectForKey:@"msg"];
-                                 if ([error isKindOfClass:[NSNull class]]) {
+                                 if (error) {
                                      //失败
                                      UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:@"MESSAGE" message:error preferredStyle:UIAlertControllerStyleAlert];
                                      UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel"

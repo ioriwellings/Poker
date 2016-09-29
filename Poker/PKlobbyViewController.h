@@ -23,4 +23,5 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnBtnB;
 @property (strong,nonatomic)UIButton * tmpBtn;
 @property (weak, nonatomic) Pomelo *OnePomelo;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *aidView;
 @end

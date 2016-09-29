@@ -8,6 +8,7 @@
 
 #import "LoginView.h"
 #import "RegisterViewController.h"
+#import "PkMainViewController.h"
 @interface LoginView ()
 {
    // NSString *host;
@@ -21,16 +22,60 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-   // UITextField *tf = [[UITextField alloc]initWithFrame:CGRectMake(100, 100, 100, 44)];
-   // [tf setValue:[UIColor blackColor] forKeyPath:@"_placeholderLabel.textColor"];
-    // [tf setValue: [UIFont systemFontOfSize:16] forKeyPath:@"_placeholderLabel.font"];
+    __weak typeof(self) ws = self;
+    pomelo = [[Pomelo alloc] initWithDelegate:ws];
     self.txtUserID.delegate = self;
     self.txtPWD.delegate = self;
     self.txtPWD.secureTextEntry = YES;
-  //  [self.txtUserID setValue:[UIFont systemFontOfSize:16]  forKeyPath:@"TT0248M_.TTF"];
-  //  [self.txtPWD setValue:[UIFont systemFontOfSize:16]  forKeyPath:@PK_FONT_A];
-    
-//    [self initData];
+    self.aidView.hidden =YES;
+    [self.aidView stopAnimating];
+    [self initData];
+}
+
+- (void)initData{
+    __weak typeof(self) ws = self;
+    [pomelo connectToHost:PK_SERVER_IP onPort:PK_SERVER_PORT withCallback:^(Pomelo *p){
+        NSDictionary *params = [NSDictionary dictionaryWithObject:@"13" forKey:@"uid"];
+        self.aidView.hidden = NO;
+        [self.aidView startAnimating];
+        [pomelo requestWithRoute:@"gate.gateHandler.queryEntry" andParams:params andCallback:^(NSDictionary *result){
+            NSLog(@"abc host== %@",[result objectForKey:@"host"]);
+            [pomelo disconnectWithCallback:^(Pomelo *p){
+                [ws entryWithData:result];
+                [self lodaData];
+            }];
+        }];
+    }];
+}
+
+- (void)entryWithData:(NSDictionary *)data
+{
+    [GloubVariables sharedInstance].host = [data objectForKey:@"host"];
+    [GloubVariables sharedInstance].port = [[data objectForKey:@"port"] intValue];
+    [pomelo connectToHost:[GloubVariables sharedInstance].host
+                   onPort:[GloubVariables sharedInstance].port
+             withCallback:^(Pomelo *p){
+                 self.aidView.hidden =YES;
+                 [self.aidView stopAnimating];
+             }];
+}
+
+-(void)lodaData{
+    //创建
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    // 读取账户
+    NSString * playerNickName = [userDefaults objectForKey:@"playerNickName"];
+    //读取钱
+    NSString * playerMoney = [userDefaults objectForKey:@"playerMoney"];
+    //读取密码
+    NSString * playerPassword = [userDefaults objectForKey:@"playerPassword"];
+    NSMutableDictionary *dict  = [NSMutableDictionary dictionary];
+    //这里判空避免拿不到数据 崩溃
+    if (playerNickName != nil && playerMoney != nil && playerPassword != nil) {
+        [dict setObject:playerNickName forKey:@"loginName"];
+        [dict setObject:playerPassword forKey:@"password"];
+        [self.txtUserID setText:playerNickName];
+    }
 }
 
 
@@ -42,14 +87,11 @@
     if (([name length] > 0) && ([channel length] > 0)) {
         [self doLogin];
     }else{
-        
     }
-    
 }
 
 - (IBAction)btnForgotPassWord_click:(id)sender
 {
-   
 }
 
 - (IBAction)btnSignUp_click:(id)sender
@@ -58,25 +100,26 @@
                                                       story:@"Login"
                                                       block:^(UIViewController *vc) {
                                                           RegisterViewController *revc = (RegisterViewController*)vc;
-                                                          revc.OnePomelo = self.OnePomelo;
+                                                          revc.OnePomelo = pomelo;
                                                           [self presentViewController:vc animated:YES completion:nil];
                                                       }];
 }
 
 - (void) doLogin
 {
+    self.aidView.hidden = NO;
+    [self.aidView startAnimating];    
     NSString* name = self.txtUserID.text;
     NSString* channel = self.txtPWD.text;
-    __weak typeof(self) ws = self;
     if (([name length] > 0) && ([channel length] > 0)) {
         NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                                 name, @"loginName",
                                 channel, @"passWord",
                                 nil];
-        [self.OnePomelo requestWithRoute:@"connector.entryHandler.login" andParams:params andCallback:^(NSDictionary *result){
+        [pomelo requestWithRoute:@"connector.entryHandler.login" andParams:params andCallback:^(NSDictionary *result){
             //                            NSArray *userList = [result objectForKey:@"users"];
-            
-            
+            self.aidView.hidden =YES;
+            [self.aidView stopAnimating];
             NSString *error = [result objectForKey:@"error"];
             NSString *msg = [result objectForKey:@"msg"];
             
@@ -93,32 +136,28 @@
                 //显示警报框
                 [self presentViewController:alertControl animated:YES completion:nil];
             }else{
-                
-                
-                //                             UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:@"MESSAGE" message:msg preferredStyle:UIAlertControllerStyleAlert];
-                //                             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel"
-                //                                                                                    style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                //                                                                                        //取消按钮
-                //                                                                                        NSLog(@"我是取消按钮");
-                //                                                                                    }];
-                //                             [alertControl addAction:cancelAction];//cancel
-                //显示警报框
-                //                             [self presentViewController:alertControl animated:YES completion:nil];
-                
                 NSDictionary *data = [result objectForKey:@"playerInfo"];
                 //成功
                 NSString *playerNickName = [data objectForKey:@"playerNickName"];
                 NSString *playerMoney = [data objectForKey:@"playerMoney"];
                 [GloubVariables sharedInstance].money = playerMoney;
                 [self newNSUserDefault:data];
-                [self dismissViewControllerAnimated:YES completion:^{
-                    NSDictionary *dictionary = [NSDictionary dictionaryWithObject:playerNickName forKey:@"name"];
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"do" object:self userInfo:dictionary];
-                    
-                }];
+                
+//                [self dismissViewControllerAnimated:YES completion:^{
+//                    NSDictionary *dictionary = [NSDictionary dictionaryWithObject:playerNickName forKey:@"name"];
+//                    [[NSNotificationCenter defaultCenter] postNotificationName:@"do" object:self userInfo:dictionary];
+//                }];
+                
+                [[PKViewTransfer sharedViewTransfer] pushViewController:@"mainvc"
+                                                                  story:@"Login"
+                                                                  block:^(UIViewController *vc) {
+                                                                      PkMainViewController* pkmvc = (PkMainViewController*)vc;
+                                                                      pkmvc.OnePomelo = pomelo;
+                                                                      pkmvc.name = playerNickName;
+                                                                      [self presentViewController:vc animated:YES completion:nil];
+                                                                  }];
+                
             }
-            
-            
         }];
     }
 }
