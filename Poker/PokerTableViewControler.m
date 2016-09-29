@@ -1127,6 +1127,11 @@ static long iRaiseMinValue,iRaiseMaxValue;
         self.btnSetMin.enabled = YES;
         self.btnSetHalf.enabled = YES;
         self.btnSetPot.enabled = YES;
+        
+        if(pokerTable.allPots/2 < iRaiseMinValue)
+        {
+            self.btnSetHalf.enabled = NO;
+        }
     }
 }
 
@@ -1270,6 +1275,7 @@ static long iRaiseMinValue,iRaiseMaxValue;
 - (IBAction)slider_valueChanged:(UISlider *)sender
 {
     self.txtRaise.text = [[NSNumber numberWithInteger:sender.value] stringValue];
+    [self.btnRaise setTitle:[NSString getFormatedNumberByInteger:sender.value] forState:UIControlStateNormal];
 }
 
 - (IBAction)btnStart_click:(UIButton *)sender
@@ -1301,8 +1307,8 @@ static long iRaiseMinValue,iRaiseMaxValue;
     {
         self.slider.value = iRaiseMinValue;
     }
-    self.txtRaise.text = [NSString getFormatedNumberByInteger:self.slider.value];
-    [self.btnRaise setTitle:self.txtRaise.text forState:UIControlStateNormal];
+    self.txtRaise.text = [[NSNumber numberWithInteger:self.slider.value] stringValue];
+    [self.btnRaise setTitle:[NSString getFormatedNumberByInteger:self.slider.value] forState:UIControlStateNormal];
 }
 
 - (IBAction)btnMax:(UIButton *)sender
@@ -1313,30 +1319,30 @@ static long iRaiseMinValue,iRaiseMaxValue;
         self.slider.value = iRaiseMaxValue;
     }
     self.txtRaise.text = [[NSNumber numberWithInteger:self.slider.value] stringValue];
-    [self.btnRaise setTitle:self.txtRaise.text forState:UIControlStateNormal];
+    [self.btnRaise setTitle:[NSString getFormatedNumberByInteger:self.slider.value] forState:UIControlStateNormal];
 }
 
 - (IBAction)btnSetMin_click:(UIButton *)sender
 {
-    self.txtRaise.text = [NSString getFormatedNumberByInteger:iRaiseMinValue];
-    [self.btnRaise setTitle:self.txtRaise.text forState:UIControlStateNormal];
+    self.txtRaise.text = [[NSNumber numberWithInteger:iRaiseMinValue] stringValue];
+    [self.btnRaise setTitle:[NSString getFormatedNumberByInteger:iRaiseMinValue] forState:UIControlStateNormal];
 }
 
 - (IBAction)btnSetHalf_click:(UIButton *)sender
 {
-    self.txtRaise.text = [NSString getFormatedNumberByInteger:pokerTable.allPots/2];
-    [self.btnRaise setTitle:self.txtRaise.text forState:UIControlStateNormal];
+    self.txtRaise.text = [[NSNumber numberWithInteger:pokerTable.allPots/2] stringValue];
+    [self.btnRaise setTitle:[NSString getFormatedNumberByInteger:pokerTable.allPots/2] forState:UIControlStateNormal];
 }
 
 - (IBAction)btnSetPot_click:(UIButton *)sender
 {
-    self.txtRaise.text = [NSString getFormatedNumberByInteger:pokerTable.allPots];
-    [self.btnRaise setTitle:self.txtRaise.text forState:UIControlStateNormal];
+    self.txtRaise.text = [[NSNumber numberWithInteger:pokerTable.allPots] stringValue];
+    [self.btnRaise setTitle:[NSString getFormatedNumberByInteger:pokerTable.allPots] forState:UIControlStateNormal];
 }
 
 - (IBAction)btnSetMax_click:(UIButton *)sender
 {
-    self.txtRaise.text = [NSString getFormatedNumberByInteger:iRaiseMaxValue];
-    [self.btnRaise setTitle:self.txtRaise.text forState:UIControlStateNormal];
+    self.txtRaise.text = [[NSNumber numberWithInteger:iRaiseMaxValue] stringValue];
+    [self.btnRaise setTitle:[NSString getFormatedNumberByInteger:iRaiseMaxValue] forState:UIControlStateNormal];
 }
 @end
