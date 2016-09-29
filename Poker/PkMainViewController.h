@@ -14,8 +14,6 @@
 #import <sys/utsname.h>
 
 @interface PkMainViewController:UIViewController<PomeloDelegate>{
-    Pomelo *pomelo;
-    PkMainViewController *main;
     BOOL isLogin;
 }
 
@@ -24,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnGoGame;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *aidView;
 @property (weak, nonatomic) IBOutlet UIPickerView *picker;
-
 @property (weak, nonatomic) IBOutlet UIView *centerView;
+@property (weak, nonatomic) Pomelo *OnePomelo;
+@property (weak, nonatomic)NSString *name;
 @end

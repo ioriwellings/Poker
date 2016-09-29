@@ -14,6 +14,7 @@
 #import "PkMainViewController.h"
 
 @interface LoginView:UIViewController <UITextFieldDelegate,PomeloDelegate>{
+    Pomelo *pomelo;
 }
 
 @property (weak, nonatomic) IBOutlet UITextField *txtUserID;
@@ -21,5 +22,5 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnLogin;
 @property (weak, nonatomic) IBOutlet UIButton *btnForgotPassWord;
 @property (weak, nonatomic) IBOutlet UIButton *btnSignUp;
-@property (weak, nonatomic) Pomelo *OnePomelo;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *aidView;
 @end

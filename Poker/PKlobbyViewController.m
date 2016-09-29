@@ -29,7 +29,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.aidView.hidden =YES;
+    [self.aidView stopAnimating];
  
     self.historyTable.delegate = self;
     self.historyTable.dataSource = self;
@@ -113,7 +114,6 @@
 -(void)getdata{
     NSString *name;
     NSString *channel;
-    __weak typeof(self) ws = self;
      __weak typeof(self) weakSelf = self;
 //    [self.OnePomelo connectToHost:[GloubVariables sharedInstance].host
 //                   onPort:[GloubVariables sharedInstance].port
@@ -131,6 +131,8 @@
 //                     }
 //                 }];
 //             }];
+    self.aidView.hidden = NO;
+    [self.aidView startAnimating];
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                             name, @"loginName",
                             channel, @"passWord",
@@ -141,6 +143,8 @@
         if (roomList.count > 0) {
             self.arrOnlineCheckHistory = roomList;
             [weakSelf.historyTable reloadData];
+            self.aidView.hidden =YES;
+            [self.aidView stopAnimating];
         }
     }];
 }

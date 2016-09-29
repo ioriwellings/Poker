@@ -44,62 +44,16 @@
         UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"banner%02d",index]];
         [self.imageArray addObject:image];
     }
-    __weak typeof(self) ws = self;
-    pomelo = [[Pomelo alloc] initWithDelegate:ws];
+    [self.txtUserID setText:self.name];
     [self setupUI];
-    [self initData];
-}
-
-
-
-- (void)initData{
-    isLogin = false;
-    
-  //  if (!isLogin) {
-  //      [self.btnGoGame setEnabled:NO];//不能点击
-  //  }
- //   [self.btnLogin setEnabled:NO];
-    __weak typeof(self) ws = self;
-    [pomelo connectToHost:PK_SERVER_IP onPort:PK_SERVER_PORT withCallback:^(Pomelo *p){
-        NSDictionary *params = [NSDictionary dictionaryWithObject:@"13" forKey:@"uid"];
-        self.aidView.hidden = NO;
-        [self.aidView startAnimating];
-        
-        [pomelo requestWithRoute:@"gate.gateHandler.queryEntry" andParams:params andCallback:^(NSDictionary *result){
-            NSLog(@"abc host== %@",[result objectForKey:@"host"]);
-            [pomelo disconnectWithCallback:^(Pomelo *p){
-                [ws entryWithData:result];
-                [self lodaData];
-            }];
-        }]; 
-    }];
-    
-    
     
 }
 
-- (void)entryWithData:(NSDictionary *)data
-{
-    [GloubVariables sharedInstance].host = [data objectForKey:@"host"];
-    [GloubVariables sharedInstance].port = [[data objectForKey:@"port"] intValue];
-    [pomelo connectToHost:[GloubVariables sharedInstance].host
-                   onPort:[GloubVariables sharedInstance].port
-             withCallback:^(Pomelo *p){
-             }];
-    
- 
-}
 
 
 - (IBAction)btnLogin_click:(id)sender
 {
-    [[PKViewTransfer sharedViewTransfer] pushViewController:@"loginviewcontroler"
-                                                      story:@"Login"
-                                                      block:^(UIViewController *vc) {
-                                                          LoginView* lgvc = (LoginView*)vc;
-                                                          lgvc.OnePomelo = pomelo;
-                                                          [self presentViewController:vc animated:YES completion:nil];
-                                                      }];
+  
 }
 - (IBAction)btnGoGame_click:(id)sender
 {
@@ -108,7 +62,7 @@
                                                       story:@"Login"
                                                       block:^(UIViewController *vc) {
                                                           PKlobbyViewController* pkvc = (PKlobbyViewController*)vc;
-                                                          pkvc.OnePomelo = pomelo;
+                                                          pkvc.OnePomelo = self.OnePomelo;
                                                           [self presentViewController:vc animated:YES completion:nil];
                                                       }];
 //    PKlobbyViewController *vc = [[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateInitialViewController];
@@ -179,7 +133,7 @@
                                 name, @"loginName",
                                 channel, @"passWord",
                                 nil];
-        [pomelo requestWithRoute:@"connector.entryHandler.login" andParams:params andCallback:^(NSDictionary *result){
+        [self.OnePomelo requestWithRoute:@"connector.entryHandler.login" andParams:params andCallback:^(NSDictionary *result){
             //                            NSArray *userList = [result objectForKey:@"users"];
             NSString *error = [result objectForKey:@"error"];
             NSString *msg = [result objectForKey:@"msg"];
@@ -373,7 +327,7 @@
                                                       story:@"MainResumption"
                                                       block:^(UIViewController *vc) {
                                                           ResumptionOfMethod *romd = (ResumptionOfMethod*)vc;
-                                                          romd.OnePomelo = pomelo;
+                                                          romd.OnePomelo = self.OnePomelo;
                                                           [self presentViewController:vc animated:YES completion:nil];
                                                       }];
 }
