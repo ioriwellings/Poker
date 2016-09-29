@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8485CC1F1D9CDA7C00407745 /* ResumptionOfMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 8485CC1E1D9CDA7C00407745 /* ResumptionOfMethod.m */; };
+		8485CC211D9CDBC600407745 /* MainResumption.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8485CC201D9CDBC600407745 /* MainResumption.storyboard */; };
 		8901012B1D97B51000A80BA3 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A59514941D927689006FFFF6 /* Login.storyboard */; };
 		891C0F051D5443080075A228 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C0F041D5443080075A228 /* main.m */; };
 		891C0F081D5443080075A228 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 891C0F071D5443080075A228 /* AppDelegate.m */; };
@@ -216,6 +218,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8485CC1D1D9CDA7C00407745 /* ResumptionOfMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResumptionOfMethod.h; sourceTree = "<group>"; };
+		8485CC1E1D9CDA7C00407745 /* ResumptionOfMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResumptionOfMethod.m; sourceTree = "<group>"; };
+		8485CC201D9CDBC600407745 /* MainResumption.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainResumption.storyboard; sourceTree = "<group>"; };
 		8901012C1D9A102A00A80BA3 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		891C0F001D5443080075A228 /* Poker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Poker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		891C0F041D5443080075A228 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -577,6 +582,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8485CC1C1D9CDA5200407745 /* Resumption */ = {
+			isa = PBXGroup;
+			children = (
+				8485CC1D1D9CDA7C00407745 /* ResumptionOfMethod.h */,
+				8485CC1E1D9CDA7C00407745 /* ResumptionOfMethod.m */,
+			);
+			name = Resumption;
+			sourceTree = "<group>";
+		};
 		891C0EF71D5443080075A228 = {
 			isa = PBXGroup;
 			children = (
@@ -602,6 +616,7 @@
 		891C0F021D5443080075A228 /* Poker */ = {
 			isa = PBXGroup;
 			children = (
+				8485CC1C1D9CDA5200407745 /* Resumption */,
 				A5CF2EA61D9B6183002FE472 /* CustomeView */,
 				A5CF2EA91D9B6183002FE472 /* NewPagedFlowView */,
 				A5047BB41D952ADF00BC0C7C /* gamelobby */,
@@ -629,6 +644,7 @@
 				A5960F0D1D93C8940057BAE7 /* PKViewTransfer.m */,
 				A5960F0F1D93CCC20057BAE7 /* GloubVariables.h */,
 				A5960F101D93CCC20057BAE7 /* GloubVariables.m */,
+				8485CC201D9CDBC600407745 /* MainResumption.storyboard */,
 				891C0F0C1D5443080075A228 /* Main.storyboard */,
 				A59514941D927689006FFFF6 /* Login.storyboard */,
 				891C0F0F1D5443080075A228 /* Assets.xcassets */,
@@ -1215,6 +1231,7 @@
 				8981A9DF1D94F1000029994D /* WINNER@2x.png in Resources */,
 				899637E91D81088200A05D8A /* poker_a_5@2x.png in Resources */,
 				899637FA1D81088200A05D8A /* poker_b_9@2x.png in Resources */,
+				8485CC211D9CDBC600407745 /* MainResumption.storyboard in Resources */,
 				896722661D937C0D00EF3063 /* foldpai.wav in Resources */,
 				899637FB1D81088200A05D8A /* poker_c_10@2x.png in Resources */,
 				899637F81D81088200A05D8A /* poker_b_7@2x.png in Resources */,
@@ -1379,6 +1396,7 @@
 				8983BB161D6ECA5D00B38455 /* DGActivityIndicatorFiveDotsAnimation.m in Sources */,
 				89CB2E3A1D62FEE500FB37A5 /* SRWebSocket.m in Sources */,
 				89CB2E371D62FEE500FB37A5 /* SocketIOTransportXHR.m in Sources */,
+				8485CC1F1D9CDA7C00407745 /* ResumptionOfMethod.m in Sources */,
 				89CB2E351D62FEE500FB37A5 /* SocketIOPacket.m in Sources */,
 				8983BB081D6ECA5D00B38455 /* DGActivityIndicatorBallGridPulseAnimation.m in Sources */,
 				89CB2E321D62FEE500FB37A5 /* PomeloProtocol.m in Sources */,
