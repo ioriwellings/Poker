@@ -69,12 +69,13 @@
 }
 
 - (void) showSimpleAlertView:(NSString*)title msg:(NSString*)msg cancelButtonTitle:(NSString*)cancelButtonTitle {
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title
-                                                    message:msg
-                                                   delegate:self
-                                          cancelButtonTitle:cancelButtonTitle
-                                          otherButtonTitles:nil, nil];
-    [alert show];
+//    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title
+//                                                    message:msg
+//                                                   delegate:self
+//                                          cancelButtonTitle:cancelButtonTitle
+//                                          otherButtonTitles:nil, nil];
+//    [alert show];
+    
 }
 
 - (void) drawLabelSqueare:(UILabel*)label color:(UIColor*)color {
