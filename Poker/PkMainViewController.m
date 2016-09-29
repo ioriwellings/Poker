@@ -35,6 +35,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.aidView.hidden =YES;
+    [self.aidView stopAnimating];
 //    banner00
 //    banner01.png
 //    banner02.png
