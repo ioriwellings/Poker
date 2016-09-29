@@ -1078,7 +1078,7 @@ static long iRaiseMinValue,iRaiseMaxValue;
         else if (obj.status == PokerActionStatusEnumAllIn)
         {
             hasAllIn = YES;
-            allInValue = obj.value;
+            allInValue = seat.player.bringInMoney;
             iRaiseMaxValue = allInValue;
         }
     }];
@@ -1312,7 +1312,7 @@ static long iRaiseMinValue,iRaiseMaxValue;
     {
         self.slider.value = iRaiseMaxValue;
     }
-    self.txtRaise.text = [NSString getFormatedNumberByInteger:self.slider.value];
+    self.txtRaise.text = [[NSNumber numberWithInteger:self.slider.value] stringValue];
     [self.btnRaise setTitle:self.txtRaise.text forState:UIControlStateNormal];
 }
 
