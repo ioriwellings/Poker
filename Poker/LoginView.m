@@ -7,6 +7,7 @@
 //
 
 #import "LoginView.h"
+#import "RegisterViewController.h"
 @interface LoginView ()
 {
    // NSString *host;
@@ -56,6 +57,8 @@
     [[PKViewTransfer sharedViewTransfer] pushViewController:@"registerVC"
                                                       story:@"Login"
                                                       block:^(UIViewController *vc) {
+                                                          RegisterViewController *revc = (RegisterViewController*)vc;
+                                                          revc.OnePomelo = self.OnePomelo;
                                                           [self presentViewController:vc animated:YES completion:nil];
                                                       }];
 }
@@ -65,63 +68,58 @@
     NSString* name = self.txtUserID.text;
     NSString* channel = self.txtPWD.text;
     __weak typeof(self) ws = self;
-    pomelo = [[Pomelo alloc] initWithDelegate:ws];
     if (([name length] > 0) && ([channel length] > 0)) {
-        [pomelo connectToHost:[GloubVariables sharedInstance].host
-                       onPort:[GloubVariables sharedInstance].port
-                 withCallback:^(Pomelo *p){
-                     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                                             name, @"loginName",
-                                             channel, @"passWord",
-                                             nil];
-                     [p requestWithRoute:@"connector.entryHandler.login" andParams:params andCallback:^(NSDictionary *result){
-//                            NSArray *userList = [result objectForKey:@"users"];
-                        
-                         
-                         NSString *error = [result objectForKey:@"error"];
-                         NSString *msg = [result objectForKey:@"msg"];
-
-                         if (error) {
-                             //失败
-                            
-                             UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:@"MESSAGE" message:error preferredStyle:UIAlertControllerStyleAlert];
-                             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel"
-                                                                                    style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                                 //取消按钮
-                                 NSLog(@"我是取消按钮");
-                             }];
-                             [alertControl addAction:cancelAction];//cancel
-                             //显示警报框
-                             [self presentViewController:alertControl animated:YES completion:nil];
-                         }else{
-                             
-                             
-//                             UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:@"MESSAGE" message:msg preferredStyle:UIAlertControllerStyleAlert];
-//                             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel"
-//                                                                                    style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-//                                                                                        //取消按钮
-//                                                                                        NSLog(@"我是取消按钮");
-//                                                                                    }];
-//                             [alertControl addAction:cancelAction];//cancel
-                             //显示警报框
-//                             [self presentViewController:alertControl animated:YES completion:nil];
-                             
-                             NSDictionary *data = [result objectForKey:@"playerInfo"];
-                             //成功
-                             NSString *playerNickName = [data objectForKey:@"playerNickName"];
-                             NSString *playerMoney = [data objectForKey:@"playerMoney"];
-                             [GloubVariables sharedInstance].money = playerMoney;
-                             [self newNSUserDefault:data];
-                             [self dismissViewControllerAnimated:YES completion:^{
-                                 NSDictionary *dictionary = [NSDictionary dictionaryWithObject:playerNickName forKey:@"name"];
-                                 [[NSNotificationCenter defaultCenter] postNotificationName:@"do" object:self userInfo:dictionary];
-                                 
-                             }];
-                         }
-                         
-                         
-                     }];
-                 }];
+        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                                name, @"loginName",
+                                channel, @"passWord",
+                                nil];
+        [self.OnePomelo requestWithRoute:@"connector.entryHandler.login" andParams:params andCallback:^(NSDictionary *result){
+            //                            NSArray *userList = [result objectForKey:@"users"];
+            
+            
+            NSString *error = [result objectForKey:@"error"];
+            NSString *msg = [result objectForKey:@"msg"];
+            
+            if (error) {
+                //失败
+                
+                UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:@"MESSAGE" message:error preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel"
+                                                                       style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                                                                           //取消按钮
+                                                                           NSLog(@"我是取消按钮");
+                                                                       }];
+                [alertControl addAction:cancelAction];//cancel
+                //显示警报框
+                [self presentViewController:alertControl animated:YES completion:nil];
+            }else{
+                
+                
+                //                             UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:@"MESSAGE" message:msg preferredStyle:UIAlertControllerStyleAlert];
+                //                             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel"
+                //                                                                                    style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                //                                                                                        //取消按钮
+                //                                                                                        NSLog(@"我是取消按钮");
+                //                                                                                    }];
+                //                             [alertControl addAction:cancelAction];//cancel
+                //显示警报框
+                //                             [self presentViewController:alertControl animated:YES completion:nil];
+                
+                NSDictionary *data = [result objectForKey:@"playerInfo"];
+                //成功
+                NSString *playerNickName = [data objectForKey:@"playerNickName"];
+                NSString *playerMoney = [data objectForKey:@"playerMoney"];
+                [GloubVariables sharedInstance].money = playerMoney;
+                [self newNSUserDefault:data];
+                [self dismissViewControllerAnimated:YES completion:^{
+                    NSDictionary *dictionary = [NSDictionary dictionaryWithObject:playerNickName forKey:@"name"];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"do" object:self userInfo:dictionary];
+                    
+                }];
+            }
+            
+            
+        }];
     }
 }
 
@@ -154,34 +152,6 @@
     // 归档
     [NSKeyedArchiver archiveRootObject:name toFile:filePath];
 }
-
-
-
-//- (void)initData{
-//    __weak typeof(self) ws = self;
-//    pomelo = [[Pomelo alloc] initWithDelegate:ws];
-//    [pomelo connectToHost:@"192.168.0.101" onPort:3014 withCallback:^(Pomelo *p){
-//        NSDictionary *params = [NSDictionary dictionaryWithObject:@"13" forKey:@"uid"];
-//        [pomelo requestWithRoute:@"gate.gateHandler.queryEntry" andParams:params andCallback:^(NSDictionary *result){
-//            NSLog(@"abc%@",[result objectForKey:@"host"]);
-//            [pomelo disconnectWithCallback:^(Pomelo *p){
-//                [ws entryWithData:result];
-//            }];
-//        }];
-//    }];
-//    
-//    
-//    
-//}
-//
-//- (void)entryWithData:(NSDictionary *)data
-//{
-//    //host = [data objectForKey:@"host"];
-//    //port = [[data objectForKey:@"port"] intValue];
-//    
-//    [GloubVariables sharedInstance].host = [data objectForKey:@"host"];
-//    [GloubVariables sharedInstance].port = [[data objectForKey:@"port"] intValue];
-//}
 
 -(void)alertViewcontrol
 {
@@ -232,9 +202,6 @@
 
 -(void)dealloc
 {
-    [pomelo disconnect];
-    pomelo = nil;
-    NSLog(@"%@:%s",self,__func__);
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

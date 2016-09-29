@@ -10,9 +10,8 @@
 #import "GloubVariables.h"
 #import "Pomelo.h"
 @interface RegisterViewController:UIViewController<PomeloDelegate>{
-    Pomelo *pomelo;
 }
 @property (weak, nonatomic) IBOutlet UITextField *txtUserID;
 @property (weak, nonatomic) IBOutlet UITextField *txtPWD;
-
+@property (weak, nonatomic) Pomelo *OnePomelo;
 @end

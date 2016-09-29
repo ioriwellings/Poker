@@ -11,6 +11,8 @@
 
 #import "NewPagedFlowView.h"
 #import "PGIndexBannerSubiew.h"
+#import "PKlobbyViewController.h"
+#import "LoginView.h"
 
 #define Width [UIScreen mainScreen].bounds.size.width
 
@@ -41,6 +43,8 @@
         UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"banner%02d",index]];
         [self.imageArray addObject:image];
     }
+    __weak typeof(self) ws = self;
+    pomelo = [[Pomelo alloc] initWithDelegate:ws];
     [self setupUI];
     [self initData];
 }
@@ -55,7 +59,6 @@
   //  }
  //   [self.btnLogin setEnabled:NO];
     __weak typeof(self) ws = self;
-    pomelo = [[Pomelo alloc] initWithDelegate:ws];
     [pomelo connectToHost:PK_SERVER_IP onPort:PK_SERVER_PORT withCallback:^(Pomelo *p){
         NSDictionary *params = [NSDictionary dictionaryWithObject:@"13" forKey:@"uid"];
         self.aidView.hidden = NO;
@@ -70,12 +73,20 @@
         }]; 
     }];
     
+    
+    
 }
 
 - (void)entryWithData:(NSDictionary *)data
 {
     [GloubVariables sharedInstance].host = [data objectForKey:@"host"];
     [GloubVariables sharedInstance].port = [[data objectForKey:@"port"] intValue];
+    [pomelo connectToHost:[GloubVariables sharedInstance].host
+                   onPort:[GloubVariables sharedInstance].port
+             withCallback:^(Pomelo *p){
+             }];
+    
+ 
 }
 
 
@@ -84,6 +95,8 @@
     [[PKViewTransfer sharedViewTransfer] pushViewController:@"loginviewcontroler"
                                                       story:@"Login"
                                                       block:^(UIViewController *vc) {
+                                                          LoginView* lgvc = (LoginView*)vc;
+                                                          lgvc.OnePomelo = pomelo;
                                                           [self presentViewController:vc animated:YES completion:nil];
                                                       }];
 }
@@ -93,9 +106,10 @@
     [[PKViewTransfer sharedViewTransfer] pushViewController:@"lobbyVC"
                                                       story:@"Login"
                                                       block:^(UIViewController *vc) {
+                                                          PKlobbyViewController* pkvc = (PKlobbyViewController*)vc;
+                                                          pkvc.OnePomelo = pomelo;
                                                           [self presentViewController:vc animated:YES completion:nil];
                                                       }];
-    
 //    PKlobbyViewController *vc = [[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateInitialViewController];
 //    [self presentViewController:vc animated:YES completion:NULL];
     
@@ -158,60 +172,56 @@
     NSString* name = [dict objectForKey:@"loginName"];
     NSString* channel = [dict objectForKey:@"password"];
     __weak typeof(self) ws = self;
-    pomelo = [[Pomelo alloc] initWithDelegate:ws];
+    
     if (([name length] > 0) && ([channel length] > 0)) {
-        [pomelo connectToHost:[GloubVariables sharedInstance].host
-                       onPort:[GloubVariables sharedInstance].port
-                 withCallback:^(Pomelo *p){
-                     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                                             name, @"loginName",
-                                             channel, @"passWord",
-                                             nil];
-                     [p requestWithRoute:@"connector.entryHandler.login" andParams:params andCallback:^(NSDictionary *result){
-                         //                            NSArray *userList = [result objectForKey:@"users"];
-                         NSString *error = [result objectForKey:@"error"];
-                         NSString *msg = [result objectForKey:@"msg"];
-                         if (error) {
-                             //失败
-                             UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:@"MESSAGE" message:error preferredStyle:UIAlertControllerStyleAlert];
-                             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel"
-                                                                                    style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                                                                                        //取消按钮
-                                                                                        NSLog(@"我是取消按钮");
-                                                                                    }];
-                             [alertControl addAction:cancelAction];//cancel
-                             //显示警报框
-                             [self presentViewController:alertControl animated:YES completion:nil];
-                             self.aidView.hidden =YES;
-                             [self.aidView stopAnimating];
-                             
-                         }else{
-                             
-                             NSDictionary *data = [result objectForKey:@"playerInfo"];
-                             //成功
-                             NSString *playerNickName = [data objectForKey:@"playerNickName"];
-                             NSString *playerMoney = [data objectForKey:@"playerMoney"];
-                             [GloubVariables sharedInstance].money = playerMoney;
-                             [self newNSUserDefault:data];
-                             [self dismissViewControllerAnimated:YES completion:^{
-                                 NSDictionary *dictionary = [NSDictionary dictionaryWithObject:playerNickName forKey:@"name"];
-                                 [[NSNotificationCenter defaultCenter] postNotificationName:@"do" object:self userInfo:dictionary];
-                             }];
-                             
-                             self.btnLogin.hidden = YES;
-                             self.txtUserID.hidden = NO;
-                             self.txtUserID .font = [UIFont fontWithName:PK_FONT_A size:100];
-                             [self.txtUserID setText:playerNickName];
-                             
-                             NSString *longMoney = [NSString stringWithFormat:@"%@",playerMoney];
-                             [GloubVariables sharedInstance].money = longMoney;
-                             
-                             [self.btnGoGame setEnabled:YES];
-                             self.aidView.hidden =YES;
-                             [self.aidView stopAnimating];
-                         }
-                     }];
-                 }];
+        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                                name, @"loginName",
+                                channel, @"passWord",
+                                nil];
+        [pomelo requestWithRoute:@"connector.entryHandler.login" andParams:params andCallback:^(NSDictionary *result){
+            //                            NSArray *userList = [result objectForKey:@"users"];
+            NSString *error = [result objectForKey:@"error"];
+            NSString *msg = [result objectForKey:@"msg"];
+            if (error) {
+                //失败
+                UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:@"MESSAGE" message:error preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"cancel"
+                                                                       style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                                                                           //取消按钮
+                                                                           NSLog(@"我是取消按钮");
+                                                                       }];
+                [alertControl addAction:cancelAction];//cancel
+                //显示警报框
+                [self presentViewController:alertControl animated:YES completion:nil];
+                self.aidView.hidden =YES;
+                [self.aidView stopAnimating];
+                
+            }else{
+                
+                NSDictionary *data = [result objectForKey:@"playerInfo"];
+                //成功
+                NSString *playerNickName = [data objectForKey:@"playerNickName"];
+                NSString *playerMoney = [data objectForKey:@"playerMoney"];
+                [GloubVariables sharedInstance].money = playerMoney;
+                [self newNSUserDefault:data];
+                [self dismissViewControllerAnimated:YES completion:^{
+                    NSDictionary *dictionary = [NSDictionary dictionaryWithObject:playerNickName forKey:@"name"];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"do" object:self userInfo:dictionary];
+                }];
+                
+                self.btnLogin.hidden = YES;
+                self.txtUserID.hidden = NO;
+                self.txtUserID .font = [UIFont fontWithName:PK_FONT_A size:100];
+                [self.txtUserID setText:playerNickName];
+                
+                NSString *longMoney = [NSString stringWithFormat:@"%@",playerMoney];
+                [GloubVariables sharedInstance].money = longMoney;
+                
+                [self.btnGoGame setEnabled:YES];
+                self.aidView.hidden =YES;
+                [self.aidView stopAnimating];
+            }
+        }];
     }
 }
 
@@ -357,37 +367,15 @@
 
 - (IBAction)btnTest:(id)sender
 {
- //   [self test];
     
     [[PKViewTransfer sharedViewTransfer] pushViewController:@"mainRom"
                                                       story:@"MainResumption"
                                                       block:^(UIViewController *vc) {
+                                                          
                                                           [self presentViewController:vc animated:YES completion:nil];
                                                       }];
 }
 
-- (void)test{
-    NSString* name = @"cy103";
-   NSString* channel = @"1";
-    __weak typeof(self) ws = self;
-    pomelo = [[Pomelo alloc] initWithDelegate:ws];
-    if (([name length] > 0) && ([channel length] > 0)) {
-        [pomelo connectToHost:[GloubVariables sharedInstance].host
-                       onPort:[GloubVariables sharedInstance].port
-                 withCallback:^(Pomelo *p){
-                     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                                             name, @"playerID",
-                                             channel, @"gameReplayType",
-                                             nil];
-                     [p requestWithRoute:@"connector.entryHandler.gameReplay" andParams:params andCallback:^(NSDictionary *result){
-                         //                            NSArray *userList = [result objectForKey:@"users"];
-                         
-                         
-                         NSLog(@"abc gameReplayData== %@",[result objectForKey:@"gameReplayData"]);
-                     }];
-                 }];
-    }
-}
 
 - (NSString*)deviceModelName
 {
@@ -459,9 +447,6 @@
 
 -(void)dealloc
 {
-    [pomelo disconnect];
-    pomelo = nil;
-    NSLog(@"%@:%s",self,__func__);
 }
 
 @end
