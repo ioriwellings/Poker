@@ -20,6 +20,9 @@
 }
 @property (nonatomic, assign) BOOL hasFlopCard;
 @property (nonatomic, assign) BOOL hasTurnCard;
+@property (nonatomic, assign) BOOL didFlopCard;
+@property (nonatomic, assign) BOOL didTurnCard;
+@property (nonatomic, assign) BOOL didRiverCard;
 @end
 
 @implementation PokerTableViewControler
@@ -396,6 +399,9 @@
 
 -(void)onGameStart:(NSDictionary*)dict
 {
+    self.didFlopCard = NO;
+    self.didTurnCard = NO;
+    self.didRiverCard = NO;
     NSDictionary *dictBody = [IoriJsonHelper getDictForKey:@"body" fromDict:dict];
     NSDictionary *dictGame = [[dictBody objectForKey:@"Data"] objectForKey:@"game"];
     NSArray<NSDictionary*> *arrayPlayerList = [dictGame objectForKey:@"playerList"];
@@ -878,6 +884,7 @@
 
 -(void)flopCard
 {
+    if(self.didFlopCard) return;
     if(pokerTable.communityCards.count<3)return;
     CardHelper *helper = [CardHelper sharedInstance];
     NSArray<PokerEntity*> *array = [helper getShuffle];
@@ -919,10 +926,12 @@
         self.hasFlopCard = YES;
     } delay:0.3];
     [self playSoundFlop];
+    self.didFlopCard = YES;
 }
 
 -(void)turnCard
 {
+    if(self.didTurnCard) return;
     if(pokerTable.communityCards.count<4)return;
     CardHelper *helper = [CardHelper sharedInstance];
     NSArray<PokerEntity*> *array = [helper getShuffle];
@@ -953,10 +962,13 @@
         [self.commCards[3] flip:^{self.hasFlopCard = NO;self.hasTurnCard = YES;} delay:0];
     }
     [self playSoundFaPai];
+    self.didTurnCard = YES;
 }
+
 
 -(void)riverCard
 {
+    if(self.didRiverCard)return;
     if(pokerTable.communityCards.count<5)return;
     CardHelper *helper = [CardHelper sharedInstance];
     NSArray<PokerEntity*> *array = [helper getShuffle];
@@ -986,6 +998,7 @@
         [self.commCards[4] flip:^{self.hasTurnCard = NO;} delay:.1];
     }
     [self playSoundFaPai];
+    self.didRiverCard = YES;
 }
 
 -(void)showMyCardType:(NSDictionary*)dict

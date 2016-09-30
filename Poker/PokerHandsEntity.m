@@ -24,43 +24,43 @@
 {
     if(self.pattern == PokerPatternEnumHighCard)
     {
-        return @"高牌";
+        return NSLocalizedString(@"HighCard", nil);
     }
     else if(self.pattern == PokerPatternEnumOnePair)
     {
-        return @"一对";
+        return NSLocalizedString(@"OnePair", nil);
     }
     else if(self.pattern == PokerPatternEnumTwoPair)
     {
-        return @"两对";
+        return NSLocalizedString(@"OnePair", nil);
     }
     else if(self.pattern == PokerPatternEnumThreeKind)
     {
-        return @"三条";
+        return NSLocalizedString(@"ThreeKind", nil);
     }
     else if(self.pattern == PokerPatternEnumStraight)
     {
-        return @"顺子";
+        return NSLocalizedString(@"Straight", nil);
     }
     else if(self.pattern == PokerPatternEnumFlush)
     {
-        return @"同花";
+        return NSLocalizedString(@"Flush", nil);
     }
     else if(self.pattern == PokerPatternEnumFullHouse)
     {
-        return @"葫芦";
+        return NSLocalizedString(@"FullHouse", nil);
     }
     else if(self.pattern == PokerPatternEnumFourKind)
     {
-        return @"四条";
+        return NSLocalizedString(@"FourKind", nil);
     }
     else if(self.pattern == PokerPatternEnumStraightFlush)
     {
-        return @"同花顺";
+        return NSLocalizedString(@"StraightFlush", nil);
     }
     else if(self.pattern == PokerPatternEnumRoyalFlush)
     {
-        return @"皇家同花顺";
+        return NSLocalizedString(@"RoyalFlush", nil);
     }
     return nil;
 }
