@@ -20,6 +20,9 @@
 }
 @property (nonatomic, assign) BOOL hasFlopCard;
 @property (nonatomic, assign) BOOL hasTurnCard;
+@property (nonatomic, assign) BOOL didFlopCard;
+@property (nonatomic, assign) BOOL didTurnCard;
+@property (nonatomic, assign) BOOL didRiverCard;
 @end
 
 @implementation PokerTableViewControler
@@ -396,6 +399,9 @@
 
 -(void)onGameStart:(NSDictionary*)dict
 {
+    self.didFlopCard = NO;
+    self.didTurnCard = NO;
+    self.didRiverCard = NO;
     NSDictionary *dictBody = [IoriJsonHelper getDictForKey:@"body" fromDict:dict];
     NSDictionary *dictGame = [[dictBody objectForKey:@"Data"] objectForKey:@"game"];
     NSArray<NSDictionary*> *arrayPlayerList = [dictGame objectForKey:@"playerList"];
@@ -514,7 +520,11 @@
     pokerTable.mainPots.mainPot = 0;
     [pokerTable.nextActionPlayer.nextActions removeAllObjects];
     pokerTable.nextActionPlayer.nextPlayerIndex = -1;
-    NSArray *arrayOpenCardPlayer = [IoriJsonHelper getArrayForKey:@"playerList" fromDict:callback];
+    [arrayPlayer enumerateObjectsUsingBlock:^(PlayerEntity * _Nonnull playerEntity, NSUInteger idx3, BOOL * _Nonnull stop3)
+     {
+         playerEntity.actionStatus = PokerActionStatusEnumNone;
+         playerEntity.isNeedShowCards = NO;
+     }];
     NSArray *arrayOpenCardList = [IoriJsonHelper getArrayForKey:@"playerCardList" fromDict:callback];
     NSArray<NSDictionary*> *arrayWiners = [IoriJsonHelper getArrayForKey:@"MainPools" fromDict:(NSDictionary*)callback];
     [arrayWiners enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
@@ -523,23 +533,12 @@
          NSString *playerID = [IoriJsonHelper getStringForKey:@"playerID" fromDict:obj];
          [arrayPlayer enumerateObjectsUsingBlock:^(PlayerEntity * _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2)
           {
-              obj2.actionStatus = PokerActionStatusEnumNone;
+              obj2.isNeedShowCards = NO;
               if([playerID isEqualToString:obj2.playerID])
               {
                   [pokerTable.mainPots.players addObject:obj2];
                   obj2.isWiner = YES;
                   obj2.winBet = [[obj objectForKey:@"value"] integerValue];
-                  [obj2.handCard.arrayPoker removeAllObjects];//不能删手牌
-                  NSArray<NSDictionary*> *arrayCards = [IoriJsonHelper getArrayForKey:@"cardlist" fromDict:obj];
-                  [arrayCards enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj3, NSUInteger idx3, BOOL * _Nonnull stop3)
-                  {
-                      PokerEntity *poker = [PokerEntity new];
-                      poker.numberValue = [IoriJsonHelper getIntegerForKey:@"value" fromDict:obj3];
-                      poker.pokerSuit = [IoriJsonHelper getIntegerForKey:@"color" fromDict:obj3];
-                      [obj2.handCard.arrayPoker addObject:poker];
-                  }];
-                  obj2.handCard.pattern = (PokerPatternEnum)[IoriJsonHelper getIntegerForKey:@"cardType" fromDict:obj];
-                  //*stop2 = YES;
               }
           }];
      }];
@@ -554,29 +553,46 @@
             NSString *playerID = [IoriJsonHelper getStringForKey:@"playerID" fromDict:dictPlayer];
             [arrayPlayer enumerateObjectsUsingBlock:^(PlayerEntity * _Nonnull playerEntity, NSUInteger idx3, BOOL * _Nonnull stop3)
             {
-                playerEntity.actionStatus = PokerActionStatusEnumNone;
                 if([playerID isEqualToString:playerEntity.playerID])
                 {
                     sidePot.bet = [[dictPlayer objectForKey:@"value"] integerValue];
                     [sidePot.players addObject:playerEntity];
-                    //playerEntity.actionStatus = PokerActionStatusEnumNone;
                     playerEntity.isWiner = YES;
-                    playerEntity.winBet = 0;
-                    playerEntity.handCard.pattern = (PokerPatternEnum)[IoriJsonHelper getIntegerForKey:@"cardType" fromDict:dictPlayer];
-                    [playerEntity.handCard.arrayPoker removeAllObjects];
-                    NSArray<NSDictionary*> *arrayCards = [IoriJsonHelper getArrayForKey:@"cardlist" fromDict:dictPlayer];
-                    [arrayCards enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj4, NSUInteger idx4, BOOL * _Nonnull stop4)
-                     {
-                         PokerEntity *poker = [PokerEntity new];
-                         poker.numberValue = [IoriJsonHelper getIntegerForKey:@"value" fromDict:obj4];
-                         poker.pokerSuit = [IoriJsonHelper getIntegerForKey:@"color" fromDict:obj4];
-                         [playerEntity.handCard.arrayPoker addObject:poker];
-                     }];
-                    //*stop3 = YES;
+                    playerEntity.winBet = [[dictPlayer objectForKey:@"value"] integerValue];
+
                 };;
             }];
         }];
     }];
+    
+    [arrayOpenCardList enumerateObjectsUsingBlock:^(NSDictionary *  _Nonnull objPlayerCard, NSUInteger idx, BOOL * _Nonnull stop)
+    {
+        if([objPlayerCard isKindOfClass:[NSDictionary class]])
+        {
+            NSString *playerID = [IoriJsonHelper getStringForKey:@"playerID" fromDict:objPlayerCard];
+            if([playerID isEqualToString:[UserInfo sharedUser].userID] == NO)
+            {
+                [arrayPlayer enumerateObjectsUsingBlock:^(PlayerEntity * _Nonnull objPlayer, NSUInteger idxPlayer, BOOL * _Nonnull stopPlayer)
+                 {
+                    if([playerID isEqualToString:objPlayer.playerID])
+                    {
+                        NSArray<NSDictionary*> *arrayCards = [IoriJsonHelper getArrayForKey:@"card" fromDict:objPlayerCard];
+                        [arrayCards enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull objCard, NSUInteger idxCard, BOOL * _Nonnull stopCard)
+                         {
+                             PokerEntity *poker = [PokerEntity new];
+                             poker.numberValue = [IoriJsonHelper getIntegerForKey:@"value" fromDict:objCard];
+                             poker.pokerSuit = [IoriJsonHelper getIntegerForKey:@"color" fromDict:objCard];
+                             [objPlayer.handCard.arrayPoker addObject:poker];
+                             objPlayer.handCard.pattern = [IoriJsonHelper getIntegerForKey:@"cardType" fromDict:objCard];
+                             objPlayer.isNeedShowCards = YES;
+                         }];
+                        *stopPlayer = YES;
+                    }
+                }];
+            }
+        }
+    }];
+    
     [self player2Seat];
     [self countBet];
     [self markDirtySeatWithPlayerArray:arrayPlayer];
@@ -868,6 +884,7 @@
 
 -(void)flopCard
 {
+    if(self.didFlopCard) return;
     if(pokerTable.communityCards.count<3)return;
     CardHelper *helper = [CardHelper sharedInstance];
     NSArray<PokerEntity*> *array = [helper getShuffle];
@@ -909,10 +926,12 @@
         self.hasFlopCard = YES;
     } delay:0.3];
     [self playSoundFlop];
+    self.didFlopCard = YES;
 }
 
 -(void)turnCard
 {
+    if(self.didTurnCard) return;
     if(pokerTable.communityCards.count<4)return;
     CardHelper *helper = [CardHelper sharedInstance];
     NSArray<PokerEntity*> *array = [helper getShuffle];
@@ -943,10 +962,13 @@
         [self.commCards[3] flip:^{self.hasFlopCard = NO;self.hasTurnCard = YES;} delay:0];
     }
     [self playSoundFaPai];
+    self.didTurnCard = YES;
 }
+
 
 -(void)riverCard
 {
+    if(self.didRiverCard)return;
     if(pokerTable.communityCards.count<5)return;
     CardHelper *helper = [CardHelper sharedInstance];
     NSArray<PokerEntity*> *array = [helper getShuffle];
@@ -976,6 +998,7 @@
         [self.commCards[4] flip:^{self.hasTurnCard = NO;} delay:.1];
     }
     [self playSoundFaPai];
+    self.didRiverCard = YES;
 }
 
 -(void)showMyCardType:(NSDictionary*)dict

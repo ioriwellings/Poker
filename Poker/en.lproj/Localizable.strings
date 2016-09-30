@@ -16,3 +16,14 @@
 "SB" = "SB";
 "BB" = "BB";
 "Win" = "Winner";
+
+"HighCard" = "HighCard";
+"OnePair" = "OnePair";
+"TwoPair" = "TwoPair";
+"ThreeKind" = "ThreeKind";
+"Straight" = "Straight";
+"Flush" = "Flush";
+"FullHouse" = "FullHouse";
+"FourKind" = "FourKind";
+"StraightFlush" = "StraightFlush";
+"RoyalFlush" = "RoyalFlush";

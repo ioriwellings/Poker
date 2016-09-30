@@ -16,3 +16,14 @@
 "SB" = "小盲";
 "BB" = "大盲";
 "Win" = "赢";
+
+"HighCard" = "高牌";
+"OnePair" = "一对";
+"TwoPair" = "两对";
+"ThreeKind" = "三条";
+"Straight" = "顺子";
+"Flush" = "同花";
+"FullHouse" = "葫芦";
+"FourKind" = "四条";
+"StraightFlush" = "同花顺";
+"RoyalFlush" = "皇家同花顺";
