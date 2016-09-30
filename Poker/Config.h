@@ -11,8 +11,8 @@
 
 #define PK_FONT_A @"Square721 Cn BT Roman"
 #define PK_FONT_B @"Square721 Cn BT Bold"
-#define PK_SERVER_IP @"pokerelite-efish.us.tenxapp.com"//"192.168.0.101"
-#define PK_SERVER_PORT 28751 //3014
+#define PK_SERVER_IP @"192.168.0.101" //"pokerelite-efish.us.tenxapp.com"
+#define PK_SERVER_PORT 3014 //28751
 
 
 #endif /* config_h */
