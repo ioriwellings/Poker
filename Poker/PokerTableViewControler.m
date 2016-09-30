@@ -517,6 +517,7 @@
     [arrayPlayer enumerateObjectsUsingBlock:^(PlayerEntity * _Nonnull playerEntity, NSUInteger idx3, BOOL * _Nonnull stop3)
      {
          playerEntity.actionStatus = PokerActionStatusEnumNone;
+         playerEntity.isNeedShowCards = NO;
      }];
     NSArray *arrayOpenCardList = [IoriJsonHelper getArrayForKey:@"playerCardList" fromDict:callback];
     NSArray<NSDictionary*> *arrayWiners = [IoriJsonHelper getArrayForKey:@"MainPools" fromDict:(NSDictionary*)callback];
@@ -567,7 +568,6 @@
             {
                 [arrayPlayer enumerateObjectsUsingBlock:^(PlayerEntity * _Nonnull objPlayer, NSUInteger idxPlayer, BOOL * _Nonnull stopPlayer)
                  {
-                    objPlayer.isNeedShowCards = NO;
                     if([playerID isEqualToString:objPlayer.playerID])
                     {
                         NSArray<NSDictionary*> *arrayCards = [IoriJsonHelper getArrayForKey:@"card" fromDict:objPlayerCard];
