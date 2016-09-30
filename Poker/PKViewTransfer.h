@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 typedef void (^transfer_block_t)(UIViewController*);
-@interface PKViewTransfer:NSObject
+@interface PKViewTransfer:NSObject<UIAlertViewDelegate>
 + (PKViewTransfer*) sharedViewTransfer;
 
 - (void) pushViewController:(NSString*)name block:(transfer_block_t)block;

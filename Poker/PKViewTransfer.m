@@ -69,13 +69,23 @@
 }
 
 - (void) showSimpleAlertView:(NSString*)title msg:(NSString*)msg cancelButtonTitle:(NSString*)cancelButtonTitle {
-//    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title
-//                                                    message:msg
-//                                                   delegate:self
-//                                          cancelButtonTitle:cancelButtonTitle
-//                                          otherButtonTitles:nil, nil];
-//    [alert show];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:title
+                                                    message:msg
+                                                   delegate:self
+                                          cancelButtonTitle:cancelButtonTitle
+                                          otherButtonTitles:nil, nil];
+    [alert show];
     
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex;{
+    // the user clicked OK
+    if (buttonIndex == 0)
+    {
+        //do something here...
+        NSLog(@"lost -%s", __func__);
+        
+    }
 }
 
 - (void) drawLabelSqueare:(UILabel*)label color:(UIColor*)color {

@@ -9,6 +9,9 @@
 #import "LoginView.h"
 #import "RegisterViewController.h"
 #import "PkMainViewController.h"
+#import "AppDelegate.h"
+#import "RegisterViewController.h"
+#import "PKlobbyViewController.h"
 @interface LoginView ()
 {
    // NSString *host;
@@ -104,6 +107,7 @@
                                                           revc.OnePomelo = pomelo;
                                                           [self presentViewController:vc animated:YES completion:nil];
                                                       }];
+    
 }
 
 - (void) doLogin
@@ -240,8 +244,56 @@
     
 }
 
+- (void)PomeloDidConnect:(Pomelo *)pomelo
+{
+    NSLog(@"-%s", __func__);
+}
+- (void)PomeloDidDisconnect:(Pomelo *)_pomelo withError:(NSError *)error;
+{
+    NSLog(@"-%s, error:%@", __func__, error);
+//    if([[error.userInfo objectForKey:@"isDisconnectByUser"] boolValue] == NO)
+//    {
+//        //[self reconnectToHost];
+//    }
+//    else
+//    {
+//        _pomelo.isDisconnectByUser = NO;
+//    }
+    //isDisconnectByUser:0 已经连接
+    NSLog(@"-%s, code:%ld", __func__, (long)error.code);
+    if (error.code !=-2){
+//        [[PKViewTransfer sharedViewTransfer] showSimpleAlertView:@"MESSAGE"
+//                                                             msg:@"Lost Contact"
+//                                               cancelButtonTitle:@"cancel"];
+
+        AppDelegate * delegate = ((AppDelegate *)[UIApplication sharedApplication].delegate);
+        if (delegate.view) {
+            PkMainViewController* pkmvc = (PkMainViewController*)delegate.view;
+            if (pkmvc.presentedViewController!=NULL) {
+                [pkmvc.presentedViewController dismissViewControllerAnimated:NO completion:nil];
+            }
+            [pkmvc close];
+            delegate.view = NULL;
+        }
+        [self initData];
+    }
+}
+
+
+- (void)Pomelo:(Pomelo *)pomelo didReceiveMessage:(NSArray *)message
+{
+    //NSLog(@"-%s, message:%@", __func__, message);
+    __weak typeof(self) ws = self;
+    NSDictionary *dict = (NSDictionary*)message;
+    if([[dict objectForKey:@"code"] integerValue] == 500)
+    {
+        //[ws reconnectToHost];
+    }
+}
+
 -(void)dealloc
 {
+    pomelo = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
