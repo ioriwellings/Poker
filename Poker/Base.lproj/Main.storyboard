@@ -2350,6 +2350,9 @@
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" restorationIdentifier="btn1" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BUp-id-LPr" userLabel="1">
                                                 <rect key="frame" x="18" y="139" width="51" height="33"/>
                                                 <state key="normal" image="num_1"/>
+                                                <connections>
+                                                    <action selector="btnNumberPad_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="bUU-mL-eZx"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" tag="3" contentMode="scaleToFill" restorationIdentifier="btn3" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mHa-aK-jnV" userLabel="3">
                                                 <rect key="frame" x="147" y="139" width="51" height="33"/>
@@ -2379,7 +2382,7 @@
                                                     <action selector="onBtnAssign:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="frm-Hz-en9"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" tag="11" contentMode="scaleToFill" restorationIdentifier="btnDot" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Pb-ii-pbn" userLabel="dot">
+                                            <button opaque="NO" tag="11" contentMode="scaleToFill" restorationIdentifier="btnDot" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Pb-ii-pbn" userLabel="dot">
                                                 <rect key="frame" x="147" y="183" width="51" height="33"/>
                                                 <state key="normal" image="num_dot"/>
                                                 <connections>
@@ -2389,6 +2392,9 @@
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" restorationIdentifier="btn2" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DTI-F0-NeW" userLabel="2">
                                                 <rect key="frame" x="83" y="139" width="51" height="33"/>
                                                 <state key="normal" image="num_2"/>
+                                                <connections>
+                                                    <action selector="btnNumberPad_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="BXQ-7s-C3I"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" tag="7" contentMode="scaleToFill" restorationIdentifier="btn7" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EUd-Wp-Ig0" userLabel="7">
                                                 <rect key="frame" x="18" y="51" width="51" height="33"/>
