@@ -2351,7 +2351,7 @@
                                                 <rect key="frame" x="18" y="139" width="51" height="33"/>
                                                 <state key="normal" image="num_1"/>
                                                 <connections>
-                                                    <action selector="btnNumberPad_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="bUU-mL-eZx"/>
+                                                    <action selector="onBtnNumber:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="E5d-Fn-Ljn"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="3" contentMode="scaleToFill" restorationIdentifier="btn3" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mHa-aK-jnV" userLabel="3">
@@ -2393,7 +2393,7 @@
                                                 <rect key="frame" x="83" y="139" width="51" height="33"/>
                                                 <state key="normal" image="num_2"/>
                                                 <connections>
-                                                    <action selector="btnNumberPad_click:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="BXQ-7s-C3I"/>
+                                                    <action selector="onBtnNumber:" destination="YfZ-qu-XoD" eventType="touchUpInside" id="V1T-Pt-5uK"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="7" contentMode="scaleToFill" restorationIdentifier="btn7" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EUd-Wp-Ig0" userLabel="7">
