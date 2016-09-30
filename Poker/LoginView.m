@@ -267,13 +267,19 @@
 //                                               cancelButtonTitle:@"cancel"];
 
         AppDelegate * delegate = ((AppDelegate *)[UIApplication sharedApplication].delegate);
-        if (delegate.view) {
-            PkMainViewController* pkmvc = (PkMainViewController*)delegate.view;
-            if (pkmvc.presentedViewController!=NULL) {
-                [pkmvc.presentedViewController dismissViewControllerAnimated:NO completion:nil];
-            }
-            [pkmvc close];
-            delegate.view = NULL;
+        if (delegate.view)
+        {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    PkMainViewController* pkmvc = (PkMainViewController*)delegate.view;
+                    if (pkmvc.presentedViewController!=NULL) {
+                        [pkmvc.presentedViewController dismissViewControllerAnimated:NO completion:^(){
+                            [pkmvc close];
+                        }];
+                    }
+                    [pkmvc close];
+
+    });
+            
         }
         [self initData];
     }

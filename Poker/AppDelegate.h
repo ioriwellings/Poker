@@ -13,7 +13,7 @@
 @property (strong, nonatomic) UIWindow *window;
 
 
-@property (nonatomic,strong) UIViewController * view;
+@property (nonatomic, weak) UIViewController * view;
 @property (nonatomic, retain) NSString  *viewPage;
 @end
 
