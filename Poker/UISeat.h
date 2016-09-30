@@ -29,7 +29,6 @@
 @property (nonatomic, weak) UIImageView *waittingView;
 @property (nonatomic, weak) UIImageView *iconChip;
 
-@property (nonatomic, weak) PokerTableEntity *pokerTable;
 @property (nonatomic, readonly, getter=userNameBg) UIView *userNameBg;
 @property (nonatomic, weak) UIView *refMainBetView;
 @property (nonatomic, weak) NSArray<UIView*> *refSidePotsContainerViews;

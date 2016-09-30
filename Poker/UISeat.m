@@ -107,7 +107,7 @@
             self.pokerContainer.hidden = NO;
             [self updateHandCards:player.handCard.arrayPoker];//亮牌
         }
-        else if(player.actionStatus == PokerActionEnumFold && [[UserInfo sharedUser].userID isEqualToString:player.playerID])
+        else if(/*player.actionStatus == PokerActionEnumFold && */[[UserInfo sharedUser].userID isEqualToString:player.playerID])
         {
             self.hiddenCards.hidden = YES;
             self.pokerContainer.hidden = NO;
@@ -298,7 +298,7 @@
 -(void)updateStatusByPlayer:(PlayerEntity *)player
 {
     if((player.actionStatus == PokerActionStatusEnumNone ||
-       player.actionStatus == PokerActionStatusEnumWaitingNext) && player.isWiner == NO)
+       player.actionStatus == PokerActionStatusEnumWaitingNext) && player.isWiner == NO && [PokerTableEntity sharedInstance].tableStatus == PokerTableStatusEnumNone)
     {
         [self resetByPlayer:player];
         self.labBringIn.hidden = NO;
