@@ -13,7 +13,7 @@
 #import "GloubVariables.h"
 #import "PkMainViewController.h"
 
-@interface LoginView:UIViewController <UITextFieldDelegate,PomeloDelegate>{
+@interface LoginView:UIViewController <UITextFieldDelegate,PomeloDelegate,UIApplicationDelegate>{
     Pomelo *pomelo;
 }
 

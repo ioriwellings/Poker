@@ -14,10 +14,11 @@
 #import "PKlobbyViewController.h"
 #import "LoginView.h"
 #import "ResumptionOfMethod.h"
+#import "AppDelegate.h"
 
 #define Width [UIScreen mainScreen].bounds.size.width
 
-@interface PkMainViewController ()<NewPagedFlowViewDelegate, NewPagedFlowViewDataSource>\
+@interface PkMainViewController ()<NewPagedFlowViewDelegate, NewPagedFlowViewDataSource>
 /**
  *  图片数组
  */
@@ -35,6 +36,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    AppDelegate * delegate = ((AppDelegate *)[UIApplication sharedApplication].delegate);
+    delegate.view = self;
     self.aidView.hidden =YES;
     [self.aidView stopAnimating];
 //    banner00
@@ -47,7 +50,7 @@
         [self.imageArray addObject:image];
     }
     [self.txtUserID setText:self.name];
-    [self setupUI];
+//    [self setupUI];
     
 }
 
@@ -128,8 +131,7 @@
 
     NSString* name = [dict objectForKey:@"loginName"];
     NSString* channel = [dict objectForKey:@"password"];
-    __weak typeof(self) ws = self;
-    
+   
     if (([name length] > 0) && ([channel length] > 0)) {
         NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                                 name, @"loginName",
@@ -236,7 +238,7 @@
         px =-160;
         py =40;
     }
-    NewPagedFlowView *pageFlowView = [[NewPagedFlowView alloc]
+    pageFlowView = [[NewPagedFlowView alloc]
                                       initWithFrame:CGRectMake(px,py, self.centerView.bounds.size.width, 200)];
     pageFlowView.backgroundColor = [UIColor clearColor];
     pageFlowView.delegate = self;
@@ -247,7 +249,7 @@
     //5,5s，6 0-10, 185,
     //6PLUS,0-10, 185,
     //初始化pageControl
-    UIPageControl *pageControl = [[UIPageControl alloc]
+    pageControl = [[UIPageControl alloc]
                                   initWithFrame:CGRectMake(0-10, 185,                                                                                self.centerView.bounds.size.width, 8)];
     pageFlowView.pageControl = pageControl;
     [pageFlowView addSubview:pageControl];
@@ -267,7 +269,10 @@
 
 #pragma mark NewPagedFlowView Datasource
 - (NSInteger)numberOfPagesInFlowView:(NewPagedFlowView *)flowView {
-    return self.imageArray.count;
+    if (self.imageArray&&self.imageArray.count > 0) {
+        return self.imageArray.count;
+    }
+    return 0;
 }
 
 - (UIView *)flowView:(NewPagedFlowView *)flowView cellForPageAtIndex:(NSInteger)index{
@@ -402,9 +407,15 @@
     return deviceModel;
 }
 
+-(void)close{
+
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 -(void)dealloc
 {
+    
+    
 }
 
 @end

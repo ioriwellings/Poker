@@ -12,9 +12,12 @@
 #import "Config.h"
 #import "PKViewTransfer.h"
 #import <sys/utsname.h>
+#import "NewPagedFlowView.h"
 
 @interface PkMainViewController:UIViewController<PomeloDelegate>{
     BOOL isLogin;
+    NewPagedFlowView *pageFlowView;
+    UIPageControl *pageControl;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *txtUserID;
@@ -25,4 +28,5 @@
 @property (weak, nonatomic) IBOutlet UIView *centerView;
 @property (weak, nonatomic) Pomelo *OnePomelo;
 @property (weak, nonatomic)NSString *name;
+-(void)close;
 @end
