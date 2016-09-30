@@ -50,7 +50,7 @@
         [self.imageArray addObject:image];
     }
     [self.txtUserID setText:self.name];
-//    [self setupUI];
+    [self setupUI];
     
 }
 
@@ -414,8 +414,10 @@
 
 -(void)dealloc
 {
-    
-    
+    [pageFlowView stopTimer];
+    if (pageFlowView) {
+        [pageFlowView removeFromSuperview];
+    }
 }
 
 @end
