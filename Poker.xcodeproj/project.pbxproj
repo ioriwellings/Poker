@@ -179,6 +179,7 @@
 		899638131D81088200A05D8A /* poker_d_8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 899637DE1D81088200A05D8A /* poker_d_8@2x.png */; };
 		899638141D81088200A05D8A /* poker_d_9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 899637DF1D81088200A05D8A /* poker_d_9@2x.png */; };
 		899638171D81468200A05D8A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 899638161D81468200A05D8A /* LoginViewController.m */; };
+		89AEB9521DAF6BB600925CD3 /* UIView+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 89AEB9511DAF6BB600925CD3 /* UIView+Screenshot.m */; };
 		89CB2E311D62FEE500FB37A5 /* Pomelo.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CB2E1A1D62FEE500FB37A5 /* Pomelo.m */; };
 		89CB2E321D62FEE500FB37A5 /* PomeloProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CB2E1C1D62FEE500FB37A5 /* PomeloProtocol.m */; };
 		89CB2E331D62FEE500FB37A5 /* SocketIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 89CB2E1F1D62FEE500FB37A5 /* SocketIO.m */; };
@@ -495,6 +496,8 @@
 		899637DF1D81088200A05D8A /* poker_d_9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poker_d_9@2x.png"; sourceTree = "<group>"; };
 		899638151D81468200A05D8A /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		899638161D81468200A05D8A /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		89AEB9501DAF6BB600925CD3 /* UIView+Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Screenshot.h"; sourceTree = "<group>"; };
+		89AEB9511DAF6BB600925CD3 /* UIView+Screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Screenshot.m"; sourceTree = "<group>"; };
 		89CB2E191D62FEE500FB37A5 /* Pomelo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pomelo.h; sourceTree = "<group>"; };
 		89CB2E1A1D62FEE500FB37A5 /* Pomelo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pomelo.m; sourceTree = "<group>"; };
 		89CB2E1B1D62FEE500FB37A5 /* PomeloProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PomeloProtocol.h; sourceTree = "<group>"; };
@@ -905,6 +908,8 @@
 				8967226B1D93A0A600EF3063 /* NSString+Addition.m */,
 				8981A9E01D94F9390029994D /* IoriSlider.h */,
 				8981A9E11D94F9390029994D /* IoriSlider.m */,
+				89AEB9501DAF6BB600925CD3 /* UIView+Screenshot.h */,
+				89AEB9511DAF6BB600925CD3 /* UIView+Screenshot.m */,
 			);
 			path = Iori;
 			sourceTree = "<group>";
@@ -1403,6 +1408,7 @@
 				89CB2E321D62FEE500FB37A5 /* PomeloProtocol.m in Sources */,
 				89EB0BC71D585EAF0064CF3D /* PokerTableEntity.m in Sources */,
 				8983BB1F1D6ECA5D00B38455 /* DGActivityIndicatorThreeDotsAnimation.m in Sources */,
+				89AEB9521DAF6BB600925CD3 /* UIView+Screenshot.m in Sources */,
 				8983BABB1D6EC97000B38455 /* UserInfo.m in Sources */,
 				8983BB051D6ECA5D00B38455 /* DGActivityIndicatorBallClipRotateMultipleAnimation.m in Sources */,
 				894998F71D8E57740001DD42 /* IQUIView+Hierarchy.m in Sources */,

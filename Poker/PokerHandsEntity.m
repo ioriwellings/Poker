@@ -32,7 +32,7 @@
     }
     else if(self.pattern == PokerPatternEnumTwoPair)
     {
-        return NSLocalizedString(@"TowPair", nil);
+        return NSLocalizedString(@"TwoPair", nil);
     }
     else if(self.pattern == PokerPatternEnumThreeKind)
     {

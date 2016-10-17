@@ -11,6 +11,7 @@
 #import "PokerTableEntity.h"
 #import "UIView+DCAnimationKit.h"
 #import "NSString+Addition.h"
+#import "UIView+Screenshot.h"
 
 #define UserBg 1001
 
@@ -121,7 +122,7 @@
         }
         else
         {
-            if(player.actionStatus != PokerActionStatusEnumWaitingNext)
+            if(player.actionStatus != PokerActionStatusEnumWaitingNext && player.actionStatus != PokerActionStatusEnumFold)
             {
                 self.hiddenCards.hidden = NO;
             }
@@ -267,6 +268,10 @@
             self.iconWinner.hidden = YES;
         }
     }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        ws.labStatus.text = nil;
+        player.actionStatus = PokerActionStatusEnumNone;
+    });
 }
 
 -(void)clear
@@ -359,20 +364,61 @@
 
 -(void)foldCard
 {
+    [currentPlayer.handCard.arrayPoker removeAllObjects];
     if(self.hiddenCards.hidden == NO)
     {
         if([currentPlayer.playerID isEqualToString:[UserInfo sharedUser].userID] == NO)
         {
+            CGRect frame = [UIScreen mainScreen].bounds;
+            CGPoint point = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
+            point = [self convertPoint:point fromView:self.refMainBetView.superview];
+            UIImageView *view = [[UIImageView alloc] initWithFrame:self.hiddenCards.frame];
+            view.image = [self.hiddenCards screenshot];
+            [self addSubview:view];
             self.hiddenCards.hidden = YES;
+            __weak UIImageView *wsView = view;
+            //wsView.transform = CGAffineTransformMakeRotation(-[self getRotationAngel:view.frame.origin point2:point]);
+            [UIView animateWithDuration:IoriAnimationDuration animations:^{
+                CGRect frame = wsView.frame;
+                frame.origin = point;
+                frame.size = CGSizeZero;
+                wsView.frame = frame;
+                wsView.alpha = 0;
+            } completion:^(BOOL finished) {
+                [wsView removeFromSuperview];
+            }];
         }
     }
     else if (self.pokerContainer.hidden == NO)
     {
-        if([currentPlayer.playerID isEqualToString:[UserInfo sharedUser].userID] == NO)
+        if([currentPlayer.playerID isEqualToString:[UserInfo sharedUser].userID] == YES)
         {
+            CGRect frame = [UIScreen mainScreen].bounds;
+            CGPoint point = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
+            point = [self.refMainBetView.superview convertPoint:point toView:self];
+            UIImageView *view = [[UIImageView alloc] initWithFrame:self.pokerContainer.frame];
+            view.image = [self.pokerContainer screenshot];
+            [self addSubview:view];
             self.pokerContainer.hidden = YES;
+            __weak UIImageView *wsView = view;
+            //wsView.transform = CGAffineTransformMakeRotation(-[self getRotationAngel:view.frame.origin point2:point]);
+            [UIView animateWithDuration:IoriAnimationDuration animations:^{
+                CGRect frame = wsView.frame;
+                frame.origin = point;
+                frame.size = CGSizeZero;
+                wsView.frame = frame;
+                wsView.alpha = 0;
+            } completion:^(BOOL finished) {
+                [wsView removeFromSuperview];
+            }];
         }
     }
 }
+
+-(CGFloat)getRotationAngel:(CGPoint)p1 point2:(CGPoint)p2
+{
+    return atanf((p2.y - p1.y) / (p2.x - p1.x));
+}
+
 
 @end

@@ -1,5 +1,6 @@
 
 #import "UIView+DCAnimationKit.h"
+#import "Masonry.h"
 
 @interface UIImageView (DCAnimationKit)
 
@@ -92,7 +93,24 @@
     labTemp.font = labOrigin.font;
     labTemp.textAlignment = NSTextAlignmentCenter;
     [temp addSubview:labTemp];
-    [temp addSubview:[UIView duplicateImageView:icon]];;
+//    [labTemp sizeToFit];
+    UIImageView *iconView = [UIView duplicateImageView:icon];
+//    iconView.contentMode = UIViewContentModeScaleAspectFill;
+    [temp addSubview:iconView];
+//    [labTemp mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerY.equalTo(iconView.mas_centerY);
+//        make.top.equalTo(temp.mas_top);
+//        make.bottom.equalTo(temp.mas_bottom);
+//        make.leading.equalTo(iconView.mas_trailing).offset(3);
+//        make.trailing.equalTo(temp.mas_trailing);
+////        make.
+//    }];
+//    [iconView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(temp.mas_top);
+//        make.bottom.equalTo(temp.mas_bottom);
+//        make.leading.equalTo(temp.mas_leading);
+//    }];
+    //[temp setContentCompressionResistancePriority:nil forAxis:nil]
     return temp;
 }
 

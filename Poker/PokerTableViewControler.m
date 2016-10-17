@@ -255,19 +255,22 @@
                                               fromDict:dict]];
 }
 
+//加载并显示边池注
 -(void)loadChipsInfo:(NSDictionary*)dict
 {
     __weak typeof(self) ws = self;
     NSArray<NSDictionary*> *arrayChips = [IoriJsonHelper getArrayForKey:@"chips" fromDict:dict];
     [arrayChips enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
     {
-        UIView *potView = ws.betPots[idx];
-        UILabel* labBet = potView.subviews[0];
-        NSNumberFormatter *formater = [NSNumberFormatter alloc];
-        formater.numberStyle = NSNumberFormatterDecimalStyle;
-        NSInteger iBet = [[obj objectForKey:@"value"] integerValue];
-        labBet.text = [formater stringFromNumber:[NSNumber numberWithInteger:iBet]];
-        potView.hidden = NO;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((IoriAnimationDelayInterval+IoriAnimationDuration) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            UIView *potView = ws.betPots[idx];
+            UILabel* labBet = potView.subviews[0];
+            NSNumberFormatter *formater = [NSNumberFormatter alloc];
+            formater.numberStyle = NSNumberFormatterDecimalStyle;
+            NSInteger iBet = [[obj objectForKey:@"value"] integerValue];
+            labBet.text = [formater stringFromNumber:[NSNumber numberWithInteger:iBet]];
+            potView.hidden = NO;
+        });
     }];
 }
 
@@ -469,6 +472,7 @@
     pokerTable.allPots = [self getAllPotFromDictionary:callback];
     [self markDirtySeatWithPlayer:player];
     [self updateTableInfoUI];
+    [self sendOpenCardSignal];
 }
 
 -(void)onCheck:(NSDictionary*)callback
@@ -478,6 +482,7 @@
     pokerTable.tableStatus = PokerTableStatusEnumBet;
     [self markDirtySeatWithPlayer:player];
     [self updateTableInfoUI];
+    [self sendOpenCardSignal];
 }
 
 -(void)onAllIn:(NSDictionary*)callback
@@ -490,6 +495,7 @@
     pokerTable.allPots = [self getAllPotFromDictionary:callback];
     [self markDirtySeatWithPlayer:player];
     [self updateTableInfoUI];
+    [self sendOpenCardSignal];
 }
 
 -(void)onRaise:(NSDictionary*)callback
@@ -513,6 +519,7 @@
     pokerTable.tableStatus = PokerTableStatusEnumBet;
     [self markDirtySeatWithPlayer:foldPlayer];
     [self updateTableInfoUI];
+    [self sendOpenCardSignal];
 }
 
 -(void)onShowdown:(NSDictionary*)callback
@@ -522,7 +529,7 @@
     pokerTable.nextActionPlayer.nextPlayerIndex = -1;
     [arrayPlayer enumerateObjectsUsingBlock:^(PlayerEntity * _Nonnull playerEntity, NSUInteger idx3, BOOL * _Nonnull stop3)
      {
-         playerEntity.actionStatus = PokerActionStatusEnumNone;
+         //playerEntity.actionStatus = PokerActionStatusEnumNone;显示胜利状态的
          playerEntity.isNeedShowCards = NO;
      }];
     NSArray *arrayOpenCardList = [IoriJsonHelper getArrayForKey:@"playerCardList" fromDict:callback];
@@ -531,6 +538,7 @@
      {
          //WINER PLAYERID;
          NSString *playerID = [IoriJsonHelper getStringForKey:@"playerID" fromDict:obj];
+         pokerTable.mainPots.mainPot += [[obj objectForKey:@"value"] integerValue];
          [arrayPlayer enumerateObjectsUsingBlock:^(PlayerEntity * _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2)
           {
               obj2.isNeedShowCards = NO;
@@ -538,7 +546,8 @@
               {
                   [pokerTable.mainPots.players addObject:obj2];
                   obj2.isWiner = YES;
-                  obj2.winBet = [[obj objectForKey:@"value"] integerValue];
+                  //obj2.winBet = [[obj objectForKey:@"value"] integerValue];
+                  *stop2 = YES;
               }
           }];
      }];
@@ -555,15 +564,34 @@
             {
                 if([playerID isEqualToString:playerEntity.playerID])
                 {
-                    sidePot.bet = [[dictPlayer objectForKey:@"value"] integerValue];
+                    sidePot.bet += [[dictPlayer objectForKey:@"value"] integerValue];
                     [sidePot.players addObject:playerEntity];
                     playerEntity.isWiner = YES;
-                    playerEntity.winBet = [[dictPlayer objectForKey:@"value"] integerValue];
-
+                    //playerEntity.winBet = [[dictPlayer objectForKey:@"value"] integerValue];
+                    *stop3 = YES;
                 };;
             }];
         }];
     }];
+    
+    
+    
+    NSArray<NSDictionary*> *arrayPlayerList = [IoriJsonHelper getArrayForKey:@"playerList" fromDict:callback];
+    [arrayPlayerList enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull objDict, NSUInteger idxObj, BOOL * _Nonnull stopObj)
+     {
+         if([objDict isKindOfClass:[NSNull class]] ==NO)
+         {
+             PlayerEntity *player = [self getPlayerFromDictionary:objDict];
+             [arrayPlayer enumerateObjectsUsingBlock:^(PlayerEntity * _Nonnull objPlayer, NSUInteger idxPlayer, BOOL * _Nonnull stopPlayer)
+             {
+                 if([player.playerID isEqualToString:objPlayer.playerID])
+                 {
+                     //[self mergePlayer:objPlayer newPlayer:player];
+                     *stopPlayer = YES;
+                 }
+             }];
+         }
+     }];
     
     [arrayOpenCardList enumerateObjectsUsingBlock:^(NSDictionary *  _Nonnull objPlayerCard, NSUInteger idx, BOOL * _Nonnull stop)
     {
@@ -598,6 +626,7 @@
     [self markDirtySeatWithPlayerArray:arrayPlayer];
     [self updateTableInfoUI];
     [pokerTable.mainPots.players removeAllObjects];
+    [self performSelector:@selector(sendStartSignal) withObject:nil afterDelay:4*IoriAnimationDuration+IoriAnimationDelayInterval];
 }
 
 -(void)onPlayerKick:(NSDictionary*)dict
@@ -628,6 +657,7 @@
     [self player2Seat];
     [self markDirtySeatWithPlayer:kicter];
     [self updateTableInfoUI];
+    [self sendOpenCardSignal];
 }
 
 -(PlayerEntity*)mergeActionPlayer:(NSDictionary*)dict
@@ -739,6 +769,7 @@
     [self clearBetPots];
 }
 
+//隐藏主池与边池
 -(void)clearBetPots
 {
     self.MainBetView.hidden = YES;
@@ -772,14 +803,14 @@
             labBet.text = [NSString getFormatedNumberByInteger:pokerTable.mainPots.mainPot];
         });
     }
-    else
+    //else
     {
         if(pokerTable.mainPots.players.count >0)
         {
-            __block NSInteger iBet = 0;
-            [pokerTable.mainPots.players enumerateObjectsUsingBlock:^(PlayerEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                iBet += obj.winBet;
-            }];
+            __block NSInteger iBet = pokerTable.mainPots.mainPot;
+//            [pokerTable.mainPots.players enumerateObjectsUsingBlock:^(PlayerEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//                iBet += obj.winBet;
+//            }];
 
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((IoriAnimationDelayInterval+IoriAnimationDuration) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 labBet.text = [NSString getFormatedNumberByInteger:iBet];
@@ -788,22 +819,24 @@
 
             [pokerTable.mainPots.players enumerateObjectsUsingBlock:^(PlayerEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
             {
-                //PlayerEntity *obj = pokerTable.mainPots.players[0];
                 NSInteger iSeatIndex = obj.iSeatIndex;
                 UIView *temp = [UIView duplicateBetContainer:ws.MainBetView];
                 [temp.subviews[0] setHidden:YES];
                 [temp.subviews[1] setHidden:YES];
                 [ws.view addSubview:temp];
-                [temp.subviews[0] setText:[NSString getFormatedNumberByInteger:obj.winBet]];
+                //[temp.subviews[0] setText:[NSString getFormatedNumberByInteger:obj.winBet]];
+                //[temp.subviews[0] setText:[NSString getFormatedNumberByInteger:iBet]];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((2*IoriAnimationDelayInterval+IoriAnimationDuration) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     labBet.text = nil;
                     ws.MainBetView.hidden = YES;
-                    
                     [temp.subviews[1] setHidden:NO];
                     [temp.subviews[0] setHidden:YES];
 
                 });
-                [UIView animateWithDuration:IoriAnimationDuration delay:2.4*IoriAnimationDelayInterval options:UIViewAnimationOptionCurveEaseOut animations:^{
+                [UIView animateWithDuration:IoriAnimationDuration
+                                      delay:2.4*IoriAnimationDelayInterval
+                                    options:UIViewAnimationOptionCurveEaseOut
+                                 animations:^{
                     temp.frame = [ws.seatView[iSeatIndex] frame];
                 } completion:^(BOOL finished)
                 {
@@ -812,12 +845,43 @@
                         [temp removeFromSuperview];
                     }
                 }];
-            }
-            ];
+            }];
+            
+            [pokerTable.sidePots enumerateObjectsUsingBlock:^(SidePotEntity * _Nonnull objSide, NSUInteger idxSide, BOOL * _Nonnull stopSide)
+            {
+                [objSide.players enumerateObjectsUsingBlock:^(PlayerEntity * _Nonnull objWinner, NSUInteger idxWinner, BOOL * _Nonnull stopWinner)
+                {
+                    UIView *temp = [UIView duplicateBetContainer:ws.betPots[idxSide]];
+                    [ws.view addSubview:temp];
+                    temp.hidden = YES;
+                    [ws.betPots[idxSide] setHidden:YES];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((IoriAnimationDelayInterval+IoriAnimationDuration) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [ws.betPots[idxSide] setHidden:YES];
+                        temp.hidden = NO;
+                        [temp.subviews[0] setText:[[NSNumber numberWithInteger:objSide.bet] stringValue]];
+                        temp.subviews[0].hidden = NO;
+                        temp.subviews[1].hidden = NO;
+                    });
+                    NSInteger iSeatIndex = objWinner.iSeatIndex;
+                    [UIView animateWithDuration:IoriAnimationDuration
+                                          delay:2.4*IoriAnimationDelayInterval
+                                        options:UIViewAnimationOptionCurveEaseOut
+                                     animations:^{
+                                         temp.frame = [ws.seatView[iSeatIndex] frame];
+                                     }
+                     completion:^(BOOL finished)
+                     {
+                         if(finished)
+                         {
+                             [temp removeFromSuperview];
+                         }
+                     }];
+                }];
+            }];
         }
         else
         {
-            ws.MainBetView.hidden = YES;
+            //ws.MainBetView.hidden = YES;
         }
     }
     self.labBlindBet.text = [NSString stringWithFormat:@"Blind:%ld/%ld", pokerTable.sb, pokerTable.bb];
@@ -955,11 +1019,11 @@
      }];
     if(self.hasFlopCard == NO)
     {
-        [self.commCards[3] flip:nil delay:0.4];
+        [self.commCards[3] flip:nil delay:1.2];
     }
     else
     {
-        [self.commCards[3] flip:^{self.hasFlopCard = NO;self.hasTurnCard = YES;} delay:0];
+        [self.commCards[3] flip:^{self.hasFlopCard = NO;self.hasTurnCard = YES;} delay:1.2];
     }
     [self playSoundFaPai];
     self.didTurnCard = YES;
@@ -991,11 +1055,11 @@
      }];
     if(self.hasTurnCard == NO)
     {
-        [self.commCards[4] flip:nil delay:.5];
+        [self.commCards[4] flip:nil delay:1.8];
     }
     else
     {
-        [self.commCards[4] flip:^{self.hasTurnCard = NO;} delay:.1];
+        [self.commCards[4] flip:^{self.hasTurnCard = NO;} delay:1.8];
     }
     [self playSoundFaPai];
     self.didRiverCard = YES;
@@ -1052,16 +1116,18 @@
      {
 //         UISeat *view = seat.seatView;
 //         view.labBet.text = @"";
-//         view.betContainer.hidden = YES;;
+//         view.betContainer.hidden = YES;//触发结算 setStatusFromPlayer;
          seat.player.bet = 0;
      }];
-    [pokerTable.sidePots enumerateObjectsUsingBlock:^(SidePotEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
-     {
-         UIView *betPot01 = ws.betPots[idx];
-         betPot01.hidden = NO;
-         UILabel *labBet = betPot01.subviews[0];
-         labBet.text = [NSString getFormatedNumberByInteger:obj.bet];
-     }];
+//    [pokerTable.sidePots enumerateObjectsUsingBlock:^(SidePotEntity * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
+//     {
+//         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((IoriAnimationDelayInterval+IoriAnimationDuration) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//             UIView *betPot01 = ws.betPots[idx];
+//             betPot01.hidden = NO;
+//             UILabel *labBet = betPot01.subviews[0];
+//             labBet.text = [NSString getFormatedNumberByInteger:obj.bet];;
+//         });
+//     }];
 }
 
 -(void)closeActionPanel
@@ -1227,9 +1293,28 @@ static bool hasOnlyAllIn;
     
 }
 
+-(void)animationWillStart:(NSString *)animationID context:(void *)context
+{
+    NSLog(@"========id:%@", animationID);
+    [self.seatView[2] setHidden:YES];
+}
+-(void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
+{
+    NSLog(@"=======id:%@, finished:%@", animationID, finished);
+    [self.seatView[2] setHidden:NO];
+}
+
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    NSLog(@"=========abc started");
+    [UIView beginAnimations:@"test" context:nil];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDuration:4];
+    [UIView setAnimationDelay:3];
+    [self.view.subviews[0] setFrame:CGRectMake(0, 0, 100, 100)];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView commitAnimations];
 }
 
 -(BOOL)shouldAutorotate
@@ -1249,7 +1334,7 @@ static bool hasOnlyAllIn;
 
 -(BOOL)prefersStatusBarHidden
 {
-    return YES;
+    return NO;
 }
 
 -(void)dealloc
@@ -1377,6 +1462,20 @@ static bool hasOnlyAllIn;
 -(IBAction)btnDownCard:(UIButton*)sender
 {
     [pomelo requestWithRoute:@"game.gameHandler.downCard" andParams:@{} andCallback:^(id callback) {
+        
+    }];
+}
+
+-(void)sendStartSignal
+{
+    [pomelo requestWithRoute:@"game.gameHandler.showDownAnimaEnd" andParams:@{@"buyBigBlind":@(1)} andCallback:^(id callback) {
+        
+    }];
+}
+
+-(void)sendOpenCardSignal
+{
+    [pomelo requestWithRoute:@"game.gameHandler.openCard" andParams:@{@"openCard":@(1)} andCallback:^(id callback) {
         
     }];
 }

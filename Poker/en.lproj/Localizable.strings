@@ -12,7 +12,7 @@
 "Raise" = "Raise";
 "AllIn" = "AllIn";
 "Wait" = "WaitBet";
-"WaitNext" = "Waitting";
+"WaitNext" = "Waiting";
 "SB" = "SB";
 "BB" = "BB";
 "Win" = "Winner";
@@ -20,7 +20,7 @@
 "HighCard" = "HighCard";
 "OnePair" = "OnePair";
 "TwoPair" = "TwoPair";
-"ThreeKind" = "ThreeKind";
+"ThreeKind" = "Three of Kind";
 "Straight" = "Straight";
 "Flush" = "Flush";
 "FullHouse" = "FullHouse";
