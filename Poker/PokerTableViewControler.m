@@ -1307,14 +1307,14 @@ static bool hasOnlyAllIn;
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    NSLog(@"=========abc started");
-    [UIView beginAnimations:@"test" context:nil];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDuration:4];
-    [UIView setAnimationDelay:3];
-    [self.view.subviews[0] setFrame:CGRectMake(0, 0, 100, 100)];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView commitAnimations];
+//    NSLog(@"=========abc started");
+//    [UIView beginAnimations:@"test" context:nil];
+//    [UIView setAnimationDelegate:self];
+//    [UIView setAnimationDuration:4];
+//    [UIView setAnimationDelay:3];
+//    [self.view.subviews[0] setFrame:CGRectMake(0, 0, 100, 100)];
+//    [UIView setAnimationBeginsFromCurrentState:YES];
+//    [UIView commitAnimations];
 }
 
 -(BOOL)shouldAutorotate

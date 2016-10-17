@@ -76,7 +76,7 @@
                                      temp.frame.size.width,
                                      temp.frame.size.height);
     [temp setPoint:ws.iconChip.frame.origin
-          duration:.3
+          duration:IoriAnimationDuration
           finished:^{
               currentPlayer.isDirty = NO;
               [temp removeFromSuperview];
